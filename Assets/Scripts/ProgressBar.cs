@@ -14,6 +14,8 @@ public class ProgressBar : MonoBehaviour
     public float timeRemaining = 120;
 
     public Text timeText;
+    public Text NavigationColor;
+    public Text ReactorColor;
 
     void Start()
     {
@@ -23,6 +25,17 @@ public class ProgressBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // Check if either NavigationColor or ReactorColor are red.
+        if ( NavigationColor.text == "red" || ReactorColor.text == "red" ){
+            // If either of them are red, set progressing to false.
+            progressing = false;
+        }
+        else {
+            // Set progressing to true.
+            progressing = true;
+        }
+        
         // Check if the progressing is true.
         if ( progressing ){
             // Check if the time remaining isn't zero.
