@@ -19,7 +19,7 @@ public class CoinScript : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-    	if(other.name == "Cube" || other.name == "Player") {
+    	if(other.name == "Coin" || other.name == "Player") {
     		other.GetComponent<PlayerScript>().points++;
         	//Add 1 to points.
         	Destroy(gameObject); //Destroys coin, when touched.
