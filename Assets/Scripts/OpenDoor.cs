@@ -12,6 +12,7 @@ public class OpenDoor : MonoBehaviour
         if (other.CompareTag("Player") && doorOpened == false)
         {
             transform.Translate(Vector3.forward * 7);
+            FindObjectOfType<AudioManager>().Play("OpenDoor");
             doorOpened = true;
         }
     }
