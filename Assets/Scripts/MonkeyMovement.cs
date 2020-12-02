@@ -5,31 +5,38 @@ using UnityEngine.AI;
 
 public class MonkeyMovement : MonoBehaviour
 {
-    [SerializeField] float stoppingDistance;
+    float stoppingDistance  = 1.0f;
 
     NavMeshAgent agent;
 
     GameObject target;
-    GameObject node1;
-    GameObject node2;
+    //GameObject node1;
+    //GameObject node2;
     GameObject node3;
-    GameObject node4;
-    GameObject node5;
+    //GameObject node4;
+    //GameObject node5;
+    List <GameObject> nodes;
 
     // Start is called before the first frame update
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        /*
-        node1 = GameObject.FindGameObjectWithTag("ElecControl");
-        node2 = GameObject.FindGameObjectWithTag("ElecControl2
-        */
+        
+        nodes = new List<GameObject>();
+        nodes.Add(GameObject.FindGameObjectWithTag("ElecControl"));
+        nodes.Add(GameObject.FindGameObjectWithTag("ElecControl2"));
+        nodes.Add(GameObject.FindGameObjectWithTag("Nav"));
+        nodes.Add(GameObject.FindGameObjectWithTag("Reactor"));
+        nodes.Add(GameObject.FindGameObjectWithTag("O2"));
+        
+        //node1 = GameObject.FindGameObjectWithTag("ElecControl");
+        //node2 = GameObject.FindGameObjectWithTag("ElecControl2");
         node3 = GameObject.FindGameObjectWithTag("Nav");
-        /*
-        node4 = GameObject.FindGameObjectWithTag("Reactor");
-        node5 = GameObject.FindGameObjectWithTag("O2");
-        */
+        //node4 = GameObject.FindGameObjectWithTag("Reactor");
+        //node5 = GameObject.FindGameObjectWithTag("O2");
+        
         List<float> distances = new List<float>();
+        
         /*
         distances.Add(Vector3.Distance(transform.position, node1.transform.position));
         distances.Add(Vector3.Distance(transform.position, node2.transform.position));
@@ -54,8 +61,6 @@ public class MonkeyMovement : MonoBehaviour
         Debug.Log(index);
 
 
-
-
         if (index == 0)
         {
             target = GameObject.FindGameObjectWithTag("ElecControl");
@@ -74,7 +79,11 @@ public class MonkeyMovement : MonoBehaviour
             target = GameObject.FindGameObjectWithTag("O2");
 
         }*/
-        target = GameObject.FindGameObjectWithTag("Nav");
+
+
+        //target = GameObject.FindGameObjectWithTag("Nav");
+        target = nodes[Random.Range(0, nodes.Count)];
+        Debug.Log(target);
     }
 
     // Update is called once per frame
@@ -85,6 +94,7 @@ public class MonkeyMovement : MonoBehaviour
         if (dist < stoppingDistance)
         {
             StopEnemy();
+            target = nodes[Random.Range(0, nodes.Count)];
         }
         else
         {

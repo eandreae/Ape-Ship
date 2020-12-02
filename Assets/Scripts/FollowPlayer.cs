@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public class FollowPlayer : MonoBehaviour
 {
-	[SerializeField] float stoppingDistance;
+	float stoppingDistance = 3.4f;
 
 	NavMeshAgent agent;
 
