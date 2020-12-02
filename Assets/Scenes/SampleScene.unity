@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67430ada4811ea4eabf681ed0389ae1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 5
 --- !u!143 &94721643
 CharacterController:
   m_ObjectHideFlags: 0
@@ -654,6 +654,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -7513240591062497620, guid: f441a9487d0fced41ab1d116ba822726,
+        type: 3}
+      propertyPath: m_TagString
+      value: O2
+      objectReference: {fileID: 0}
     - target: {fileID: -7171423626924013762, guid: f441a9487d0fced41ab1d116ba822726,
         type: 3}
       propertyPath: m_Convex
@@ -708,6 +713,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -4688575942419218524, guid: f441a9487d0fced41ab1d116ba822726,
+        type: 3}
+      propertyPath: m_TagString
+      value: ElecControl
       objectReference: {fileID: 0}
     - target: {fileID: -4620933136523619334, guid: f441a9487d0fced41ab1d116ba822726,
         type: 3}
@@ -809,6 +819,11 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -1366297254112275792, guid: f441a9487d0fced41ab1d116ba822726,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: -883341311283067786, guid: f441a9487d0fced41ab1d116ba822726,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -858,6 +873,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1027992093155706349, guid: f441a9487d0fced41ab1d116ba822726,
+        type: 3}
+      propertyPath: m_TagString
+      value: ElecControl2
       objectReference: {fileID: 0}
     - target: {fileID: 1409590156218608716, guid: f441a9487d0fced41ab1d116ba822726,
         type: 3}
@@ -963,6 +983,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6266326064568115396, guid: f441a9487d0fced41ab1d116ba822726,
+        type: 3}
+      propertyPath: m_TagString
+      value: Nav
       objectReference: {fileID: 0}
     - target: {fileID: 6537205840245047575, guid: f441a9487d0fced41ab1d116ba822726,
         type: 3}
@@ -1772,10 +1797,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 285117625}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 65b457a986a774c469d56a8d42211718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stoppingDistance: 2.3
+  stoppingDistance: 1
 --- !u!1 &295085578
 GameObject:
   m_ObjectHideFlags: 0
@@ -4978,7 +5003,7 @@ PrefabInstance:
     - target: {fileID: 5916922076573431484, guid: 647432554ee5b714f96cf4e78bdde332,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 176.24
+      value: 121.42
       objectReference: {fileID: 0}
     - target: {fileID: 5916922076573431484, guid: 647432554ee5b714f96cf4e78bdde332,
         type: 3}
@@ -7018,6 +7043,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 17e3bd2de98d19b40b2356d3723c5079, type: 2}
+    - target: {fileID: -6893764690726074600, guid: 02af0730a52956a408dc396d5e2b4c9f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: -3678294521750921770, guid: 02af0730a52956a408dc396d5e2b4c9f,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -7027,6 +7057,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Heart_Reactor
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 02af0730a52956a408dc396d5e2b4c9f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Reactor
       objectReference: {fileID: 0}
     - target: {fileID: 8641961444868422742, guid: 02af0730a52956a408dc396d5e2b4c9f,
         type: 3}
