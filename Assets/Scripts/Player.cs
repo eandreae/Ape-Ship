@@ -10,15 +10,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
 	public float moveSpeed;
     public int points;
+    private new CharacterController controller;
 
     // Start is called before the first frame update
     void Start()
     {
     	moveSpeed = 8f;
+        controller = this.GetComponent<CharacterController>();    
     }
 
     // Update is called once per frame
@@ -27,7 +29,12 @@ public class PlayerController : MonoBehaviour
         //checks to see if pressing any arrow keys
         //if so will go horizontal if left or right
         //will go vertical if up or down
-        	transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
+        //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
+        
+        // creating normalizing direction so that movement isnt faster on diagonals
+        var dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized; 
+
+        controller.SimpleMove(this.moveSpeed * dir);
         
     }
 

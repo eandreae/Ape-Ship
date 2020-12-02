@@ -21,7 +21,7 @@ public class OpenDoor : MonoBehaviour
     {
         if (doorOpened == true)
         {
-            Debug.Log(count);
+            //Debug.Log(count);
             if (count < 100)
             {
                 count += 1;
