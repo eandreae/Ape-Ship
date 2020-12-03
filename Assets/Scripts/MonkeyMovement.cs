@@ -1,55 +1,77 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AI;
 
 public class MonkeyMovement : MonoBehaviour
 {
-    float stoppingDistance  = 1.0f;
+    public float stoppingDistance  = 1.0f;
+    public Text color1;
+    public Text color2;
+    public Text color3;
+    public Text color4;
+    public Text color5;
 
     NavMeshAgent agent;
 
     GameObject target;
-    //GameObject node1;
-    //GameObject node2;
+    GameObject node1;
+    GameObject node2;
     GameObject node3;
-    //GameObject node4;
-    //GameObject node5;
-    List <GameObject> nodes;
+    GameObject node4;
+    GameObject node5;
+    //List <GameObject> nodes;
+    Text targetColor;
 
     // Start is called before the first frame update
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        
-        nodes = new List<GameObject>();
-        nodes.Add(GameObject.FindGameObjectWithTag("ElecControl"));
-        nodes.Add(GameObject.FindGameObjectWithTag("ElecControl2"));
-        nodes.Add(GameObject.FindGameObjectWithTag("Nav"));
-        nodes.Add(GameObject.FindGameObjectWithTag("Reactor"));
-        nodes.Add(GameObject.FindGameObjectWithTag("O2"));
-        
-        //node1 = GameObject.FindGameObjectWithTag("ElecControl");
-        //node2 = GameObject.FindGameObjectWithTag("ElecControl2");
-        node3 = GameObject.FindGameObjectWithTag("Nav");
-        //node4 = GameObject.FindGameObjectWithTag("Reactor");
-        //node5 = GameObject.FindGameObjectWithTag("O2");
-        
+
+        List<GameObject> nodes = new List<GameObject>();
+        //nodes = new List<GameObject>();
         List<float> distances = new List<float>();
-        
-        /*
-        distances.Add(Vector3.Distance(transform.position, node1.transform.position));
-        distances.Add(Vector3.Distance(transform.position, node2.transform.position));
-        */
-        distances.Add(Vector3.Distance(transform.position, node3.transform.position));
-        Debug.Log(Vector3.Distance(transform.position, node3.transform.position));
-        /*
-        distances.Add(Vector3.Distance(transform.position, node4.transform.position));
-        distances.Add(Vector3.Distance(transform.position, node5.transform.position));
+        node1 = GameObject.FindGameObjectWithTag("ElecControl");
+        node2 = GameObject.FindGameObjectWithTag("ElecControl2");
+        node3 = GameObject.FindGameObjectWithTag("Nav");
+        node4 = GameObject.FindGameObjectWithTag("Reactor");
+        node5 = GameObject.FindGameObjectWithTag("O2");
+
+        if (color1.text == "green" || color1.text == "yellow")
+        {
+            nodes.Add(node1);
+            distances.Add(Vector3.Distance(transform.position, node1.transform.position));
+        }
+        if (color2.text == "green" || color2.text == "yellow")
+        {
+            nodes.Add(node2);
+            distances.Add(Vector3.Distance(transform.position, node2.transform.position));
+        }
+        if (color3.text == "green" || color3.text == "yellow")
+        {
+            nodes.Add(node3);
+            distances.Add(Vector3.Distance(transform.position, node3.transform.position));
+        }
+        if (color4.text == "green" || color4.text == "yellow")
+        {
+            nodes.Add(node4);
+            distances.Add(Vector3.Distance(transform.position, node4.transform.position));
+        }
+        if (color5.text == "green" || color5.text == "yellow")
+        {
+            nodes.Add(node5);
+            distances.Add(Vector3.Distance(transform.position, node5.transform.position));
+        }
+        //nodes.Add(node1);
+        //nodes.Add(node2);
+        //nodes.Add(node3);
+        //nodes.Add(node4);
+        //nodes.Add(node5);
 
         float min = 99999;
         int index = 0;
-        for(int i = 0; i < 5; ++i)
+        for(int i = 0; i < nodes.Count; ++i)
         {
             if(distances[i] < min)
             {
@@ -57,44 +79,42 @@ public class MonkeyMovement : MonoBehaviour
                 index = i;
             }
         }
-        Debug.Log(min);
-        Debug.Log(index);
 
-
-        if (index == 0)
+        
+        if(nodes[index] == node1)
         {
-            target = GameObject.FindGameObjectWithTag("ElecControl");
-        } else if (index == 1)
+            targetColor = color1;
+        } else if(nodes[index] == node2)
         {
-            Debug.Log("HERE");
-            target = GameObject.FindGameObjectWithTag("ElecControl2");
-        } else if (index == 2)
+            targetColor = color2;
+        }
+        else if(nodes[index] == node3)
         {
-            target = GameObject.FindGameObjectWithTag("Nav");
-        } else if (index == 3)
+            targetColor = color3;
+        }
+        else if(nodes[index] == node4)
         {
-            target = GameObject.FindGameObjectWithTag("Reactor");
-        } else
+            targetColor = color4;
+        }
+        else if(nodes[index] == node5)
         {
-            target = GameObject.FindGameObjectWithTag("O2");
-
-        }*/
+            targetColor = color5;
+        }
 
 
         //target = GameObject.FindGameObjectWithTag("Nav");
-        target = nodes[Random.Range(0, nodes.Count)];
-        Debug.Log(target);
+        target = nodes[index];
+        //target = nodes[Random.Range(0, nodes.Count)];
+        //Debug.Log(target);
     }
 
     // Update is called once per frame
     private void Update()
     {
         float dist = Vector3.Distance(transform.position, target.transform.position);
-
-        if (dist < stoppingDistance)
+        if (targetColor.text == "red")
         {
-            StopEnemy();
-            target = nodes[Random.Range(0, nodes.Count)];
+            Start();
         }
         else
         {

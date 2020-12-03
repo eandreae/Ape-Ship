@@ -9,25 +9,42 @@ public class ElecChangeInstance : MonoBehaviour
     int count = 0;
 
     public Text color;
+    private void Start()
+    {
+        if(color.text == "green")
+        {
+            myObject.material.color = Color.green;
+        } else if(color.text == "yellow")
+        {
+            myObject.material.color = Color.yellow;
+        } else if (color.text == "red")
+        {
+            myObject.material.color = Color.red;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.CompareTag("Player"))
         {
-            count += 1;
-            if (count == 1)
-            {
-                myObject.material.color = Color.yellow;
-                color.text = "yellow";
-            } else if(count == 2)
+            if(color.text == "yellow")
             {
                 myObject.material.color = Color.green;
                 color.text = "green";
-            } else if (count == 3)
+            } else if(color.text == "red")
+            {
+                myObject.material.color = Color.yellow;
+            }
+        } else if(other.CompareTag("Monkey"))
+        {
+            if (color.text == "yellow")
             {
                 myObject.material.color = Color.red;
                 color.text = "red";
-                count = 0;
+            } else if(color.text == "green")
+            {
+                myObject.material.color = Color.red;
+                color.text = "red";
             }
         }
     }
