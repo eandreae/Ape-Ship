@@ -34,6 +34,7 @@ public class ElecChangeInstance : MonoBehaviour
             } else if(color.text == "red")
             {
                 myObject.material.color = Color.yellow;
+                color.text = "yellow";
             }
         } else if(other.CompareTag("Monkey"))
         {
