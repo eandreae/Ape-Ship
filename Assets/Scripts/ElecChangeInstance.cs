@@ -6,20 +6,23 @@ using UnityEngine.UI;
 public class ElecChangeInstance : MonoBehaviour
 {
     [SerializeField] private Renderer myObject;
-    int count = 0;
 
     public Text color;
+    public Image display;
     private void Start()
     {
         if(color.text == "green")
         {
             myObject.material.color = Color.green;
+            display.color = Color.green;
         } else if(color.text == "yellow")
         {
             myObject.material.color = Color.yellow;
+            display.color = Color.yellow;
         } else if (color.text == "red")
         {
             myObject.material.color = Color.red;
+            display.color = Color.red;
         }
     }
 
@@ -30,10 +33,12 @@ public class ElecChangeInstance : MonoBehaviour
             if(color.text == "yellow")
             {
                 myObject.material.color = Color.green;
+                display.color = Color.green;
                 color.text = "green";
             } else if(color.text == "red")
             {
                 myObject.material.color = Color.yellow;
+                display.color = Color.yellow;
                 color.text = "yellow";
             }
         } else if(other.CompareTag("Monkey"))
@@ -41,10 +46,12 @@ public class ElecChangeInstance : MonoBehaviour
             if (color.text == "yellow")
             {
                 myObject.material.color = Color.red;
+                display.color = Color.red;
                 color.text = "red";
             } else if(color.text == "green")
             {
                 myObject.material.color = Color.red;
+                display.color = Color.red;
                 color.text = "red";
             }
         }

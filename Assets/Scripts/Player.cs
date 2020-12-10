@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    	moveSpeed = 8f;
+    	moveSpeed = 14f;
         controller = this.GetComponent<CharacterController>();
         health = 3;
         oxygen = 60;
@@ -66,6 +66,7 @@ public class Player : MonoBehaviour
         else {
             if ( oxygen < 60 ) {
                 oxygen += Time.deltaTime;
+                updateOxygen();
             }
         }
     }
