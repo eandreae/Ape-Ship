@@ -49,7 +49,7 @@ public class GorillaMovement : MonoBehaviour
         _SPEED = agent.speed;
         _ACCELERATION = agent.acceleration;
 
-        int targetnum = Random.Range(0, 4);
+        int targetnum = Random.Range(0, nodes.Count-1);
         targetNode = nodes[targetnum];
         target = targetNode;
     }
@@ -68,7 +68,8 @@ public class GorillaMovement : MonoBehaviour
                 target = playerObj;
             }
         }
-        else if (playerDist > 30f && !charging){
+        else if (playerDist > 30f && !charging){ // if target is player but player is too far, ignore the player.
+            Debug.Log("Gorilla is ignoring the Player");
             target = targetNode;
         }
 
@@ -89,6 +90,7 @@ public class GorillaMovement : MonoBehaviour
     {
          // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
         if (target == playerObj && canCharge && playerDist <= 20f){
+            Debug.Log("Gorilla is charging");
             StartCoroutine("ChargeAttack");
             canCharge = false;
         } else{
@@ -102,9 +104,11 @@ public class GorillaMovement : MonoBehaviour
       	agent.isStopped = true;
         //get new target
         //Start();
-        int targetnum = Random.Range(0, 4);
-        targetNode = nodes[targetnum];
-        target = targetNode;
+        if(target == targetNode){ // search for a new target node if gorilla reaches a target node
+            int targetnum = Random.Range(0, nodes.Count-1);
+            targetNode = nodes[targetnum];
+            target = targetNode;
+        }
     }
     
     // this coroutine manages the Gorilla ChargeAttack.
@@ -112,7 +116,6 @@ public class GorillaMovement : MonoBehaviour
     // If the gorilla can charge, it will wait for 1.5s, and charge for 1s, then self-stun for 1s.
     // charge cooldown is 5 seconds.
     IEnumerator ChargeAttack(){
-        Debug.Log("preparing to charge");
         if (canCharge){ // some condition here to initiate the charge attack (maybe also consider player distance?)
             charging = true;
             agent.isStopped = true; // stop gorilla mvmt
