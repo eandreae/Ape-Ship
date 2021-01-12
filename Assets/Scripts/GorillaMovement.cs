@@ -17,12 +17,18 @@ public class GorillaMovement : MonoBehaviour
     GameObject node3;
     GameObject node4;
     GameObject node5;
+    List<GameObject> nodes; 
+    GameObject playerObj;
+    GameObject targetNode;
 
+    private bool canCharge = true;
+    private float playerDist = 0f;
+    
     // Start is called before the first frame update
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        List<GameObject> nodes = new List<GameObject>();
+        nodes = new List<GameObject>();
         node1 = GameObject.FindGameObjectWithTag("ElecControl");
         nodes.Add(node1);
         node2 = GameObject.FindGameObjectWithTag("ElecControl2");
@@ -34,13 +40,35 @@ public class GorillaMovement : MonoBehaviour
         node5 = GameObject.FindGameObjectWithTag("O2");
         nodes.Add(node5);
 
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+        playerDist = Vector3.Distance (transform.position, playerObj.transform.position);
+
         int targetnum = Random.Range(0, 4);
-        target = nodes[targetnum];
+        targetNode = nodes[targetnum];
+        target = targetNode;
     }
 
     // Update is called once per frame
     private void Update()    
     {
+        
+        // if gorilla is not following player, check for the player distance
+        if (target != playerObj){
+            
+            // check for nearby player - from what I can tell, 20-25 units is right on the edge of the player's screen
+            playerDist = Vector3.Distance (transform.position, playerObj.transform.position);
+            //Debug.Log("Player is " + playerDist + " units away");
+            
+            if (playerDist <= 30f && canCharge){ // if player is close enough, set it as the target
+                Debug.Log("Gorilla has locked on Player");
+                target = playerObj;
+            }
+            else { // if player is too far, continue looking around the map (this can definitely be improved)
+                //Debug.Log("Gorilla has locked on " + targetNode);
+                target = targetNode;
+            }
+        }
+
         float dist = Vector3.Distance(transform.position, target.transform.position);
 
         if (dist < stoppingDistance)
@@ -56,15 +84,50 @@ public class GorillaMovement : MonoBehaviour
         
     private void GoToTarget()
     {
-       	agent.isStopped = false;
-       	agent.SetDestination(target.transform.position);
+        if (target == playerObj && canCharge){
+            StartCoroutine("ChargeAttack");
+            canCharge = false;
+        } else{
+       	    agent.isStopped = false;
+       	    agent.SetDestination(target.transform.position);
+        }
     }
 
     private void StopEnemy()
     {
       	agent.isStopped = true;
         //get new target
-        Start();
+        //Start();
+        int targetnum = Random.Range(0, 4);
+        targetNode = nodes[targetnum];
+        target = targetNode;
     }
     
+    // this coroutine manages the Gorilla ChargeAttack.
+    // It ends if the gorilla stops chasing the player.
+    // If the gorilla can charge, it will stop, wait for 1.5s, and charge.
+    // charge cooldown is 5 seconds.
+    IEnumerator ChargeAttack(){
+        Debug.Log("preparing to charge");
+        if (canCharge){ // some condition here to initiate the charge attack (maybe also consider player distance?)
+            agent.isStopped = true; // stop gorilla mvmt
+            agent.speed = 0;
+            agent.acceleration = 100;
+            agent.autoBraking = false; // this lets the gorilla overshoot, so the mvmt is more realistic
+            stoppingDistance = 0;
+            //Debug.Log("Gorilla STOP");
+
+            yield return new WaitForSeconds(1.5f); // time in seconds to wait
+            agent.speed = 30;
+            
+            yield return new WaitForSeconds(1f); // gorilla self-stun after it charges
+            agent.isStopped = false;
+            agent.speed = 12;
+            agent.acceleration = 8;
+            agent.autoBraking = true;
+            
+            yield return new WaitForSeconds(4f); // time in seconds to wait
+            canCharge = true;
+        }
+    }
 }

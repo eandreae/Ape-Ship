@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public Text oxygen_color;
     private bool invulnerable;
     private float invulnTime = 2;
-    private new CharacterController controller;
+    private CharacterController controller;
 
     // Start is called before the first frame update
     void Start()
