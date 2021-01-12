@@ -9,7 +9,7 @@ public class OpenDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if ((other.CompareTag("Player")||other.CompareTag("Monkey")) && doorOpened == false)
+        if ((other.CompareTag("Player")||other.CompareTag("Monkey") || other.CompareTag("Gorilla")) && doorOpened == false)
         {
             transform.Translate(Vector3.forward * 7);
             FindObjectOfType<AudioManager>().Play("OpenDoor");
