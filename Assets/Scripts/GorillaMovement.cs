@@ -10,7 +10,7 @@ public class GorillaMovement : MonoBehaviour
 	float stoppingDistance = 10f;
     float _SPEED = 12f;
     float _ACCELERATION = 8f;
-    float _ANGULAR_SPEED = 30f;
+    float _ANGULAR_SPEED = 120f;
 
 	NavMeshAgent agent;
 
@@ -47,9 +47,10 @@ public class GorillaMovement : MonoBehaviour
         playerObj = GameObject.FindGameObjectWithTag("Player");
         playerDist = Vector3.Distance (transform.position, playerObj.transform.position);
 
-        _SPEED = agent.speed;
-        _ACCELERATION = agent.acceleration;
-        _ANGULAR_SPEED = agent.angularSpeed;
+        
+        //agent.speed = _SPEED;
+        //agent.acceleration = _ACCELERATION;
+        //agent.angularSpeed = _ANGULAR_SPEED;
 
         int targetnum = Random.Range(0, nodes.Count-1);
         targetNode = nodes[targetnum];
@@ -134,9 +135,7 @@ public class GorillaMovement : MonoBehaviour
             agent.acceleration = 50;
             agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
             agent.autoBraking = false; // this lets the gorilla overshoot, so the mvmt is more realistic
-            //stoppingDistance = 0;
-            //Debug.Log("Gorilla STOP");
-
+            
             Vector3 chargePos = playerObj.transform.position; // set target to player position at this moment
             agent.SetDestination(chargePos);
             yield return new WaitForSeconds(1.5f); // time in seconds to wait
