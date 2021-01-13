@@ -10,6 +10,7 @@ public class GorillaMovement : MonoBehaviour
 	float stoppingDistance = 10f;
     float _SPEED = 12f;
     float _ACCELERATION = 8f;
+    float _ANGULAR_SPEED = 30f;
 
 	NavMeshAgent agent;
 
@@ -48,6 +49,7 @@ public class GorillaMovement : MonoBehaviour
 
         _SPEED = agent.speed;
         _ACCELERATION = agent.acceleration;
+        _ANGULAR_SPEED = agent.angularSpeed;
 
         int targetnum = Random.Range(0, nodes.Count-1);
         targetNode = nodes[targetnum];
@@ -65,12 +67,14 @@ public class GorillaMovement : MonoBehaviour
         if (target != playerObj){        
             if (playerDist <= 30f){ // if player is close enough, set it as the target
                 Debug.Log("Gorilla has locked on Player");
+                stoppingDistance = 0; // make stopping distance 0 if tracking the player
                 target = playerObj;
             }
         }
         else if (playerDist > 30f && !charging){ // if target is player but player is too far, ignore the player.
             Debug.Log("Gorilla is ignoring the Player");
             target = targetNode;
+            stoppingDistance = 15f; // make stopping distance 15 if idle
         }
 
         float dist = Vector3.Distance(transform.position, target.transform.position);
@@ -110,41 +114,61 @@ public class GorillaMovement : MonoBehaviour
             target = targetNode;
         }
     }
+
+    void OnTriggerEnter(Collider other) 
+    {
+        if (other.gameObject.CompareTag("Player")) {
+            StartCoroutine("AttackPlayer");
+        }
+    }
     
     // this coroutine manages the Gorilla ChargeAttack.
     // It ends if the gorilla stops chasing the player.
-    // If the gorilla can charge, it will wait for 1.5s, and charge for 1s, then self-stun for 1s.
+    // If the gorilla can charge, it will wait for 1.5s, and charge for 1.5s, then self-stun for .5s.
     // charge cooldown is 5 seconds.
     IEnumerator ChargeAttack(){
         if (canCharge){ // some condition here to initiate the charge attack (maybe also consider player distance?)
             charging = true;
             agent.isStopped = true; // stop gorilla mvmt
             agent.speed = 0;
-            agent.acceleration = 100;
+            agent.acceleration = 50;
+            agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
             agent.autoBraking = false; // this lets the gorilla overshoot, so the mvmt is more realistic
-            stoppingDistance = 0;
+            //stoppingDistance = 0;
             //Debug.Log("Gorilla STOP");
 
             Vector3 chargePos = playerObj.transform.position; // set target to player position at this moment
             agent.SetDestination(chargePos);
             yield return new WaitForSeconds(1.5f); // time in seconds to wait
             
-            agent.speed = 40;
-            yield return new WaitForSeconds(1f); // charge for 1.5 second
+            agent.speed = 30;
+            yield return new WaitForSeconds(1.5f); // charge for 1.5 second
             
             charging = false;
             agent.speed = 0; // stops
-            yield return new WaitForSeconds(1f); // gorilla self-stun after it charges
+            yield return new WaitForSeconds(.5f); // gorilla self-stun after it charges
 
             agent.autoBraking = true;
             agent.SetDestination(target.transform.position); // reset target
             agent.speed = _SPEED;
+            agent.angularSpeed = _ANGULAR_SPEED;
             agent.acceleration = _ACCELERATION;
             agent.isStopped = false;
-            stoppingDistance = 10f;
+            //stoppingDistance = 10f;
         
             yield return new WaitForSeconds(5f); // charge cooldown
             canCharge = true;
         }
     }
+
+    // This coroutine handles part of the Gorilla/Player collision interaction.
+    // If the Gorilla hits the player, he should wait for a little bit before moving again. 
+    IEnumerator AttackPlayer(){
+        agent.speed = 0;
+        //animator.play("attack-anim"); // play the gorilla attack animation
+
+        yield return new WaitForSeconds(1f); // wait one second
+        agent.speed = _SPEED; // reset speed to initial value;
+    }
+    
 }
