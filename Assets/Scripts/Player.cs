@@ -22,15 +22,18 @@ public class Player : MonoBehaviour
     private bool invulnerable;
     private float invulnTime = 2;
     private CharacterController controller;
+    private Animator anim; 
 
     // Start is called before the first frame update
     void Start()
     {
     	moveSpeed = 14f;
         controller = this.GetComponent<CharacterController>();
+        anim = this.GetComponent<Animator>();
         health = 3;
         oxygen = 60;
         invulnerable = false;
+        
     }
 
     // Update is called once per frame
@@ -43,9 +46,14 @@ public class Player : MonoBehaviour
         
         // creating normalizing direction so that movement isnt faster on diagonals
         var dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized; 
-
-        controller.SimpleMove(this.moveSpeed * dir);
-
+        if (dir.sqrMagnitude > 0){
+            this.anim.Play("Walk"); // play walking animation when moving
+            //this.transform.LookAt(dir); // look in direction that play is walking
+            controller.SimpleMove(this.moveSpeed * dir);
+        }
+        else if (dir.sqrMagnitude == 0){
+            this.anim.Play("Idle"); // if not moving, play idle anim
+        }
         // Check if the player is invulnerable
         if ( invulnerable ){
             if ( invulnTime > 0 ){
