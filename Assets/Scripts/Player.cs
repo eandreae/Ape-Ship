@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private float invulnTime = 2;
     private CharacterController controller;
     private Animator anim; 
+    public Camera camera;
 
     // Start is called before the first frame update
     void Start()
@@ -48,8 +49,9 @@ public class Player : MonoBehaviour
         var dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized; 
         if (dir.sqrMagnitude > 0){
             this.anim.Play("Walk"); // play walking animation when moving
-            //this.transform.LookAt(dir); // look in direction that play is walking
+            this.transform.LookAt(transform.position + dir); // look in direction that play is walking
             controller.SimpleMove(this.moveSpeed * dir);
+            camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
         }
         else if (dir.sqrMagnitude == 0){
             this.anim.Play("Idle"); // if not moving, play idle anim
