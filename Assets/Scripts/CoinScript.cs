@@ -6,23 +6,25 @@ using UnityEngine;
 
 public class CoinScript : MonoBehaviour
 {
+    public bool pickedUp;
     // Start is called before the first frame update
     void Start()
     {
-        
+        pickedUp = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(90 * Time.deltaTime, 0, 0);
+        if(!pickedUp)
+            transform.Rotate(90 * Time.deltaTime, 0, 0);
     }
 
-    private void OnTriggerEnter(Collider other) {
-    	if(other.name == "Capsule" || other.name == "Player") {
-    		other.GetComponent<Player>().points++;
-        	//Add 1 to points.
-        	Destroy(gameObject); //Destroys coin, when touched.
-        }
-    }
+    // private void OnTriggerEnter(Collider other) {
+    // 	if(other.name == "Capsule" || other.name == "Player") {
+    // 		other.GetComponent<Player>().points++;
+    //     	//Add 1 to points.
+    //     	Destroy(gameObject); //Destroys coin, when touched.
+    //     }
+    // }
 }
