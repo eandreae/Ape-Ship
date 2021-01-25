@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     private CharacterController controller;
     private Animator anim; 
     public Camera camera;
+    private GameObject holdItem;
 
     // Start is called before the first frame update
     void Start()
@@ -48,14 +49,27 @@ public class Player : MonoBehaviour
         // creating normalizing direction so that movement isnt faster on diagonals
         var dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized; 
         if (dir.sqrMagnitude > 0){
-            this.anim.Play("Walk"); // play walking animation when moving
+            //Debug.Log(this.holdItem);
+            // if Player is holding an item, then use the hold animation. 
+            if(this.holdItem){
+                this.anim.Play("Hold");
+            }
+            else{
+                this.anim.Play("Walk"); // play walking animation when moving
+            }
             this.transform.LookAt(transform.position + dir); // look in direction that play is walking
             controller.SimpleMove(this.moveSpeed * dir);
             camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
         }
         else if (dir.sqrMagnitude == 0){
-            this.anim.Play("Idle"); // if not moving, play idle anim
+            if(this.holdItem){
+                this.anim.Play("Hold-Idle");
+            }
+            else{
+                this.anim.Play("Idle"); // if not moving, play idle anim
+            }
         }
+        
         // Check if the player is invulnerable
         if ( invulnerable ){
             if ( invulnTime > 0 ){
@@ -65,6 +79,16 @@ public class Player : MonoBehaviour
                 invulnerable = false;
                 invulnTime = 2;
             }
+        }
+
+        // code to drop items
+        if(this.holdItem && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
+            // un-parent the player from the item
+            this.holdItem.transform.parent = null;
+            // un-mark the coin as picked up.
+            this.holdItem.GetComponent<CoinScript>().pickedUp = false;
+            // get rid of hold item
+            this.holdItem = null;
         }
         
         // Check if the oxygen color is red.
@@ -87,10 +111,19 @@ public class Player : MonoBehaviour
         Debug.Log("Collided with something!");
 
     	//test tag, if string is same as pick up...
-    	if (other.gameObject.CompareTag("Pick Up"))
+    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up"))
     	{
-    		//deactivates game object
-    		other.gameObject.SetActive(false);
+            this.holdItem = other.gameObject;
+    		
+            //deactivates game object
+    		//other.gameObject.SetActive(false);
+
+            // Sets player to the pick-up item's parent so the item will move around with the player.            
+            other.gameObject.transform.parent = this.transform;
+
+            // mark the coin (or whatever object) as picked up 
+            other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+            //Debug.Log(this.holdItem);
     	}
 
         if (other.gameObject.CompareTag("Gorilla") && !invulnerable )
