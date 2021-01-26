@@ -57,7 +57,7 @@ public class Player : MonoBehaviour
             else{
                 this.anim.Play("Walk"); // play walking animation when moving
             }
-            this.transform.LookAt(transform.position + dir); // look in direction that play is walking
+            this.transform.LookAt(transform.position + dir); // look in direction that player is walking
             controller.SimpleMove(this.moveSpeed * dir);
             camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
         }
@@ -82,7 +82,7 @@ public class Player : MonoBehaviour
         }
 
         // code to drop items
-        if(this.holdItem && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
+        if(this.holdItem && Input.GetKeyUp("space")){ // if player is holding an item and presses space bar
             // un-parent the player from the item
             this.holdItem.transform.parent = null;
             // un-mark the coin as picked up.
@@ -110,8 +110,22 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Collided with something!");
 
-    	//test tag, if string is same as pick up...
-    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up"))
+        if (other.gameObject.CompareTag("Gorilla") && !invulnerable )
+        {
+            Debug.Log("Hit the Gorilla!");
+            // Subtract one from the health of the Player.
+            health--;
+            // Make the player temporarily invulnerable
+            invulnerable = true;
+            // Update the health of the player.
+            updateHealth();
+        }
+    }
+
+    // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
+    void OnTriggerStay(Collider other){
+        //test tag, if string is same as pick up...
+    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up")  && Input.GetKeyDown("space"))
     	{
             this.holdItem = other.gameObject;
     		
@@ -125,17 +139,6 @@ public class Player : MonoBehaviour
             other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             //Debug.Log(this.holdItem);
     	}
-
-        if (other.gameObject.CompareTag("Gorilla") && !invulnerable )
-        {
-            Debug.Log("Hit the Gorilla!");
-            // Subtract one from the health of the Player.
-            health--;
-            // Make the player temporarily invulnerable
-            invulnerable = true;
-            // Update the health of the player.
-            updateHealth();
-        }
     }
     
     private void OnGUI(){
