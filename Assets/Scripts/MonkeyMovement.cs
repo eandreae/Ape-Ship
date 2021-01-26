@@ -23,6 +23,8 @@ public class MonkeyMovement : MonoBehaviour
     GameObject node5;
     //List <GameObject> nodes;
     Text targetColor;
+    FieldOfView targetsList;
+    public List<Transform> visibleTargets = new List<Transform>();
 
     // Start is called before the first frame update
     private void Start()
@@ -111,6 +113,23 @@ public class MonkeyMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        //Get list of targets from FieldOfView list
+        targetsList = GetComponent<FieldOfView>();
+        //transfer each target into local list
+        visibleTargets.Clear();
+        foreach (Transform t in targetsList.visibleTargets)
+        {
+            visibleTargets.Add(t);
+        }
+        //Speed up if player is seen
+        if(visibleTargets.Count != 0)
+        {
+            agent.acceleration = 50;
+        } else
+        {
+            agent.acceleration = 10;
+        }
+
         float dist = Vector3.Distance(transform.position, target.transform.position);
         if (targetColor.text == "red")
         {
