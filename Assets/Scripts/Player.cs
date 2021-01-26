@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
     private float invulnTime = 2;
     private CharacterController controller;
     private Animator anim; 
-    public Camera camera;
+    // Moved camera functionality to PlayerCamera.cs
+    // public Camera camera;
     private GameObject holdItem;
 
     // Start is called before the first frame update
@@ -59,7 +60,8 @@ public class Player : MonoBehaviour
             }
             this.transform.LookAt(transform.position + dir); // look in direction that player is walking
             controller.SimpleMove(this.moveSpeed * dir);
-            camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
+            // Moved camera functionality to PlayerCamera.cs
+            // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
         }
         else if (dir.sqrMagnitude == 0){
             if(this.holdItem){
