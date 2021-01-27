@@ -214,7 +214,7 @@ GameObject:
   - component: {fileID: 38586406}
   m_Layer: 0
   m_Name: elec2 transform (temp)
-  m_TagString: ElecControl2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -825,7 +825,7 @@ GameObject:
   - component: {fileID: 159774167}
   m_Layer: 0
   m_Name: o2 transform (temp) (1)
-  m_TagString: O2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1168,21 +1168,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &241830542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4534796094535097336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myObject: {fileID: 1589221691689079545}
-  color: {fileID: 1471871104}
-  display: {fileID: 250582894}
 --- !u!114 &243445145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,7 +1313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.060516834, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1970,6 +1955,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: pipe
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cefa2e3db6ea75a47982ae24c551a332,
+        type: 3}
+      propertyPath: m_TagString
+      value: ElecControl2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cefa2e3db6ea75a47982ae24c551a332, type: 3}
@@ -2866,21 +2856,6 @@ Transform:
   m_Father: {fileID: 1156694068}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &598339634
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710131445891310320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myObject: {fileID: 6537205840277235019}
-  color: {fileID: 1759386919}
-  display: {fileID: 289879600}
 --- !u!1 &641952652
 GameObject:
   m_ObjectHideFlags: 0
@@ -4280,7 +4255,7 @@ GameObject:
   - component: {fileID: 967081592}
   m_Layer: 0
   m_Name: electric transform (temp)
-  m_TagString: ElecControl
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4464,6 +4439,28 @@ Transform:
   m_Father: {fileID: 1156694068}
   m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &985222316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 650040f30e5459542b1f2580c54955ea,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275698037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &985222318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985222316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myObject: {fileID: 6537205840277235019}
+  color: {fileID: 1759386919}
+  display: {fileID: 289879600}
+  stopDistance: 4
 --- !u!1 &988879225
 GameObject:
   m_ObjectHideFlags: 0
@@ -5017,21 +5014,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bb925231a966ab4e90334ae3a2c6824, type: 3}
---- !u!114 &1099578071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1027992093253689777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myObject: {fileID: 8340030725540847658}
-  color: {fileID: 1024462420}
-  display: {fileID: 2082339951}
 --- !u!114 &1105151509
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5738,7 +5720,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 650040f30e5459542b1f2580c54955ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3566
+      value: 2.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 650040f30e5459542b1f2580c54955ea,
         type: 3}
@@ -5799,6 +5781,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 1.3254
+      objectReference: {fileID: 0}
+    - target: {fileID: -2491426148460543665, guid: 650040f30e5459542b1f2580c54955ea,
+        type: 3}
+      propertyPath: m_TagString
+      value: O2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 650040f30e5459542b1f2580c54955ea,
         type: 3}
@@ -6083,21 +6070,28 @@ Transform:
   m_Father: {fileID: 1156694068}
   m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1339342194
+--- !u!1 &1341068830 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: cefa2e3db6ea75a47982ae24c551a332,
+    type: 3}
+  m_PrefabInstance: {fileID: 316203565}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1341068833
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6266326064535274648}
+  m_GameObject: {fileID: 1341068830}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  myObject: {fileID: 2726319140393491411}
-  color: {fileID: 1279260005}
-  display: {fileID: 1412383919}
+  myObject: {fileID: 8340030725540847658}
+  color: {fileID: 1024462420}
+  display: {fileID: 2082339951}
+  stopDistance: 5
 --- !u!114 &1363788527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6138,6 +6132,22 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &1376850091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1376850088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myObject: {fileID: 2726319140393491411}
+  color: {fileID: 1279260005}
+  display: {fileID: 1412383919}
+  stopDistance: 5
 --- !u!1 &1382802854
 GameObject:
   m_ObjectHideFlags: 0
@@ -6328,7 +6338,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0, g: 1, b: 0.08100581, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6596,7 +6606,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: yellow
+  m_Text: red
 --- !u!222 &1471871105
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8083,7 +8093,7 @@ PrefabInstance:
     - target: {fileID: -6893764690726074600, guid: 02af0730a52956a408dc396d5e2b4c9f,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Reactor
       objectReference: {fileID: 0}
     - target: {fileID: -3678294521750921770, guid: 02af0730a52956a408dc396d5e2b4c9f,
         type: 3}
@@ -8098,7 +8108,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 02af0730a52956a408dc396d5e2b4c9f,
         type: 3}
       propertyPath: m_TagString
-      value: Reactor
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8641961444868422742, guid: 02af0730a52956a408dc396d5e2b4c9f,
         type: 3}
@@ -8148,6 +8158,7 @@ MonoBehaviour:
   myObject: {fileID: 1856092379}
   color: {fileID: 741311113}
   display: {fileID: 1812103381}
+  stopDistance: 8
 --- !u!1 &1875415533
 GameObject:
   m_ObjectHideFlags: 0
@@ -8688,21 +8699,6 @@ Transform:
   m_Father: {fileID: 1156694068}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1995211113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3865070808950527437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myObject: {fileID: 1843747560903953569}
-  color: {fileID: 741311113}
-  display: {fileID: 1812103381}
 --- !u!1 &1999805117
 GameObject:
   m_ObjectHideFlags: 0
@@ -9461,7 +9457,6 @@ GameObject:
   - component: {fileID: 1193989307614427751}
   - component: {fileID: 8340030725540847658}
   - component: {fileID: 5959806154519055687}
-  - component: {fileID: 1099578071}
   - component: {fileID: 1027992093253689778}
   m_Layer: 0
   m_Name: Electrical Controller 2
@@ -9736,7 +9731,6 @@ GameObject:
   - component: {fileID: 907270420634909168}
   - component: {fileID: 6537205840277235019}
   - component: {fileID: 1655320792602872209}
-  - component: {fileID: 598339634}
   - component: {fileID: 1710131445891310321}
   m_Layer: 0
   m_Name: Oxygen Valve
@@ -11320,7 +11314,6 @@ GameObject:
   - component: {fileID: 3638564212590996201}
   - component: {fileID: 1843747560903953569}
   - component: {fileID: 422317523582558665}
-  - component: {fileID: 1995211113}
   m_Layer: 0
   m_Name: Reactor Controller
   m_TagString: Untagged
@@ -11725,11 +11718,10 @@ GameObject:
   - component: {fileID: 7754107334533376009}
   - component: {fileID: 1589221691689079545}
   - component: {fileID: 5220518837184935877}
-  - component: {fileID: 241830542}
   - component: {fileID: 4534796094535097337}
   m_Layer: 0
   m_Name: Electrical Controller
-  m_TagString: Untagged
+  m_TagString: ElecControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12895,7 +12887,6 @@ GameObject:
   - component: {fileID: 6075861826182166339}
   - component: {fileID: 2726319140393491411}
   - component: {fileID: 4185242236253624716}
-  - component: {fileID: 1339342194}
   m_Layer: 0
   m_Name: Navigation
   m_TagString: Nav
@@ -13250,7 +13241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1710131445891310320}
   m_LocalRotation: {x: -0.50000006, y: -0.49999997, z: -0.50000006, w: 0.5}
-  m_LocalPosition: {x: 12.67, y: 0.1, z: 21.06}
+  m_LocalPosition: {x: 14.62, y: 0.1, z: 18.61}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 159774166}
