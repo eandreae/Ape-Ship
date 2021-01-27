@@ -82,7 +82,7 @@ public class MonkeyMovement : MonoBehaviour
             }
         }
 
-        
+        Debug.Log(nodes[index]);
         if(nodes[index] == node1)
         {
             targetColor = color1;
