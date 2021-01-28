@@ -7,7 +7,7 @@ using UnityEngine.AI;
 
 public class GorillaMovement : MonoBehaviour
 {
-	float stoppingDistance = 10f;
+	float stoppingDistance = 15f;
     float _SPEED = 12f;
     float _ACCELERATION = 8f;
     float _ANGULAR_SPEED = 120f;
@@ -55,10 +55,11 @@ public class GorillaMovement : MonoBehaviour
         //agent.speed = _SPEED;
         //agent.acceleration = _ACCELERATION;
         //agent.angularSpeed = _ANGULAR_SPEED;
-
+        
         int targetnum = Random.Range(0, nodes.Count-1);
         targetNode = nodes[targetnum];
         target = targetNode;
+        Debug.Log(target);
     }
 
 
@@ -103,7 +104,7 @@ public class GorillaMovement : MonoBehaviour
 
         if (dist < stoppingDistance)
         {
-        	StopEnemy();
+        	FindNewTarget();
         }
         //if the gorilla lost sight of the player
         else if(playerLock == true && visibleTargets.Count == 0)
@@ -123,6 +124,7 @@ public class GorillaMovement : MonoBehaviour
         int targetnum = Random.Range(0, nodes.Count - 1);
         targetNode = nodes[targetnum];
         target = targetNode;
+        Debug.Log(target);
     }
 
     private void GoToTarget()

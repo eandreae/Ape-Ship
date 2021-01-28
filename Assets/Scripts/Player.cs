@@ -27,6 +27,8 @@ public class Player : MonoBehaviour
     // public Camera camera;
     private GameObject holdItem;
 
+    public GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour
         health = 3;
         oxygen = 60;
         invulnerable = false;
-        
+        gm = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -157,6 +159,7 @@ public class Player : MonoBehaviour
             Debug.Log("You Died!");
             health_text.text = ""; 
             moveSpeed = 0f;
+            gm.Defeat();
         }
     }
 
@@ -172,6 +175,7 @@ public class Player : MonoBehaviour
             Debug.Log("You Died!");
             oxygen_text.text = ""; 
             moveSpeed = 0f;
+            gm.Defeat();
         }
 
     }

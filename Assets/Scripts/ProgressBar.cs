@@ -17,9 +17,12 @@ public class ProgressBar : MonoBehaviour
     public Text NavigationColor;
     public Text ReactorColor;
 
+    public GameManager gm;
+
     void Start()
     {
         progressing = true;
+        gm = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -52,6 +55,7 @@ public class ProgressBar : MonoBehaviour
                 timeRemaining = 0;
                 // Set progressing to false.
                 progressing = false;
+                gm.Victory();
             }
         }
     }
