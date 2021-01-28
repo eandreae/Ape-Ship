@@ -199,7 +199,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 88947215}
+  m_TargetGraphic: {fileID: 2060776453}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -395,7 +395,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 692858995}
+  m_TargetGraphic: {fileID: 1353760032}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -525,7 +525,7 @@ MonoBehaviour:
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
-  m_TargetGraphic: {fileID: 719570859}
+  m_TargetGraphic: {fileID: 1034779055}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
@@ -1028,6 +1028,7 @@ GameObject:
   - component: {fileID: 1232862802}
   - component: {fileID: 1232862804}
   - component: {fileID: 1232862803}
+  - component: {fileID: 1232862805}
   m_Layer: 5
   m_Name: WhaleImage
   m_TagString: Untagged
@@ -1068,7 +1069,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1091,6 +1092,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232862801}
   m_CullTransparentMesh: 0
+--- !u!95 &1232862805
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232862801}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: bf199aa642393d94287db84dde44c3d1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1289710447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1382,9 +1402,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startDelay: 1
-  startGameAnim: {fileID: 0}
+  startGameAnim: {fileID: 2028882976}
   buttonPress: {fileID: 1299843945}
-  settingsPanel: {fileID: 0}
+  settingsPanel: {fileID: 1538226970}
 --- !u!1 &1353760030
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,7 +1841,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ca0f7de3d2936fd46baded0f478dfaf5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2068,7 +2088,7 @@ Animator:
   m_GameObject: {fileID: 2028882972}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7606091e8095f134c8e8c20ba5e2fa8a, type: 2}
+  m_Controller: {fileID: 9100000, guid: bb597d366753f1a42933d792ab4233f6, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
