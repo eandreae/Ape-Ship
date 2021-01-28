@@ -17,7 +17,7 @@ public class MainMenu : MonoBehaviour
     {
         Debug.Log("Start the game!");
         //Play an animation that leads into the game using a UI panel
-        startGameAnim.Play("OutroAnim");
+        startGameAnim.Play("PanelOutro");
         //This method will actually transition the game into the next scene
         Invoke("finallyStart", startDelay);
         //Plays a button press sound effect
@@ -40,7 +40,7 @@ public class MainMenu : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quit game!");
-        startGameAnim.Play("OutroAnim");
+        startGameAnim.Play("PanelOutro");
         Invoke("finallyQuit", startDelay);
         buttonPress.Play();
     }
