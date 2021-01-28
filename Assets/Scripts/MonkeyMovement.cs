@@ -103,11 +103,11 @@ public class MonkeyMovement : MonoBehaviour
             targetColor = color5;
         }
 
-
+        
         //target = GameObject.FindGameObjectWithTag("Nav");
         target = nodes[index];
         //target = nodes[Random.Range(0, nodes.Count)];
-        //Debug.Log(target);
+        Debug.Log(target);
     }
 
     // Update is called once per frame
