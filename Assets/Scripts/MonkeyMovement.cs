@@ -65,6 +65,7 @@ public class MonkeyMovement : MonoBehaviour
             nodes.Add(node5);
             distances.Add(Vector3.Distance(transform.position, node5.transform.position));
         }
+
         //nodes.Add(node1);
         //nodes.Add(node2);
         //nodes.Add(node3);
@@ -108,6 +109,48 @@ public class MonkeyMovement : MonoBehaviour
         target = nodes[index];
         //target = nodes[Random.Range(0, nodes.Count)];
         Debug.Log(target);
+        //reset to green
+        if(color1.text == "orangeG")
+        {
+            color1.text = "green";
+        } else if(color2.text == "orangeG")
+        {
+            color2.text = "green";
+        }
+        else if (color3.text == "orangeG")
+        {
+            color3.text = "green";
+        }
+        else if (color4.text == "orangeG")
+        {
+            color4.text = "green";
+        }
+        else if (color5.text == "orangeG")
+        {
+            color5.text = "green";
+        }
+        //reset to yellow
+        if (color1.text == "orangeY")
+        {
+            color1.text = "yellow";
+        }
+        else if (color2.text == "orangeY")
+        {
+            color2.text = "yellow";
+        }
+        else if (color3.text == "orangeY")
+        {
+            color3.text = "yellow";
+        }
+        else if (color4.text == "orangeY")
+        {
+            color4.text = "yellow";
+        }
+        else if (color5.text == "orangeY")
+        {
+            color5.text = "yellow";
+        }
+
     }
 
     // Update is called once per frame
@@ -132,6 +175,10 @@ public class MonkeyMovement : MonoBehaviour
 
         float dist = Vector3.Distance(transform.position, target.transform.position);
         if (targetColor.text == "red")
+        {
+            Start();
+        }
+        else if(targetColor.text == "orangeY" || targetColor.text == "orangeG")
         {
             Start();
         }
