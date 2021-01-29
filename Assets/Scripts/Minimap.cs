@@ -6,6 +6,8 @@ public class Minimap : MonoBehaviour
 {
     public GameObject minimap;
 
+    public bool canActivateMinimap = true;
+
     // Update is called once per frame
     void Update()
     {
@@ -13,7 +15,11 @@ public class Minimap : MonoBehaviour
         //Q is quick to hit, while M is instictive for some players.
         if (Input.GetKey("m") || Input.GetKey("q"))
         {
-            minimap.SetActive(true);
+            //So you can't activate this while paused
+            if (canActivateMinimap)
+            {
+                minimap.SetActive(true);
+            }
         }
         else
         {
