@@ -6,6 +6,7 @@ public class OpenDoor : MonoBehaviour
 {
     int count = 0;
     bool doorOpened = false;
+    private float currTime = 0.0f;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -21,15 +22,16 @@ public class OpenDoor : MonoBehaviour
     {
         if (doorOpened == true)
         {
+            currTime += Time.deltaTime;
             //Debug.Log(count);
-            if (count < 100)
+            if (currTime < 1.0)
             {
-                count += 1;
+                //do nothing
             }
-            else if (count >= 100)
+            else if (currTime >= 1.0)
             {
                 doorOpened = false;
-                count = 0;
+                currTime = 0.0f;
                 transform.Translate(Vector3.forward * -7);
             }
         }
