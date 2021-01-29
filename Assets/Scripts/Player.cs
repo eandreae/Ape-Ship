@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
         }
 
         // code to drop items
-        if(this.holdItem && Input.GetKeyUp("space")){ // if player is holding an item and presses space bar
+        if(this.holdItem && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
             // un-parent the player from the item
             this.holdItem.transform.parent = null;
             // un-mark the coin as picked up.
@@ -124,15 +124,10 @@ public class Player : MonoBehaviour
             // Update the health of the player.
             updateHealth();
         }
-    }
 
-    // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
-    void OnTriggerStay(Collider other){
-        //test tag, if string is same as pick up...
-    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up")  && Input.GetKeyDown("space"))
+        if (!this.holdItem && other.gameObject.CompareTag("Pick Up"))
     	{
             this.holdItem = other.gameObject;
-    		
             //deactivates game object
     		//other.gameObject.SetActive(false);
 
@@ -144,6 +139,25 @@ public class Player : MonoBehaviour
             //Debug.Log(this.holdItem);
     	}
     }
+
+    // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
+    // void OnTriggerStay(Collider other){
+    //     //test tag, if string is same as pick up...
+    // 	if (!this.holdItem && other.gameObject.CompareTag("Pick Up")  && Input.GetKeyDown("space"))
+    // 	{
+    //         this.holdItem = other.gameObject;
+    		
+    //         //deactivates game object
+    // 		//other.gameObject.SetActive(false);
+
+    //         // Sets player to the pick-up item's parent so the item will move around with the player.            
+    //         other.gameObject.transform.parent = this.transform;
+
+    //         // mark the coin (or whatever object) as picked up 
+    //         other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+    //         //Debug.Log(this.holdItem);
+    // 	}
+    // }
     
     private void OnGUI(){
     	GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);

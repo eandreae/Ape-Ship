@@ -8,6 +8,7 @@ public class CoinScript : MonoBehaviour
 {
     public bool pickedUp;
     private Transform playerRoot;
+    public string type;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,12 +20,24 @@ public class CoinScript : MonoBehaviour
     void Update()
     {
         if(!pickedUp){
-            transform.Rotate(90 * Time.deltaTime, 0, 0);
+            if(type == "Coin"){
+                transform.Rotate(90 * Time.deltaTime, 0, 0);
+            }
+            
+            else if(type == "Banana"){
+                transform.Rotate(0, 0, 90 * Time.deltaTime);
+            }
+
             transform.position = new Vector3(transform.position.x, 4, transform.position.z);
         }
         else {
-            transform.localRotation = Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
-            Debug.Log(playerRoot.position);
+            if(type == "Coin"){
+                transform.localRotation = Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
+            }
+            else if(type == "Banana"){
+                transform.localRotation = Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
+            }
+            //Debug.Log(playerRoot.position);
             transform.localPosition = new Vector3(playerRoot.localPosition.x, 
                                                   playerRoot.position.y / 2.2f, 
                                                   0.4f); 
