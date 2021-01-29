@@ -17,9 +17,12 @@ public class PauseMenu : MonoBehaviour
 
     public Minimap mm;
 
+    public Player player;
+
     void Start()
     {
         mm = FindObjectOfType<Minimap>();
+        player = FindObjectOfType<Player>();
     }
     // Update is called once per frame
     void Update()
@@ -44,6 +47,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuPanel.SetActive(true);
         gameIsPaused = true;
         mm.canActivateMinimap = false;
+        player.moveSpeed = 0f;
     }
 
 
@@ -54,6 +58,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenuPanel.SetActive(false);
         gameIsPaused = false;
         mm.canActivateMinimap = true;
+        player.moveSpeed = 14f;
     }
 
     public void GoBackToMenu()
