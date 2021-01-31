@@ -9,11 +9,13 @@ public class CoinScript : MonoBehaviour
     public bool pickedUp;
     private Transform playerRoot;
     public string type;
+    private float height;
     // Start is called before the first frame update
     void Start()
     {
         pickedUp = false;
         playerRoot = GameObject.FindWithTag("PlayerRoot").GetComponent<Transform>();
+        this.height = this.transform.position.y;
     }
 
     // Update is called once per frame
@@ -28,7 +30,7 @@ public class CoinScript : MonoBehaviour
                 transform.Rotate(0, 0, 90 * Time.deltaTime);
             }
 
-            transform.position = new Vector3(transform.position.x, 4, transform.position.z);
+            transform.position = new Vector3(transform.position.x, this.height, transform.position.z);
         }
         else {
             if(type == "Coin"){
@@ -39,7 +41,7 @@ public class CoinScript : MonoBehaviour
             }
             //Debug.Log(playerRoot.position);
             transform.localPosition = new Vector3(playerRoot.localPosition.x, 
-                                                  playerRoot.position.y / 2.2f, 
+                                                  playerRoot.position.y / 2.2f + 1, 
                                                   0.4f); 
         }
     }
