@@ -134,7 +134,7 @@ public class MonkeyMovement : MonoBehaviour
             //agent.isStopped = true;
             //Debug.Log(visibleTargets[0]);
             Vector3 targetDir = this.transform.position - visibleTargets[0].position; // with multiple players, maybe take the sum of the positions?
-            Debug.Log(targetDir);
+            //Debug.Log(targetDir);
             agent.SetDestination(this.transform.position + targetDir);
         }
         else { // return to normal behavior
