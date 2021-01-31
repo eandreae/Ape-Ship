@@ -109,53 +109,14 @@ public class MonkeyMovement : MonoBehaviour
         target = nodes[index];
         //target = nodes[Random.Range(0, nodes.Count)];
         Debug.Log(target);
-        //reset to green
-        if(color1.text == "orangeG")
-        {
-            color1.text = "green";
-        } else if(color2.text == "orangeG")
-        {
-            color2.text = "green";
-        }
-        else if (color3.text == "orangeG")
-        {
-            color3.text = "green";
-        }
-        else if (color4.text == "orangeG")
-        {
-            color4.text = "green";
-        }
-        else if (color5.text == "orangeG")
-        {
-            color5.text = "green";
-        }
-        //reset to yellow
-        if (color1.text == "orangeY")
-        {
-            color1.text = "yellow";
-        }
-        else if (color2.text == "orangeY")
-        {
-            color2.text = "yellow";
-        }
-        else if (color3.text == "orangeY")
-        {
-            color3.text = "yellow";
-        }
-        else if (color4.text == "orangeY")
-        {
-            color4.text = "yellow";
-        }
-        else if (color5.text == "orangeY")
-        {
-            color5.text = "yellow";
-        }
 
     }
 
     // Update is called once per frame
     private void Update()
     {
+        Debug.Log(agent.acceleration);
+        Debug.Log(agent.speed);
         //Get list of targets from FieldOfView list
         targetsList = GetComponent<FieldOfView>();
         //transfer each target into local list
@@ -168,17 +129,10 @@ public class MonkeyMovement : MonoBehaviour
         if(visibleTargets.Count != 0)
         {
             agent.acceleration = 50;
-        } else
-        {
-            agent.acceleration = 10;
         }
 
         float dist = Vector3.Distance(transform.position, target.transform.position);
         if (targetColor.text == "red")
-        {
-            Start();
-        }
-        else if(targetColor.text == "orangeY" || targetColor.text == "orangeG")
         {
             Start();
         }
@@ -191,7 +145,7 @@ public class MonkeyMovement : MonoBehaviour
 
     private void GoToTarget()
     {
-        agent.isStopped = false;
+        //agent.isStopped = false;
         agent.SetDestination(target.transform.position);
     }
 

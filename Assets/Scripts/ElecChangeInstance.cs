@@ -78,9 +78,9 @@ public class ElecChangeInstance : MonoBehaviour
 
     IEnumerator destroyNode()
     {
-        agent.speed = 0;
-        agent.acceleration = 0;
+        agent.isStopped = true;
         yield return new WaitForSeconds(3f); // time in seconds to wait
+        agent.isStopped = false;
         agent.speed = 20;
         agent.acceleration = 10;
         if (color.text == "yellow")
