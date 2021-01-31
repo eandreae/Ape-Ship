@@ -185,7 +185,7 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator PickUpCD(){
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.1f); // wait a brief moment before allowing dropping so code doesn't bug out
         this.holding = true;
     }
 }
