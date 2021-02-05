@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public Text oxygen_text;
     public Text oxygen_color;
     private bool invulnerable;
+    private bool holding;
     private float invulnTime = 2;
     private CharacterController controller;
     private Animator anim; 
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour
         health = 3;
         oxygen = 60;
         invulnerable = false;
+        holding = false;
         gm = FindObjectOfType<GameManager>();
     }
 
@@ -86,13 +88,14 @@ public class Player : MonoBehaviour
         }
 
         // code to drop items
-        if(this.holdItem && Input.GetKeyUp("space")){ // if player is holding an item and presses space bar
+        if(this.holding && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
             // un-parent the player from the item
             this.holdItem.transform.parent = null;
             // un-mark the coin as picked up.
             this.holdItem.GetComponent<CoinScript>().pickedUp = false;
             // get rid of hold item
             this.holdItem = null;
+            this.holding = false;
         }
         
         // Check if the oxygen color is red.
@@ -129,7 +132,7 @@ public class Player : MonoBehaviour
     // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
     void OnTriggerStay(Collider other){
         //test tag, if string is same as pick up...
-    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up")  && Input.GetKeyDown("space"))
+    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
     	{
             this.holdItem = other.gameObject;
     		
@@ -141,6 +144,7 @@ public class Player : MonoBehaviour
 
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+            StartCoroutine("PickUpCD");
             //Debug.Log(this.holdItem);
     	}
     }
@@ -178,5 +182,10 @@ public class Player : MonoBehaviour
             gm.Defeat();
         }
 
+    }
+
+    IEnumerator PickUpCD(){
+        yield return new WaitForSeconds(0.1f); // wait a brief moment before allowing dropping so code doesn't bug out
+        this.holding = true;
     }
 }

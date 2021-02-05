@@ -15,11 +15,13 @@ public class ElecChangeInstance : MonoBehaviour
     private float monkeyDist;
     GameObject playerObj;
     GameObject monkeyObj;
+    NavMeshAgent agent;
 
     private void Start()
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
+        agent = monkeyObj.GetComponent<NavMeshAgent>();
 
         if (color.text == "green")
         {
@@ -70,19 +72,30 @@ public class ElecChangeInstance : MonoBehaviour
         //monkey turns every node down one level
         if (monkeyDist < stopDistance)
         {
-            if (color.text == "yellow")
-            {
-                myObject.material.color = Color.red;
-                display.color = Color.red;
-                color.text = "red";
-            }
-            else if (color.text == "green")
-            {
-                myObject.material.color = Color.yellow;
-                display.color = Color.yellow;
-                color.text = "yellow";
-            }
+            StartCoroutine("destroyNode");
         }
+    }
+
+    IEnumerator destroyNode()
+    {
+        agent.isStopped = true;
+        yield return new WaitForSeconds(3f); // time in seconds to wait
+        agent.isStopped = false;
+        agent.speed = 20;
+        agent.acceleration = 10;
+        if (color.text == "yellow")
+        {
+            myObject.material.color = Color.red;
+            display.color = Color.red;
+            color.text = "red";
+        }
+        else if (color.text == "green")
+        {
+            myObject.material.color = Color.yellow;
+            display.color = Color.yellow;
+            color.text = "yellow";
+        }
+
     }
 
     /*private void OnTriggerEnter(Collider other)

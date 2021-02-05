@@ -107,9 +107,10 @@ public class GorillaMovement : MonoBehaviour
         	FindNewTarget();
         }
         //if the gorilla lost sight of the player
-        else if(playerLock == true && visibleTargets.Count == 0)
+        else if (playerLock == true && visibleTargets.Count == 0)
         {
             playerLock = false;
+            stoppingDistance = 15f;
             FindNewTarget();
         }
         else
@@ -124,7 +125,7 @@ public class GorillaMovement : MonoBehaviour
         int targetnum = Random.Range(0, nodes.Count - 1);
         targetNode = nodes[targetnum];
         target = targetNode;
-        Debug.Log(target);
+        Debug.Log("Gorilla moving to: " + target);
     }
 
     private void GoToTarget()
@@ -172,11 +173,14 @@ public class GorillaMovement : MonoBehaviour
             agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
             agent.autoBraking = false; // this lets the gorilla overshoot, so the mvmt is more realistic
             
-            Vector3 chargePos = playerObj.transform.position; // set target to player position at this moment
+            Vector3 chargePos = this.transform.position + playerObj.transform.position; // set target to player position at this moment
+            this.transform.LookAt(chargePos);
             agent.SetDestination(chargePos);
-            yield return new WaitForSeconds(1.5f); // time in seconds to wait
+            //Debug.Log(chargePos);
+            yield return new WaitForSeconds(1f); // time in seconds to wait
             
-            agent.speed = 30;
+            //Debug.Log(chargePos);
+            agent.speed = 35;
             yield return new WaitForSeconds(1.5f); // charge for 1.5 second
             
             charging = false;
@@ -184,11 +188,11 @@ public class GorillaMovement : MonoBehaviour
             yield return new WaitForSeconds(.5f); // gorilla self-stun after it charges
 
             agent.autoBraking = true;
-            agent.SetDestination(target.transform.position); // reset target
             agent.speed = _SPEED;
             agent.angularSpeed = _ANGULAR_SPEED;
             agent.acceleration = _ACCELERATION;
             agent.isStopped = false;
+            agent.SetDestination(target.transform.position); // reset target
             //stoppingDistance = 10f;
         
             yield return new WaitForSeconds(5f); // charge cooldown

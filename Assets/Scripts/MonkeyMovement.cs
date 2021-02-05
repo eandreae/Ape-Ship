@@ -65,6 +65,7 @@ public class MonkeyMovement : MonoBehaviour
             nodes.Add(node5);
             distances.Add(Vector3.Distance(transform.position, node5.transform.position));
         }
+
         //nodes.Add(node1);
         //nodes.Add(node2);
         //nodes.Add(node3);
@@ -108,11 +109,14 @@ public class MonkeyMovement : MonoBehaviour
         target = nodes[index];
         //target = nodes[Random.Range(0, nodes.Count)];
         Debug.Log(target);
+
     }
 
     // Update is called once per frame
     private void Update()
     {
+        //Debug.Log(agent.acceleration);
+        //Debug.Log(agent.speed);
         //Get list of targets from FieldOfView list
         targetsList = GetComponent<FieldOfView>();
         //transfer each target into local list
@@ -125,26 +129,32 @@ public class MonkeyMovement : MonoBehaviour
         if(visibleTargets.Count != 0)
         {
             agent.acceleration = 50;
-        } else
-        {
-            agent.acceleration = 10;
-        }
 
-        float dist = Vector3.Distance(transform.position, target.transform.position);
-        if (targetColor.text == "red")
-        {
-            Start();
+            // code for avoiding player
+            //agent.isStopped = true;
+            //Debug.Log(visibleTargets[0]);
+            Vector3 targetDir = this.transform.position - visibleTargets[0].position; // with multiple players, maybe take the sum of the positions?
+            //Debug.Log(targetDir);
+            agent.SetDestination(this.transform.position + targetDir);
         }
-        else
-        {
-            GoToTarget();
+        else { // return to normal behavior
+            agent.acceleration = 10; 
+            //float dist = Vector3.Distance(transform.position, target.transform.position);
+            if (targetColor.text == "red")
+            {
+                Start();
+            }
+            else
+            {
+                GoToTarget();
+            }
         }
     }
 
 
     private void GoToTarget()
     {
-        agent.isStopped = false;
+        //agent.isStopped = false;
         agent.SetDestination(target.transform.position);
     }
 
