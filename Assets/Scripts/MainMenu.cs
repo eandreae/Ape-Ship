@@ -11,6 +11,7 @@ public class MainMenu : MonoBehaviour
 
     public AudioSource buttonPress;
 
+    public GameObject tutorialPanel;
     public GameObject settingsPanel;
 
     public void StartGame()
@@ -34,6 +35,14 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Go to settings screen!");
         //Sets the settings panel to be visible
         settingsPanel.SetActive(true);
+        buttonPress.Play();
+    }
+
+    public void Tutorial()
+    {
+        Debug.Log("Go to tutorial screen!");
+        //Sets the tutorial panel to be visisble
+        tutorialPanel.SetActive(true);
         buttonPress.Play();
     }
 
