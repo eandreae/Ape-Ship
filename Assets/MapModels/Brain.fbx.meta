@@ -1,20 +1,36 @@
 fileFormatVersion: 2
-guid: 7c085b7e02c1b4d49967a47f6fef89fd
+guid: d2aec01c7fc764d49acc1a412743ee38
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: -5835888414185100684
-    second: Heart_Core|Slow Beat
+      74: 2801991790522107268
+    second: Neuron_1|Sphere3Action
   - first:
-      74: 3195014994116095232
-    second: Heart_Core|Fast Beat
-  externalObjects:
+      74: 7578677434564844614
+    second: Neuron_1|SphereAction
   - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Base
-    second: {fileID: 2100000, guid: 8e90036c2bbbb8441bbd8abaf3822c05, type: 2}
+      74: 3975721290274506428
+    second: Neuron_1|SphereAction.001
+  - first:
+      74: -1043176818231020308
+    second: Neuron_2|Sphere3Action
+  - first:
+      74: 8483780972036301815
+    second: Neuron_2|SphereAction
+  - first:
+      74: 6221469309933699678
+    second: Neuron_2|SphereAction.001
+  - first:
+      74: -5417439671713030640
+    second: Neuron_3|Sphere3Action
+  - first:
+      74: 4988903745083934661
+    second: Neuron_3|SphereAction
+  - first:
+      74: 3058754770028768751
+    second: Neuron_3|SphereAction.001
+  externalObjects: {}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -41,65 +57,7 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations:
-    - serializedVersion: 16
-      name: Heart_Core|Fast Beat
-      takeName: Heart_Core|Heart_CoreAction.001
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 10
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Heart_Core|Slow Beat
-      takeName: Heart_Core|Heart_CoreAction.001
-      internalID: 0
-      firstFrame: 14
-      lastFrame: 44
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
+    clipAnimations: []
     isReadable: 0
   meshes:
     lODScreenPercentages: []
