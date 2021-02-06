@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class HeartBeat : MonoBehaviour
 {
     private Animator animator;
-    private bool injured = false;
+    private int color = 0;
     public Text heartColor;
     GameObject heartObj;
 
@@ -19,16 +19,22 @@ public class HeartBeat : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(injured);
-        if(heartColor.text == "red" && !injured)
+        //Debug.Log(injured);
+        if(heartColor.text == "red" && color != 2)
         {
-            animator.SetBool("Injured", true);
-            injured = true;
+            animator.SetInteger("Color", 2);
+            color = 2;
         }
-        else if (heartColor.text == "green" || heartColor.text == "yellow" && injured)
+        else if (heartColor.text == "green" && color != 0)
         {
-            animator.SetBool("Injured", false);
-            injured = false;
+            animator.SetInteger("Color", 0);
+            color = 0;
         }
+        else if (heartColor.text == "yellow" && color != 1)
+        {
+            animator.SetInteger("Color", 1);
+            color = 1;
+        }
+
     }
 }
