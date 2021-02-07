@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
         
         // Check if the oxygen color is red.
         if ( oxygen_color.text == "red" ){
-            Debug.Log("Oxygen is red!");
+            //Debug.Log("Oxygen is red!");
             if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
             updateOxygen();
         }

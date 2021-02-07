@@ -14,14 +14,15 @@ public class MonkeyMovement : MonoBehaviour
     public Text color5;
 
     NavMeshAgent agent;
-
+    static readonly string[] nodeTags = {
+        "ElecControl",
+        "ElecControl2",
+        "Nav",
+        "Reactor",
+        "O2"
+        };
+    List<GameObject> nodes;
     GameObject target;
-    GameObject node1;
-    GameObject node2;
-    GameObject node3;
-    GameObject node4;
-    GameObject node5;
-    //List <GameObject> nodes;
     Text targetColor;
     FieldOfView targetsList;
     public List<Transform> visibleTargets = new List<Transform>();
@@ -31,85 +32,12 @@ public class MonkeyMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
 
-        List<GameObject> nodes = new List<GameObject>();
-        //nodes = new List<GameObject>();
-        List<float> distances = new List<float>();
-        node1 = GameObject.FindGameObjectWithTag("ElecControl");
-        node2 = GameObject.FindGameObjectWithTag("ElecControl2");
-        node3 = GameObject.FindGameObjectWithTag("Nav");
-        node4 = GameObject.FindGameObjectWithTag("Reactor");
-        node5 = GameObject.FindGameObjectWithTag("O2");
-
-        if (color1.text == "green" || color1.text == "yellow")
-        {
-            nodes.Add(node1);
-            distances.Add(Vector3.Distance(transform.position, node1.transform.position));
-        }
-        if (color2.text == "green" || color2.text == "yellow")
-        {
-            nodes.Add(node2);
-            distances.Add(Vector3.Distance(transform.position, node2.transform.position));
-        }
-        if (color3.text == "green" || color3.text == "yellow")
-        {
-            nodes.Add(node3);
-            distances.Add(Vector3.Distance(transform.position, node3.transform.position));
-        }
-        if (color4.text == "green" || color4.text == "yellow")
-        {
-            nodes.Add(node4);
-            distances.Add(Vector3.Distance(transform.position, node4.transform.position));
-        }
-        if (color5.text == "green" || color5.text == "yellow")
-        {
-            nodes.Add(node5);
-            distances.Add(Vector3.Distance(transform.position, node5.transform.position));
+        nodes = new List<GameObject>();
+        foreach (string name in nodeTags) {
+            nodes.Add(GameObject.FindGameObjectWithTag(name));
         }
 
-        //nodes.Add(node1);
-        //nodes.Add(node2);
-        //nodes.Add(node3);
-        //nodes.Add(node4);
-        //nodes.Add(node5);
-
-        float min = 99999;
-        int index = 0;
-        for(int i = 0; i < nodes.Count; ++i)
-        {
-            if(distances[i] < min)
-            {
-                min = distances[i];
-                index = i;
-            }
-        }
-
-        Debug.Log(nodes[index]);
-        if(nodes[index] == node1)
-        {
-            targetColor = color1;
-        } else if(nodes[index] == node2)
-        {
-            targetColor = color2;
-        }
-        else if(nodes[index] == node3)
-        {
-            targetColor = color3;
-        }
-        else if(nodes[index] == node4)
-        {
-            targetColor = color4;
-        }
-        else if(nodes[index] == node5)
-        {
-            targetColor = color5;
-        }
-
-        
-        //target = GameObject.FindGameObjectWithTag("Nav");
-        target = nodes[index];
-        //target = nodes[Random.Range(0, nodes.Count)];
-        Debug.Log(target);
-
+        FindNewTarget();
     }
 
     // Update is called once per frame
@@ -135,20 +63,63 @@ public class MonkeyMovement : MonoBehaviour
             //Debug.Log(visibleTargets[0]);
             Vector3 targetDir = this.transform.position - visibleTargets[0].position; // with multiple players, maybe take the sum of the positions?
             //Debug.Log(targetDir);
-            agent.SetDestination(this.transform.position + targetDir);
+            //agent.SetDestination(this.transform.position + targetDir);
         }
         else { // return to normal behavior
             agent.acceleration = 10; 
             //float dist = Vector3.Distance(transform.position, target.transform.position);
             if (targetColor.text == "red")
             {
-                Start();
+                FindNewTarget();
             }
             else
             {
                 GoToTarget();
             }
         }
+    }
+
+    private void FindNewTarget()
+    {
+        // Find nearest node, disqualifying the current target
+        int targetIndex = -1;
+        float minDist = 99999;
+        for (int i = 0; i < nodes.Count; i++) {
+            if (nodes[i] != target) {
+                float dist = Vector3.Distance (transform.position, nodes[i].transform.position);
+                if (dist < minDist) {
+                    targetIndex = i;
+                    minDist = dist;
+                }
+            }
+        }
+
+        // Hardcoded color checking
+        Debug.Log(nodes[targetIndex]);
+        switch (targetIndex+1) {
+            case 1: 
+                targetColor = color1;
+                break;
+            case 2: 
+                targetColor = color2;
+                break;
+            case 3: 
+                targetColor = color3;
+                break;
+            case 4: 
+                targetColor = color4;
+                break;
+            case 5: 
+                targetColor = color5;
+                break;
+            default:
+                break;
+        }
+        
+        //target = GameObject.FindGameObjectWithTag("Nav");
+        target = nodes[targetIndex];
+        //target = nodes[Random.Range(0, nodes.Count)];
+        Debug.Log("Monkey moving to:" + target);
     }
 
 

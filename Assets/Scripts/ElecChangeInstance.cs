@@ -50,23 +50,9 @@ public class ElecChangeInstance : MonoBehaviour
         //player turns every node immediately green
         if (playerDist < stopDistance)
         {
-            if (color.text == "yellow")
-            {
-                myObject.material.color = Color.green;
-                display.color = Color.green;
-                color.text = "green";
-            }
-            else if (color.text == "green")
-            {
-                myObject.material.color = Color.green;
-                display.color = Color.green;
-                color.text = "green";
-            } else if (color.text == "red")
-            {
-                myObject.material.color = Color.green;
-                display.color = Color.green;
-                color.text = "green";
-            }
+            myObject.material.color = Color.green;
+            display.color = Color.green;
+            color.text = "green";
         }
         //TEMPORARY
         //monkey turns every node down one level
