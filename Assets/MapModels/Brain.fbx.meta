@@ -20,13 +20,13 @@ ModelImporter:
     second: Neuron_2|SphereAction
   - first:
       74: 6221469309933699678
-    second: Neuron_2|SphereAction.001
+    second: Neuron_2|Fast
   - first:
       74: -5417439671713030640
-    second: Neuron_3|Sphere3Action
+    second: Neuron_3|Fast (1)
   - first:
       74: 4988903745083934661
-    second: Neuron_3|Fast
+    second: Neuron_3|Slow
   - first:
       74: 3058754770028768751
     second: Neuron_3|Slow
@@ -42,6 +42,15 @@ ModelImporter:
   - first:
       74: 3325891394758198363
     second: Neuron_3|Medium
+  - first:
+      74: 1890440127480704149
+    second: Neuron_3|Fast
+  - first:
+      74: -6976367336390448608
+    second: Neuron_3|Medium
+  - first:
+      74: 2394876132615252883
+    second: Neuron_1|Fast
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -130,9 +139,9 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Neuron_1|Fast
-      takeName: Neuron_1|SphereAction.001
+      takeName: Neuron_1|SphereAction
       internalID: 0
-      firstFrame: 1
+      firstFrame: 0
       lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
@@ -159,7 +168,7 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Neuron_2|Fast
-      takeName: Neuron_2|Sphere3Action
+      takeName: Neuron_2|SphereAction.001
       internalID: 0
       firstFrame: 0
       lastFrame: 39
@@ -187,156 +196,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Neuron_2|SphereAction
-      takeName: Neuron_2|SphereAction
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 129
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Neuron_2|SphereAction.001
-      takeName: Neuron_2|SphereAction.001
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 129
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Neuron_3|Sphere3Action
+      name: Neuron_3|Fast
       takeName: Neuron_3|Sphere3Action
       internalID: 0
-      firstFrame: 0
-      lastFrame: 129
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Neuron_3|Fast
-      takeName: Neuron_3|SphereAction
-      internalID: 0
-      firstFrame: 0
-      lastFrame: 40
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Neuron_3|Slow
-      takeName: Neuron_3|SphereAction.001
-      internalID: 0
-      firstFrame: 50
-      lastFrame: 129
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 1
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Neuron_2|Slow
-      takeName: Neuron_2|Sphere3Action
-      internalID: 0
-      firstFrame: 50
-      lastFrame: 129
+      firstFrame: 1
+      lastFrame: 39
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -390,8 +254,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Neuron_2|Medium
-      takeName: Neuron_2|Sphere3Action
+      name: Neuron_3|Slow
+      takeName: Neuron_3|Sphere3Action
       internalID: 0
       firstFrame: 50
       lastFrame: 129
@@ -420,7 +284,65 @@ ModelImporter:
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Neuron_3|Medium
-      takeName: Neuron_3|SphereAction.001
+      takeName: Neuron_3|Sphere3Action
+      internalID: 0
+      firstFrame: 50
+      lastFrame: 129
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Neuron_2|Medium
+      takeName: Neuron_2|SphereAction.001
+      internalID: 0
+      firstFrame: 50
+      lastFrame: 129
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Neuron_2|Slow
+      takeName: Neuron_2|SphereAction.001
       internalID: 0
       firstFrame: 50
       lastFrame: 129
