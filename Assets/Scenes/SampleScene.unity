@@ -2162,12 +2162,12 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d2aec01c7fc764d49acc1a412743ee38,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.17
+      value: 12.78
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2aec01c7fc764d49acc1a412743ee38,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.54
+      value: -0.32
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d2aec01c7fc764d49acc1a412743ee38,
         type: 3}
@@ -5803,6 +5803,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c745e93a1d23d4dcd92e3bf99c5d4735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1084979750 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -6401627273931755403, guid: d2aec01c7fc764d49acc1a412743ee38,
+    type: 3}
+  m_PrefabInstance: {fileID: 388093295}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1084979754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1084979750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7ab414db2ef4bccbfc6ba18e8de189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brainColor: {fileID: 0}
 --- !u!1 &1087685750
 GameObject:
   m_ObjectHideFlags: 0
@@ -9398,6 +9417,38 @@ MonoBehaviour:
   color: {fileID: 1279260005}
   display: {fileID: 1412383919}
   stopDistance: 16
+--- !u!95 &2088900159
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088900156}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f6656a01442fc4ffca63f3c0ee96a075, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2088900160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2088900156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c7ab414db2ef4bccbfc6ba18e8de189, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  brainColor: {fileID: 1279260005}
 --- !u!33 &108508986483871836
 MeshFilter:
   m_ObjectHideFlags: 0
