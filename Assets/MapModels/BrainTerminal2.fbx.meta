@@ -51,7 +51,12 @@ ModelImporter:
   - first:
       74: 6135452140022605380
     second: Neuron_1|SlowNew
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: BrainTerminal
+    second: {fileID: 2100000, guid: cf12dd66d25d74d4cbe4ac37d24b223c, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
