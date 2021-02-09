@@ -59,7 +59,7 @@ public class GorillaMovement : MonoBehaviour
         int targetnum = Random.Range(0, nodes.Count-1);
         targetNode = nodes[targetnum];
         target = targetNode;
-        Debug.Log(target);
+        //Debug.Log(target);
     }
 
 
@@ -132,10 +132,11 @@ public class GorillaMovement : MonoBehaviour
     {
          // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
         if (target == playerObj && canCharge && playerLock ){
-            Debug.Log("Gorilla is charging");
+            //Debug.Log("Gorilla is charging");
             StartCoroutine("ChargeAttack");
             canCharge = false;
-        } else {
+        } 
+        else if (!charging){
        	    agent.isStopped = false;
        	    agent.SetDestination(target.transform.position);
         }
@@ -169,30 +170,34 @@ public class GorillaMovement : MonoBehaviour
             charging = true;
             agent.isStopped = true; // stop gorilla mvmt
             agent.speed = 0;
-            agent.acceleration = 50;
+            agent.acceleration = 100;
             agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
             agent.autoBraking = false; // this lets the gorilla overshoot, so the mvmt is more realistic
             
-            Vector3 chargePos = this.transform.position + playerObj.transform.position; // set target to player position at this moment
+            Vector3 chargePos = playerObj.transform.position; // set target to player position at this moment
+            //this.transform.LookAt(playerObj.transform.position);
             this.transform.LookAt(chargePos);
             agent.SetDestination(chargePos);
             //Debug.Log(chargePos);
             yield return new WaitForSeconds(1f); // time in seconds to wait
             
             //Debug.Log(chargePos);
-            agent.speed = 35;
-            yield return new WaitForSeconds(1.5f); // charge for 1.5 second
+            agent.isStopped = false;
+            agent.speed = 50;
+            agent.SetDestination((chargePos + playerObj.transform.position)/2);
+            yield return new WaitForSeconds(1f); // charge for 1 second
             
             charging = false;
             agent.speed = 0; // stops
-            yield return new WaitForSeconds(.5f); // gorilla self-stun after it charges
-
+            agent.isStopped = true;
+            yield return new WaitForSeconds(1f); // gorilla self-stun after it charges
+            
+            agent.SetDestination(target.transform.position); // reset target
             agent.autoBraking = true;
             agent.speed = _SPEED;
             agent.angularSpeed = _ANGULAR_SPEED;
             agent.acceleration = _ACCELERATION;
             agent.isStopped = false;
-            agent.SetDestination(target.transform.position); // reset target
             //stoppingDistance = 10f;
         
             yield return new WaitForSeconds(5f); // charge cooldown
