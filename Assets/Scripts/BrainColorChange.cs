@@ -12,6 +12,12 @@ public class BrainColorChange : MonoBehaviour
     Color color1;
     Color color2;
     Color color3;
+    Color color4;
+    Color color5;
+    int index;
+    int bound;
+    bool swapColor = true;
+    List<Color> ColorList = new List<Color>();
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +31,18 @@ public class BrainColorChange : MonoBehaviour
         //Debug.Log(materials[3].color);
         //Debug.Log(materials[4].color);
         color1 = materials[0].color;
+        ColorList.Add(color1);
         color2 = materials[1].color;
+        ColorList.Add(color2);
         color3 = materials[2].color;
-
+        ColorList.Add(color3);
+        color4 = materials[3].color;
+        ColorList.Add(color4);
+        if (materials.Length == 5)
+        {
+            color5 = materials[4].color;
+            ColorList.Add(color5);
+        }
     }
 
     // Update is called once per frame
@@ -46,13 +61,46 @@ public class BrainColorChange : MonoBehaviour
             materials[0].color = materials[0].color * (1.05f);
             materials[1].color = materials[1].color * (1.05f);
             materials[2].color = materials[2].color * (1.05f);
-        } else
+        } else //brainColor == GREEN
         {
-            materials[0].color = color1;
-            materials[1].color = color2;
-            materials[2].color = color3;
-
+            //materials[0].color = color1;
+            //materials[1].color = color2;
+            //materials[2].color = color3;
+            if (swapColor)
+            {
+                swapColor = false;
+                StartCoroutine("ColorSwap");
+            }
         }
+    }
+
+    IEnumerator ColorSwap()
+    {
+        while(brainColor.text == "green")
+        {
+            yield return new WaitForSeconds(2f); // time in seconds to wait
+            if(ColorList.Count == 5)
+            {
+                bound = 5;
+
+            } else
+            {
+                bound = 4;
+            }
+            //pick random color
+            index = Random.Range(0, bound);
+
+            for (int i = 0; i < ColorList.Count; ++i)
+            {
+                if(index >= bound)
+                {
+                    index = 0;
+                }
+                materials[index].color = ColorList[i];
+                ++index;
+            }
+        }
+        swapColor = true;
     }
 
 }
