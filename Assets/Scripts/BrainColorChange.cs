@@ -35,7 +35,7 @@ public class BrainColorChange : MonoBehaviour
     {
         if (brainColor.text == "yellow")
         {
-            materials[0].color = materials[0].color * (0.95f);
+            materials[0].color = materials[0].color * (1.05f);
             //materials[0].color.g = materials[0].color.g * (0.3f);
             //materials[0].color.b = materials[0].color.b * (0.3f);
 
@@ -43,9 +43,9 @@ public class BrainColorChange : MonoBehaviour
         }
         else if (brainColor.text == "red")
         {
-            materials[0].color = materials[0].color * (0.95f);
-            materials[1].color = materials[1].color * (0.95f);
-            materials[2].color = materials[2].color * (0.95f);
+            materials[0].color = materials[0].color * (1.05f);
+            materials[1].color = materials[1].color * (1.05f);
+            materials[2].color = materials[2].color * (1.05f);
         } else
         {
             materials[0].color = color1;
