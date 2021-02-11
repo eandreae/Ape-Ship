@@ -24,13 +24,17 @@ public class CoinScript : MonoBehaviour
         if(!pickedUp){
             if(type == "Coin"){
                 transform.Rotate(90 * Time.deltaTime, 0, 0);
-            }
-            
-            else if(type == "Banana"){
-                transform.Rotate(0, 0, 90 * Time.deltaTime);
+                transform.position = new Vector3(transform.position.x, this.height, transform.position.z);
             }
 
-            transform.position = new Vector3(transform.position.x, this.height, transform.position.z);
+            else if(type == "Banana"){
+                transform.Rotate(0, 0, 90 * Time.deltaTime);
+                transform.position = new Vector3(transform.position.x, this.height, transform.position.z);
+            }
+            else if(type == "Neuron")
+            {
+
+            }
         }
         else {
             if(type == "Coin"){
