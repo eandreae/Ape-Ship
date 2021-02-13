@@ -10,6 +10,7 @@ public class Tutorial : MonoBehaviour
     int currentPage = 0;
 
     //So we know when to enable/disable the arrows
+    [Tooltip("Set this to the total amount of pages - 1")]
     public int maxPages;
 
     public GameObject leftArrow;
