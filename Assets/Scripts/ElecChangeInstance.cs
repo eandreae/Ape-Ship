@@ -23,19 +23,7 @@ public class ElecChangeInstance : MonoBehaviour
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         agent = monkeyObj.GetComponent<NavMeshAgent>();
 
-        if (color.text == "green")
-        {
-            myObject.material.color = Color.green;
-            display.color = Color.green;
-        } else if(color.text == "yellow")
-        {
-            myObject.material.color = Color.yellow;
-            display.color = Color.yellow;
-        } else if (color.text == "red")
-        {
-            myObject.material.color = Color.red;
-            display.color = Color.red;
-        }
+        UpdateColor();
     }
 
 
@@ -44,15 +32,21 @@ public class ElecChangeInstance : MonoBehaviour
         //Debug.Log(transform.position);
         playerDist = Vector3.Distance(transform.position, playerObj.transform.position);
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);
+        //Change color to match text color
+        UpdateColor();
         //Debug.Log(playerObj.transform.position);
         //Debug.Log(transform.position);
         //TEMPORARY
         //player turns every node immediately green
         if (playerDist < stopDistance)
         {
-            myObject.material.color = Color.green;
-            display.color = Color.green;
-            color.text = "green";
+            //temporary until all minigames are implemented
+            if(gameObject.tag != "Nav")
+            {
+                myObject.material.color = Color.green;
+                display.color = Color.green;
+                color.text = "green";
+            }
         }
         //TEMPORARY
         //monkey turns every node down one level
@@ -60,6 +54,26 @@ public class ElecChangeInstance : MonoBehaviour
         {
             StartCoroutine("destroyNode");
         }
+    }
+
+    private void UpdateColor()
+    {
+        if (color.text == "green")
+        {
+            myObject.material.color = Color.green;
+            display.color = Color.green;
+        }
+        else if (color.text == "yellow")
+        {
+            myObject.material.color = Color.yellow;
+            display.color = Color.yellow;
+        }
+        else if (color.text == "red")
+        {
+            myObject.material.color = Color.red;
+            display.color = Color.red;
+        }
+
     }
 
     IEnumerator destroyNode()

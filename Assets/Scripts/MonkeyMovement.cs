@@ -19,7 +19,8 @@ public class MonkeyMovement : MonoBehaviour
         "ElecControl2",
         "Nav",
         "Reactor",
-        "O2"
+        "O2",
+        "Stomach"
         };
     List<GameObject> nodes;
     GameObject target;
