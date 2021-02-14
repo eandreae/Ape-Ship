@@ -15,12 +15,11 @@ public class MonkeyMovement : MonoBehaviour
 
     NavMeshAgent agent;
     static readonly string[] nodeTags = {
-        "ElecControl",
+        "Stomach",
         "ElecControl2",
         "Nav",
         "Reactor",
         "O2",
-        "Stomach"
         };
     List<GameObject> nodes;
     GameObject target;
@@ -86,18 +85,32 @@ public class MonkeyMovement : MonoBehaviour
         int targetIndex = -1;
         float minDist = 99999;
         for (int i = 0; i < nodes.Count; i++) {
+            // If the node is not the target
             if (nodes[i] != target) {
                 float dist = Vector3.Distance (transform.position, nodes[i].transform.position);
                 if (dist < minDist) {
-                    targetIndex = i;
-                    minDist = dist;
+                    // Set target color to check if it is red
+                    SetTargetColor(i);
+                    if (targetColor.text != "red")
+                    {
+                        targetIndex = i;
+                        minDist = dist;
+                    }
                 }
             }
         }
 
-        // Hardcoded color checking
-        Debug.Log(nodes[targetIndex]);
-        switch (targetIndex+1) {
+        // Reset target color
+        SetTargetColor(targetIndex);
+        
+        //target = GameObject.FindGameObjectWithTag("Nav");
+        target = nodes[targetIndex];
+        //target = nodes[Random.Range(0, nodes.Count)];
+        Debug.Log("Monkey moving to:" + target);
+    }
+    private void SetTargetColor(int index)
+    {
+        switch (index+1) {
             case 1: 
                 targetColor = color1;
                 break;
@@ -116,13 +129,7 @@ public class MonkeyMovement : MonoBehaviour
             default:
                 break;
         }
-        
-        //target = GameObject.FindGameObjectWithTag("Nav");
-        target = nodes[targetIndex];
-        //target = nodes[Random.Range(0, nodes.Count)];
-        Debug.Log("Monkey moving to:" + target);
     }
-
 
     private void GoToTarget()
     {

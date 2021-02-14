@@ -37,7 +37,7 @@ public class GorillaMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         nodes = new List<GameObject>();
-        node1 = GameObject.FindGameObjectWithTag("ElecControl");
+        node1 = GameObject.FindGameObjectWithTag("Stomach");
         nodes.Add(node1);
         node2 = GameObject.FindGameObjectWithTag("ElecControl2");
         nodes.Add(node2);
