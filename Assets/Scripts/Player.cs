@@ -149,9 +149,9 @@ public class Player : MonoBehaviour
     	}
     }
     
-    private void OnGUI(){
-    	GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
-    }
+    //private void OnGUI(){
+    	//GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
+    //}
 
     public void updateHealth() {
 
