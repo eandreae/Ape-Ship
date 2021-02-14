@@ -30,6 +30,9 @@ public class Player : MonoBehaviour
 
     public GameManager gm;
 
+    public Slider healthBar;
+    public Slider oxygenBar;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -154,10 +157,10 @@ public class Player : MonoBehaviour
     //}
 
     public void updateHealth() {
-
-        if ( health == 3 ){ health_text.text = "[] [] []"; }
-        if ( health == 2 ){ health_text.text = "[] []   "; }
-        if ( health == 1 ){ health_text.text = "[]      "; }
+        healthBar.value = health;
+        if ( health == 3 )//{ health_text.text = "[] [] []"; }
+        if ( health == 2 )//{ health_text.text = "[] []   "; }
+        if ( health == 1 )//{ health_text.text = "[]      "; }
         if ( health == 0 )
         { 
             Debug.Log("You Died!");
@@ -168,12 +171,12 @@ public class Player : MonoBehaviour
     }
 
     public void updateOxygen() {
-
-        if ( Mathf.Floor(oxygen) == 60 ) { oxygen_text.text = "[] [] [] [] []"; }
-        if ( Mathf.Floor(oxygen) == 48 ) { oxygen_text.text = "[] [] [] []   "; }
-        if ( Mathf.Floor(oxygen) == 36 ) { oxygen_text.text = "[] [] []      "; }
-        if ( Mathf.Floor(oxygen) == 24 ) { oxygen_text.text = "[] []         "; }
-        if ( Mathf.Floor(oxygen) == 12 ) { oxygen_text.text = "[]            "; }
+        oxygenBar.value = Mathf.Floor(oxygen);
+        if (Mathf.Floor(oxygen) == 60)//{ oxygen_text.text = "[] [] [] [] []"; }
+        if ( Mathf.Floor(oxygen) == 48 )//{ oxygen_text.text = "[] [] [] []   "; }
+        if ( Mathf.Floor(oxygen) == 36 )//{ oxygen_text.text = "[] [] []      "; }
+        if ( Mathf.Floor(oxygen) == 24 )//{ oxygen_text.text = "[] []         "; }
+        if ( Mathf.Floor(oxygen) == 12 )//{ oxygen_text.text = "[]            "; }
         if ( Mathf.Floor(oxygen) == 0 ) 
         { 
             Debug.Log("You Died!");
