@@ -103,13 +103,12 @@ public class Player : MonoBehaviour
         
         // Check if the oxygen color is red.
         if ( oxygen_color.text == "red" ){
-            //Debug.Log("Oxygen is red!");
             if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
             updateOxygen();
         }
         else {
             if ( oxygen < 60 ) {
-                oxygen += Time.deltaTime;
+                oxygen += Time.deltaTime * 2;
                 updateOxygen();
             }
         }
@@ -158,9 +157,6 @@ public class Player : MonoBehaviour
 
     public void updateHealth() {
         healthBar.value = health;
-        if ( health == 3 )//{ health_text.text = "[] [] []"; }
-        if ( health == 2 )//{ health_text.text = "[] []   "; }
-        if ( health == 1 )//{ health_text.text = "[]      "; }
         if ( health == 0 )
         { 
             Debug.Log("You Died!");
@@ -172,11 +168,6 @@ public class Player : MonoBehaviour
 
     public void updateOxygen() {
         oxygenBar.value = Mathf.Floor(oxygen);
-        if (Mathf.Floor(oxygen) == 60)//{ oxygen_text.text = "[] [] [] [] []"; }
-        if ( Mathf.Floor(oxygen) == 48 )//{ oxygen_text.text = "[] [] [] []   "; }
-        if ( Mathf.Floor(oxygen) == 36 )//{ oxygen_text.text = "[] [] []      "; }
-        if ( Mathf.Floor(oxygen) == 24 )//{ oxygen_text.text = "[] []         "; }
-        if ( Mathf.Floor(oxygen) == 12 )//{ oxygen_text.text = "[]            "; }
         if ( Mathf.Floor(oxygen) == 0 ) 
         { 
             Debug.Log("You Died!");
