@@ -16,7 +16,7 @@ public class MonkeyMovement : MonoBehaviour
     NavMeshAgent agent;
     static readonly string[] nodeTags = {
         "Stomach",
-        "ElecControl2",
+        "ElecControl",
         "Nav",
         "Reactor",
         "O2",

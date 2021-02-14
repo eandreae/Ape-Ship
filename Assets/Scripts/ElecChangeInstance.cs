@@ -23,7 +23,23 @@ public class ElecChangeInstance : MonoBehaviour
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         agent = monkeyObj.GetComponent<NavMeshAgent>();
 
-        UpdateColor();
+        //UpdateColor();
+        if (color.text == "green")
+        {
+            myObject.material.color = Color.green;
+            display.color = Color.green;
+        }
+        else if (color.text == "yellow")
+        {
+            myObject.material.color = Color.yellow;
+            display.color = Color.yellow;
+        }
+        else if (color.text == "red")
+        {
+            myObject.material.color = Color.red;
+            display.color = Color.red;
+        }
+
     }
 
 
@@ -33,7 +49,23 @@ public class ElecChangeInstance : MonoBehaviour
         playerDist = Vector3.Distance(transform.position, playerObj.transform.position);
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);
         //Change color to match text color
-        UpdateColor();
+        //UpdateColor();
+        if (color.text == "green")
+        {
+            myObject.material.color = Color.green;
+            display.color = Color.green;
+        }
+        else if (color.text == "yellow")
+        {
+            myObject.material.color = Color.yellow;
+            display.color = Color.yellow;
+        }
+        else if (color.text == "red")
+        {
+            myObject.material.color = Color.red;
+            display.color = Color.red;
+        }
+
         //Debug.Log(playerObj.transform.position);
         //Debug.Log(transform.position);
         //TEMPORARY
