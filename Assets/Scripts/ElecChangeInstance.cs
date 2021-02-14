@@ -41,7 +41,7 @@ public class ElecChangeInstance : MonoBehaviour
         if (playerDist < stopDistance)
         {
             //temporary until all minigames are implemented
-            if(gameObject.tag != "Nav")
+            if(gameObject.tag != "Nav" || gameObject.tag != "Stomach")
             {
                 myObject.material.color = Color.green;
                 display.color = Color.green;
