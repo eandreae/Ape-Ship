@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public AudioSource backgroundMusic;
 
+    public Animator transitionPanel;
+
     public float returnDelay = 1f;
 
     public void Victory()
@@ -32,8 +34,8 @@ public class GameManager : MonoBehaviour
     }
     public void ReturnToMenu()
     {
+        transitionPanel.Play("PanelOutro");
         Invoke("FinallyReturnToMenu", returnDelay);
-        //Gonna put another transition panel, hence the delay
     }
 
     void FinallyReturnToMenu()
