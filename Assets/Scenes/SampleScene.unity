@@ -11030,6 +11030,44 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5842742960695652935, guid: 851110d54d7e1f7439e94a8b0aae4f29, type: 3}
+--- !u!1 &1880359030 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 851110d54d7e1f7439e94a8b0aae4f29,
+    type: 3}
+  m_PrefabInstance: {fileID: 700849167}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1880359031
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880359030}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ea5d66f0dc9374104bd2e6528bffa959, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1880359032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1880359030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53526520e49b8441d9e89b415a844e75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stomColor: {fileID: 1626664258}
 --- !u!1 &1941972570
 GameObject:
   m_ObjectHideFlags: 0
