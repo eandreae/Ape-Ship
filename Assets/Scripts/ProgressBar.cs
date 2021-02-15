@@ -13,11 +13,13 @@ public class ProgressBar : MonoBehaviour
     public bool progressing = false;
     public float timeRemaining = 120;
 
-    public Text timeText;
+    //public Text timeText;
+    public Slider progressSlider;
+
     public Text NavigationColor;
     public Text ReactorColor;
 
-    public GameManager gm;
+    GameManager gm;
 
     void Start()
     {
@@ -62,9 +64,10 @@ public class ProgressBar : MonoBehaviour
 
     void displayTime(float time) {
 
-        float minutes = Mathf.FloorToInt(time / 60);
+        //float minutes = Mathf.FloorToInt(time / 60);
         float seconds = Mathf.FloorToInt(time % 60);
+        progressSlider.value = seconds;
 
-        timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        //timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
