@@ -12,6 +12,7 @@ public class ProgressBar : MonoBehaviour
 
     public bool progressing = false;
     public float timeRemaining = 120;
+    public float totalTime = 120;
 
     //public Text timeText;
     public Slider progressSlider;
@@ -66,7 +67,7 @@ public class ProgressBar : MonoBehaviour
 
         //float minutes = Mathf.FloorToInt(time / 60);
         float seconds = Mathf.FloorToInt(time % 60);
-        progressSlider.value = seconds;
+        progressSlider.value = totalTime - seconds;
 
         //timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
