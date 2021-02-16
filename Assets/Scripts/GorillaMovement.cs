@@ -66,6 +66,8 @@ public class GorillaMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()    
     {
+        if(target == null)
+            FindNewTarget();
         //Get list of targets from FieldOfView list
         targetsList = GetComponent<FieldOfView>();
         //transfer each target into local list

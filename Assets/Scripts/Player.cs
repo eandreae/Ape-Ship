@@ -95,7 +95,8 @@ public class Player : MonoBehaviour
             // un-parent the player from the item
             this.holdItem.transform.parent = null;
             // un-mark the coin as picked up.
-            this.holdItem.GetComponent<CoinScript>().pickedUp = false;
+            this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+            //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
             // get rid of hold item
             this.holdItem = null;
             this.holding = false;
@@ -145,7 +146,8 @@ public class Player : MonoBehaviour
             other.gameObject.transform.parent = this.transform;
 
             // mark the coin (or whatever object) as picked up 
-            other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+            other.gameObject.GetComponent<ItemScript>().pickedUp = true;
+            //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
             //Debug.Log(this.holdItem);
     	}
