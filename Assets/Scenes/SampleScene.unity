@@ -4438,7 +4438,7 @@ MonoBehaviour:
   m_Direction: 0
   m_MinValue: 0
   m_MaxValue: 120
-  m_WholeNumbers: 1
+  m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4457,7 +4457,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressing: 0
   timeRemaining: 120
-  totalTime: 60
   progressSlider: {fileID: 635993681}
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
@@ -9510,7 +9509,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   progressing: 0
   timeRemaining: 120
-  totalTime: 120
   progressSlider: {fileID: 0}
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}

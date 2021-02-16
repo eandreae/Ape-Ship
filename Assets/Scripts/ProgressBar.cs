@@ -12,7 +12,6 @@ public class ProgressBar : MonoBehaviour
 
     public bool progressing = false;
     public float timeRemaining = 120;
-    public float totalTime = 120;
 
     //public Text timeText;
     public Slider progressSlider;
@@ -48,12 +47,9 @@ public class ProgressBar : MonoBehaviour
             if ( timeRemaining > 0 ){
                 // Subtract the time by deltatime.
                 timeRemaining -= Time.deltaTime;
-                // Display the time remaining.
-                displayTime(timeRemaining);
+                progressSlider.value = 120 - timeRemaining;
             }
             else {
-                // Otherwise, the progress has finished.
-                Debug.Log("Game Over! You survived!");
                 // Set the time remaining to zero.
                 timeRemaining = 0;
                 // Set progressing to false.
@@ -61,14 +57,5 @@ public class ProgressBar : MonoBehaviour
                 gm.Victory();
             }
         }
-    }
-
-    void displayTime(float time) {
-
-        //float minutes = Mathf.FloorToInt(time / 60);
-        float seconds = Mathf.FloorToInt(time % 60);
-        progressSlider.value = totalTime - seconds;
-
-        //timeText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }
