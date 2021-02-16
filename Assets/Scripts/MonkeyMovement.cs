@@ -86,8 +86,8 @@ public class MonkeyMovement : MonoBehaviour
         float minDist = 99999;
         for (int i = 0; i < nodes.Count; i++) {
             // If the node is not the target
-            if (nodes[i] != target) {
-                float dist = Vector3.Distance (transform.position, nodes[i].transform.position);
+            if (nodes[i] != target && nodes[i] != null) {
+                float dist = Vector3.Distance(transform.position, nodes[i].transform.position);
                 if (dist < minDist) {
                     // Set target color to check if it is red
                     SetTargetColor(i);

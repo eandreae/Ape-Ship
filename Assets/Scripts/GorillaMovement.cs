@@ -39,7 +39,7 @@ public class GorillaMovement : MonoBehaviour
         nodes = new List<GameObject>();
         node1 = GameObject.FindGameObjectWithTag("Stomach");
         nodes.Add(node1);
-        node2 = GameObject.FindGameObjectWithTag("ElecControl2");
+        node2 = GameObject.FindGameObjectWithTag("ElecControl");
         nodes.Add(node2);
         node3 = GameObject.FindGameObjectWithTag("Nav");
         nodes.Add(node3);
@@ -51,7 +51,8 @@ public class GorillaMovement : MonoBehaviour
         playerObj = GameObject.FindGameObjectWithTag("Player");
         playerDist = Vector3.Distance (transform.position, playerObj.transform.position);
 
-        
+        // foreach (GameObject g in nodes)
+        //     Debug.Log(g);
         //agent.speed = _SPEED;
         //agent.acceleration = _ACCELERATION;
         //agent.angularSpeed = _ANGULAR_SPEED;
@@ -59,7 +60,7 @@ public class GorillaMovement : MonoBehaviour
         int targetnum = Random.Range(0, nodes.Count-1);
         targetNode = nodes[targetnum];
         target = targetNode;
-        //Debug.Log(target);
+        Debug.Log("Gorilla moving to: " + target);
     }
 
 

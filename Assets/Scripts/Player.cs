@@ -96,6 +96,7 @@ public class Player : MonoBehaviour
             this.holdItem.transform.parent = null;
             // un-mark the coin as picked up.
             this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+            this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
             //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
             // get rid of hold item
             this.holdItem = null;

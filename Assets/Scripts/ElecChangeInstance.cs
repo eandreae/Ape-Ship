@@ -16,6 +16,7 @@ public class ElecChangeInstance : MonoBehaviour
     GameObject playerObj;
     GameObject monkeyObj;
     NavMeshAgent agent;
+    public bool canHack = true; // can be hacked by monkey
 
     private void Start()
     {
@@ -82,9 +83,10 @@ public class ElecChangeInstance : MonoBehaviour
         }
         //TEMPORARY
         //monkey turns every node down one level
-        if (monkeyDist < stopDistance)
+        if (monkeyDist < stopDistance && canHack)
         {
             StartCoroutine("destroyNode");
+            StartCoroutine("HackCD", 5.0f); // use 5s cooldown
         }
     }
 
@@ -128,6 +130,13 @@ public class ElecChangeInstance : MonoBehaviour
             color.text = "yellow";
         }
 
+    }
+    IEnumerator HackCD (float cooldown = 10.0f) { // default is 10s
+        if (canHack){
+            canHack = false;
+            yield return new WaitForSeconds(cooldown);
+            canHack = true;
+        }
     }
 
     /*private void OnTriggerEnter(Collider other)

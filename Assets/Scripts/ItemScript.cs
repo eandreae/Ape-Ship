@@ -5,6 +5,7 @@ using UnityEngine;
 public class ItemScript : MonoBehaviour
 {
     public bool pickedUp;
+    public bool active;
     private Transform playerRoot;
     private GameObject[] playerObjs;
     public string type;
@@ -14,14 +15,15 @@ public class ItemScript : MonoBehaviour
     void Start()
     {
         pickedUp = false;
+        active = false;
         playerRoot = GameObject.FindWithTag("PlayerRoot").GetComponent<Transform>();
         this.rigidbody = this.GetComponent<Rigidbody>();
         this.height = this.transform.position.y;
         playerObjs = GameObject.FindGameObjectsWithTag("Player");
         
         foreach (GameObject p in playerObjs){
-            Debug.Log(p.GetComponent<Collider>());
-            Debug.Log(this.GetComponent<BoxCollider>());
+            //Debug.Log(p.GetComponent<Collider>());
+            //Debug.Log(this.GetComponent<BoxCollider>());
             Physics.IgnoreCollision(this.GetComponent<BoxCollider>(), p.GetComponent<Collider>(), true);
         }
     }
@@ -54,17 +56,22 @@ public class ItemScript : MonoBehaviour
     }
 
     private void OnTriggerEnter(Collider other) {
-    	if(other.tag == "Player") {
+    	if (other.tag == "Player") {
     		//other.GetComponent<Player>().points++;
         	//Add 1 to points.
         	//Destroy(gameObject); //Destroys coin, when touched.
             this.playerRoot = other.gameObject.GetComponent<Transform>();
         }
-        if(other.tag == "Gorilla" && !this.pickedUp){
-            Object.Destroy(this.gameObject, 0.5f); // destroy object after contact with gorilla
-        }
-        if(this.tag == "Banana" && other.tag == "Stomach" && !this.pickedUp){
-            Object.Destroy(this.gameObject); // destroy when touching the stomach?
+        else if (this.active) {
+            if (other.tag == "Gorilla" && !this.pickedUp){
+                Object.Destroy(this.gameObject, 0.5f); // destroy object after contact with gorilla
+            }
+            else if (this.type == "Food" && other.tag == "Stomach"){
+                Object.Destroy(this.gameObject); // destroy when touching the stomach?
+            }
+            else if (this.type == "Neuron" && other.tag == "Brain"){
+                Object.Destroy(this.gameObject); // destroy when touching the brain
+            }
         }
     }
 
