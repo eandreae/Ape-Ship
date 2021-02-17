@@ -15,22 +15,33 @@ public class GameManager : MonoBehaviour
 
     public float returnDelay = 1f;
 
+    bool won = false;
+    bool lost = false;
+
     public void Victory()
     {
-        //Enabling a victory panel
-        victoryPanel.SetActive(true);
-        //Turning off the gameplay music
-        backgroundMusic.volume = 0f;
-        //We need to destroy the pause menu panel so the player can't pause once the game is technically over
-        Destroy(pausePanel);
+        if (!lost)
+        {
+            //Enabling a victory panel
+            victoryPanel.SetActive(true);
+            //Turning off the gameplay music
+            backgroundMusic.volume = 0f;
+            //We need to destroy the pause menu panel so the player can't pause once the game is technically over
+            Destroy(pausePanel);
+            won = true;
+        }
     }
 
     public void Defeat()
     {
-        //Enabling a defeat panel
-        defeatPanel.SetActive(true);
-        backgroundMusic.volume = 0f;
-        Destroy(pausePanel);
+        if (!won)
+        {
+            //Enabling a defeat panel
+            defeatPanel.SetActive(true);
+            backgroundMusic.volume = 0f;
+            Destroy(pausePanel);
+            lost = true;
+        }
     }
     public void ReturnToMenu()
     {
