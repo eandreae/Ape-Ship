@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public Text oxygen_text;
     public Text oxygen_color;
     private bool invulnerable;
-    private bool holding;
+    public bool holding;
     private float invulnTime = 2;
     private CharacterController controller;
     private Animator anim; 
@@ -64,6 +64,7 @@ public class Player : MonoBehaviour
             }
             else{
                 this.anim.Play("Walk"); // play walking animation when moving
+                this.holding = false; // if no holdItem, then holding must be false
             }
             this.transform.LookAt(transform.position + dir); // look in direction that player is walking
             controller.SimpleMove(this.moveSpeed * dir);
@@ -76,6 +77,7 @@ public class Player : MonoBehaviour
             }
             else{
                 this.anim.Play("Idle"); // if not moving, play idle anim
+                this.holding = false; // if no holdItem, then holding must be false
             }
         }
         

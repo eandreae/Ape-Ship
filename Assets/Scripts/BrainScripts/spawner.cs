@@ -25,7 +25,8 @@ public class spawner : MonoBehaviour
         if(nodeColor.text != currColor)
         {
             currColor = nodeColor.text;
-            Instantiate(spawnee, spawnLoc, spawnPos.rotation);
+            GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
+            temp.GetComponent<Rigidbody>().useGravity = true;
         }
     }
 }
