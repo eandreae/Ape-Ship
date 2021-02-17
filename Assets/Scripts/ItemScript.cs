@@ -11,20 +11,27 @@ public class ItemScript : MonoBehaviour
     public string type;
     private float height;
     private Rigidbody rigidbody;
+    public GameObject glowEffect;
     // Start is called before the first frame update
     void Start()
     {
         pickedUp = false;
         active = false;
-        playerRoot = GameObject.FindWithTag("PlayerRoot").GetComponent<Transform>();
+        //playerRoot = GameObject.FindWithTag("PlayerRoot").GetComponent<Transform>();
         this.rigidbody = this.GetComponent<Rigidbody>();
         this.height = this.transform.position.y;
         playerObjs = GameObject.FindGameObjectsWithTag("Player");
+        if (this.glowEffect)
+            this.glowEffect.SetActive(false);
         
         foreach (GameObject p in playerObjs){
             //Debug.Log(p.GetComponent<Collider>());
             //Debug.Log(this.GetComponent<BoxCollider>());
-            Physics.IgnoreCollision(this.GetComponent<BoxCollider>(), p.GetComponent<Collider>(), true);
+            if (this.GetComponent<SphereCollider>())
+                Physics.IgnoreCollision(this.GetComponent<SphereCollider>(), p.GetComponent<Collider>(), true);
+                
+            else if(this.GetComponent<CapsuleCollider>())
+                Physics.IgnoreCollision(this.GetComponent<CapsuleCollider>(), p.GetComponent<Collider>(), true);
         }
     }
 
@@ -35,11 +42,13 @@ public class ItemScript : MonoBehaviour
             this.rigidbody.isKinematic = false;
             
             if (this.type == "Banana" || this.type == "Coin"){
-                transform.Rotate(0, 0, 90 * Time.deltaTime);
+                //transform.Rotate(0, 0, 90 * Time.deltaTime);
             }
 
         }
         else {
+            if(this.glowEffect)
+                this.glowEffect.SetActive(false);
             this.rigidbody.isKinematic = true;
 
             if(type == "Coin"){
@@ -51,7 +60,7 @@ public class ItemScript : MonoBehaviour
             }
             
             //Debug.Log(playerRoot.position);
-            transform.localPosition = new Vector3(0.0f, playerRoot.position.y + 1.0f, 0.4f); 
+            transform.localPosition = new Vector3(0f, 1.2f, 0.5f); 
         }
     }
 
@@ -61,20 +70,29 @@ public class ItemScript : MonoBehaviour
         	//Add 1 to points.
         	//Destroy(gameObject); //Destroys coin, when touched.
             this.playerRoot = other.gameObject.GetComponent<Transform>();
+
+            if (this.glowEffect && !this.pickedUp && !playerRoot.GetComponent<Player>().holding){
+                this.glowEffect.SetActive(true);
+            }
         }
         else if (this.active) {
-            if (other.tag == "Gorilla" && !this.pickedUp){
+            if (this.type == "Banana" && other.tag == "Gorilla" && !this.pickedUp){
                 Object.Destroy(this.gameObject, 0.5f); // destroy object after contact with gorilla
             }
-            else if (this.type == "Food" && other.tag == "Stomach"){
-                Object.Destroy(this.gameObject); // destroy when touching the stomach?
-            }
-            else if (this.type == "Neuron" && other.tag == "Brain"){
-                Object.Destroy(this.gameObject); // destroy when touching the brain
-            }
+            // else if (this.type == "Food" && other.tag == "Stomach"){
+            //     Object.Destroy(this.gameObject); // destroy when touching the stomach?
+            // }
+            // else if (this.type == "Neuron" && other.tag == "Brain"){
+            //     Object.Destroy(this.gameObject); // destroy when touching the brain
+            // }
         }
     }
 
+    private void OnTriggerExit(Collider other) {
+    	if (other.tag == "Player" && this.glowEffect){
+            this.glowEffect.SetActive(false);
+        }
+    }
     // private void OnTriggerEnter(Collider other) {
     // 	if(other.name == "Capsule" || other.name == "Player") {
     // 		other.GetComponent<Player>().points++;
