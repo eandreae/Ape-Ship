@@ -1700,7 +1700,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c606d5077ed59104a89116c6e36709a9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 55.186
+      value: 58.54
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c606d5077ed59104a89116c6e36709a9,
         type: 3}
@@ -1710,7 +1710,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: c606d5077ed59104a89116c6e36709a9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.93661
+      value: -0.17
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: c606d5077ed59104a89116c6e36709a9,
         type: 3}
@@ -2067,7 +2067,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336465491}
   m_LocalRotation: {x: -0.087295376, y: 0.70169765, z: 0.08729538, w: 0.7016976}
-  m_LocalPosition: {x: 7.37, y: -8.3, z: 21.73}
+  m_LocalPosition: {x: 9.61, y: -7.73, z: 23.81}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1277547814}
@@ -3912,7 +3912,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566263452}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.3, y: -0.39, z: -32.2}
+  m_LocalPosition: {x: -0.3, y: -0.39, z: 157.3}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1102424650}
@@ -5121,6 +5121,26 @@ MonoBehaviour:
   active: 0
   type: Coin
   glowEffect: {fileID: 0}
+--- !u!1 &825427280 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -5445446221297204295, guid: c606d5077ed59104a89116c6e36709a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 327222650}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &825427281
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 825427280}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7872210511183872099, guid: c606d5077ed59104a89116c6e36709a9, type: 3}
 --- !u!1 &848084006
 GameObject:
   m_ObjectHideFlags: 0
@@ -11354,7 +11374,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083132819}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 112.21, y: 13.71, z: -13.14}
+  m_LocalPosition: {x: -105.4, y: 13.71, z: -13.14}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1096256795}
