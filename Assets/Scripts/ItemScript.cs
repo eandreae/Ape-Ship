@@ -7,7 +7,7 @@ public class ItemScript : MonoBehaviour
     public bool pickedUp;
     public bool active;
     private Transform playerRoot;
-    private GameObject[] playerObjs;
+    //private GameObject[] playerObjs;
     public string type;
     private float height;
     private Rigidbody rigidbody;
@@ -20,19 +20,21 @@ public class ItemScript : MonoBehaviour
         //playerRoot = GameObject.FindWithTag("PlayerRoot").GetComponent<Transform>();
         this.rigidbody = this.GetComponent<Rigidbody>();
         this.height = this.transform.position.y;
-        playerObjs = GameObject.FindGameObjectsWithTag("Player");
+        
+        //playerObjs = GameObject.FindGameObjectsWithTag("Player");
+
         if (this.glowEffect)
             this.glowEffect.SetActive(false);
         
-        foreach (GameObject p in playerObjs){
-            //Debug.Log(p.GetComponent<Collider>());
-            //Debug.Log(this.GetComponent<BoxCollider>());
-            if (this.GetComponent<SphereCollider>())
-                Physics.IgnoreCollision(this.GetComponent<SphereCollider>(), p.GetComponent<Collider>(), true);
+        // foreach (GameObject p in playerObjs){
+        //     Debug.Log(p.GetComponent<Collider>());
+        //     Debug.Log(this.GetComponent<BoxCollider>());
+        //     if (this.GetComponent<SphereCollider>())
+        //         Physics.IgnoreCollision(this.GetComponent<SphereCollider>(), p.GetComponent<Collider>(), true);
                 
-            else if(this.GetComponent<CapsuleCollider>())
-                Physics.IgnoreCollision(this.GetComponent<CapsuleCollider>(), p.GetComponent<Collider>(), true);
-        }
+        //     else if(this.GetComponent<CapsuleCollider>())
+        //         Physics.IgnoreCollision(this.GetComponent<CapsuleCollider>(), p.GetComponent<Collider>(), true);
+        // }
     }
 
     // Update is called once per frame
