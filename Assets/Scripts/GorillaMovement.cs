@@ -145,7 +145,7 @@ public class GorillaMovement : MonoBehaviour
         }
     }
 
-    private void StopEnemy()
+    private void StopEnemy() // code executed when gorilla reaches its target.
     {
       	agent.isStopped = true;
         //get new target
@@ -180,20 +180,20 @@ public class GorillaMovement : MonoBehaviour
             Vector3 chargePos = playerObj.transform.position; // set target to player position at this moment
             //this.transform.LookAt(playerObj.transform.position);
             this.transform.LookAt(chargePos);
-            agent.SetDestination(chargePos);
+            //agent.SetDestination(chargePos);
             //Debug.Log(chargePos);
-            yield return new WaitForSeconds(1f); // time in seconds to wait
+            yield return new WaitForSeconds(0.5f); // time in seconds to wait
             
             //Debug.Log(chargePos);
             agent.isStopped = false;
             agent.speed = 50;
-            agent.SetDestination((chargePos + playerObj.transform.position)/2);
+            agent.SetDestination((chargePos) * 0.4f + (playerObj.transform.position) * 0.6f); // 40% influence player initial location, 60% influence player's current location
             yield return new WaitForSeconds(1f); // charge for 1 second
             
             charging = false;
             agent.speed = 0; // stops
             agent.isStopped = true;
-            yield return new WaitForSeconds(1f); // gorilla self-stun after it charges
+            yield return new WaitForSeconds(0.5f); // gorilla self-stun after it charges
             
             agent.SetDestination(target.transform.position); // reset target
             agent.autoBraking = true;
@@ -203,7 +203,7 @@ public class GorillaMovement : MonoBehaviour
             agent.isStopped = false;
             //stoppingDistance = 10f;
         
-            yield return new WaitForSeconds(5f); // charge cooldown
+            yield return new WaitForSeconds(4f); // charge cooldown
             canCharge = true;
         }
     }
@@ -211,11 +211,14 @@ public class GorillaMovement : MonoBehaviour
     // This coroutine handles part of the Gorilla/Player collision interaction.
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
     IEnumerator AttackPlayer(){
+        Debug.Log("ATTACK PLAYER");
+        agent.isStopped = true;
         agent.speed = 0;
         //animator.play("attack-anim"); // play the gorilla attack animation
 
-        yield return new WaitForSeconds(1f); // wait one second
-        agent.speed = _SPEED; // reset speed to initial value;
+        yield return new WaitForSeconds(0.75f); // wait
+        agent.speed = _SPEED;
+        agent.isStopped = false;
     }
     
 }

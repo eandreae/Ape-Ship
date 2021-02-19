@@ -19,6 +19,7 @@ public class ItemScript : MonoBehaviour
         active = false;
         //playerRoot = GameObject.FindWithTag("PlayerRoot").GetComponent<Transform>();
         this.rigidbody = this.GetComponent<Rigidbody>();
+        this.rigidbody.isKinematic = false;
         this.height = this.transform.position.y;
         
         //playerObjs = GameObject.FindGameObjectsWithTag("Player");
