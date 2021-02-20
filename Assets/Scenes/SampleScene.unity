@@ -8900,13 +8900,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b457a986a774c469d56a8d42211718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stoppingDistance: 1
+  stoppingDistance: 10
   color1: {fileID: 1626664258}
   color2: {fileID: 1471871104}
   color3: {fileID: 1279260005}
   color4: {fileID: 741311113}
   color5: {fileID: 1759386919}
   visibleTargets: []
+  runningAway: 0
 --- !u!114 &1458676154
 MonoBehaviour:
   m_ObjectHideFlags: 0

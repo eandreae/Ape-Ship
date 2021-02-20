@@ -17,13 +17,14 @@ public class ElecChangeInstance : MonoBehaviour
     GameObject monkeyObj;
     NavMeshAgent agent;
     public bool canHack = true; // can be hacked by monkey
+    private MonkeyMovement flee;
+    private bool isFleeing;
 
     private void Start()
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         agent = monkeyObj.GetComponent<NavMeshAgent>();
-
         //UpdateColor();
         if (color.text == "green")
         {
@@ -49,6 +50,9 @@ public class ElecChangeInstance : MonoBehaviour
         //Debug.Log(transform.position);
         playerDist = Vector3.Distance(transform.position, playerObj.transform.position);
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);
+        //flee = GetComponent<MonkeyMovement>();
+        isFleeing = MonkeyMovement.runningAway;
+        Debug.Log(isFleeing);
         //Change color to match text color
         //UpdateColor();
         if (color.text == "green")
@@ -83,10 +87,18 @@ public class ElecChangeInstance : MonoBehaviour
         }
         //TEMPORARY
         //monkey turns every node down one level
-        if (monkeyDist < stopDistance && canHack)
+        if (monkeyDist < stopDistance && canHack && !isFleeing)
         {
             StartCoroutine("destroyNode");
             StartCoroutine("HackCD", 5.0f); // use 5s cooldown
+        }
+        //Stop Coroutines if monkey starts fleeing
+        if (isFleeing)
+        {
+            StopCoroutine("destoryNode");
+            agent.isStopped = false;
+            agent.speed = 20;
+            agent.acceleration = 10;
         }
     }
 
