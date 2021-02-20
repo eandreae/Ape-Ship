@@ -54,6 +54,9 @@ public class destroyer : MonoBehaviour
     {
         Destroy(this.gameObject);
         //fix the brain
-        nodeColor.text = "green";
+        if (nodeColor.text == "red")
+            nodeColor.text = "yellow";
+        else if (nodeColor.text == "yellow")
+            nodeColor.text = "green";
     }
 }
