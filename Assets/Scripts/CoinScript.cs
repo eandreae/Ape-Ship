@@ -31,10 +31,6 @@ public class CoinScript : MonoBehaviour
                 transform.Rotate(0, 0, 90 * Time.deltaTime);
                 transform.position = new Vector3(transform.position.x, this.height, transform.position.z);
             }
-            else if(type == "Neuron")
-            {
-
-            }
         }
         else {
             if(type == "Coin"){

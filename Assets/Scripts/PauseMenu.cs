@@ -15,9 +15,11 @@ public class PauseMenu : MonoBehaviour
 
     public AudioSource backgroundMusic;
 
-    public Minimap mm;
+    Minimap mm;
 
-    public Player player;
+    Player player;
+
+    public Animator transitionPanel;
 
     void Start()
     {
@@ -66,7 +68,7 @@ public class PauseMenu : MonoBehaviour
         backgroundMusic.pitch = 1f;
         buttonPress.Play();
         pauseMenuPanel.SetActive(false);
-        //outroAnim.Play("OutroAnim");
+        transitionPanel.Play("PanelOutro");
         Invoke("finallyGoBackToMenu", 1f);
     }
 
@@ -80,7 +82,7 @@ public class PauseMenu : MonoBehaviour
         backgroundMusic.pitch = 1f;
         buttonPress.Play();
         pauseMenuPanel.SetActive(false);
-        //outroAnim.Play("OutroAnim");
+        transitionPanel.Play("PanelOutro");
         Invoke("finallyQuit", 1f);
     }
 

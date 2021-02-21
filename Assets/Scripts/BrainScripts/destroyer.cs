@@ -7,7 +7,7 @@ using UnityEngine.AI;
 public class destroyer : MonoBehaviour
 {
     public float lifetime = 5f;
-    public Text brainColor;
+    public Text nodeColor;
 
     // Start is called before the first frame update
     void Start()
@@ -31,16 +31,32 @@ public class destroyer : MonoBehaviour
     //if object enters destroy area
     private void OnTriggerEnter(Collider coll)
     {
-        if(coll.gameObject.name == "neuronDestroyer")
+        if (coll.gameObject.name == "neuronDestroyer")
         {
-            Destruction();
+            if (this.gameObject.name == "neuronSpawn(Clone)")
+            {
+                Debug.Log("YEEE");
+
+                Destruction();
+            }
         }
+        else if (coll.gameObject.name == "foodDestroyer")
+        {
+            if (this.gameObject.name == "foodSpawn(Clone)")
+            {
+                Destruction();
+            }
+        }
+
     }
     //destory object
     void Destruction()
     {
         Destroy(this.gameObject);
         //fix the brain
-        brainColor.text = "green";
+        if (nodeColor.text == "red")
+            nodeColor.text = "yellow";
+        else if (nodeColor.text == "yellow")
+            nodeColor.text = "green";
     }
 }

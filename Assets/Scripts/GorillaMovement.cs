@@ -37,9 +37,9 @@ public class GorillaMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         nodes = new List<GameObject>();
-        node1 = GameObject.FindGameObjectWithTag("ElecControl");
+        node1 = GameObject.FindGameObjectWithTag("Stomach");
         nodes.Add(node1);
-        node2 = GameObject.FindGameObjectWithTag("ElecControl2");
+        node2 = GameObject.FindGameObjectWithTag("ElecControl");
         nodes.Add(node2);
         node3 = GameObject.FindGameObjectWithTag("Nav");
         nodes.Add(node3);
@@ -51,7 +51,8 @@ public class GorillaMovement : MonoBehaviour
         playerObj = GameObject.FindGameObjectWithTag("Player");
         playerDist = Vector3.Distance (transform.position, playerObj.transform.position);
 
-        
+        // foreach (GameObject g in nodes)
+        //     Debug.Log(g);
         //agent.speed = _SPEED;
         //agent.acceleration = _ACCELERATION;
         //agent.angularSpeed = _ANGULAR_SPEED;
@@ -59,13 +60,15 @@ public class GorillaMovement : MonoBehaviour
         int targetnum = Random.Range(0, nodes.Count-1);
         targetNode = nodes[targetnum];
         target = targetNode;
-        //Debug.Log(target);
+        Debug.Log("Gorilla moving to: " + target);
     }
 
 
     // Update is called once per frame
     private void Update()    
     {
+        if(target == null)
+            FindNewTarget();
         //Get list of targets from FieldOfView list
         targetsList = GetComponent<FieldOfView>();
         //transfer each target into local list
@@ -142,7 +145,7 @@ public class GorillaMovement : MonoBehaviour
         }
     }
 
-    private void StopEnemy()
+    private void StopEnemy() // code executed when gorilla reaches its target.
     {
       	agent.isStopped = true;
         //get new target
@@ -177,20 +180,20 @@ public class GorillaMovement : MonoBehaviour
             Vector3 chargePos = playerObj.transform.position; // set target to player position at this moment
             //this.transform.LookAt(playerObj.transform.position);
             this.transform.LookAt(chargePos);
-            agent.SetDestination(chargePos);
+            //agent.SetDestination(chargePos);
             //Debug.Log(chargePos);
-            yield return new WaitForSeconds(1f); // time in seconds to wait
+            yield return new WaitForSeconds(0.5f); // time in seconds to wait
             
             //Debug.Log(chargePos);
             agent.isStopped = false;
             agent.speed = 50;
-            agent.SetDestination((chargePos + playerObj.transform.position)/2);
+            agent.SetDestination((chargePos) * 0.4f + (playerObj.transform.position) * 0.6f); // 40% influence player initial location, 60% influence player's current location
             yield return new WaitForSeconds(1f); // charge for 1 second
             
             charging = false;
             agent.speed = 0; // stops
             agent.isStopped = true;
-            yield return new WaitForSeconds(1f); // gorilla self-stun after it charges
+            yield return new WaitForSeconds(0.5f); // gorilla self-stun after it charges
             
             agent.SetDestination(target.transform.position); // reset target
             agent.autoBraking = true;
@@ -200,7 +203,7 @@ public class GorillaMovement : MonoBehaviour
             agent.isStopped = false;
             //stoppingDistance = 10f;
         
-            yield return new WaitForSeconds(5f); // charge cooldown
+            yield return new WaitForSeconds(4f); // charge cooldown
             canCharge = true;
         }
     }
@@ -208,11 +211,14 @@ public class GorillaMovement : MonoBehaviour
     // This coroutine handles part of the Gorilla/Player collision interaction.
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
     IEnumerator AttackPlayer(){
+        Debug.Log("ATTACK PLAYER");
+        agent.isStopped = true;
         agent.speed = 0;
         //animator.play("attack-anim"); // play the gorilla attack animation
 
-        yield return new WaitForSeconds(1f); // wait one second
-        agent.speed = _SPEED; // reset speed to initial value;
+        yield return new WaitForSeconds(0.75f); // wait
+        agent.speed = _SPEED;
+        agent.isStopped = false;
     }
     
 }

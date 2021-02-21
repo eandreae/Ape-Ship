@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
-    int count = 0;
+    //int count = 0;
     bool doorOpened = false;
     private float currTime = 0.0f;
 

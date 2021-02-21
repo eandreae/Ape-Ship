@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public Text oxygen_text;
     public Text oxygen_color;
     private bool invulnerable;
-    private bool holding;
+    public bool holding;
     private float invulnTime = 2;
     private CharacterController controller;
     private Animator anim; 
@@ -29,6 +29,9 @@ public class Player : MonoBehaviour
     private GameObject holdItem;
 
     public GameManager gm;
+
+    public Slider healthBar;
+    public Slider oxygenBar;
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +64,7 @@ public class Player : MonoBehaviour
             }
             else{
                 this.anim.Play("Walk"); // play walking animation when moving
+                this.holding = false; // if no holdItem, then holding must be false
             }
             this.transform.LookAt(transform.position + dir); // look in direction that player is walking
             controller.SimpleMove(this.moveSpeed * dir);
@@ -73,6 +77,7 @@ public class Player : MonoBehaviour
             }
             else{
                 this.anim.Play("Idle"); // if not moving, play idle anim
+                this.holding = false; // if no holdItem, then holding must be false
             }
         }
         
@@ -92,7 +97,9 @@ public class Player : MonoBehaviour
             // un-parent the player from the item
             this.holdItem.transform.parent = null;
             // un-mark the coin as picked up.
-            this.holdItem.GetComponent<CoinScript>().pickedUp = false;
+            this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+            this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+            //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
             // get rid of hold item
             this.holdItem = null;
             this.holding = false;
@@ -100,13 +107,12 @@ public class Player : MonoBehaviour
         
         // Check if the oxygen color is red.
         if ( oxygen_color.text == "red" ){
-            //Debug.Log("Oxygen is red!");
             if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
             updateOxygen();
         }
         else {
             if ( oxygen < 60 ) {
-                oxygen += Time.deltaTime;
+                oxygen += Time.deltaTime * 2;
                 updateOxygen();
             }
         }
@@ -143,21 +149,19 @@ public class Player : MonoBehaviour
             other.gameObject.transform.parent = this.transform;
 
             // mark the coin (or whatever object) as picked up 
-            other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+            other.gameObject.GetComponent<ItemScript>().pickedUp = true;
+            //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
             //Debug.Log(this.holdItem);
     	}
     }
     
-    private void OnGUI(){
-    	GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
-    }
+    //private void OnGUI(){
+    	//GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
+    //}
 
     public void updateHealth() {
-
-        if ( health == 3 ){ health_text.text = "[] [] []"; }
-        if ( health == 2 ){ health_text.text = "[] []   "; }
-        if ( health == 1 ){ health_text.text = "[]      "; }
+        healthBar.value = health;
         if ( health == 0 )
         { 
             Debug.Log("You Died!");
@@ -168,12 +172,7 @@ public class Player : MonoBehaviour
     }
 
     public void updateOxygen() {
-
-        if ( Mathf.Floor(oxygen) == 60 ) { oxygen_text.text = "[] [] [] [] []"; }
-        if ( Mathf.Floor(oxygen) == 48 ) { oxygen_text.text = "[] [] [] []   "; }
-        if ( Mathf.Floor(oxygen) == 36 ) { oxygen_text.text = "[] [] []      "; }
-        if ( Mathf.Floor(oxygen) == 24 ) { oxygen_text.text = "[] []         "; }
-        if ( Mathf.Floor(oxygen) == 12 ) { oxygen_text.text = "[]            "; }
+        oxygenBar.value = Mathf.Floor(oxygen);
         if ( Mathf.Floor(oxygen) == 0 ) 
         { 
             Debug.Log("You Died!");
