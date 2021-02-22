@@ -23,7 +23,8 @@ public class Player : MonoBehaviour
     public bool holding;
     private float invulnTime = 2;
     private CharacterController controller;
-    private Animator anim; 
+    private Animator anim;
+    public Animator cues;
     // Moved camera functionality to PlayerCamera.cs
     // public Camera camera;
     private GameObject holdItem;
@@ -161,6 +162,7 @@ public class Player : MonoBehaviour
     //}
 
     public void updateHealth() {
+        cues.SetTrigger("DamageTrigger");
         healthBar.value = health;
         if ( health == 0 )
         { 
@@ -172,6 +174,7 @@ public class Player : MonoBehaviour
     }
 
     public void updateOxygen() {
+        cues.SetTrigger("OxygenTrigger");
         oxygenBar.value = Mathf.Floor(oxygen);
         if ( Mathf.Floor(oxygen) == 0 ) 
         { 
