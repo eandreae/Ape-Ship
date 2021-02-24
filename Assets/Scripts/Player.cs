@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     public Slider healthBar;
     public Slider oxygenBar;
 
+    public AudioSource alarmSFX;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -176,6 +178,7 @@ public class Player : MonoBehaviour
     public void updateOxygen() {
         cues.SetTrigger("OxygenTrigger");
         oxygenBar.value = Mathf.Floor(oxygen);
+        alarmSFX.Play();
         if ( Mathf.Floor(oxygen) == 0 ) 
         { 
             Debug.Log("You Died!");
