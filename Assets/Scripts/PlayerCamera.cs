@@ -8,7 +8,7 @@ using UnityEngine;
 public class PlayerCamera : MonoBehaviour
 {
     public GameObject target;
-    Vector3 offset = new Vector3(0, 19f, -10);
+    public Vector3 offset = new Vector3(0, 19f, -10);
 
     // Update is called once per frame
     void LateUpdate()
