@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public AudioSource buttonPress;
 
     public GameObject tutorialPanel;
+    public GameObject creditsPanel;
     public GameObject settingsPanel;
 
     public void StartGame()
@@ -43,6 +44,13 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Go to tutorial screen!");
         //Sets the tutorial panel to be visisble
         tutorialPanel.SetActive(true);
+        buttonPress.Play();
+    }
+
+    public void Credits()
+    {
+        //Sets the credits panel to be visible
+        creditsPanel.SetActive(true);
         buttonPress.Play();
     }
 
