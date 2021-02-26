@@ -178,7 +178,7 @@ public class Player : MonoBehaviour
     public void updateOxygen() {
         cues.SetTrigger("OxygenTrigger");
         oxygenBar.value = Mathf.Floor(oxygen);
-        alarmSFX.Play();
+        //alarmSFX.Play();
         if ( Mathf.Floor(oxygen) == 0 ) 
         { 
             Debug.Log("You Died!");
