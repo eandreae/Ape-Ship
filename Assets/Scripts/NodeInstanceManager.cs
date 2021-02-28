@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class NodeInstanceManager : MonoBehaviour
 {
     [SerializeField] private Renderer myObject; 
 
     public UnityEngine.Color color;
+    public UnityEvent OnNodeFix;
+    public UnityEvent OnNodeDamage;
 
     public Text colorTracker;
     public Image display;
@@ -27,6 +30,8 @@ public class NodeInstanceManager : MonoBehaviour
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         agent = monkeyObj.GetComponent<NavMeshAgent>();
+        
+        // Need to set starting color for each node
 
         UpdateColor();
 
@@ -40,12 +45,10 @@ public class NodeInstanceManager : MonoBehaviour
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);
         //flee = GetComponent<MonkeyMovement>();
         isFleeing = MonkeyMovement.runningAway;
-        Debug.Log(isFleeing);
+        //Debug.Log(isFleeing);
         //Change color to match text color
         UpdateColor();
 
-        //Debug.Log(playerObj.transform.position);
-        //Debug.Log(transform.position);
         //TEMPORARY
         //player turns every node immediately green
         if (playerDist < stopDistance)
@@ -81,16 +84,19 @@ public class NodeInstanceManager : MonoBehaviour
         {
             myObject.material.color = Color.green;
             display.color = Color.green;
+            color = Color.green;
         }
         else if (colorTracker.text == "yellow")
         {
             myObject.material.color = Color.yellow;
             display.color = Color.yellow;
+            color = Color.yellow;
         }
         else if (colorTracker.text == "red")
         {
             myObject.material.color = Color.red;
             display.color = Color.red;
+            color = Color.red;
         }
     }
 
@@ -101,17 +107,26 @@ public class NodeInstanceManager : MonoBehaviour
         display.color = input;
     }
 
+    public UnityEngine.Color GetColor()
+    {
+        return color;
+    }
+
     public void DamageNode()
     {
+        Debug.Log("DamageNode");
         if (color == Color.yellow)
         {
             SetColor(Color.red);
             colorTracker.text = "red";
+            OnNodeDamage.Invoke();
         }
         else if (color == Color.green)
         {
+            Debug.Log("DamageNodeGreen-Yellow");
             SetColor(Color.yellow);
             colorTracker.text = "yellow";
+            OnNodeDamage.Invoke();
         }
     }
 
@@ -121,11 +136,13 @@ public class NodeInstanceManager : MonoBehaviour
         {
             SetColor(Color.green);
             colorTracker.text = "green";
+            OnNodeFix.Invoke();
         }
         else if (color == Color.red)
         {
             SetColor(Color.yellow);
             colorTracker.text = "yellow";
+            OnNodeFix.Invoke();
         }
     }
 

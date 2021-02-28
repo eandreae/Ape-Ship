@@ -4015,12 +4015,12 @@ MonoBehaviour:
   OnNeuronDeposit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1469291366}
-        m_MethodName: 
+      - m_Target: {fileID: 1469291368}
+        m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5795,6 +5795,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myObject: {fileID: 852433013}
   color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 741311113}
   display: {fileID: 1812103381}
   stopDistance: 8
@@ -9873,6 +9879,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myObject: {fileID: 336465493}
   color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1277547818}
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   colorTracker: {fileID: 1279260005}
   display: {fileID: 1412383919}
   stopDistance: 8
@@ -11450,6 +11473,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myObject: {fileID: 1214270398}
   color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 1626664258}
   display: {fileID: 1397557510}
   stopDistance: 10
@@ -12611,6 +12640,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myObject: {fileID: 2062883467}
   color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 1471871104}
   display: {fileID: 2082339951}
   stopDistance: 8
