@@ -4400,6 +4400,98 @@ MonoBehaviour:
   progressSlider: {fileID: 635993681}
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
+--- !u!1 &654453121 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5a2330efb555f7e4a8702cc4b89f3e73,
+    type: 3}
+  m_PrefabInstance: {fileID: 1956248117}
+  m_PrefabAsset: {fileID: 0}
+--- !u!135 &654453122
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654453121}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &654453123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654453121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickedUp: 0
+  active: 0
+  type: Food
+  glowEffect: {fileID: 1096256794}
+--- !u!114 &654453124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654453121}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f620de0059da548be959bbdbcf72ab10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5
+  nodeColor: {fileID: 1626664258}
+  OnNeuronDeposit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1811882723}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!54 &654453128
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654453121}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!135 &654453129
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654453121}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &667234522 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -2728100855758577179, guid: 0321d5a8f760970438b7ccf74b1ffa83,
@@ -7559,7 +7651,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPos: {fileID: 1441720601}
-  spawnee: {fileID: 2083132819}
+  spawnee: {fileID: 654453121}
   nodeColor: {fileID: 1626664258}
 --- !u!1 &1143806238
 GameObject:
@@ -8684,7 +8776,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ea442edf4eeb11e4ab3b332690a4766a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 34.97
+      value: -70.94
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea442edf4eeb11e4ab3b332690a4766a,
         type: 3}
@@ -12257,6 +12349,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KrillSandwich
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5a2330efb555f7e4a8702cc4b89f3e73,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pick Up
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a2330efb555f7e4a8702cc4b89f3e73, type: 3}
 --- !u!1001 &1996645877
@@ -12781,7 +12878,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: c6000eb9704e11e40a3cc5b52722056d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

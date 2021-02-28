@@ -37,14 +37,12 @@ public class destroyer : MonoBehaviour
         {
             if (this.gameObject.name == "neuronSpawn(Clone)")
             {
-                Debug.Log("YEEE");
-
                 Destruction();
             }
         }
         else if (coll.gameObject.name == "foodDestroyer")
         {
-            if (this.gameObject.name == "foodSpawn(Clone)")
+            if (this.gameObject.name == "KrillSandwich(Clone)")
             {
                 Destruction();
             }
