@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2434,7 +2434,7 @@ RectTransform:
   - {fileID: 1915769642}
   - {fileID: 549560714}
   m_Father: {fileID: 1299843944}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -3708,10 +3708,10 @@ RectTransform:
   - {fileID: 88947213}
   - {fileID: 63190312}
   - {fileID: 719570857}
-  - {fileID: 2028882973}
   - {fileID: 783163204}
   - {fileID: 1538226971}
   - {fileID: 1704128415}
+  - {fileID: 2028882973}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3832,7 +3832,7 @@ MonoBehaviour:
   startGameAnim: {fileID: 2028882976}
   buttonPress: {fileID: 1299843945}
   tutorialPanel: {fileID: 783163200}
-  creditsPanel: {fileID: 0}
+  creditsPanel: {fileID: 1704128414}
   settingsPanel: {fileID: 1538226970}
 --- !u!1 &1353760030
 GameObject:
@@ -4310,7 +4310,7 @@ RectTransform:
   - {fileID: 1092140669}
   - {fileID: 1158378038}
   m_Father: {fileID: 1299843944}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4674,7 +4674,7 @@ RectTransform:
   - {fileID: 1360987072}
   - {fileID: 1060981124}
   m_Father: {fileID: 1299843944}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5606,7 +5606,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1299843944}
-  m_RootOrder: 7
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
