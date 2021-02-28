@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
     public Slider oxygenBar;
 
     public AudioSource alarmSFX;
+    public Vector3 dir;
+    public AudioSource walkingSFX;
+    public AudioClip[] walkingSamples;
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +50,8 @@ public class Player : MonoBehaviour
         invulnerable = false;
         holding = false;
         gm = FindObjectOfType<GameManager>();
+        walkingSFX = this.GetComponent<AudioSource>();
+        InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
     }
 
     // Update is called once per frame
@@ -58,7 +63,7 @@ public class Player : MonoBehaviour
         //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
         
         // creating normalizing direction so that movement isnt faster on diagonals
-        var dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized; 
+        this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized; 
         if (dir.sqrMagnitude > 0){
             //Debug.Log(this.holdItem);
             // if Player is holding an item, then use the hold animation. 
@@ -71,6 +76,7 @@ public class Player : MonoBehaviour
             }
             this.transform.LookAt(transform.position + dir); // look in direction that player is walking
             controller.SimpleMove(this.moveSpeed * dir);
+            //StartCoroutine("PlayWalkingNoise");
             // Moved camera functionality to PlayerCamera.cs
             // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
         }
@@ -192,5 +198,14 @@ public class Player : MonoBehaviour
     IEnumerator PickUpCD(){
         yield return new WaitForSeconds(0.1f); // wait a brief moment before allowing dropping so code doesn't bug out
         this.holding = true;
+    }
+
+    void PlayWalkingNoise(){
+        //Debug.Log(this.dir);
+        if(this.dir.sqrMagnitude > 0){
+            AudioClip temp = this.walkingSamples[Random.Range(0, 3)];
+            //Debug.Log(temp);
+            this.walkingSFX.PlayOneShot(temp, Random.Range(0.01f, 0.05f));
+        }
     }
 }
