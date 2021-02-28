@@ -4012,6 +4012,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 5
   nodeColor: {fileID: 1279260005}
+  OnNeuronDeposit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1469291366}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &566263456
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5780,7 +5794,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myObject: {fileID: 852433013}
-  color: {fileID: 741311113}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  colorTracker: {fileID: 741311113}
   display: {fileID: 1812103381}
   stopDistance: 8
   canHack: 1
@@ -9857,7 +9872,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myObject: {fileID: 336465493}
-  color: {fileID: 1279260005}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  colorTracker: {fileID: 1279260005}
   display: {fileID: 1412383919}
   stopDistance: 8
   canHack: 1
@@ -10573,6 +10589,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 5
   nodeColor: {fileID: 1626664258}
+  OnNeuronDeposit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!4 &1638996431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
@@ -11430,7 +11449,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myObject: {fileID: 1214270398}
-  color: {fileID: 1626664258}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  colorTracker: {fileID: 1626664258}
   display: {fileID: 1397557510}
   stopDistance: 10
   canHack: 1
@@ -12590,7 +12610,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myObject: {fileID: 2062883467}
-  color: {fileID: 1471871104}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  colorTracker: {fileID: 1471871104}
   display: {fileID: 2082339951}
   stopDistance: 8
   canHack: 1
@@ -12823,6 +12844,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifetime: 5
   nodeColor: {fileID: 1626664258}
+  OnNeuronDeposit:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!54 &2083132823
 Rigidbody:
   m_ObjectHideFlags: 0

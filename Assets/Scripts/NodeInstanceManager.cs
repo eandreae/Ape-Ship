@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 
-public class ElecChangeInstance : MonoBehaviour
+public class NodeInstanceManager : MonoBehaviour
 {
     [SerializeField] private Renderer myObject; 
 
