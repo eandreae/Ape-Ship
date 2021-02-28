@@ -6,9 +6,11 @@ using UnityEngine.AI;
 
 public class ElecChangeInstance : MonoBehaviour
 {
-    [SerializeField] private Renderer myObject;
+    [SerializeField] private Renderer myObject; 
 
-    public Text color;
+    public UnityEngine.Color color;
+
+    public Text colorTracker;
     public Image display;
     public float stopDistance;
     private float playerDist;
@@ -17,7 +19,7 @@ public class ElecChangeInstance : MonoBehaviour
     GameObject monkeyObj;
     NavMeshAgent agent;
     public bool canHack = true; // can be hacked by monkey
-    private MonkeyMovement flee;
+    //private MonkeyMovement flee;
     private bool isFleeing;
 
     private void Start()
@@ -25,22 +27,8 @@ public class ElecChangeInstance : MonoBehaviour
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         agent = monkeyObj.GetComponent<NavMeshAgent>();
-        //UpdateColor();
-        if (color.text == "green")
-        {
-            myObject.material.color = Color.green;
-            display.color = Color.green;
-        }
-        else if (color.text == "yellow")
-        {
-            myObject.material.color = Color.yellow;
-            display.color = Color.yellow;
-        }
-        else if (color.text == "red")
-        {
-            myObject.material.color = Color.red;
-            display.color = Color.red;
-        }
+
+        UpdateColor();
 
     }
 
@@ -54,22 +42,7 @@ public class ElecChangeInstance : MonoBehaviour
         isFleeing = MonkeyMovement.runningAway;
         Debug.Log(isFleeing);
         //Change color to match text color
-        //UpdateColor();
-        if (color.text == "green")
-        {
-            myObject.material.color = Color.green;
-            display.color = Color.green;
-        }
-        else if (color.text == "yellow")
-        {
-            myObject.material.color = Color.yellow;
-            display.color = Color.yellow;
-        }
-        else if (color.text == "red")
-        {
-            myObject.material.color = Color.red;
-            display.color = Color.red;
-        }
+        UpdateColor();
 
         //Debug.Log(playerObj.transform.position);
         //Debug.Log(transform.position);
@@ -82,7 +55,7 @@ public class ElecChangeInstance : MonoBehaviour
             {
                 myObject.material.color = Color.green;
                 display.color = Color.green;
-                color.text = "green";
+                colorTracker.text = "green";
             }
         }
         //TEMPORARY
@@ -104,22 +77,56 @@ public class ElecChangeInstance : MonoBehaviour
 
     private void UpdateColor()
     {
-        if (color.text == "green")
+        if (colorTracker.text == "green")
         {
             myObject.material.color = Color.green;
             display.color = Color.green;
         }
-        else if (color.text == "yellow")
+        else if (colorTracker.text == "yellow")
         {
             myObject.material.color = Color.yellow;
             display.color = Color.yellow;
         }
-        else if (color.text == "red")
+        else if (colorTracker.text == "red")
         {
             myObject.material.color = Color.red;
             display.color = Color.red;
         }
+    }
 
+    public void SetColor(UnityEngine.Color input)
+    {
+        color = input;
+        myObject.material.color = input;
+        display.color = input;
+    }
+
+    public void DamageNode()
+    {
+        if (color == Color.yellow)
+        {
+            SetColor(Color.red);
+            colorTracker.text = "red";
+        }
+        else if (color == Color.green)
+        {
+            SetColor(Color.yellow);
+            colorTracker.text = "yellow";
+        }
+    }
+
+    public void FixNode()
+    {
+        if (color == Color.yellow)
+        {
+            SetColor(Color.green);
+            colorTracker.text = "green";
+        }
+        else if (color == Color.red)
+        {
+            SetColor(Color.yellow);
+            colorTracker.text = "yellow";
+        }
     }
 
     IEnumerator destroyNode()
@@ -129,19 +136,7 @@ public class ElecChangeInstance : MonoBehaviour
         agent.isStopped = false;
         agent.speed = 20;
         agent.acceleration = 10;
-        if (color.text == "yellow")
-        {
-            myObject.material.color = Color.red;
-            display.color = Color.red;
-            color.text = "red";
-        }
-        else if (color.text == "green")
-        {
-            myObject.material.color = Color.yellow;
-            display.color = Color.yellow;
-            color.text = "yellow";
-        }
-
+        DamageNode();
     }
     IEnumerator HackCD (float cooldown = 10.0f) { // default is 10s
         if (canHack){
