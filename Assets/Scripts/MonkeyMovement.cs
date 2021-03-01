@@ -12,6 +12,7 @@ public class MonkeyMovement : MonoBehaviour
     public Text color3;
     public Text color4;
     public Text color5;
+    public Text color6;
 
     NavMeshAgent agent;
     static readonly string[] nodeTags = {
@@ -20,6 +21,7 @@ public class MonkeyMovement : MonoBehaviour
         "Nav",
         "Reactor",
         "O2",
+        "O2_2"
         };
     List<GameObject> nodes;
     GameObject target;
@@ -115,7 +117,6 @@ public class MonkeyMovement : MonoBehaviour
                 }
             }
         }
-
         // Reset target color
         SetTargetColor(targetIndex);
         
@@ -172,6 +173,9 @@ public class MonkeyMovement : MonoBehaviour
                 break;
             case 5: 
                 targetColor = color5;
+                break;
+            case 6:
+                targetColor = color6;
                 break;
             default:
                 break;

@@ -20,6 +20,8 @@ public class GorillaMovement : MonoBehaviour
     GameObject node3;
     GameObject node4;
     GameObject node5;
+    GameObject node6;
+
     List<GameObject> nodes; 
     GameObject playerObj;
     GameObject targetNode;
@@ -47,6 +49,8 @@ public class GorillaMovement : MonoBehaviour
         nodes.Add(node4);
         node5 = GameObject.FindGameObjectWithTag("O2");
         nodes.Add(node5);
+        node6 = GameObject.FindGameObjectWithTag("O2_2");
+        nodes.Add(node6);
 
         playerObj = GameObject.FindGameObjectWithTag("Player");
         playerDist = Vector3.Distance (transform.position, playerObj.transform.position);
