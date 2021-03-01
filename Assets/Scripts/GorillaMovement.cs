@@ -25,7 +25,7 @@ public class GorillaMovement : MonoBehaviour
     GameObject targetNode;
 
     private bool canCharge = true;
-    private bool charging = false;
+    public bool charging = false;
     private bool playerLock = false;
     private float playerDist = 0f;
     FieldOfView targetsList;

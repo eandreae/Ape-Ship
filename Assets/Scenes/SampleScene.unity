@@ -2541,6 +2541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charging: 0
   visibleTargets: []
 --- !u!54 &355819494
 Rigidbody:
@@ -2770,6 +2771,83 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 963842453667494571, guid: 6643870a4ddf66e4db82188e0cba3ec5, type: 3}
+--- !u!1 &393222786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 393222787}
+  - component: {fileID: 393222789}
+  - component: {fileID: 393222788}
+  - component: {fileID: 393222790}
+  m_Layer: 0
+  m_Name: foodTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &393222787
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393222786}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.39, y: -7.07, z: 6.63}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 1096802961}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &393222788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393222786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be431b6957f214c36803197d7d82f03b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPos: {fileID: 1441720601}
+  spawnee: {fileID: 654453121}
+  nodeColor: {fileID: 1626664258}
+--- !u!65 &393222789
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393222786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &393222790
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393222786}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!1 &404974540
 GameObject:
   m_ObjectHideFlags: 0
@@ -3749,7 +3827,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0321d5a8f760970438b7ccf74b1ffa83,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0321d5a8f760970438b7ccf74b1ffa83,
         type: 3}
@@ -3869,6 +3947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charging: 0
   visibleTargets: []
 --- !u!4 &564618960 stripped
 Transform:
@@ -4778,7 +4857,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 1096802961}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &700849167
 PrefabInstance:
@@ -7450,6 +7529,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 327279887}
+  - {fileID: 393222787}
   - {fileID: 1441720601}
   - {fileID: 698602675}
   - {fileID: 295342301}
@@ -7638,21 +7718,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2185861552629816518, guid: 851110d54d7e1f7439e94a8b0aae4f29, type: 3}
---- !u!114 &1121100754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1121100749}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be431b6957f214c36803197d7d82f03b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPos: {fileID: 1441720601}
-  spawnee: {fileID: 654453121}
-  nodeColor: {fileID: 1626664258}
 --- !u!1 &1143806238
 GameObject:
   m_ObjectHideFlags: 0
@@ -8138,6 +8203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charging: 0
   visibleTargets: []
 --- !u!195 &1190199562
 NavMeshAgent:
@@ -9755,7 +9821,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1096802961}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1447599416
 GameObject:
@@ -13845,6 +13911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charging: 0
   visibleTargets: []
 --- !u!195 &919132148466087495
 NavMeshAgent:
@@ -17231,7 +17298,7 @@ GameObject:
   - component: {fileID: 7985974570107302822}
   m_Layer: 8
   m_Name: Player Model
-  m_TagString: Untagged
+  m_TagString: PlayerMod
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

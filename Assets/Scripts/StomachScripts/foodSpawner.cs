@@ -11,22 +11,61 @@ public class foodSpawner : MonoBehaviour
     string currColor;
     public Text nodeColor;
     Vector3 spawnLoc;
+    GorillaMovement gorillaScript;
+    private bool charging;
 
     // Start is called before the first frame update
     void Start()
     {
         currColor = nodeColor.text;
+        gorillaScript = GetComponent<GorillaMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
-        if (nodeColor.text != currColor)
+        charging = gorillaScript.charging;
+    }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        if(coll.gameObject.tag == "Player")
         {
-            currColor = nodeColor.text;
-            GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
-            temp.GetComponent<Rigidbody>().useGravity = true;
+            spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
+            if (nodeColor.text != currColor)
+            {
+                currColor = nodeColor.text;
+                GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
+                temp.GetComponent<Rigidbody>().useGravity = true;
+            }
+        } else if(coll.gameObject.tag == "Gorilla")
+        {
+            spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
+            if (nodeColor.text != currColor)
+            {
+                currColor = nodeColor.text;
+                GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
+                temp.GetComponent<Rigidbody>().useGravity = true;
+            }
+
         }
     }
+
+    /*private void OnCollisionEnter(Collision coll)
+    {
+        if (coll.gameObject.tag == "Gorilla" && charging)
+        {
+            Debug.Log("WHOOOO");
+
+            spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
+            if (nodeColor.text != currColor)
+            {
+                currColor = nodeColor.text;
+                GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
+                temp.GetComponent<Rigidbody>().useGravity = true;
+            }
+
+        }
+    }*/
+
 }
