@@ -416,7 +416,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: yellow
+  m_Text: green
 --- !u!222 &67938699
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -505,6 +505,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 73987267}
   m_CullTransparentMesh: 0
+--- !u!1 &77906704
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 77906705}
+  m_Layer: 8
+  m_Name: canisterSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &77906705
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77906704}
+  m_LocalRotation: {x: -0.18080516, y: -0, z: -0, w: 0.98351896}
+  m_LocalPosition: {x: -1.3, y: 1.02, z: -6.7}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1212149684}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &94053183
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,6 +946,100 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105215878}
   m_CullTransparentMesh: 0
+--- !u!1 &107861815 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -349969160363973960, guid: 36e70f48dd71d7341881c4b8bf69476f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1212149683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &107861819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107861815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickedUp: 0
+  active: 0
+  type: Canister
+  glowEffect: {fileID: 1096256794}
+  playerScript: {fileID: 0}
+--- !u!114 &107861820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107861815}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f620de0059da548be959bbdbcf72ab10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 5
+  nodeColor: {fileID: 67938698}
+  OnNeuronDeposit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 537286577}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!135 &107861822
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107861815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &107861823
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107861815}
+  serializedVersion: 2
+  m_Mass: 10
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &107861824
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 107861815}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.9931786
+  m_Height: 4.669644
+  m_Direction: 1
+  m_Center: {x: 0.0000015795231, y: 0.047450773, z: -1.6857904e-16}
 --- !u!1 &126669781
 GameObject:
   m_ObjectHideFlags: 0
@@ -1327,7 +1451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d23b6580d3e5346b1b3beeea103c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
+  moveSpeed: 14
   points: 0
   health: 0
   oxygen: 0
@@ -2422,6 +2546,50 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 700849167}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &334452518
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 334452519}
+  - component: {fileID: 334452520}
+  m_Layer: 0
+  m_Name: canisterDestroyer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &334452519
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334452518}
+  m_LocalRotation: {x: -0.20375094, y: -0, z: -0, w: 0.97902274}
+  m_LocalPosition: {x: -4.13, y: 2.21, z: -4.25}
+  m_LocalScale: {x: 6, y: 5, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1212149684}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: -23.513, y: 0, z: 0}
+--- !u!65 &334452520
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 334452518}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &336465491
 GameObject:
   m_ObjectHideFlags: 0
@@ -8731,7 +8899,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537286573}
   m_LocalRotation: {x: -0.21525116, y: -0, z: -0, w: 0.97655874}
-  m_LocalPosition: {x: -4.68, y: -0.20999989, z: -1.1699991}
+  m_LocalPosition: {x: -6.52, y: -3.55, z: 2.33}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1212149684}
@@ -8812,7 +8980,7 @@ MonoBehaviour:
       m_Calls: []
   colorTracker: {fileID: 67938698}
   display: {fileID: 643022442}
-  stopDistance: 5
+  stopDistance: 8
   canHack: 1
 --- !u!1 &560121317 stripped
 GameObject:
@@ -8842,6 +9010,7 @@ MonoBehaviour:
   active: 0
   type: Coin
   glowEffect: {fileID: 0}
+  playerScript: {fileID: 0}
 --- !u!1001 &562625130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9266,6 +9435,7 @@ MonoBehaviour:
   active: 0
   type: Neuron
   glowEffect: {fileID: 1102424649}
+  playerScript: {fileID: 0}
 --- !u!135 &566263461
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9648,6 +9818,7 @@ MonoBehaviour:
   active: 0
   type: Food
   glowEffect: {fileID: 1096256794}
+  playerScript: {fileID: 0}
 --- !u!114 &654453124
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10811,6 +10982,7 @@ MonoBehaviour:
   active: 0
   type: Coin
   glowEffect: {fileID: 0}
+  playerScript: {fileID: 0}
 --- !u!1 &818175810
 GameObject:
   m_ObjectHideFlags: 0
@@ -10989,6 +11161,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &850851368 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 36e70f48dd71d7341881c4b8bf69476f,
+    type: 3}
+  m_PrefabInstance: {fileID: 1212149683}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &850851369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850851368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28befab6db9bf486cac68e9a3b1bee6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPos: {fileID: 77906705}
+  spawnee: {fileID: 107861815}
+  nodeColor: {fileID: 67938698}
 --- !u!1001 &852433011
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18313,6 +18506,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7264607545452467309, guid: 36e70f48dd71d7341881c4b8bf69476f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: -7264607545452467309, guid: 36e70f48dd71d7341881c4b8bf69476f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -5728014001588539305, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
       propertyPath: m_DynamicOccludee
@@ -18323,10 +18526,20 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -349969160363973960, guid: 36e70f48dd71d7341881c4b8bf69476f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Pick Up
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
       propertyPath: m_Name
       value: AirPump
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775302394936515430, guid: 36e70f48dd71d7341881c4b8bf69476f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4408130042873221118, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
@@ -18731,7 +18944,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ea442edf4eeb11e4ab3b332690a4766a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -67.4
+      value: 5.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea442edf4eeb11e4ab3b332690a4766a,
         type: 3}
@@ -18741,7 +18954,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ea442edf4eeb11e4ab3b332690a4766a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.7
+      value: -30.98
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea442edf4eeb11e4ab3b332690a4766a,
         type: 3}
@@ -20785,6 +20998,7 @@ MonoBehaviour:
   active: 0
   type: Banana
   glowEffect: {fileID: 998056920}
+  playerScript: {fileID: 0}
 --- !u!136 &1638996428
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -21431,7 +21645,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: yellow
+  m_Text: green
 --- !u!222 &1759386920
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -23094,6 +23308,7 @@ MonoBehaviour:
   active: 0
   type: Coin
   glowEffect: {fileID: 0}
+  playerScript: {fileID: 0}
 --- !u!1 &2082339949
 GameObject:
   m_ObjectHideFlags: 0
@@ -23341,6 +23556,7 @@ MonoBehaviour:
   active: 0
   type: Food
   glowEffect: {fileID: 1096256794}
+  playerScript: {fileID: 0}
 --- !u!135 &2083132828
 SphereCollider:
   m_ObjectHideFlags: 0

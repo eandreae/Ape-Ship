@@ -54,7 +54,7 @@ public class NodeInstanceManager : MonoBehaviour
         if (playerDist < stopDistance)
         {
             //temporary until all minigames are implemented
-            if(gameObject.tag != "Nav" && gameObject.tag != "Stomach")
+            if(gameObject.tag != "Nav" && gameObject.tag != "Stomach" && gameObject.tag != "O2_2")
             {
                 myObject.material.color = Color.green;
                 display.color = Color.green;

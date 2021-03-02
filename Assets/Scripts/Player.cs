@@ -12,7 +12,7 @@ using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
-	public float moveSpeed;
+	public float moveSpeed = 14f;
     public int points;
     public float health;
     public float oxygen;
@@ -42,7 +42,6 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    	moveSpeed = 14f;
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
         health = 3;
@@ -193,6 +192,11 @@ public class Player : MonoBehaviour
             gm.Defeat();
         }
 
+    }
+
+    public void ChangeSpeed(float newSpeed)
+    {
+        moveSpeed = newSpeed;
     }
 
     IEnumerator PickUpCD(){

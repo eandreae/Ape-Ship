@@ -12,6 +12,8 @@ public class ItemScript : MonoBehaviour
     private float height;
     private Rigidbody rigidbody;
     public GameObject glowEffect;
+    GameObject playerObj;
+    public Player playerScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +23,8 @@ public class ItemScript : MonoBehaviour
         this.rigidbody = this.GetComponent<Rigidbody>();
         this.rigidbody.isKinematic = false;
         this.height = this.transform.position.y;
-        
+        playerObj = GameObject.FindGameObjectWithTag("Player");
+
         //playerObjs = GameObject.FindGameObjectsWithTag("Player");
 
         if (this.glowEffect)
@@ -39,7 +42,7 @@ public class ItemScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
         if(!pickedUp){ // spin; apply gravity
             this.rigidbody.isKinematic = false;
@@ -60,6 +63,9 @@ public class ItemScript : MonoBehaviour
             
             else if(type == "Banana"){
                 transform.localRotation = Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
+            } else if(type == "Canister")
+            {
+                AlterSpeed(6f);
             }
             
             //Debug.Log(playerRoot.position);
@@ -89,6 +95,11 @@ public class ItemScript : MonoBehaviour
             //     Object.Destroy(this.gameObject); // destroy when touching the brain
             // }
         }
+    }
+
+    public void AlterSpeed(float newSpeed)
+    {
+        playerScript.ChangeSpeed(newSpeed);
     }
 
     private void OnTriggerExit(Collider other) {
