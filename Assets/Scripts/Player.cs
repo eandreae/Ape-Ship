@@ -38,6 +38,7 @@ public class Player : MonoBehaviour
     public Vector3 dir;
     public AudioSource walkingSFX;
     public AudioClip[] walkingSamples;
+    private Collider gorillaCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -96,6 +97,7 @@ public class Player : MonoBehaviour
             }
             else {
                 invulnerable = false;
+                Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), false);
                 invulnTime = 2;
             }
         }
@@ -138,8 +140,9 @@ public class Player : MonoBehaviour
             health--;
             // Make the player temporarily invulnerable
             invulnerable = true;
+            gorillaCollider = other.GetComponent<Collider>();
             // Update the health of the player.
-            updateHealth();
+            StartCoroutine("updateHealth");
         }
     }
 
@@ -168,7 +171,7 @@ public class Player : MonoBehaviour
     	//GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
     //}
 
-    public void updateHealth() {
+    public IEnumerator updateHealth() {
         cues.SetTrigger("DamageTrigger");
         healthBar.value = health;
         if ( health == 0 )
@@ -178,6 +181,8 @@ public class Player : MonoBehaviour
             moveSpeed = 0f;
             gm.Defeat();
         }
+        yield return new WaitForSeconds(0.2f); // get knocked by gorilla, then ignore collisions
+        Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), true);
     }
 
     public void updateOxygen() {
