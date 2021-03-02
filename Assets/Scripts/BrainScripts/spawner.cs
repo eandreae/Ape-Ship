@@ -40,12 +40,12 @@ public class spawner : MonoBehaviour
         {
             canister1.SetActive(true);
             canister2.SetActive(false);
-        }/*
+        }
         else if (nodeColor.text == "green")
         {
             canister1.active = true;
             canister2.active = true;
-        }*/
+        }
 
         if (nodeColor.text != currColor)
         {
