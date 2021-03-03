@@ -47,7 +47,6 @@ public class foodSpawner : MonoBehaviour
                 GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                 temp.GetComponent<Rigidbody>().useGravity = true;
             }
-            //Debug.Log("DKSFJDSFDJS");
         }
     }
 
