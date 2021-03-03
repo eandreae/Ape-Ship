@@ -6,6 +6,7 @@ public class ItemScript : MonoBehaviour
 {
     public bool pickedUp;
     public bool active;
+    public bool thrown;
     private Transform playerRoot;
     //private GameObject[] playerObjs;
     public string type;
@@ -19,33 +20,26 @@ public class ItemScript : MonoBehaviour
     {
         pickedUp = false;
         active = false;
+        thrown = false;
         //playerRoot = GameObject.FindWithTag("PlayerRoot").GetComponent<Transform>();
         this.rigidbody = this.GetComponent<Rigidbody>();
-        this.rigidbody.isKinematic = false;
+        //this.rigidbody.isKinematic = false;
+        //this.rigidbody.isKinematic = true;
         this.height = this.transform.position.y;
         playerObj = GameObject.FindGameObjectWithTag("Player");
 
         //playerObjs = GameObject.FindGameObjectsWithTag("Player");
 
-        if (this.glowEffect)
-            this.glowEffect.SetActive(false);
-        
-        // foreach (GameObject p in playerObjs){
-        //     Debug.Log(p.GetComponent<Collider>());
-        //     Debug.Log(this.GetComponent<BoxCollider>());
-        //     if (this.GetComponent<SphereCollider>())
-        //         Physics.IgnoreCollision(this.GetComponent<SphereCollider>(), p.GetComponent<Collider>(), true);
-                
-        //     else if(this.GetComponent<CapsuleCollider>())
-        //         Physics.IgnoreCollision(this.GetComponent<CapsuleCollider>(), p.GetComponent<Collider>(), true);
-        // }
+        //if (this.glowEffect)
+        //    this.glowEffect.SetActive(false);
+
     }
 
     // Update is called once per frame
-    public void Update()
+    public void FixedUpdate()
     {
         if(!pickedUp){ // spin; apply gravity
-            this.rigidbody.isKinematic = false;
+            //this.rigidbody.isKinematic = false;
             
             if (this.type == "Banana" || this.type == "Coin"){
                 //transform.Rotate(0, 0, 90 * Time.deltaTime);
@@ -53,9 +47,10 @@ public class ItemScript : MonoBehaviour
 
         }
         else {
-            if(this.glowEffect)
-                this.glowEffect.SetActive(false);
-            this.rigidbody.isKinematic = true;
+            //if(this.glowEffect)
+            //    this.glowEffect.SetActive(false);
+
+            this.rigidbody.isKinematic = true; // if picked up, item become kinematic
 
             if(type == "Coin"){
                 transform.localRotation = Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
@@ -69,7 +64,7 @@ public class ItemScript : MonoBehaviour
             }
             
             //Debug.Log(playerRoot.position);
-            transform.localPosition = new Vector3(0f, 1.2f, 0.5f); 
+            transform.localPosition = new Vector3(0f, 1.2f, 0.5f); // sets position relative to the player transform
         }
     }
 
@@ -78,11 +73,11 @@ public class ItemScript : MonoBehaviour
     		//other.GetComponent<Player>().points++;
         	//Add 1 to points.
         	//Destroy(gameObject); //Destroys coin, when touched.
-            this.playerRoot = other.gameObject.GetComponent<Transform>();
-
-            if (this.glowEffect && !this.pickedUp && !playerRoot.GetComponent<Player>().holding){
-                this.glowEffect.SetActive(true);
-            }
+            this.playerRoot = other.gameObject.GetComponent<Transform>(); // save the player transform (use this in case of multiple playerobjects)
+            this.rigidbody.isKinematic = false;
+            //if (this.glowEffect && !this.pickedUp && !playerRoot.GetComponent<Player>().holding){
+            //    this.glowEffect.SetActive(true);
+            //}
         }
         else if (this.active) {
             if (this.type == "Banana" && other.tag == "Gorilla" && !this.pickedUp){
@@ -97,14 +92,19 @@ public class ItemScript : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter(Collision other) {
+
+    }
+
     public void AlterSpeed(float newSpeed)
     {
         playerScript.ChangeSpeed(newSpeed);
     }
 
     private void OnTriggerExit(Collider other) {
-    	if (other.tag == "Player" && this.glowEffect){
-            this.glowEffect.SetActive(false);
+    	if (other.tag == "Player" && !this.thrown){
+        //    this.glowEffect.SetActive(false);
+            this.rigidbody.isKinematic = true;
         }
     }
     // private void OnTriggerEnter(Collider other) {

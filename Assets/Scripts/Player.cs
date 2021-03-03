@@ -20,14 +20,15 @@ public class Player : MonoBehaviour
     public Text oxygen_text;
     public Text oxygen_color;
     private bool invulnerable;
+    private GameObject holdItem;
     public bool holding;
+    public bool throwing;
     private float invulnTime = 2;
     private CharacterController controller;
     private Animator anim;
     public Animator cues;
     // Moved camera functionality to PlayerCamera.cs
     // public Camera camera;
-    private GameObject holdItem;
 
     public GameManager gm;
 
@@ -49,6 +50,7 @@ public class Player : MonoBehaviour
         oxygen = 60;
         invulnerable = false;
         holding = false;
+        throwing = false;
         gm = FindObjectOfType<GameManager>();
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
@@ -102,17 +104,33 @@ public class Player : MonoBehaviour
             }
         }
 
+        if(Input.GetKey(KeyCode.LeftShift))
+            this.throwing = true;
+        else 
+            this.throwing = false;
+
         // code to drop items
         if(this.holding && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
+            Debug.Log("drop");
             // un-parent the player from the item
             this.holdItem.transform.parent = null;
             // un-mark the coin as picked up.
             this.holdItem.GetComponent<ItemScript>().pickedUp = false;
             this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+            
+            if (this.throwing){
+                //this.holdItem.GetComponent<Rigidbody>().isKinematic = false;
+                Debug.Log(this.transform.forward);
+                //this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 10f);
+                Debug.Log("throw");
+                this.holdItem.GetComponent<ItemScript>().thrown = true;
+            }
+            
             //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
             // get rid of hold item
             this.holdItem = null;
-            this.holding = false;
+            StartCoroutine("PickUpCD");
+            //this.holding = false;
         }
         
         // Check if the oxygen color is red.
@@ -162,7 +180,9 @@ public class Player : MonoBehaviour
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+            this.holdItem.GetComponent<ItemScript>().thrown = false;
             StartCoroutine("PickUpCD");
+            //this.holding = true;
             //Debug.Log(this.holdItem);
     	}
     }
@@ -206,7 +226,7 @@ public class Player : MonoBehaviour
 
     IEnumerator PickUpCD(){
         yield return new WaitForSeconds(0.1f); // wait a brief moment before allowing dropping so code doesn't bug out
-        this.holding = true;
+        this.holding = !this.holding;
     }
 
     void PlayWalkingNoise(){
