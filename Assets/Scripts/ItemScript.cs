@@ -36,7 +36,7 @@ public class ItemScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void FixedUpdate()
+    public void Update()
     {
         if(!pickedUp){ // spin; apply gravity
             //this.rigidbody.isKinematic = false;
@@ -60,6 +60,7 @@ public class ItemScript : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
             } else if(type == "Canister")
             {
+                transform.localRotation = Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
                 AlterSpeed(6f);
             }
             
@@ -92,20 +93,27 @@ public class ItemScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision other) {
-
-    }
-
     public void AlterSpeed(float newSpeed)
     {
         playerScript.ChangeSpeed(newSpeed);
     }
 
     private void OnTriggerExit(Collider other) {
-    	if (other.tag == "Player" && !this.thrown){
-        //    this.glowEffect.SetActive(false);
-            this.rigidbody.isKinematic = true;
+    	if (other.tag == "Player"){
+            if (!this.thrown){  
+                this.rigidbody.isKinematic = true;
+            }
+            else {
+                StartCoroutine("ThrownPhysics"); // set object to kinematic 
+            }
         }
+    }
+
+    public IEnumerator ThrownPhysics (){
+        
+        yield return new WaitForSeconds(1f); // wait as object is thrown before resetting object to kinematic
+        this.rigidbody.isKinematic = true;
+        this.thrown = false; // reset thrown to false
     }
     // private void OnTriggerEnter(Collider other) {
     // 	if(other.name == "Capsule" || other.name == "Player") {

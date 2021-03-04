@@ -866,7 +866,6 @@ MonoBehaviour:
   oxygen_text: {fileID: 212718164}
   oxygen_color: {fileID: 1759386919}
   holding: 0
-  throwing: 0
   cues: {fileID: 0}
   gm: {fileID: 0}
   healthBar: {fileID: 0}
@@ -1044,7 +1043,7 @@ MonoBehaviour:
   thrown: 0
   type: Canister
   glowEffect: {fileID: 0}
-  playerScript: {fileID: 0}
+  playerScript: {fileID: 214678572}
 --- !u!114 &107861820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1264,7 +1263,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 2.5
+  m_Radius: 4
   m_Height: 6
   m_Direction: 1
   m_Center: {x: -0.21572453, y: 0.75, z: -0.00000011920929}
@@ -1561,7 +1560,6 @@ MonoBehaviour:
   oxygen_text: {fileID: 212718164}
   oxygen_color: {fileID: 1759386919}
   holding: 0
-  throwing: 0
   cues: {fileID: 11714869}
   gm: {fileID: 0}
   healthBar: {fileID: 505420767}
@@ -9699,7 +9697,18 @@ MonoBehaviour:
   nodeColor: {fileID: 1279260005}
   OnNeuronDeposit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1469291368}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &566263456
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9805,7 +9814,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &614544528
 GameObject:
@@ -10158,7 +10167,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &654453123
 MonoBehaviour:
@@ -17786,7 +17795,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 3
+  m_Radius: 4
   m_Height: 12
   m_Direction: 1
   m_Center: {x: 0.023215443, y: 3.8929021, z: -0.116259634}
@@ -21495,7 +21504,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 0.021
+  m_Radius: 0.026
   m_Height: 0.09
   m_Direction: 1
   m_Center: {x: 0, y: -0.003, z: 0.005}
@@ -23960,7 +23969,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083132819}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f620de0059da548be959bbdbcf72ab10, type: 3}
   m_Name: 
@@ -23969,7 +23978,18 @@ MonoBehaviour:
   nodeColor: {fileID: 1626664258}
   OnNeuronDeposit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1811882723}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!54 &2083132823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -24075,7 +24095,7 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2088786640 stripped
 GameObject:
@@ -24685,7 +24705,7 @@ CapsuleCollider:
   m_Radius: 1.2
   m_Height: 4
   m_Direction: 1
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.5, z: 0.8}
 --- !u!1 &919132148063812693
 GameObject:
   m_ObjectHideFlags: 0
@@ -24707,7 +24727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &919132148466087493
 GameObject:
   m_ObjectHideFlags: 0
@@ -28126,7 +28146,6 @@ GameObject:
   - component: {fileID: 3572240475107257093}
   - component: {fileID: 6290232319505114784}
   - component: {fileID: 7985974570107302821}
-  - component: {fileID: 7985974570107302822}
   m_Layer: 8
   m_Name: Player Model
   m_TagString: PlayerMod
@@ -28148,19 +28167,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3252224991405807402, guid: ee8365a613bc2df458f6ea1d67cd446d, type: 3}
---- !u!65 &7985974570107302822
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7985974570107302820}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Size: {x: 0.046016805, y: 0.027545018, z: 0.054332253}
-  m_Center: {x: 0, y: 0, z: 0.026904251}
 --- !u!1 &8048105411196653118
 GameObject:
   m_ObjectHideFlags: 0

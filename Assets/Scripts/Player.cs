@@ -22,7 +22,6 @@ public class Player : MonoBehaviour
     private bool invulnerable;
     private GameObject holdItem;
     public bool holding;
-    public bool throwing;
     private float invulnTime = 2;
     private CharacterController controller;
     private Animator anim;
@@ -50,7 +49,6 @@ public class Player : MonoBehaviour
         oxygen = 60;
         invulnerable = false;
         holding = false;
-        throwing = false;
         gm = FindObjectOfType<GameManager>();
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
@@ -104,34 +102,42 @@ public class Player : MonoBehaviour
             }
         }
 
-        if(Input.GetKey(KeyCode.LeftShift))
-            this.throwing = true;
-        else 
-            this.throwing = false;
-
         // code to drop items
         if(this.holding && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
-            Debug.Log("drop");
+            // Debug.Log("drop");
             // un-parent the player from the item
             this.holdItem.transform.parent = null;
             // un-mark the coin as picked up.
             this.holdItem.GetComponent<ItemScript>().pickedUp = false;
             this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-            
-            if (this.throwing){
-                //this.holdItem.GetComponent<Rigidbody>().isKinematic = false;
-                Debug.Log(this.transform.forward);
-                //this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 10f);
-                Debug.Log("throw");
-                this.holdItem.GetComponent<ItemScript>().thrown = true;
-            }
-            
+   
             //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
             // get rid of hold item
             this.holdItem = null;
             StartCoroutine("PickUpCD");
             //this.holding = false;
         }
+
+        // code to throw items
+        else if(this.holding && Input.GetKeyDown(KeyCode.LeftShift)){ // holding item + press left shift
+            
+            this.holdItem.transform.parent = null; // unparent player from item
+            
+            this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+            this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+            this.holdItem.GetComponent<ItemScript>().thrown = true;
+            this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
+            Debug.Log("iskinatic = false");
+            this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object
+            //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10f); // add force to thrown object
+            Debug.Log("throw");
+            
+            
+            // get rid of hold item
+            this.holdItem = null;
+            StartCoroutine("PickUpCD");
+        }
+
         
         // Check if the oxygen color is red.
         if ( oxygen_color.text == "red" ){
@@ -162,6 +168,24 @@ public class Player : MonoBehaviour
             // Update the health of the player.
             StartCoroutine("updateHealth");
         }
+
+        else if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
+    	{
+            this.holdItem = other.gameObject;
+    		
+            //deactivates game object
+    		//other.gameObject.SetActive(false);
+
+            // Sets player to the pick-up item's parent so the item will move around with the player.            
+            other.gameObject.transform.parent = this.transform;
+
+            // mark the coin (or whatever object) as picked up 
+            other.gameObject.GetComponent<ItemScript>().pickedUp = true;
+            //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+            StartCoroutine("PickUpCD");
+            //this.holding = true;
+            //Debug.Log(this.holdItem);
+    	}
     }
 
     // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
@@ -180,7 +204,6 @@ public class Player : MonoBehaviour
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
-            this.holdItem.GetComponent<ItemScript>().thrown = false;
             StartCoroutine("PickUpCD");
             //this.holding = true;
             //Debug.Log(this.holdItem);
@@ -190,7 +213,6 @@ public class Player : MonoBehaviour
     //private void OnGUI(){
     	//GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
     //}
-
     public IEnumerator updateHealth() {
         cues.SetTrigger("DamageTrigger");
         healthBar.value = health;
