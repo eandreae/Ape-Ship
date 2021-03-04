@@ -38,18 +38,18 @@ public class ItemScript : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if(!pickedUp){ // code to execute if object is not picked up
+        if(!pickedUp){ // spin; apply gravity
             //this.rigidbody.isKinematic = false;
             
-            //if (this.type == "Banana" || this.type == "Coin"){
+            if (this.type == "Banana" || this.type == "Coin"){
                 //transform.Rotate(0, 0, 90 * Time.deltaTime);
-            //}
+            }
 
         }
-        else {  // code to execute if object is picked up
+        else {
             //if(this.glowEffect)
             //    this.glowEffect.SetActive(false);
-            this.active = false;
+
             this.rigidbody.isKinematic = true; // if picked up, item become kinematic
 
             if(type == "Coin"){
@@ -84,17 +84,14 @@ public class ItemScript : MonoBehaviour
             if (this.type == "Banana" && other.tag == "Gorilla" && !this.pickedUp){
                 Object.Destroy(this.gameObject, 0.5f); // destroy object after contact with gorilla
             }
+            // else if (this.type == "Food" && other.tag == "Stomach"){
+            //     Object.Destroy(this.gameObject); // destroy when touching the stomach?
+            // }
+            // else if (this.type == "Neuron" && other.tag == "Brain"){
+            //     Object.Destroy(this.gameObject); // destroy when touching the brain
+            // }
         }
     }
-
-    // public void OnCollisionEnter(Collision col){
-    //     Debug.Log("Object collision");
-    //     if(col.gameObject.tag == "PlayerMod" && !this.pickedUp && !this.thrown){ // if run into player when not picked up
-    //         Vector3 pushDir = col.gameObject.GetComponent<Transform>().forward * 5;
-    //         Debug.Log(pushDir);
-    //         this.rigidbody.velocity = (pushDir); // push
-    //     }
-    // }
 
     public void AlterSpeed(float newSpeed)
     {
@@ -106,20 +103,18 @@ public class ItemScript : MonoBehaviour
             if (!this.thrown){  
                 this.rigidbody.isKinematic = true;
             }
-            // else {
-            //     StartCoroutine("ThrownPhysics"); // set object to kinematic 
-            // }
+            else {
+                StartCoroutine("ThrownPhysics"); // set object to kinematic 
+            }
         }
-        
     }
 
-    // public IEnumerator ThrownPhysics (){
+    public IEnumerator ThrownPhysics (){
         
-    //     yield return new WaitForSeconds(1f); // wait as object is thrown before resetting object to kinematic
-    //     //this.rigidbody.isKinematic = true;
-    //     this.thrown = false; // reset thrown to false
-    // }
-
+        yield return new WaitForSeconds(1f); // wait as object is thrown before resetting object to kinematic
+        this.rigidbody.isKinematic = true;
+        this.thrown = false; // reset thrown to false
+    }
     // private void OnTriggerEnter(Collider other) {
     // 	if(other.name == "Capsule" || other.name == "Player") {
     // 		other.GetComponent<Player>().points++;

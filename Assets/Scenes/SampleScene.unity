@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 107861815}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f620de0059da548be959bbdbcf72ab10, type: 3}
   m_Name: 
@@ -1060,18 +1060,7 @@ MonoBehaviour:
   nodeColor: {fileID: 67938698}
   OnNeuronDeposit:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 537286577}
-        m_MethodName: FixNode
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!54 &107861822
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1300,7 +1289,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 160661478}
   serializedVersion: 2
-  m_Mass: 15
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -2975,7 +2964,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charging: 0
-  stunned: 0
   visibleTargets: []
 --- !u!54 &355819494
 Rigidbody:
@@ -9555,7 +9543,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charging: 0
-  stunned: 0
   visibleTargets: []
 --- !u!4 &564618960 stripped
 Transform:
@@ -9730,7 +9717,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 566263452}
   serializedVersion: 2
-  m_Mass: 15
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -10236,7 +10223,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 654453121}
   serializedVersion: 2
-  m_Mass: 15
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -17834,7 +17821,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066916429}
   serializedVersion: 2
-  m_Mass: 15
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -18656,7 +18643,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132148063812693}
   serializedVersion: 2
-  m_Mass: 25
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -18686,7 +18673,7 @@ BoxCollider:
   m_GameObject: {fileID: 919132148063812693}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 4.5, y: 4.5, z: 4.5}
   m_Center: {x: 0, y: 2.5, z: 0}
@@ -18703,7 +18690,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charging: 0
-  stunned: 0
   visibleTargets: []
 --- !u!195 &1190199562
 NavMeshAgent:
@@ -21356,7 +21342,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5
+      value: 8.67
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
         type: 3}
@@ -24012,7 +23998,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083132819}
   serializedVersion: 2
-  m_Mass: 15
+  m_Mass: 10
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -24777,7 +24763,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charging: 0
-  stunned: 0
   visibleTargets: []
 --- !u!195 &919132148466087495
 NavMeshAgent:

@@ -127,9 +127,10 @@ public class Player : MonoBehaviour
             this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
             this.holdItem.GetComponent<ItemScript>().thrown = true;
             this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-            this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
-            //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
-            //Debug.Log("throw");
+            Debug.Log("iskinatic = false");
+            this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object
+            //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10f); // add force to thrown object
+            Debug.Log("throw");
             
             
             // get rid of hold item
@@ -156,7 +157,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Collided with something!");
 
-        if (other.gameObject.CompareTag("Gorilla") && !invulnerable && !other.gameObject.GetComponent<GorillaMovement>().stunned)
+        if (other.gameObject.CompareTag("Gorilla") && !invulnerable )
         {
             Debug.Log("Hit the Gorilla!");
             // Subtract one from the health of the Player.
@@ -180,7 +181,6 @@ public class Player : MonoBehaviour
 
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
-            other.gameObject.GetComponent<ItemScript>().thrown = false;
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
             //this.holding = true;
@@ -203,7 +203,6 @@ public class Player : MonoBehaviour
 
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
-            other.gameObject.GetComponent<ItemScript>().thrown = false;
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
             //this.holding = true;
@@ -248,7 +247,7 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator PickUpCD(){
-        yield return new WaitForSeconds(0.01f); // wait a brief moment before allowing dropping so code doesn't bug out
+        yield return new WaitForSeconds(0.1f); // wait a brief moment before allowing dropping so code doesn't bug out
         this.holding = !this.holding;
     }
 
