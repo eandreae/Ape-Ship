@@ -29,6 +29,7 @@ public class GorillaMovement : MonoBehaviour
     private bool canCharge = true;
     public bool charging = false;
     private bool playerLock = false;
+    public bool stunned = false;
     private float playerDist = 0f;
     FieldOfView targetsList;
     public List<Transform> visibleTargets = new List<Transform>();
@@ -163,8 +164,13 @@ public class GorillaMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.CompareTag("Player")) {
+        if (other.tag == "Player" || other.tag == "PlayerMod" && !this.stunned) {
             StartCoroutine("AttackPlayer");
+        }
+        else if (other.tag == "Pick Up") {
+            if (other.gameObject.GetComponent<ItemScript>().type == "Banana" && other.gameObject.GetComponent<ItemScript>().active){
+                StartCoroutine("SelfStun");
+            }
         }
     }
     
@@ -216,13 +222,45 @@ public class GorillaMovement : MonoBehaviour
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
     IEnumerator AttackPlayer(){
         Debug.Log("ATTACK PLAYER");
+
+        StopCoroutine("ChargeAttack");  // stop charging
         agent.isStopped = true;
         agent.speed = 0;
+        this.charging = false;  // in case gorilla was charging
+        this.canCharge = false;
+
         //animator.play("attack-anim"); // play the gorilla attack animation
 
         yield return new WaitForSeconds(0.75f); // wait
+        
         agent.speed = _SPEED;
         agent.isStopped = false;
+
+        if(!this.canCharge){    // if gorilla was in the middle of his charge
+            yield return new WaitForSeconds(4f); // reset charge cd
+            this.canCharge = true;
+        }
     }
     
+    IEnumerator SelfStun(){
+        Debug.Log("GORILLA STUNNED");
+
+        StopCoroutine("ChargeAttack");  // stop charging
+        StopCoroutine("AttackPlayer");  // stop attackplayer coroutine in case of overlap
+        agent.isStopped = true;
+        agent.speed = 0;
+        this.charging = false;  // in case gorilla was charging
+        this.canCharge = false;
+
+        yield return new WaitForSeconds(2f); // banana stuns gorilla for 2 seconds
+        
+        agent.speed = _SPEED;
+        agent.isStopped = false;
+        this.stunned = false;
+        
+        if(!this.canCharge){    // if gorilla was in the middle of his charge
+            yield return new WaitForSeconds(4f); // reset charge cd
+            this.canCharge = true;
+        }
+    }
 }

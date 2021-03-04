@@ -38,18 +38,18 @@ public class ItemScript : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
-        if(!pickedUp){ // spin; apply gravity
+        if(!pickedUp){ // code to execute if object is not picked up
             //this.rigidbody.isKinematic = false;
             
-            if (this.type == "Banana" || this.type == "Coin"){
+            //if (this.type == "Banana" || this.type == "Coin"){
                 //transform.Rotate(0, 0, 90 * Time.deltaTime);
-            }
+            //}
 
         }
-        else {
+        else {  // code to execute if object is picked up
             //if(this.glowEffect)
             //    this.glowEffect.SetActive(false);
-
+            this.active = false;
             this.rigidbody.isKinematic = true; // if picked up, item become kinematic
 
             if(type == "Coin"){
@@ -84,12 +84,6 @@ public class ItemScript : MonoBehaviour
             if (this.type == "Banana" && other.tag == "Gorilla" && !this.pickedUp){
                 Object.Destroy(this.gameObject, 0.5f); // destroy object after contact with gorilla
             }
-            // else if (this.type == "Food" && other.tag == "Stomach"){
-            //     Object.Destroy(this.gameObject); // destroy when touching the stomach?
-            // }
-            // else if (this.type == "Neuron" && other.tag == "Brain"){
-            //     Object.Destroy(this.gameObject); // destroy when touching the brain
-            // }
         }
     }
 

@@ -127,10 +127,9 @@ public class Player : MonoBehaviour
             this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
             this.holdItem.GetComponent<ItemScript>().thrown = true;
             this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-            //Debug.Log("iskinematic = false");
-            this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object
-            //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10f); // add force to thrown object
-            Debug.Log("throw");
+            this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
+            //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
+            //Debug.Log("throw");
             
             
             // get rid of hold item
@@ -157,7 +156,7 @@ public class Player : MonoBehaviour
     {
         Debug.Log("Collided with something!");
 
-        if (other.gameObject.CompareTag("Gorilla") && !invulnerable )
+        if (other.gameObject.CompareTag("Gorilla") && !invulnerable && !other.gameObject.GetComponent<GorillaMovement>().stunned)
         {
             Debug.Log("Hit the Gorilla!");
             // Subtract one from the health of the Player.
