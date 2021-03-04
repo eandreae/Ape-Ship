@@ -127,7 +127,7 @@ public class Player : MonoBehaviour
             this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
             this.holdItem.GetComponent<ItemScript>().thrown = true;
             this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-            Debug.Log("iskinatic = false");
+            //Debug.Log("iskinematic = false");
             this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object
             //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 10f); // add force to thrown object
             Debug.Log("throw");
@@ -181,6 +181,7 @@ public class Player : MonoBehaviour
 
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
+            other.gameObject.GetComponent<ItemScript>().thrown = false;
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
             //this.holding = true;
@@ -203,6 +204,7 @@ public class Player : MonoBehaviour
 
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
+            other.gameObject.GetComponent<ItemScript>().thrown = false;
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
             //this.holding = true;
@@ -247,7 +249,7 @@ public class Player : MonoBehaviour
     }
 
     IEnumerator PickUpCD(){
-        yield return new WaitForSeconds(0.1f); // wait a brief moment before allowing dropping so code doesn't bug out
+        yield return new WaitForSeconds(0.01f); // wait a brief moment before allowing dropping so code doesn't bug out
         this.holding = !this.holding;
     }
 

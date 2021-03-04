@@ -93,6 +93,15 @@ public class ItemScript : MonoBehaviour
         }
     }
 
+    // public void OnCollisionEnter(Collision col){
+    //     Debug.Log("Object collision");
+    //     if(col.gameObject.tag == "PlayerMod" && !this.pickedUp && !this.thrown){ // if run into player when not picked up
+    //         Vector3 pushDir = col.gameObject.GetComponent<Transform>().forward * 5;
+    //         Debug.Log(pushDir);
+    //         this.rigidbody.velocity = (pushDir); // push
+    //     }
+    // }
+
     public void AlterSpeed(float newSpeed)
     {
         playerScript.ChangeSpeed(newSpeed);
@@ -103,18 +112,20 @@ public class ItemScript : MonoBehaviour
             if (!this.thrown){  
                 this.rigidbody.isKinematic = true;
             }
-            else {
-                StartCoroutine("ThrownPhysics"); // set object to kinematic 
-            }
+            // else {
+            //     StartCoroutine("ThrownPhysics"); // set object to kinematic 
+            // }
         }
+        
     }
 
-    public IEnumerator ThrownPhysics (){
+    // public IEnumerator ThrownPhysics (){
         
-        yield return new WaitForSeconds(1f); // wait as object is thrown before resetting object to kinematic
-        this.rigidbody.isKinematic = true;
-        this.thrown = false; // reset thrown to false
-    }
+    //     yield return new WaitForSeconds(1f); // wait as object is thrown before resetting object to kinematic
+    //     //this.rigidbody.isKinematic = true;
+    //     this.thrown = false; // reset thrown to false
+    // }
+
     // private void OnTriggerEnter(Collider other) {
     // 	if(other.name == "Capsule" || other.name == "Player") {
     // 		other.GetComponent<Player>().points++;
