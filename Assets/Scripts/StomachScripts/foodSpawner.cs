@@ -11,20 +11,20 @@ public class foodSpawner : MonoBehaviour
     string currColor;
     public Text nodeColor;
     Vector3 spawnLoc;
-    GorillaMovement gorillaScript;
+    //GorillaMovement gorillaScript;
     private bool charging;
 
     // Start is called before the first frame update
     void Start()
     {
         currColor = nodeColor.text;
-        gorillaScript = GetComponent<GorillaMovement>();
+        //gorillaScript = GetComponent<GorillaMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        charging = gorillaScript.charging;
+        //charging = gorillaScript.charging;
     }
 
     private void OnTriggerEnter(Collider coll)
@@ -38,7 +38,7 @@ public class foodSpawner : MonoBehaviour
                 GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                 temp.GetComponent<Rigidbody>().useGravity = true;
             }
-        } else if(coll.gameObject.tag == "Gorilla")
+        } else if(coll.gameObject.tag == "Gorilla" && coll.GetComponent<GorillaMovement>().charging) // check if gorilla is charging when it collided
         {
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
             if (nodeColor.text != currColor)
@@ -47,7 +47,6 @@ public class foodSpawner : MonoBehaviour
                 GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                 temp.GetComponent<Rigidbody>().useGravity = true;
             }
-            //Debug.Log("DKSFJDSFDJS");
         }
     }
 
