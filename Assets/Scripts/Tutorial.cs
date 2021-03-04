@@ -6,6 +6,8 @@ public class Tutorial : MonoBehaviour
 {
     public AudioSource buttonPress;
 
+    public GameObject mainMenuPanel;
+
     //Records which page we're currently on
     int currentPage = 0;
 
@@ -22,6 +24,7 @@ public class Tutorial : MonoBehaviour
     {
         buttonPress.Play();
         //Disables the tutorial panel.
+        mainMenuPanel.SetActive(true);
         gameObject.SetActive(false);
     }
 
