@@ -181,24 +181,25 @@ public class GorillaMovement : MonoBehaviour
     IEnumerator ChargeAttack(){
         if (canCharge){ // some condition here to initiate the charge attack (maybe also consider player distance?)
             charging = true;
+
             agent.isStopped = true; // stop gorilla mvmt
             agent.speed = 0;
             agent.acceleration = 100;
             agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
-            agent.autoBraking = false; // this lets the gorilla overshoot, so the mvmt is more realistic
+            // agent.autoBraking = false; // this lets the gorilla overshoot, so the mvmt is more realistic
             
             //Vector3 chargePos = playerObj.transform.position; // set target to player position at this moment
             //this.transform.LookAt(playerObj.transform.position);
             //this.transform.LookAt(chargePos);
             this.transform.LookAt(playerObj.transform.position);
 
-            yield return new WaitForSeconds(0.5f); // time in seconds to wait
+            yield return new WaitForSeconds(0.75f); // time in seconds to wait
             
             //agent.isStopped = false;
             //agent.speed = 50;
             //agent.SetDestination((chargePos) * 0.4f + (playerObj.transform.position) * 0.6f); // 40% influence player initial location, 60% influence player's current location
             this.GetComponent<Rigidbody>().isKinematic = false;
-            this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 1000f , ForceMode.Impulse);
+            this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
 
             yield return new WaitForSeconds(1f); // charge for 1 second
             
@@ -207,10 +208,11 @@ public class GorillaMovement : MonoBehaviour
             charging = false;
             //agent.speed = 0; // stops
             //agent.isStopped = true;
+
             yield return new WaitForSeconds(0.5f); // gorilla self-stun after it charges
             
-            agent.SetDestination(target.transform.position); // reset target
-            agent.autoBraking = true;
+            // agent.SetDestination(target.transform.position); // reset target
+            // agent.autoBraking = true;
             agent.speed = _SPEED;
             agent.angularSpeed = _ANGULAR_SPEED;
             agent.acceleration = _ACCELERATION;
@@ -230,6 +232,8 @@ public class GorillaMovement : MonoBehaviour
         StopCoroutine("ChargeAttack");  // stop charging
         agent.isStopped = true;
         agent.speed = 0;
+        agent.acceleration = 100;
+        agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false;
         this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
@@ -240,6 +244,8 @@ public class GorillaMovement : MonoBehaviour
         yield return new WaitForSeconds(0.75f); // wait
         
         agent.speed = _SPEED;
+        agent.angularSpeed = _ANGULAR_SPEED;
+        agent.acceleration = _ACCELERATION;
         agent.isStopped = false;
 
         if(!this.canCharge){    // if gorilla was in the middle of his charge
@@ -255,6 +261,8 @@ public class GorillaMovement : MonoBehaviour
         StopCoroutine("AttackPlayer");  // stop attackplayer coroutine in case of overlap
         agent.isStopped = true;
         agent.speed = 0;
+        agent.acceleration = 100;
+        agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false;
         this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
@@ -263,6 +271,8 @@ public class GorillaMovement : MonoBehaviour
         yield return new WaitForSeconds(2f); // banana stuns gorilla for 2 seconds
         
         agent.speed = _SPEED;
+        agent.angularSpeed = _ANGULAR_SPEED;
+        agent.acceleration = _ACCELERATION;
         agent.isStopped = false;
         this.stunned = false;
         
