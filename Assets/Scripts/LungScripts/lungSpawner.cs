@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-
-public class spawner : MonoBehaviour
+public class lungSpawner : MonoBehaviour
 {
     public Transform spawnPos;
     public GameObject spawnee;
@@ -23,15 +22,16 @@ public class spawner : MonoBehaviour
         canister2 = GameObject.Find("Air_Tank_2");
         canister1.SetActive(true);
         canister2.SetActive(true);
-
     }
 
     // Update is called once per frame
     void Update()
-    {/*
-        spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 5.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 5.0f));
+    {
 
+    }
 
+    public void Fix()
+    {
         if (nodeColor.text == "red")
         {
             canister1.SetActive(false);
@@ -48,30 +48,31 @@ public class spawner : MonoBehaviour
             canister2.SetActive(true);
         }
 
+        if (nodeColor.text == "green")
+        {
+            //currColor = nodeColor.text;
+            if (GameObject.Find("Air_Tank_3(Clone)") != null)
+            {
+                target = GameObject.Find("Air_Tank_3(Clone)");
+                Destroy(target);
+            }
+        }
+
+    }
+
+    public void Spawn()
+    {
+        spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 5.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 5.0f));
+
         if (nodeColor.text != currColor)
         {
             if (nodeColor.text != "green")
             {
-                currColor = nodeColor.text;
+                //currColor = nodeColor.text;
                 GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                 temp.GetComponent<Rigidbody>().useGravity = true;
             }
-            else if (nodeColor.text == "green")
-            {
-                currColor = nodeColor.text;
-                if(GameObject.Find("Air_Tank_3(Clone)") != null)
-                {
-                    target = GameObject.Find("Air_Tank_3(Clone)");
-                    Destroy(target);
-                }
-            }
-        }*/
+        }
 
-    }
-
-    public void Spawn() {
-        spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f,8.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 5.0f));
-        GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
-        temp.GetComponent<Rigidbody>().useGravity = true;
     }
 }
