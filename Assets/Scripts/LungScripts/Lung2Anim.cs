@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class LungAnim : MonoBehaviour
+public class Lung2Anim : MonoBehaviour
 {
     private Animator animator;
 
@@ -21,12 +21,12 @@ public class LungAnim : MonoBehaviour
     {
         if (lungColor.text == "yellow")
         {
-            animator.speed = 1.5f;
+            animator.speed = 0.75f;
 
         }
         else if (lungColor.text == "red")
         {
-            animator.speed = 2.0f;
+            animator.speed = 0.5f;
 
         }
         else if (lungColor.text == "green")
