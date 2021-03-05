@@ -13,7 +13,7 @@ public class Minimap : MonoBehaviour
     {
         //If the player holds down either Q or M, the minimap will pop up so long as they are holding either of those keys down. 
         //Q is quick to hit, while M is instictive for some players.
-        if (Input.GetKey("m") || Input.GetKey("q"))
+        if (Input.GetKey("m") || Input.GetKey("q") || Input.GetKey(KeyCode.Tab))
         {
             //So you can't activate this while paused
             if (canActivateMinimap)
