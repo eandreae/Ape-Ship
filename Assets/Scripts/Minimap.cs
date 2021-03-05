@@ -36,6 +36,7 @@ public class Minimap : MonoBehaviour
         }
         else
         {
+            //If the player presses M, Q, or Tab, the minimap will pop up, and they will have to hit any of those again to make it close.
             if (Input.GetKeyDown("m") || Input.GetKeyDown("q") || Input.GetKeyDown(KeyCode.Tab))
             {
                 if (minimapOpen)
