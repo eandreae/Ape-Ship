@@ -13,6 +13,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
 	public float moveSpeed = 14f;
+    float defaultSpeed;
     public int points;
     public float health;
     public float oxygen;
@@ -43,6 +44,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        defaultSpeed = moveSpeed;
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
         health = 3;
@@ -136,7 +138,11 @@ public class Player : MonoBehaviour
             this.holdItem = null;
             StartCoroutine("PickUpCD");
         }
-
+        //if player isn't holding an item, reset to default speed
+        if (!this.holding)
+        {
+            ChangeSpeed(defaultSpeed);
+        }
         
         // Check if the oxygen color is red.
         if ( oxygen_color.text == "red" ){

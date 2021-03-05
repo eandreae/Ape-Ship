@@ -13,6 +13,7 @@ public class spawner : MonoBehaviour
     Vector3 spawnLoc;
     GameObject canister1;
     GameObject canister2;
+    GameObject target;
 
     // Start is called before the first frame update
     void Start()
@@ -43,15 +44,27 @@ public class spawner : MonoBehaviour
         }
         else if (nodeColor.text == "green")
         {
-            canister1.active = true;
-            canister2.active = true;
+            canister1.SetActive(true);
+            canister2.SetActive(true);
         }
 
         if (nodeColor.text != currColor)
         {
-            currColor = nodeColor.text;
-            GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
-            temp.GetComponent<Rigidbody>().useGravity = true;
+            if (nodeColor.text != "green")
+            {
+                currColor = nodeColor.text;
+                GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
+                temp.GetComponent<Rigidbody>().useGravity = true;
+            }
+            else if (nodeColor.text == "green")
+            {
+                currColor = nodeColor.text;
+                if(GameObject.Find("Air_Tank_3(Clone)") != null)
+                {
+                    target = GameObject.Find("Air_Tank_3(Clone)");
+                    Destroy(target);
+                }
+            }
         }
 
     }

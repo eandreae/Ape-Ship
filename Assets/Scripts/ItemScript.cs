@@ -55,7 +55,6 @@ public class ItemScript : MonoBehaviour
             if(type == "Coin"){
                 transform.localRotation = Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
             }
-            
             else if(type == "Banana"){
                 transform.localRotation = Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
             } else if(type == "Canister")
