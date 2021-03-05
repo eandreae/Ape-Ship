@@ -18,8 +18,16 @@ public class lungSpawner : MonoBehaviour
     void Start()
     {
         currColor = nodeColor.text;
-        canister1 = GameObject.Find("Air_Tank_1");
-        canister2 = GameObject.Find("Air_Tank_2");
+        if(gameObject.name == "AirPump(O1)")
+        {
+            canister1 = GameObject.Find("Air_Tank_1(O1)");
+            canister2 = GameObject.Find("Air_Tank_2(O1)");
+
+        } else if(gameObject.name == "AirPump")
+        {
+            canister1 = GameObject.Find("Air_Tank_1");
+            canister2 = GameObject.Find("Air_Tank_2");
+        }
         canister1.SetActive(true);
         canister2.SetActive(true);
     }
@@ -51,10 +59,22 @@ public class lungSpawner : MonoBehaviour
         if (nodeColor.text == "green")
         {
             //currColor = nodeColor.text;
-            if (GameObject.Find("Air_Tank_3(Clone)") != null)
+            if(gameObject.name == "AirPump(O1)")
             {
-                target = GameObject.Find("Air_Tank_3(Clone)");
-                Destroy(target);
+                if (GameObject.Find("Air_Tank_3(O1)(Clone)") != null)
+                {
+                    target = GameObject.Find("Air_Tank_3(O1)(Clone)");
+                    Destroy(target);
+                }
+
+            } else if(gameObject.name == "AirPump")
+            {
+                if (GameObject.Find("Air_Tank_3(Clone)") != null)
+                {
+                    target = GameObject.Find("Air_Tank_3(Clone)");
+                    Destroy(target);
+                }
+
             }
         }
 

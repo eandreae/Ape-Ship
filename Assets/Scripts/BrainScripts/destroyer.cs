@@ -52,6 +52,12 @@ public class destroyer : MonoBehaviour
             {
                 Destruction();
             }
+        } else if (coll.gameObject.name == "canisterDestroyer(O1)")
+        {
+            if (this.gameObject.name == "Air_Tank_3(O1)(Clone)")
+            {
+                Destruction();
+            }
         }
 
     }
