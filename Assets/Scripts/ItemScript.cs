@@ -44,8 +44,6 @@ public class ItemScript : MonoBehaviour
             //if (this.type == "Banana" || this.type == "Coin"){
             //transform.Rotate(0, 0, 90 * Time.deltaTime);
             //}
-            if(this.wp)
-                wp.gameObject.SetActive(false);
         }
         else {  // code to execute if object is picked up
             //if(this.glowEffect)
@@ -54,25 +52,23 @@ public class ItemScript : MonoBehaviour
             this.rigidbody.isKinematic = true; // if picked up, item become kinematic
             transform.localPosition = new Vector3(0f, 1.2f, 0.5f); // sets position relative to the player transform
             //Debug.Log(playerRoot.position);
-            if(wp)
-                wp.gameObject.SetActive(true);
-
-            if (type == "Coin"){
+            
+            if (type == "Neuron"){
                 transform.localRotation = Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
-                wp.WhichWaypoint(0);
+                Waypoint.WhichWaypoint(0);
             }
             else if(type == "Banana"){
                 transform.localRotation = Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
-                wp.WhichWaypoint(1);
+                Waypoint.WhichWaypoint(1);
             } 
             else if(type == "Canister"){
                 transform.localRotation = Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
-                wp.WhichWaypoint(2);
+                Waypoint.WhichWaypoint(2);
                 AlterSpeed(6f);
             }
             else if(type == "Food"){
                 transform.localRotation = Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                wp.WhichWaypoint(3);
+                Waypoint.WhichWaypoint(3);
             }
         }
     }

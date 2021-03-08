@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     public AudioSource walkingSFX;
     public AudioClip[] walkingSamples;
     private Collider gorillaCollider;
+    public GameObject wpArrow;
 
     // Start is called before the first frame update
     void Start()
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
             else{
                 this.anim.Play("Walk"); // play walking animation when moving
                 this.holding = false; // if no holdItem, then holding must be false
+                this.wpArrow.SetActive(false);
             }
             this.transform.LookAt(transform.position + dir); // look in direction that player is walking
             controller.SimpleMove(this.moveSpeed * dir);
@@ -89,6 +91,7 @@ public class Player : MonoBehaviour
             else{
                 this.anim.Play("Idle"); // if not moving, play idle anim
                 this.holding = false; // if no holdItem, then holding must be false
+                this.wpArrow.SetActive(false);
             }
         }
         
@@ -116,6 +119,8 @@ public class Player : MonoBehaviour
             //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
             // get rid of hold item
             this.holdItem = null;
+            this.wpArrow.SetActive(false);
+            
             StartCoroutine("PickUpCD");
             //this.holding = false;
         }
@@ -136,6 +141,7 @@ public class Player : MonoBehaviour
             
             // get rid of hold item
             this.holdItem = null;
+            this.wpArrow.SetActive(false);
             StartCoroutine("PickUpCD");
         }
         //if player isn't holding an item, reset to default speed
@@ -160,7 +166,7 @@ public class Player : MonoBehaviour
     //checks to see if picked up object, activated everytime touch a trigger collider
     void OnTriggerEnter(Collider other) 
     {
-        Debug.Log("Collided with something!");
+        //Debug.Log("Collided with something!");
 
         if (other.gameObject.CompareTag("Gorilla") && !invulnerable && !other.gameObject.GetComponent<GorillaMovement>().stunned)
         {
@@ -187,6 +193,7 @@ public class Player : MonoBehaviour
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
             other.gameObject.GetComponent<ItemScript>().thrown = false;
+            this.wpArrow.SetActive(true);
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
             //this.holding = true;
@@ -210,6 +217,7 @@ public class Player : MonoBehaviour
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
             other.gameObject.GetComponent<ItemScript>().thrown = false;
+            this.wpArrow.SetActive(true);
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
             //this.holding = true;
