@@ -67,7 +67,10 @@ public class ItemScript : MonoBehaviour
                 wp.WhichWaypoint(2);
                 AlterSpeed(6f);
             }
-            
+            else if(type == "Food")
+                wp.WhichWaypoint(3);
+
+
             //Debug.Log(playerRoot.position);
             transform.localPosition = new Vector3(0f, 1.2f, 0.5f); // sets position relative to the player transform
         }
