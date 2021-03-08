@@ -11,7 +11,9 @@ public class MainMenu : MonoBehaviour
 
     public AudioSource buttonPress;
 
+    public GameObject mainMenuPanel;
     public GameObject tutorialPanel;
+    public GameObject creditsPanel;
     public GameObject settingsPanel;
 
     public void StartGame()
@@ -36,6 +38,7 @@ public class MainMenu : MonoBehaviour
         //Sets the settings panel to be visible
         settingsPanel.SetActive(true);
         buttonPress.Play();
+        mainMenuPanel.SetActive(false);
     }
 
     public void Tutorial()
@@ -44,6 +47,15 @@ public class MainMenu : MonoBehaviour
         //Sets the tutorial panel to be visisble
         tutorialPanel.SetActive(true);
         buttonPress.Play();
+        mainMenuPanel.SetActive(false);
+    }
+
+    public void Credits()
+    {
+        //Sets the credits panel to be visible
+        creditsPanel.SetActive(true);
+        buttonPress.Play();
+        mainMenuPanel.SetActive(false);
     }
 
     public void QuitGame()

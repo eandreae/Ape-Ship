@@ -50,18 +50,25 @@ public class BrainColorChange : MonoBehaviour
     {
         if (brainColor.text == "yellow")
         {
-            materials[0].color = materials[0].color * (1.05f);
-            //materials[0].color.g = materials[0].color.g * (0.3f);
-            //materials[0].color.b = materials[0].color.b * (0.3f);
+            //temp until nuclear explosion is fixed
+            materials[0].color = Color.white;
+            //materials[0].color = materials[0].color * (1.05f);
 
 
         }
         else if (brainColor.text == "red")
         {
-            materials[0].color = materials[0].color * (1.05f);
-            materials[1].color = materials[1].color * (1.05f);
-            materials[2].color = materials[2].color * (1.05f);
-        } else //brainColor == GREEN
+            //temp until nuclear explosion is fixed
+            materials[0].color = Color.white;
+            materials[1].color = Color.white;
+            materials[2].color = Color.white;
+
+            //materials[0].color = materials[0].color * (1.05f);
+            //materials[1].color = materials[1].color * (1.05f);
+            //materials[2].color = materials[2].color * (1.05f);
+
+        }
+        else //brainColor == GREEN
         {
             //materials[0].color = color1;
             //materials[1].color = color2;
@@ -78,7 +85,7 @@ public class BrainColorChange : MonoBehaviour
     {
         while(brainColor.text == "green")
         {
-            yield return new WaitForSeconds(2f); // time in seconds to wait
+            yield return new WaitForSeconds(0.5f); // time in seconds to wait
             if(ColorList.Count == 5)
             {
                 bound = 5;

@@ -29,7 +29,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("p"))
         {
             if (gameIsPaused)
             {
@@ -50,6 +50,8 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = true;
         mm.canActivateMinimap = false;
         player.moveSpeed = 0f;
+        //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
+        Time.timeScale = 0f;
     }
 
 
@@ -61,10 +63,14 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = false;
         mm.canActivateMinimap = true;
         player.moveSpeed = 14f;
+        //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
+        Time.timeScale = 1f;
     }
 
     public void GoBackToMenu()
     {
+        //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
+        Time.timeScale = 1f;
         backgroundMusic.pitch = 1f;
         buttonPress.Play();
         pauseMenuPanel.SetActive(false);
@@ -79,6 +85,8 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
+        //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
+        Time.timeScale = 1f;
         backgroundMusic.pitch = 1f;
         buttonPress.Play();
         pauseMenuPanel.SetActive(false);

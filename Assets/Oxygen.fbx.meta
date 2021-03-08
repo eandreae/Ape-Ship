@@ -3,7 +3,27 @@ guid: 650040f30e5459542b1f2580c54955ea
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: flesh
+    second: {fileID: 2100000, guid: 08958f5008746df4c925b793853cdacb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: 3591e7b9497de7347b1186e9eea623b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: refill
+    second: {fileID: 2100000, guid: 3591e7b9497de7347b1186e9eea623b5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: screen
+    second: {fileID: 2100000, guid: e410cfb949b4a7c4d984f2fc6ea3e9d2, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

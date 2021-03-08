@@ -20,13 +20,16 @@ public class GorillaMovement : MonoBehaviour
     GameObject node3;
     GameObject node4;
     GameObject node5;
+    GameObject node6;
+
     List<GameObject> nodes; 
     GameObject playerObj;
     GameObject targetNode;
 
     private bool canCharge = true;
-    private bool charging = false;
+    public bool charging = false;
     private bool playerLock = false;
+    public bool stunned = false;
     private float playerDist = 0f;
     FieldOfView targetsList;
     public List<Transform> visibleTargets = new List<Transform>();
@@ -47,6 +50,8 @@ public class GorillaMovement : MonoBehaviour
         nodes.Add(node4);
         node5 = GameObject.FindGameObjectWithTag("O2");
         nodes.Add(node5);
+        node6 = GameObject.FindGameObjectWithTag("O2_2");
+        nodes.Add(node6);
 
         playerObj = GameObject.FindGameObjectWithTag("Player");
         playerDist = Vector3.Distance (transform.position, playerObj.transform.position);
@@ -159,8 +164,13 @@ public class GorillaMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.CompareTag("Player")) {
+        if (other.tag == "Player" || other.tag == "PlayerMod" && !this.stunned) {
             StartCoroutine("AttackPlayer");
+        }
+        else if (other.tag == "Pick Up") {
+            if (other.gameObject.GetComponent<ItemScript>().type == "Banana" && other.gameObject.GetComponent<ItemScript>().active){
+                StartCoroutine("SelfStun");
+            }
         }
     }
     
@@ -171,32 +181,38 @@ public class GorillaMovement : MonoBehaviour
     IEnumerator ChargeAttack(){
         if (canCharge){ // some condition here to initiate the charge attack (maybe also consider player distance?)
             charging = true;
+
             agent.isStopped = true; // stop gorilla mvmt
             agent.speed = 0;
             agent.acceleration = 100;
             agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
-            agent.autoBraking = false; // this lets the gorilla overshoot, so the mvmt is more realistic
+            // agent.autoBraking = false; // this lets the gorilla overshoot, so the mvmt is more realistic
             
-            Vector3 chargePos = playerObj.transform.position; // set target to player position at this moment
+            //Vector3 chargePos = playerObj.transform.position; // set target to player position at this moment
             //this.transform.LookAt(playerObj.transform.position);
-            this.transform.LookAt(chargePos);
-            //agent.SetDestination(chargePos);
-            //Debug.Log(chargePos);
-            yield return new WaitForSeconds(0.5f); // time in seconds to wait
+            //this.transform.LookAt(chargePos);
+            this.transform.LookAt(playerObj.transform.position);
+
+            yield return new WaitForSeconds(0.75f); // time in seconds to wait
             
-            //Debug.Log(chargePos);
-            agent.isStopped = false;
-            agent.speed = 50;
-            agent.SetDestination((chargePos) * 0.4f + (playerObj.transform.position) * 0.6f); // 40% influence player initial location, 60% influence player's current location
+            //agent.isStopped = false;
+            //agent.speed = 50;
+            //agent.SetDestination((chargePos) * 0.4f + (playerObj.transform.position) * 0.6f); // 40% influence player initial location, 60% influence player's current location
+            this.GetComponent<Rigidbody>().isKinematic = false;
+            this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
+
             yield return new WaitForSeconds(1f); // charge for 1 second
             
+            this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
+            this.GetComponent<Rigidbody>().isKinematic = true;
             charging = false;
-            agent.speed = 0; // stops
-            agent.isStopped = true;
+            //agent.speed = 0; // stops
+            //agent.isStopped = true;
+
             yield return new WaitForSeconds(0.5f); // gorilla self-stun after it charges
             
-            agent.SetDestination(target.transform.position); // reset target
-            agent.autoBraking = true;
+            // agent.SetDestination(target.transform.position); // reset target
+            // agent.autoBraking = true;
             agent.speed = _SPEED;
             agent.angularSpeed = _ANGULAR_SPEED;
             agent.acceleration = _ACCELERATION;
@@ -212,13 +228,57 @@ public class GorillaMovement : MonoBehaviour
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
     IEnumerator AttackPlayer(){
         Debug.Log("ATTACK PLAYER");
+
+        StopCoroutine("ChargeAttack");  // stop charging
         agent.isStopped = true;
         agent.speed = 0;
+        agent.acceleration = 100;
+        agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
+        this.charging = false;  // in case gorilla was charging
+        this.canCharge = false;
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
+        this.GetComponent<Rigidbody>().isKinematic = true;
+
         //animator.play("attack-anim"); // play the gorilla attack animation
 
         yield return new WaitForSeconds(0.75f); // wait
+        
         agent.speed = _SPEED;
+        agent.angularSpeed = _ANGULAR_SPEED;
+        agent.acceleration = _ACCELERATION;
         agent.isStopped = false;
+
+        if(!this.canCharge){    // if gorilla was in the middle of his charge
+            yield return new WaitForSeconds(4f); // reset charge cd
+            this.canCharge = true;
+        }
     }
     
+    IEnumerator SelfStun(){
+        Debug.Log("GORILLA STUNNED");
+
+        StopCoroutine("ChargeAttack");  // stop charging
+        StopCoroutine("AttackPlayer");  // stop attackplayer coroutine in case of overlap
+        agent.isStopped = true;
+        agent.speed = 0;
+        agent.acceleration = 100;
+        agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
+        this.charging = false;  // in case gorilla was charging
+        this.canCharge = false;
+        this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
+        this.GetComponent<Rigidbody>().isKinematic = true;
+
+        yield return new WaitForSeconds(2f); // banana stuns gorilla for 2 seconds
+        
+        agent.speed = _SPEED;
+        agent.angularSpeed = _ANGULAR_SPEED;
+        agent.acceleration = _ACCELERATION;
+        agent.isStopped = false;
+        this.stunned = false;
+        
+        if(!this.canCharge){    // if gorilla was in the middle of his charge
+            yield return new WaitForSeconds(4f); // reset charge cd
+            this.canCharge = true;
+        }
+    }
 }
