@@ -2215,17 +2215,18 @@ MonoBehaviour:
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: 
+      - m_Target: {fileID: 852433014}
+        m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!1 &248848831
 GameObject:
   m_ObjectHideFlags: 0
@@ -12778,7 +12779,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DanceComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 852433014}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!1 &802167988
 GameObject:
   m_ObjectHideFlags: 0
@@ -13577,18 +13590,7 @@ MonoBehaviour:
   color: {r: 0, g: 0, b: 0, a: 0}
   OnNodeFix:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1855929738}
-        m_MethodName: ChangeBroken
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   OnNodeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -14632,7 +14634,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DanceComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 852433014}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -23890,7 +23904,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DanceComplete:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 852433014}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!1 &1441720600
 GameObject:
   m_ObjectHideFlags: 0
@@ -27187,6 +27213,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!65 &1855929739
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29791,7 +29818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &919132148466087493
 GameObject:
   m_ObjectHideFlags: 0

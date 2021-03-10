@@ -15,6 +15,8 @@ public class ArrowScript : MonoBehaviour
     List<GameObject> arrowsList = new List<GameObject>();
     List<GameObject> tileList = new List<GameObject>();
     public UnityEvent DanceComplete;
+    static bool flashing;
+    public Text HeartColor;
 
     static readonly string[] arrowNames =  {
         "Arrow_Left",
@@ -63,7 +65,13 @@ public class ArrowScript : MonoBehaviour
             broken = false;
         } else
         {
+            foreach (GameObject obj in arrowsList)
+            {
+                obj.SetActive(false);
+            }
             broken = true;
+            started = true;
+            ChoosePattern();
         }
     }
 
@@ -75,48 +83,90 @@ public class ArrowScript : MonoBehaviour
         arrowsList[rand].SetActive(true);
     }
 
+    IEnumerator Flash ()
+    {
+        print("Incorrect input");
+        //flash off
+        foreach (GameObject obj in arrowsList)
+        {
+            obj.SetActive(false);
+        }
+        //wait
+        yield return new WaitForSeconds(0.25f);
+        //flash on
+        foreach (GameObject obj in arrowsList)
+        {
+            obj.SetActive(true);
+        }
+        //wait
+        yield return new WaitForSeconds(0.25f);
+        //flash off
+        foreach (GameObject obj in arrowsList)
+        {
+            obj.SetActive(false);
+        }
+        //wait
+        yield return new WaitForSeconds(0.25f);
+        //flash on
+        foreach (GameObject obj in arrowsList)
+        {
+            obj.SetActive(true);
+        }
+        //wait
+        yield return new WaitForSeconds(0.25f);
+        //turn off
+        foreach (GameObject obj in arrowsList)
+        {
+            obj.SetActive(false);
+        }
+
+        flashing = false;
+        count = 0;
+        ChoosePattern();
+
+    }
+
     private void OnTriggerEnter(Collider coll)
     {
-        if (broken)
+        if (broken && !flashing)
         {
             if (coll.gameObject.name == "Player")
             {
-                if (gameObject.name == "Center" && started == false)
-                {
-                    foreach (GameObject obj in arrowsList)
-                    {
-                        obj.SetActive(false);
-                    }
-
-                    started = true;
-                    ChoosePattern();
-                }
                 //turn on all arrows if correct non-center tile is touched
                 if (started == true && tileList[rand].name == gameObject.name && gameObject.name != "Center")
                 {
                     arrowsList[rand].SetActive(false);
                     if (count == 5)
                     {
-                        foreach (GameObject obj in arrowsList)
-                        {
-                            obj.SetActive(true);
-                        }
                         DanceComplete.Invoke();
+                        count = 0;
+                        //if heart is still not fully fixed, do another pattern
+                        if(HeartColor.text != "green")
+                        {
+                            //create new pattern
+                            ChoosePattern();
+                        //if fully fixed, change to not broken and reset to all arrows to on
+                        } else
+                        {
+                            foreach (GameObject obj in arrowsList)
+                            {
+                                obj.SetActive(true);
+                            }
+                            started = false;
+                            ChangeBroken();
+                        }
                     }
                     else
                     {
                         ++count;
                         ChoosePattern();
                     }
-                    //turn off all arrows if incorrect non-center tile is touched
+                //flash arrows and restart if incorrect non-center tile is touched
                 }
                 else if (started == true && tileList[rand] != gameObject && gameObject.name != "Center")
                 {
-                    foreach (GameObject obj in arrowsList)
-                    {
-                        obj.SetActive(false);
-                    }
-
+                    flashing = true;
+                    StartCoroutine("Flash");
                 }
 
                 /*if (gameObject.name == "LEFT")
@@ -143,25 +193,12 @@ public class ArrowScript : MonoBehaviour
 
     private void OnTriggerExit(Collider coll)
     {
-        if (coll.gameObject.name == "Player")
+        if (coll.gameObject.name == "Player" && gameObject.name != "Center")
         {
-            if (gameObject.name == "LEFT")
+            /*if(tileList[rand] == gameObject)
             {
-                //arrowsList[0].SetActive(false);
-            }
-            else if (gameObject.name == "UP")
-            {
-                //arrowsList[3].SetActive(false);
-            }
-            else if (gameObject.name == "RIGHT")
-            {
-                //arrowsList[1].SetActive(false);
-            }
-            else if (gameObject.name == "DOWN")
-            {
-                //arrowsList[2].SetActive(false);
-            }
-
+                arrowsList[rand].SetActive(false);
+            }*/
         }
 
     }
