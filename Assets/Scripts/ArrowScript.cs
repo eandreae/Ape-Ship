@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
+
 
 public class ArrowScript : MonoBehaviour
 {
-    GameObject upArrow;
-    GameObject downArrow;
-    GameObject rightArrow;
-    GameObject leftArrow;
     GameObject temp;
     static bool started = false;
     static int rand;
     static int count;
+    static bool broken;
     List<GameObject> arrowsList = new List<GameObject>();
     List<GameObject> tileList = new List<GameObject>();
+    public UnityEvent DanceComplete;
 
     static readonly string[] arrowNames =  {
         "Arrow_Left",
@@ -33,7 +33,7 @@ public class ArrowScript : MonoBehaviour
     void Start()
     {
         count = 0;
-
+        broken = false;
         foreach(string name in arrowNames)
         {
             arrowsList.Add(GameObject.Find(name));
@@ -56,6 +56,17 @@ public class ArrowScript : MonoBehaviour
         }*/
     }
 
+    public void ChangeBroken()
+    {
+        if (broken)
+        {
+            broken = false;
+        } else
+        {
+            broken = true;
+        }
+    }
+
     private void ChoosePattern()
     {
         //randomly choose arrow for player to press
@@ -66,59 +77,66 @@ public class ArrowScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.name == "Player")
+        if (broken)
         {
-            if(gameObject.name == "Center" && started == false)
+            if (coll.gameObject.name == "Player")
             {
-                foreach (GameObject obj in arrowsList)
+                if (gameObject.name == "Center" && started == false)
                 {
-                    obj.SetActive(false);
-                }
-
-                started = true;
-                ChoosePattern();
-            }
-            //turn on all arrows if correct non-center tile is touched
-            if(started == true && tileList[rand].name == gameObject.name && gameObject.name != "Center")
-            {
-                arrowsList[rand].SetActive(false);
-                if(count == 5){
                     foreach (GameObject obj in arrowsList)
                     {
-                        obj.SetActive(true);
+                        obj.SetActive(false);
                     }
-                } else
-                {
-                    ++count;
+
+                    started = true;
                     ChoosePattern();
                 }
-                //turn off all arrows if incorrect non-center tile is touched
-            }
-            else if (started == true && tileList[rand] != gameObject && gameObject.name != "Center")
-            {
-                foreach (GameObject obj in arrowsList)
+                //turn on all arrows if correct non-center tile is touched
+                if (started == true && tileList[rand].name == gameObject.name && gameObject.name != "Center")
                 {
-                    obj.SetActive(false);
+                    arrowsList[rand].SetActive(false);
+                    if (count == 5)
+                    {
+                        foreach (GameObject obj in arrowsList)
+                        {
+                            obj.SetActive(true);
+                        }
+                        DanceComplete.Invoke();
+                    }
+                    else
+                    {
+                        ++count;
+                        ChoosePattern();
+                    }
+                    //turn off all arrows if incorrect non-center tile is touched
+                }
+                else if (started == true && tileList[rand] != gameObject && gameObject.name != "Center")
+                {
+                    foreach (GameObject obj in arrowsList)
+                    {
+                        obj.SetActive(false);
+                    }
+
                 }
 
-            }
+                /*if (gameObject.name == "LEFT")
+                {
+                    //arrowsList[0].SetActive(true);
+                }
+                else if (gameObject.name == "UP")
+                {
+                    //arrowsList[3].SetActive(true);
+                }
+                else if (gameObject.name == "RIGHT")
+                {
+                    //arrowsList[1].SetActive(true);
+                }
+                else if (gameObject.name == "DOWN")
+                {
+                    //arrowsList[2].SetActive(true);
+                }*/
 
-            /*if (gameObject.name == "LEFT")
-            {
-                //arrowsList[0].SetActive(true);
             }
-            else if (gameObject.name == "UP")
-            {
-                //arrowsList[3].SetActive(true);
-            }
-            else if (gameObject.name == "RIGHT")
-            {
-                //arrowsList[1].SetActive(true);
-            }
-            else if (gameObject.name == "DOWN")
-            {
-                //arrowsList[2].SetActive(true);
-            }*/
 
         }
     }
