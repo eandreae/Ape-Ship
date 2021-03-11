@@ -26,7 +26,8 @@ public class Player : MonoBehaviour
     private float invulnTime = 2;
     private CharacterController controller;
     private Animator anim;
-    public Animator cues;
+    public Animator oxygenCue;
+    public Animator damageCue;
     // Moved camera functionality to PlayerCamera.cs
     // public Camera camera;
 
@@ -229,7 +230,7 @@ public class Player : MonoBehaviour
     	//GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
     //}
     public IEnumerator updateHealth() {
-        cues.SetTrigger("DamageTrigger");
+        damageCue.SetTrigger("DamageTrigger");
         healthBar.value = health;
         if ( health == 0 )
         { 
@@ -243,7 +244,7 @@ public class Player : MonoBehaviour
     }
 
     public void updateOxygen() {
-        cues.SetTrigger("OxygenTrigger");
+        oxygenCue.SetTrigger("OxygenTrigger");
         oxygenBar.value = Mathf.Floor(oxygen);
         //alarmSFX.Play();
         if ( Mathf.Floor(oxygen) == 0 ) 
