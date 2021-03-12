@@ -61,14 +61,19 @@ public class ItemScript : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(1);
             } 
-            else if(type == "Canister"){
+            else if(type == "Canister1"){
                 transform.localRotation = Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(2);
                 AlterSpeed(6f);
             }
-            else if(type == "Food"){
-                transform.localRotation = Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+            else if(type == "Canister2"){
+                transform.localRotation = Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(3);
+                AlterSpeed(6f);
+            }
+            else if(type == "Sandwich" || type == "Kebab"  || type == "Nuke" ){
+                transform.localRotation = Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+                Waypoint.WhichWaypoint(4);
             }
         }
     }
@@ -86,7 +91,10 @@ public class ItemScript : MonoBehaviour
         }
         else if (this.active) {
             if (this.type == "Banana" && other.tag == "Gorilla" && !this.pickedUp){
-                Object.Destroy(this.gameObject, 0.5f); // destroy object after contact with gorilla
+                Object.Destroy(this.gameObject, 0.25f); // destroy object after contact with gorilla
+            }
+            else if (this.thrown && this.type == "Nuke" && other.tag == "Gorilla" && !this.pickedUp){
+                Object.Destroy(this.gameObject, 0.52f); // destroy object after contact with gorilla
             }
         }
     }
