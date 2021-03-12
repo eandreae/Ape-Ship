@@ -11,7 +11,7 @@ public class ArrowScript : MonoBehaviour
     static bool started = false;
     static int rand;
     static int count;
-    static bool broken;
+    //static bool broken = false;
     List<GameObject> arrowsList = new List<GameObject>();
     List<GameObject> tileList = new List<GameObject>();
     public UnityEvent DanceComplete;
@@ -35,7 +35,7 @@ public class ArrowScript : MonoBehaviour
     void Start()
     {
         count = 0;
-        broken = false;
+        //broken = false;
         foreach(string name in arrowNames)
         {
             arrowsList.Add(GameObject.Find(name));
@@ -60,16 +60,17 @@ public class ArrowScript : MonoBehaviour
 
     public void ChangeBroken()
     {
-        if (broken)
+        if (HeartColor.text == "green")
         {
-            broken = false;
+            //broken = false;
         } else
         {
             foreach (GameObject obj in arrowsList)
             {
                 obj.SetActive(false);
             }
-            broken = true;
+            //broken = true;
+            count = 0;
             started = true;
             ChoosePattern();
         }
@@ -128,7 +129,7 @@ public class ArrowScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-        if (broken && !flashing)
+        if (HeartColor.text != "green" && !flashing)
         {
             if (coll.gameObject.name == "Player")
             {
