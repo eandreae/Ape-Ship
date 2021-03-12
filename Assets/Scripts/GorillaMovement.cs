@@ -139,7 +139,7 @@ public class GorillaMovement : MonoBehaviour
     private void GoToTarget()
     {
          // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
-        if (target == playerObj && canCharge && playerLock ){
+        if (target == playerObj && canCharge && playerLock && !this.stunned){
             //Debug.Log("Gorilla is charging");
             StartCoroutine("ChargeAttack");
             canCharge = false;
@@ -167,11 +167,13 @@ public class GorillaMovement : MonoBehaviour
         if (other.tag == "Player" || other.tag == "PlayerMod" && !this.stunned) {
             StartCoroutine("AttackPlayer");
         }
-        else if (other.tag == "Pick Up") {
+        else if (other.tag == "Pick Up" && !stunned) {
             if (other.gameObject.GetComponent<ItemScript>().type == "Banana" && other.gameObject.GetComponent<ItemScript>().active){
+                this.stunned = true;
                 StartCoroutine("SelfStun");
             }
             else if (other.gameObject.GetComponent<ItemScript>().type == "Nuke" && other.gameObject.GetComponent<ItemScript>().thrown){
+                this.stunned = true;
                 StartCoroutine("KnockBack", other.transform.position);
             }
         }
@@ -214,14 +216,14 @@ public class GorillaMovement : MonoBehaviour
     // This coroutine handles part of the Gorilla/Player collision interaction.
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
     IEnumerator AttackPlayer(){
-        Debug.Log("ATTACK PLAYER");
-
-        StopCoroutine("ChargeAttack");  // stop charging
-        
-        StopGorilla();
+        //Debug.Log("ATTACK PLAYER");
+        //this.stunned = true;
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false;
-        this.stunned = true;
+        
+        StopCoroutine("ChargeAttack");  // stop charging
+        StopGorilla();
+        
         this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
         this.GetComponent<Rigidbody>().isKinematic = true;
 
@@ -239,16 +241,19 @@ public class GorillaMovement : MonoBehaviour
     }
     
     IEnumerator SelfStun(){ // from banana
-        Debug.Log("GORILLA STUNNED");
+        //Debug.Log("GORILLA STUNNED");
+
+        this.stunned = true;
+        this.charging = false;  // in case gorilla was charging
+        this.canCharge = false;
+        
 
         StopCoroutine("ChargeAttack");  // stop charging
         StopCoroutine("AttackPlayer");  // stop attackplayer coroutine in case of overlap
         
         StopGorilla();
+
         
-        this.charging = false;  // in case gorilla was charging
-        this.canCharge = false;
-        this.stunned = true;
         
         this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
         this.GetComponent<Rigidbody>().isKinematic = true;
@@ -275,7 +280,7 @@ public class GorillaMovement : MonoBehaviour
         
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false; 
-        this.stunned = true;
+        //this.stunned = true;
 
         this.GetComponent<Rigidbody>().isKinematic = false;
         this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops

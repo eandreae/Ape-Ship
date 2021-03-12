@@ -39,7 +39,7 @@ public class ItemScript : MonoBehaviour
     public void Update()
     {
         if(!pickedUp){ // code to execute if object is not picked up
-                       //this.rigidbody.isKinematic = false;
+            //this.rigidbody.isKinematic = false;
 
             //if (this.type == "Banana" || this.type == "Coin"){
             //transform.Rotate(0, 0, 90 * Time.deltaTime);
@@ -116,7 +116,8 @@ public class ItemScript : MonoBehaviour
     private void OnTriggerExit(Collider other) {
     	if (other.tag == "Player"){
             if (!this.thrown){  
-                this.rigidbody.isKinematic = true;
+                //this.rigidbody.isKinematic = true;
+                this.rigidbody.velocity = Vector3.zero;
             }
             // else {
             //     StartCoroutine("ThrownPhysics"); // set object to kinematic 
