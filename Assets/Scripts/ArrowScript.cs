@@ -17,6 +17,7 @@ public class ArrowScript : MonoBehaviour
     public UnityEvent DanceComplete;
     static bool flashing;
     public Text HeartColor;
+    Material mat;
 
     static readonly string[] arrowNames =  {
         "Arrow_Left",
@@ -39,12 +40,21 @@ public class ArrowScript : MonoBehaviour
         foreach(string name in arrowNames)
         {
             arrowsList.Add(GameObject.Find(name));
-            temp = GameObject.Find(name);
-            temp.SetActive(true);
+            //temp = GameObject.Find(name);
+            //temp.SetActive(true);
         }
         foreach(string name in tileNames)
         {
             tileList.Add(GameObject.Find(name));
+        }
+
+        if (gameObject.name != "Center")
+        {
+            foreach (GameObject obj in arrowsList)
+            {
+                mat = obj.GetComponent<Renderer>().material;
+                mat.EnableKeyword("_EMISSION");
+            }
         }
 
     }
@@ -52,10 +62,10 @@ public class ArrowScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if (started)
+        if(gameObject.name != "Center")
         {
-            ChoosePattern();
-        }*/
+            //mat.DisableKeyword("_EMISSION");
+        }
     }
 
     public void ChangeBroken()
@@ -67,7 +77,8 @@ public class ArrowScript : MonoBehaviour
         {
             foreach (GameObject obj in arrowsList)
             {
-                obj.SetActive(false);
+                mat = obj.GetComponent<Renderer>().material;
+                mat.DisableKeyword("_EMISSION");
             }
             //broken = true;
             count = 0;
@@ -80,8 +91,17 @@ public class ArrowScript : MonoBehaviour
     {
         //randomly choose arrow for player to press
         rand = Random.Range(0, 4);
-        //Debug.Log(rand);
-        arrowsList[rand].SetActive(true);
+        //have to do this stupid for loop because using arrowsList[rand] as the object doesn't work
+        foreach (GameObject obj in arrowsList)
+        {
+            if(arrowsList[rand].name == obj.name)
+            {
+                mat = obj.GetComponent<Renderer>().material;
+                mat.EnableKeyword("_EMISSION");
+            }
+        }
+        //mat = arrowsList[rand].GetComponent<Renderer>().material;
+        //mat.EnableKeyword("_Emission");
     }
 
     IEnumerator Flash ()
@@ -90,35 +110,40 @@ public class ArrowScript : MonoBehaviour
         //flash off
         foreach (GameObject obj in arrowsList)
         {
-            obj.SetActive(false);
+            mat = obj.GetComponent<Renderer>().material;
+            mat.DisableKeyword("_EMISSION");
         }
         //wait
         yield return new WaitForSeconds(0.25f);
         //flash on
         foreach (GameObject obj in arrowsList)
         {
-            obj.SetActive(true);
+            mat = obj.GetComponent<Renderer>().material;
+            mat.EnableKeyword("_EMISSION");
         }
         //wait
         yield return new WaitForSeconds(0.25f);
         //flash off
         foreach (GameObject obj in arrowsList)
         {
-            obj.SetActive(false);
+            mat = obj.GetComponent<Renderer>().material;
+            mat.DisableKeyword("_EMISSION");
         }
         //wait
         yield return new WaitForSeconds(0.25f);
         //flash on
         foreach (GameObject obj in arrowsList)
         {
-            obj.SetActive(true);
+            mat = obj.GetComponent<Renderer>().material;
+            mat.EnableKeyword("_EMISSION");
         }
         //wait
         yield return new WaitForSeconds(0.25f);
         //turn off
         foreach (GameObject obj in arrowsList)
         {
-            obj.SetActive(false);
+            mat = obj.GetComponent<Renderer>().material;
+            mat.DisableKeyword("_EMISSION");
         }
 
         flashing = false;
@@ -136,7 +161,16 @@ public class ArrowScript : MonoBehaviour
                 //turn on all arrows if correct non-center tile is touched
                 if (started == true && tileList[rand].name == gameObject.name && gameObject.name != "Center")
                 {
-                    arrowsList[rand].SetActive(false);
+                    //have to do this stupid for loop because using arrowsList[rand] as the object doesn't work
+                    foreach (GameObject obj in arrowsList)
+                    {
+                        if (arrowsList[rand].name == obj.name)
+                        {
+                            mat = obj.GetComponent<Renderer>().material;
+                            mat.DisableKeyword("_EMISSION");
+                        }
+                    }
+
                     if (count == 5)
                     {
                         DanceComplete.Invoke();
@@ -151,7 +185,8 @@ public class ArrowScript : MonoBehaviour
                         {
                             foreach (GameObject obj in arrowsList)
                             {
-                                obj.SetActive(true);
+                                mat = obj.GetComponent<Renderer>().material;
+                                mat.EnableKeyword("_EMISSION");
                             }
                             started = false;
                             ChangeBroken();
