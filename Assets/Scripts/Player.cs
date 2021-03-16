@@ -154,12 +154,13 @@ public class Player : MonoBehaviour
         // Check if the oxygen color is red.
         if ( oxygen_color.text == "red" ){
             if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
-            updateOxygen();
+            //If you update oxygen with a 0, the animation will play, otherwise it wont
+            updateOxygen(0);
         }
         else {
             if ( oxygen < 60 ) {
                 oxygen += Time.deltaTime * 2;
-                updateOxygen();
+                updateOxygen(1);
             }
         }
     }
@@ -243,8 +244,10 @@ public class Player : MonoBehaviour
         Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), true);
     }
 
-    public void updateOxygen() {
-        oxygenCue.SetTrigger("OxygenTrigger");
+    public void updateOxygen(int posOrNeg) {
+        if (posOrNeg == 0){
+            oxygenCue.SetTrigger("OxygenTrigger");
+        }
         oxygenBar.value = Mathf.Floor(oxygen);
         //alarmSFX.Play();
         if ( Mathf.Floor(oxygen) == 0 ) 
