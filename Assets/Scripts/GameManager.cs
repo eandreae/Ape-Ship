@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject victoryPanel;
     public GameObject defeatPanel;
     public GameObject pausePanel;
+    public GameObject pauseMenuPanel;
 
     public AudioSource backgroundMusic;
 
@@ -52,5 +53,14 @@ public class GameManager : MonoBehaviour
     void FinallyReturnToMenu()
     {
         SceneManager.LoadScene("MainMenu");
+    }
+    void OnApplicationPause(bool pause)
+    {
+        pauseMenuPanel.GetComponent<PauseMenu>().Pause();
+    }
+
+    private void OnApplicationFocus(bool focus)
+    {
+        pauseMenuPanel.GetComponent<PauseMenu>().Resume();
     }
 }

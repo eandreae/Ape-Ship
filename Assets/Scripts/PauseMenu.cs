@@ -42,7 +42,7 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    void Pause()
+    public void Pause()
     {
         buttonPress.Play();
         backgroundMusic.pitch = 0.75f;
