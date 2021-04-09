@@ -8,22 +8,48 @@ public class Minimap : MonoBehaviour
 
     public bool canActivateMinimap = true;
 
+    //Used in PauseMenu
+    bool minimapOpen = false;
+
+    //If true, player will have to hold down button. If not, then player can toggle on and off.
+    public bool holdDown = true;
+
     // Update is called once per frame
     void Update()
     {
-        //If the player holds down either Q or M, the minimap will pop up so long as they are holding either of those keys down. 
-        //Q is quick to hit, while M is instictive for some players.
-        if (Input.GetKey("m") || Input.GetKey("q"))
+        if (holdDown)
         {
-            //So you can't activate this while paused
-            if (canActivateMinimap)
+            //If the player holds down either M, Q, or Tab, the minimap will pop up so long as they are holding either of those keys down. 
+            //Q and Tab are quick to hit, while M is instictive for some players.
+            if (Input.GetKey("m") || Input.GetKey("q") || Input.GetKey(KeyCode.Tab))
             {
-                minimap.SetActive(true);
+                //So you can't activate this while paused
+                if (canActivateMinimap)
+                {
+                    minimap.SetActive(true);
+                }
+            }
+            else
+            {
+                minimap.SetActive(false);
             }
         }
         else
         {
-            minimap.SetActive(false);
+            //If the player presses M, Q, or Tab, the minimap will pop up, and they will have to hit any of those again to make it close.
+            if (Input.GetKeyDown("m") || Input.GetKeyDown("q") || Input.GetKeyDown(KeyCode.Tab))
+            {
+                if (minimapOpen)
+                {
+                    minimap.SetActive(false);
+                    minimapOpen = false;
+                }
+                else
+                {
+                    minimap.SetActive(true);
+                    minimapOpen = true;
+                }
+            }
         }
     }
 }
