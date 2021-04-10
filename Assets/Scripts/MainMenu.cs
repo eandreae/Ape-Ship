@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     public AudioSource buttonPress;
 
     public GameObject mainMenuPanel;
+    public GameObject playOptionsPanel;
     public GameObject tutorialPanel;
     public GameObject creditsPanel;
     public GameObject settingsPanel;
@@ -25,6 +26,25 @@ public class MainMenu : MonoBehaviour
         Invoke("finallyStart", startDelay);
         //Plays a button press sound effect
         buttonPress.Play();
+    }
+
+    public void HostGame() {
+        // code to set up or join a lobby
+        buttonPress.Play();
+    }
+
+    // Load the play options screen
+    public void ShowPlayOptions() {
+        playOptionsPanel.SetActive(true);
+        buttonPress.Play();
+        mainMenuPanel.SetActive(false);
+    }
+
+    // hide play options
+    public void HidePlayOptions() {
+        playOptionsPanel.SetActive(false);
+        buttonPress.Play();
+        mainMenuPanel.SetActive(true);
     }
 
     void finallyStart()
