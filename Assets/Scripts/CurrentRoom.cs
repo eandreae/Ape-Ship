@@ -14,6 +14,9 @@ public class CurrentRoom : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        currentRoomText.text = roomName;
+        if (other.CompareTag("Player"))
+        {
+            currentRoomText.text = roomName;
+        }
     }
 }
