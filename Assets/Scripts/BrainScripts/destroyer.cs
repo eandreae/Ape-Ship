@@ -42,7 +42,7 @@ public class destroyer : MonoBehaviour
         }
         else if (coll.gameObject.name == "foodDestroyer")
         {
-            if (this.gameObject.name == "KrillSandwich(Clone)" || this.gameObject.name == "SeaFoodKebab(Clone)")
+            if (this.gameObject.name == "KrillSandwich(Clone)" || this.gameObject.name == "SeaFoodKebab(Clone)" || this.gameObject.name == "Banana(Clone)")
             {
                 Destruction();
             }

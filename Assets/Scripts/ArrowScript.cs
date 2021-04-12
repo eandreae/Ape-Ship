@@ -16,6 +16,7 @@ public class ArrowScript : MonoBehaviour
     List<GameObject> tileList = new List<GameObject>();
     public UnityEvent DanceComplete;
     static bool flashing;
+    static bool paused;
     public Text HeartColor;
     Material mat;
 
@@ -89,19 +90,34 @@ public class ArrowScript : MonoBehaviour
 
     private void ChoosePattern()
     {
+        paused = true;
+        StartCoroutine("Pause");
+        //mat = arrowsList[rand].GetComponent<Renderer>().material;
+        //mat.EnableKeyword("_Emission");
+    }
+
+    IEnumerator Pause()
+    {
+        //turn off
+        foreach (GameObject obj in arrowsList)
+        {
+            mat = obj.GetComponent<Renderer>().material;
+            mat.DisableKeyword("_EMISSION");
+        }
+        yield return new WaitForSeconds(0.75f);
+        paused = false;
+
         //randomly choose arrow for player to press
         rand = Random.Range(0, 4);
         //have to do this stupid for loop because using arrowsList[rand] as the object doesn't work
         foreach (GameObject obj in arrowsList)
         {
-            if(arrowsList[rand].name == obj.name)
+            if (arrowsList[rand].name == obj.name)
             {
                 mat = obj.GetComponent<Renderer>().material;
                 mat.EnableKeyword("_EMISSION");
             }
         }
-        //mat = arrowsList[rand].GetComponent<Renderer>().material;
-        //mat.EnableKeyword("_Emission");
     }
 
     IEnumerator Flash ()
@@ -154,7 +170,7 @@ public class ArrowScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-        if (HeartColor.text != "green" && !flashing)
+        if (HeartColor.text != "green" && !flashing && !paused)
         {
             if (coll.gameObject.name == "Player")
             {
