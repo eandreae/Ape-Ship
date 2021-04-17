@@ -15,16 +15,16 @@ public class PauseMenu : MonoBehaviour
 
     public AudioSource backgroundMusic;
 
-    Minimap mm;
+    public Minimap mm;
 
-    Player player;
+    public Player player;
 
     public Animator transitionPanel;
 
     void Start()
     {
-        mm = FindObjectOfType<Minimap>();
-        player = FindObjectOfType<Player>();
+        //mm = FindObjectOfType<Minimap>();
+        //player = FindObjectOfType<Player>();
     }
     // Update is called once per frame
     void Update()
