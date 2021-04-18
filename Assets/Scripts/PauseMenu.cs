@@ -61,7 +61,7 @@ public class PauseMenu : MonoBehaviour
         backgroundMusic.pitch = 1f;
         pauseMenuPanel.SetActive(false);
         gameIsPaused = false;
-        mm.canActivateMinimap = true;
+        //mm.canActivateMinimap = true;
         player.moveSpeed = 14f;
         //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
         Time.timeScale = 1f;
