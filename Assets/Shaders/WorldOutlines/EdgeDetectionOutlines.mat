@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PostProcessOutlines
+  m_Name: EdgeDetectionOutlines
   m_Shader: {fileID: -6465566751694194690, guid: 7e91ad585cbacc042b1e7c180650079d,
     type: 3}
   m_ShaderKeywords: REQUIRE_DEPTH_TEXTURE REQUIRE_OPAQUE_TEXTURE
@@ -50,13 +50,21 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - REQUIRE_DEPTH_TEXTURE: 1
-    - Vector1_30C283A9: 1
-    - Vector1_5B1D9984: 1
+    - Vector1_2552332F: 1
+    - Vector1_30C283A9: 20
+    - Vector1_3E74157A: 1.48
+    - Vector1_5B1D9984: 0.08
+    - Vector1_6EC31F0E: 0.58
     - Vector1_71A1825C: 1
-    - Vector1_BE8ABF2F: 0.0009
-    - Vector1_CA2A1940: 56.57
-    - Vector1_DC40D0A4: 1
-    - Vector1_E7D03FBA: 0.12
+    - Vector1_8E823EE0: 16.5
+    - Vector1_9F337D39: 16.1
+    - Vector1_A3903995: 90.09
+    - Vector1_B8C8EC36: 4
+    - Vector1_BE8ABF2F: 0.0018
+    - Vector1_CA2A1940: 1
+    - Vector1_DB8CBE80: 0.5
+    - Vector1_DC40D0A4: 0.62
+    - Vector1_E7D03FBA: 5.19
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
