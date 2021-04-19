@@ -71,10 +71,11 @@ public class ItemScript : MonoBehaviour
                 Waypoint.WhichWaypoint(3);
                 AlterSpeed(6f);
             }
-            else if(type == "Sandwich" || type == "Kebab"  || type == "Nuke" ){
+            else if(type == "Sandwich" || type == "Kebab"/*  || type == "Nuke" */){
                 transform.localRotation = Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(4);
             }
+            Debug.Log("Arrow should be pointing at " + type);
         }
     }
 
