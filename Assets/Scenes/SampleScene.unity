@@ -108,7 +108,7 @@ NavMeshSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
-    agentSlope: 45
+    agentSlope: 20
     agentClimb: 0.4
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
@@ -1876,7 +1876,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
       propertyPath: m_Name
-      value: monkeyAnimations
+      value: new monkey
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
@@ -3806,6 +3806,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: floorMapV3
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 53805d2ac7ec2134e9b32ece52535665,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 53805d2ac7ec2134e9b32ece52535665, type: 3}
@@ -10970,7 +10975,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 537286573}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -12666,7 +12671,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 652435072}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.35
+  m_Radius: 1
   m_Speed: 20
   m_Acceleration: 8
   avoidancePriority: 50
@@ -12675,9 +12680,9 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 3.5
   m_BaseOffset: 0
-  m_WalkableMask: 4294967295
+  m_WalkableMask: 3
   m_ObstacleAvoidanceType: 4
 --- !u!114 &652435074
 MonoBehaviour:
@@ -12719,6 +12724,7 @@ MonoBehaviour:
   color4: {fileID: 741311113}
   color5: {fileID: 1759386919}
   color6: {fileID: 67938698}
+  target: {fileID: 0}
   visibleTargets: []
 --- !u!54 &652435076
 Rigidbody:
@@ -13745,6 +13751,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2517548005174987721, guid: 851110d54d7e1f7439e94a8b0aae4f29,
+        type: 3}
+      propertyPath: m_Name
+      value: StomachObj
       objectReference: {fileID: 0}
     - target: {fileID: 2818811641708810477, guid: 851110d54d7e1f7439e94a8b0aae4f29,
         type: 3}
@@ -16353,7 +16364,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6643870a4ddf66e4db82188e0cba3ec5,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6643870a4ddf66e4db82188e0cba3ec5,
         type: 3}
@@ -26365,7 +26376,7 @@ GameObject:
   m_TagString: O2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1317383618
 Transform:
@@ -26605,8 +26616,8 @@ Transform:
   - {fileID: 1175497352}
   - {fileID: 1317383618}
   - {fileID: 818175811}
-  - {fileID: 2062883464}
   - {fileID: 709446754}
+  - {fileID: 2062883464}
   - {fileID: 760349883}
   m_Father: {fileID: 0}
   m_RootOrder: 10
@@ -27981,6 +27992,7 @@ MonoBehaviour:
   color4: {fileID: 741311113}
   color5: {fileID: 1759386919}
   color6: {fileID: 67938698}
+  target: {fileID: 0}
   visibleTargets: []
 --- !u!114 &1458676154
 MonoBehaviour:
@@ -28129,7 +28141,7 @@ GameObject:
   m_TagString: Nav
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!23 &1469291367
 MeshRenderer:
@@ -31360,11 +31372,11 @@ GameObject:
   - component: {fileID: 1811882722}
   - component: {fileID: 1811882724}
   m_Layer: 0
-  m_Name: StomachTarget
+  m_Name: Stomach Target
   m_TagString: Stomach
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1811882721
 Transform:
@@ -33553,7 +33565,7 @@ Transform:
   m_LocalScale: {x: 2, y: 5, z: 2}
   m_Children: []
   m_Father: {fileID: 1333071727}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2062883465
 MonoBehaviour:
