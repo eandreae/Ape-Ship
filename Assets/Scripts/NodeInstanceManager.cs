@@ -71,7 +71,9 @@ public class NodeInstanceManager : MonoBehaviour
         //Stop Coroutines if monkey starts fleeing
         if (isFleeing)
         {
-            StopCoroutine("destoryNode");
+            StopCoroutine("destroyNode");
+            //Debug.Log("Monkey stop punching Node");
+            monkeyObj.GetComponent<Animator>().Play("walk");
             agent.isStopped = false;
             agent.speed = 20;
             agent.acceleration = 10;
@@ -148,8 +150,12 @@ public class NodeInstanceManager : MonoBehaviour
 
     IEnumerator destroyNode()
     {
+        //Debug.Log("Monkey punch Node");
+        monkeyObj.GetComponent<Animator>().Play("punch");
         agent.isStopped = true;
         yield return new WaitForSeconds(3f); // time in seconds to wait
+        //Debug.Log("Monkey stop punching Node");
+        monkeyObj.GetComponent<Animator>().Play("walk");
         agent.isStopped = false;
         agent.speed = 20;
         agent.acceleration = 10;
