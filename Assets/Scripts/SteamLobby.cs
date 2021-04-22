@@ -29,7 +29,7 @@ public class SteamLobby : MonoBehaviour
     // Start is called before the first frame update
     public void HostLobby()
     {
-        buttons.SetActive(false);
+        //buttons.SetActive(false);
 
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
     }
@@ -38,7 +38,7 @@ public class SteamLobby : MonoBehaviour
     {
         if(callback.m_eResult != EResult.k_EResultOK)
         {
-            buttons.SetActive(true);
+            //buttons.SetActive(true);
             return;
         }
 
@@ -66,6 +66,6 @@ public class SteamLobby : MonoBehaviour
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
 
-        buttons.SetActive(false);
+        //buttons.SetActive(false);
     }
 }

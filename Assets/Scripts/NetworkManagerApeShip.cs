@@ -6,12 +6,16 @@ using Mirror;
 public class NetworkManagerApeShip : NetworkManager
 {
     public static int playerCount = 0;
-    
+    public override void OnServerConnect(NetworkConnection conn)
+    {
+        base.OnServerConnect(conn);
+        playerCount++;
+    }
+
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
         NetworkServer.AddPlayerForConnection(conn, player);
-        playerCount++;
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
