@@ -1129,8 +1129,7 @@ MonoBehaviour:
 
     heart reactor do not function in
 
-    repairing
-    it, they are a prototype.'
+    repairing it, they are a prototype.'
 --- !u!222 &141061419
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2531,8 +2530,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Every other node only needs to be touched
 
-    by the player to repair
-    them.'
+    by the player to repair them.'
 --- !u!222 &536193758
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4128,8 +4126,7 @@ MonoBehaviour:
 
     behaviors are not yet
 
-    impemented
-    in this version'
+    impemented in this version'
 --- !u!222 &843879289
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4215,8 +4212,7 @@ MonoBehaviour:
 
     Sooyoung Kim
 
-    Sarah
-    Liang
+    Sarah Liang
 
 '
 --- !u!222 &880053499
@@ -5986,7 +5982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07e2b0b6d78b064690aa1e4f2d9d059, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttons: {fileID: 0}
+  buttons: {fileID: 883802885}
 --- !u!114 &1354118333
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6024,11 +6020,11 @@ MonoBehaviour:
   serverTickRate: 30
   serverBatching: 1
   serverBatchInterval: 0
-  offlineScene: 
+  offlineScene: Assets/Scenes/MainMenu.unity
   onlineScene: 
   transport: {fileID: 1354118333}
   networkAddress: localhost
-  maxConnections: 100
+  maxConnections: 4
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
@@ -8867,8 +8863,7 @@ MonoBehaviour:
     survival game.
 
 
-    players work
-    together to survive'
+    players work together to survive'
 --- !u!222 &2002786686
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9053,8 +9048,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1354118332}
+        m_MethodName: HostLobby
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1299843946}
-        m_MethodName: HostGame
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
