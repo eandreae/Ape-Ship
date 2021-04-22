@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6111,11 +6111,12 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 8380169685843220090, guid: 279c96948e1a7e547b608d5ca56d9d3a,
+  playerPrefab: {fileID: 838652995426664350, guid: 279c96948e1a7e547b608d5ca56d9d3a,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 4689308415334182592, guid: 5f101152fdcf6dd41997032b210d6944, type: 3}
 --- !u!4 &1354118335
 Transform:
   m_ObjectHideFlags: 0
