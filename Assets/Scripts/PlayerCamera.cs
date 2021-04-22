@@ -13,6 +13,7 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        //transform.rotation = Quaternion.Euler(52.22f,0f,0f);
         Vector3 desiredPosition = target.transform.position + offset;
         transform.position = desiredPosition;
     }
