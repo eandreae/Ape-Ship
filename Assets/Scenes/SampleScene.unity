@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1393,7 +1393,7 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
-  type: Canister
+  type: Canister2
   glowEffect: {fileID: 0}
   playerScript: {fileID: 214678572}
   wp: {fileID: 0}
@@ -3609,7 +3609,7 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
-  type: Canister
+  type: Canister1
   glowEffect: {fileID: 0}
   playerScript: {fileID: 214678572}
   wp: {fileID: 0}
@@ -14613,6 +14613,7 @@ Transform:
   - {fileID: 716777465}
   - {fileID: 295524231}
   - {fileID: 1915586069}
+  - {fileID: 1444354088}
   m_Father: {fileID: 1333071727}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14919,7 +14920,6 @@ Transform:
   - {fileID: 1761323656}
   - {fileID: 1711708621}
   - {fileID: 1595131961}
-  - {fileID: 1444354088}
   m_Father: {fileID: 1333071727}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -27814,12 +27814,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1444354087}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13, y: -0.25, z: 12}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 21.05, y: -0.62, z: 6.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 804327266}
-  m_RootOrder: 7
+  m_Father: {fileID: 760349883}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1444354089
 MeshRenderer:

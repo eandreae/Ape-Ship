@@ -75,7 +75,7 @@ public class ItemScript : MonoBehaviour
                 transform.localRotation = Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(4);
             }
-            Debug.Log("Arrow should be pointing at " + type);
+            //Debug.Log("Arrow should be pointing at " + type);
         }
     }
 

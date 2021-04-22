@@ -59,7 +59,7 @@ public class foodSpawner : MonoBehaviour
                 GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                 temp.GetComponent<Rigidbody>().useGravity = true;
                 canSpawn = false;
-                StartCoroutine("SpawnTimer", 5.0f); // add 5 second cd to using vending machine
+                StartCoroutine("SpawnTimer", 2.0f); // add 2 second cd to using vending machine
             }
         }
     }
