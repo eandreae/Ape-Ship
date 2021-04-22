@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1129,7 +1129,8 @@ MonoBehaviour:
 
     heart reactor do not function in
 
-    repairing it, they are a prototype.'
+    repairing
+    it, they are a prototype.'
 --- !u!222 &141061419
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2530,7 +2531,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Every other node only needs to be touched
 
-    by the player to repair them.'
+    by the player to repair
+    them.'
 --- !u!222 &536193758
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4126,7 +4128,8 @@ MonoBehaviour:
 
     behaviors are not yet
 
-    impemented in this version'
+    impemented
+    in this version'
 --- !u!222 &843879289
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4212,7 +4215,8 @@ MonoBehaviour:
 
     Sooyoung Kim
 
-    Sarah Liang
+    Sarah
+    Liang
 
 '
 --- !u!222 &880053499
@@ -6010,7 +6014,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1354118331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: a13ba4af5cd681b47b9e8ee1f79c1093, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
@@ -6020,7 +6024,7 @@ MonoBehaviour:
   serverTickRate: 30
   serverBatching: 1
   serverBatchInterval: 0
-  offlineScene: Assets/Scenes/MainMenu.unity
+  offlineScene: 
   onlineScene: 
   transport: {fileID: 1354118333}
   networkAddress: localhost
@@ -6028,7 +6032,8 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 8380169685843220090, guid: 279c96948e1a7e547b608d5ca56d9d3a,
+    type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
@@ -8863,7 +8868,8 @@ MonoBehaviour:
     survival game.
 
 
-    players work together to survive'
+    players work
+    together to survive'
 --- !u!222 &2002786686
 CanvasRenderer:
   m_ObjectHideFlags: 0

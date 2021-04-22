@@ -5,21 +5,28 @@ using Mirror;
 
 public class NetworkManagerApeShip : NetworkManager
 {
-
+    public static int playerCount = 0;
+    
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
-        base.OnServerAddPlayer(conn);
+        GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
+        NetworkServer.AddPlayerForConnection(conn, player);
+        playerCount++;
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public override void OnServerDisconnect(NetworkConnection conn)
     {
-        
+        base.OnServerDisconnect(conn);
+        playerCount--;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Start()
     {
-        
+        base.Start();
+    }
+
+    public void Update()
+    {
+        base.LateUpdate();
     }
 }
