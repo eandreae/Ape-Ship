@@ -14,7 +14,7 @@ public class Waypoint : MonoBehaviour
         waypoints[2] = GameObject.Find("Oxy1Waypoint").transform;
         waypoints[3] = GameObject.Find("Oxy2Waypoint").transform;
         waypoints[4] = GameObject.Find("KrillWaypoint").transform;
-        Debug.Log(waypoints);
+        //Debug.Log(waypoints);
     }
 
     public static void WhichWaypoint(int wp)
