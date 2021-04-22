@@ -15,7 +15,7 @@ public class NetworkManagerApeShip : NetworkManager
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
-        GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "PlayerCamera"));
+        //GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "PlayerCamera"));
         NetworkServer.AddPlayerForConnection(conn, player);
         //NetworkServer.Spawn(cam);
     }
