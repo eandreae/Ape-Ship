@@ -86,7 +86,7 @@ public class GorillaMovement : MonoBehaviour
                 Debug.Log("Gorilla has locked on Player");
                 playerLock = true;
                 stoppingDistance = 0; // make stopping distance 0 if tracking the player
-                target = visibleTargets[0];
+                target = visibleTargets[0].gameObject;
             }
         }
 
