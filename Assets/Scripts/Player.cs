@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class Player : NetworkBehaviour
+public class Player : MonoBehaviour
 {
 	public float moveSpeed = 14f;
     float defaultSpeed;
@@ -68,7 +68,7 @@ public class Player : NetworkBehaviour
         //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
         //Debug.Log("islocalplayer "+isLocalPlayer);
         Debug.Log("playercount   " +NetworkManagerApeShip.playerCount+"\n");
-        if (NetworkManagerApeShip.playerCount < 2 || isLocalPlayer)
+        if (NetworkManagerApeShip.playerCount < 2 || true)
         {
                 // creating normalizing direction so that movement isnt faster on diagonals
                 this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
