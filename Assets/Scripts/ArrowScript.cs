@@ -7,6 +7,8 @@ using UnityEngine.Events;
 
 public class ArrowScript : MonoBehaviour
 {
+    private Animator animator;
+    GameObject heartObj;
     GameObject temp;
     static bool started = false;
     static int rand;
@@ -36,6 +38,11 @@ public class ArrowScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        heartObj = GameObject.Find("Heart_Reactor_3");
+        animator = heartObj.GetComponent<Animator>();
+        animator.SetInteger("Color", 5);
+
+
         count = 0;
         //broken = false;
         foreach(string name in arrowNames)
@@ -76,6 +83,7 @@ public class ArrowScript : MonoBehaviour
             //broken = false;
         } else
         {
+            animator.SetInteger("Color", 0);
             foreach (GameObject obj in arrowsList)
             {
                 mat = obj.GetComponent<Renderer>().material;
@@ -85,6 +93,30 @@ public class ArrowScript : MonoBehaviour
             count = 0;
             started = true;
             ChoosePattern();
+        }
+    }
+
+    private void AnimateHeart(string name)
+    {
+        if (name == "Arrow_Left")
+        {
+            animator.Play("Base Layer.Heart_left");
+            //animator.SetInteger("Color", 1);
+        }
+        else if (name == "Arrow_Right")
+        {
+            animator.Play("Base Layer.Heart_Right");
+            //animator.SetInteger("Color", 2);
+        }
+        else if (name == "Arrow_Up")
+        {
+            animator.Play("Base Layer.Heart_Up");
+            //animator.SetInteger("Color", 3);
+        }
+        else if (name == "Arrow_Down")
+        {
+            animator.Play("Base Layer.Heart_Down");
+            //animator.SetInteger("Color", 4);
         }
     }
 
@@ -184,10 +216,12 @@ public class ArrowScript : MonoBehaviour
                         {
                             mat = obj.GetComponent<Renderer>().material;
                             mat.DisableKeyword("_EMISSION");
+
+                            AnimateHeart(obj.name);
                         }
                     }
 
-                    if (count == 5)
+                    if (count == 3)
                     {
                         DanceComplete.Invoke();
                         count = 0;
@@ -199,6 +233,7 @@ public class ArrowScript : MonoBehaviour
                         //if fully fixed, change to not broken and reset to all arrows to on
                         } else
                         {
+                            animator.SetInteger("Color", 5);
                             foreach (GameObject obj in arrowsList)
                             {
                                 mat = obj.GetComponent<Renderer>().material;

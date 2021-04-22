@@ -1801,7 +1801,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -79.4
+      value: -96.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
@@ -1811,7 +1811,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 47.9
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
@@ -2827,7 +2827,7 @@ MonoBehaviour:
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 852433014}
+      - m_Target: {fileID: 712915766}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -14748,7 +14748,7 @@ MonoBehaviour:
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 852433014}
+      - m_Target: {fileID: 712915766}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -16725,6 +16725,25 @@ MonoBehaviour:
   display: {fileID: 1812103381}
   stopDistance: 8
   canHack: 1
+--- !u!95 &896022313
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 896022311}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3e969934fc1024e19be36d9487705e56, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &897017735
 GameObject:
   m_ObjectHideFlags: 0
@@ -17308,7 +17327,7 @@ MonoBehaviour:
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 852433014}
+      - m_Target: {fileID: 712915766}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -27726,7 +27745,7 @@ MonoBehaviour:
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 852433014}
+      - m_Target: {fileID: 712915766}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -35011,7 +35030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147966083074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 38.53, y: 0.16, z: 3.313}
+  m_LocalPosition: {x: 39.4, y: 0.16, z: -0.6}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 3572240475107257093}
