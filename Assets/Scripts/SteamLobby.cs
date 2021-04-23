@@ -15,6 +15,7 @@ public class SteamLobby : MonoBehaviour
     protected Callback<LobbyEnter_t> lobbyEntered;
 
     private const string HostAddressKey = "HostAddress";
+    private CSteamID lobbyID;
 
     private NetworkManager networkManager;
 
@@ -46,6 +47,12 @@ public class SteamLobby : MonoBehaviour
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeInvisible, 1);
     }
 
+    public void openInviteOverlay()
+    {
+        SteamFriends.ActivateGameOverlayInviteDialog(lobbyID);
+    }
+
+
     private void OnLobbyCreated(LobbyCreated_t callback)
     {
         if(callback.m_eResult != EResult.k_EResultOK)
@@ -55,7 +62,7 @@ public class SteamLobby : MonoBehaviour
         }
 
         networkManager.StartHost();
-
+        lobbyID = new CSteamID(callback.m_ulSteamIDLobby);
         SteamMatchmaking.SetLobbyData(
             new CSteamID(callback.m_ulSteamIDLobby),
             HostAddressKey,
@@ -83,8 +90,5 @@ public class SteamLobby : MonoBehaviour
         //buttons.SetActive(false);
     }
 
-   private void openInviteOverlay(CSteamID lobbyID)
-   {
-        SteamFriends.ActivateGameOverlayInviteDialog(lobbyID);
-   }
+   
 }
