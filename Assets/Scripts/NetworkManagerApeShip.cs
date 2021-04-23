@@ -41,6 +41,7 @@ public class NetworkManagerApeShip : NetworkManager
         connectionCount++;
     }
 
+
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         base.OnServerDisconnect(conn);
@@ -57,13 +58,15 @@ public class NetworkManagerApeShip : NetworkManager
     public override void OnServerSceneChanged(string sceneName)
     {
         base.OnServerSceneChanged(sceneName);
-        Debug.Log("PLEASE");
         connectpls();
     }
 
     public void connectpls()
     {
         //this would be very messed up for players disconnecting while in lobby
+
+        //weird stuff is happening
+
         int itr = 0;
         while (connections[itr] != null && itr < networkManager.maxConnections)
         {
