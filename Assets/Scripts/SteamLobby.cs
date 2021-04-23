@@ -27,18 +27,28 @@ public class SteamLobby : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public void HostLobby()
+    public void HostLobby(int lobbysize)
     {
-        //buttons.SetActive(false);
+        buttons.SetActive(false);
 
-        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
+        if (lobbysize == 0)
+            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
+        else
+            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, lobbysize);
+    }
+
+    public void StartSinglePlayer()
+    {
+        buttons.SetActive(false);
+
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeInvisible, 1);
     }
 
     private void OnLobbyCreated(LobbyCreated_t callback)
     {
         if(callback.m_eResult != EResult.k_EResultOK)
         {
-            //buttons.SetActive(true);
+            buttons.SetActive(true);
             return;
         }
 
@@ -66,6 +76,6 @@ public class SteamLobby : MonoBehaviour
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
 
-        //buttons.SetActive(false);
+        buttons.SetActive(false);
     }
 }

@@ -1844,18 +1844,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 220060826}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1299843946}
-        m_MethodName: HostGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &333545058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3041,6 +3030,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1354118332}
+        m_MethodName: StartSinglePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1299843946}
         m_MethodName: StartGame
         m_Mode: 1
@@ -6107,7 +6107,7 @@ MonoBehaviour:
   onlineScene: Assets/Scenes/SampleScene.unity
   transport: {fileID: 1354118333}
   networkAddress: localhost
-  maxConnections: 4
+  maxConnections: 100
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
@@ -9266,11 +9266,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1354118332}
         m_MethodName: HostLobby
-        m_Mode: 1
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

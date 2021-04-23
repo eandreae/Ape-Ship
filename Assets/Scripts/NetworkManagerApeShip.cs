@@ -6,8 +6,16 @@ using Mirror;
 public class NetworkManagerApeShip : NetworkManager
 {
     public static int playerCount = 0;
+    private NetworkManager networkManager;
+
+    public override void OnStartServer()
+    {
+        networkManager = GetComponent<NetworkManager>();
+        base.OnStartServer();
+    }
     public override void OnServerConnect(NetworkConnection conn)
     {
+        networkManager = GetComponent<NetworkManager>();
         base.OnServerConnect(conn);
         playerCount++;
     }
@@ -26,13 +34,8 @@ public class NetworkManagerApeShip : NetworkManager
         playerCount--;
     }
 
-    public void Start()
+    public void SetMaxConnections(int count)
     {
-        base.Start();
-    }
-
-    public void Update()
-    {
-        base.LateUpdate();
+        networkManager.maxConnections = count;
     }
 }
