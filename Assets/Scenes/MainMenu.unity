@@ -1285,8 +1285,7 @@ MonoBehaviour:
 
     heart reactor do not function in
 
-    repairing
-    it, they are a prototype.'
+    repairing it, they are a prototype.'
 --- !u!222 &141061419
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1531,9 +1530,7 @@ RectTransform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 2044612847}
-  - {fileID: 333545056}
+  m_Children: [{fileID: 2044612847}, {fileID: 333545056}]
   m_Father: {fileID: 883802886}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2080,29 +2077,14 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 220060826}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1354118332}
-        m_MethodName: HostLobby
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1299843946}
-        m_MethodName: ShowMultiPlayOptions
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 1354118332}, m_MethodName: HostLobby, m_Mode: 3,
+          m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 4, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}, {m_Target: {fileID: 1299843946},
+          m_MethodName: ShowMultiPlayOptions, m_Mode: 1, m_Arguments: {m_ObjectArgument: {
+              fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object, UnityEngine',
+            m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '', m_BoolArgument: 0},
+          m_CallState: 2}]
 --- !u!114 &333545058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3010,8 +2992,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'Every other node only needs to be touched
 
-    by the player to repair
-    them.'
+    by the player to repair them.'
 --- !u!222 &536193758
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4698,8 +4679,7 @@ MonoBehaviour:
 
     behaviors are not yet
 
-    impemented
-    in this version'
+    impemented in this version'
 --- !u!222 &843879289
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4785,8 +4765,7 @@ MonoBehaviour:
 
     Sooyoung Kim
 
-    Sarah
-    Liang
+    Sarah Liang
 
 '
 --- !u!222 &880053499
@@ -7245,6 +7224,7 @@ MonoBehaviour:
   playerSpawnMethod: 0
   spawnPrefabs:
   - {fileID: 4689308415334182592, guid: 5f101152fdcf6dd41997032b210d6944, type: 3}
+  - {fileID: 3718203543622305060, guid: 3c8b26b5c49d85b419e693143715cf22, type: 3}
 --- !u!4 &1354118335
 Transform:
   m_ObjectHideFlags: 0
@@ -10813,8 +10793,7 @@ MonoBehaviour:
     survival game.
 
 
-    players work
-    together to survive'
+    players work together to survive'
 --- !u!222 &2002786686
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -14,6 +14,7 @@ using Mirror;
 public class Player : NetworkBehaviour
 {
 	public float moveSpeed = 14f;
+    public int playerNum = -1; 
     float defaultSpeed;
     public int points;
     public float health;
@@ -66,8 +67,9 @@ public class Player : NetworkBehaviour
         //if so will go horizontal if left or right
         //will go vertical if up or down
         //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
-        //Debug.Log("islocalplayer "+isLocalPlayer);
+        Debug.Log("islocalplayer "+isLocalPlayer);
         Debug.Log("playercount   " +NetworkManagerApeShip.playerCount+"\n");
+
         if (isLocalPlayer)
         {
             // creating normalizing direction so that movement isnt faster on diagonals

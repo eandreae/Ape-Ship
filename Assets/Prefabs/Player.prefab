@@ -185,19 +185,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d23b6580d3e5346b1b3beeea103c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   moveSpeed: 14
+  playerNum: -1
   points: 0
   health: 0
   oxygen: 0
-  health_text: {fileID: 0}
-  oxygen_text: {fileID: 0}
-  oxygen_color: {fileID: 0}
+  health_text: {fileID: 3081514147584131310}
+  oxygen_text: {fileID: 3081514145930411862}
+  oxygen_color: {fileID: 3081514146768375719}
   holding: 0
-  oxygenCue: {fileID: 0}
-  damageCue: {fileID: 0}
+  oxygenCue: {fileID: 3081514146840586008}
+  damageCue: {fileID: 3081514146996867697}
   gm: {fileID: 0}
   healthBar: {fileID: 0}
-  oxygenBar: {fileID: 0}
+  oxygenBar: {fileID: 3081514146497720965}
   alarmSFX: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
   walkingSFX: {fileID: 0}
