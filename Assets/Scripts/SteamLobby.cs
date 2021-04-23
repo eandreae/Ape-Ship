@@ -83,8 +83,8 @@ public class SteamLobby : MonoBehaviour
         //buttons.SetActive(false);
     }
 
- //  private void InviteFriend()
- //  {
- //      SteamFriends.InviteUserToGame()
- //  }
+   private void openInviteOverlay(CSteamID lobbyID)
+   {
+        SteamFriends.ActivateGameOverlayInviteDialog(lobbyID);
+   }
 }
