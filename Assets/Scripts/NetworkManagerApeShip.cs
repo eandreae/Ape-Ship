@@ -5,42 +5,82 @@ using Mirror;
 
 public class NetworkManagerApeShip : NetworkManager
 {
-    public static int playerCount = 0;
+
     private NetworkManager networkManager;
+
+    public GameObject poptionscanvas = null;
+    public GameObject mplobbycanvas = null;
+
+    private int maxconnections;
+    private NetworkConnection[] connections;
+    private int connectionCount = 0;
+    
 
     public override void OnStartServer()
     {
         networkManager = GetComponent<NetworkManager>();
+        maxconnections = networkManager.maxConnections;
+        connections = new NetworkConnection[maxconnections];
+
+        
         base.OnStartServer();
     }
+
     public override void OnServerConnect(NetworkConnection conn)
     {
         networkManager = GetComponent<NetworkManager>();
         base.OnServerConnect(conn);
-        playerCount++;
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
-        //Debug.Log("numplayers init:" + numPlayers);
+        poptionscanvas.SetActive(false);
+        mplobbycanvas.SetActive(true);
 
-        GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
-        player.GetComponent<Player>().playerNum = numPlayers + 1;
-        //Debug.Log("before adding connect:" + numPlayers);
-        NetworkServer.AddPlayerForConnection(conn, player);
-        //Debug.Log("after spawn:" + numPlayers);
-        
-        //NetworkServer.Spawn(cam);
+        connections[connectionCount] = conn;
+        connectionCount++;
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         base.OnServerDisconnect(conn);
-        playerCount--;
+        
     }
 
-    public void SetMaxConnections(int count)
+    public override void OnClientDisconnect(NetworkConnection conn)
     {
-        networkManager.maxConnections = count;
+        base.OnClientDisconnect(conn);
+        poptionscanvas.SetActive(true);
+        mplobbycanvas.SetActive(false);
     }
+
+    public override void OnServerSceneChanged(string sceneName)
+    {
+        base.OnServerSceneChanged(sceneName);
+        Debug.Log("PLEASE");
+        connectpls();
+    }
+
+    public void connectpls()
+    {
+        //this would be very messed up for players disconnecting while in lobby
+        int itr = 0;
+        while (connections[itr] != null && itr < networkManager.maxConnections)
+        {
+            //Debug.Log("numplayers init:" + numPlayers);
+            GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
+            player.GetComponent<Player>().playerNum = numPlayers + 1;
+            //Debug.Log("before adding connect:" + numPlayers);
+            NetworkServer.AddPlayerForConnection(connections[itr], player);
+            //Debug.Log("after spawn:" + numPlayers);
+            GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "TestCamera"));
+            cam.GetComponent<PlayerCamera>().playerNum = numPlayers;
+
+            NetworkServer.Spawn(cam);
+            itr++;
+        }
+
+    }
+
+    
 }

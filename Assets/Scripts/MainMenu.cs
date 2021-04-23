@@ -64,7 +64,7 @@ public class MainMenu : MonoBehaviour
 
     void finallyStart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("game");
     }
 
     public void Settings()

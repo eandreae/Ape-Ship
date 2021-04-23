@@ -40,6 +40,11 @@ public class SteamLobby : MonoBehaviour
             SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, lobbysize);
     }
 
+    public void StopLobby()
+    {
+        SteamMatchmaking.DeleteLobbyData(lobbyID, HostAddressKey);
+    }
+
     public void StartSinglePlayer()
     {
         //buttons.SetActive(false);
