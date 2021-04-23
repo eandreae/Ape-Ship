@@ -45,6 +45,7 @@ public class Player : NetworkBehaviour
     public AudioClip[] walkingSamples;
     private Collider gorillaCollider;
     public GameObject wpArrow;
+    public GameObject CameraObj;
 
     // Start is called before the first frame update
     void Start()
@@ -60,6 +61,9 @@ public class Player : NetworkBehaviour
         nm = FindObjectOfType<NetworkManager>();
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
+
+        GameObject cam = Instantiate(CameraObj);
+        cam.GetComponent<PlayerCamera>().playerNum = this.playerNum;
     }
 
     // Update is called once per frame
