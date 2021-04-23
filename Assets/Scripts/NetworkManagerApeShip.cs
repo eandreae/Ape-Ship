@@ -29,10 +29,8 @@ public class NetworkManagerApeShip : NetworkManager
         //Debug.Log("before adding connect:" + numPlayers);
         NetworkServer.AddPlayerForConnection(conn, player);
         //Debug.Log("after spawn:" + numPlayers);
-        GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "TestCamera"));
-        cam.GetComponent<PlayerCamera>().playerNum = numPlayers;
         
-        NetworkServer.Spawn(cam);
+        //NetworkServer.Spawn(cam);
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
