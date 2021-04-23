@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Steamworks;
 using Mirror;
 
 public class SteamLobby : MonoBehaviour
 {
     [SerializeField] private GameObject buttons = null;
+    [SerializeField] private Text displayid = null;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> gameLobbyJoinRequested;
@@ -29,7 +31,7 @@ public class SteamLobby : MonoBehaviour
     // Start is called before the first frame update
     public void HostLobby(int lobbysize)
     {
-        buttons.SetActive(false);
+        //buttons.SetActive(false);
 
         if (lobbysize == 0)
             SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
@@ -39,7 +41,7 @@ public class SteamLobby : MonoBehaviour
 
     public void StartSinglePlayer()
     {
-        buttons.SetActive(false);
+        //buttons.SetActive(false);
 
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeInvisible, 1);
     }
@@ -48,7 +50,7 @@ public class SteamLobby : MonoBehaviour
     {
         if(callback.m_eResult != EResult.k_EResultOK)
         {
-            buttons.SetActive(true);
+            //buttons.SetActive(true);
             return;
         }
 
@@ -58,6 +60,8 @@ public class SteamLobby : MonoBehaviour
             new CSteamID(callback.m_ulSteamIDLobby),
             HostAddressKey,
             SteamUser.GetSteamID().ToString());
+
+        displayid.text = callback.m_ulSteamIDLobby.ToString();
     }
 
     private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)
@@ -76,6 +80,11 @@ public class SteamLobby : MonoBehaviour
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
 
-        buttons.SetActive(false);
+        //buttons.SetActive(false);
     }
+
+ //  private void InviteFriend()
+ //  {
+ //      SteamFriends.InviteUserToGame()
+ //  }
 }
