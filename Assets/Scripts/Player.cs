@@ -45,7 +45,7 @@ public class Player : NetworkBehaviour
     public AudioClip[] walkingSamples;
     private Collider gorillaCollider;
     public GameObject wpArrow;
-    public GameObject CameraObj;
+    //public GameObject CameraObj;
 
     // Start is called before the first frame update
     void Start()
@@ -59,11 +59,11 @@ public class Player : NetworkBehaviour
         holding = false;
         gm = FindObjectOfType<GameManager>();
         nm = FindObjectOfType<NetworkManager>();
+        Debug.Log("nm.numPlayers:" + nm.numPlayers);
+        playerNum = nm.numPlayers;
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
-
-        GameObject cam = Instantiate(CameraObj);
-        cam.GetComponent<PlayerCamera>().playerNum = this.playerNum;
+        //Debug.Log(nm.numPlayers);
     }
 
     // Update is called once per frame
@@ -75,7 +75,6 @@ public class Player : NetworkBehaviour
         //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
         //Debug.Log("islocalplayer "+isLocalPlayer);
         //Debug.Log("playercount   " +NetworkManagerApeShip.playerCount+"\n");
-        //Debug.Log(nm.numPlayers);
 
         if (isLocalPlayer)
         {
