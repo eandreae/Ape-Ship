@@ -22,13 +22,16 @@ public class NetworkManagerApeShip : NetworkManager
 
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
-        Debug.Log(numPlayers);
+        //Debug.Log("numplayers init:" + numPlayers);
 
         GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
-        player.GetComponent<Player>().playerNum = numPlayers;
+        player.GetComponent<Player>().playerNum = numPlayers + 1;
+        //Debug.Log("before adding connect:" + numPlayers);
+        NetworkServer.AddPlayerForConnection(conn, player);
+        //Debug.Log("after spawn:" + numPlayers);
         GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "TestCamera"));
         cam.GetComponent<PlayerCamera>().playerNum = numPlayers;
-        NetworkServer.AddPlayerForConnection(conn, player);
+        
         NetworkServer.Spawn(cam);
     }
 

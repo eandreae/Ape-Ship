@@ -15,8 +15,8 @@ public class PlayerCamera : MonoBehaviour
         GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
         
         foreach (GameObject p in playerList){
-            //Debug.Log("player's num: " + p.GetComponent<Player>().playerNum);
-            //Debug.Log("cam's num: " + this.playerNum);
+            Debug.Log("player's num: " + p.GetComponent<Player>().playerNum);
+            Debug.Log("cam's num: " + this.playerNum);
 
             if (p.GetComponent<Player>().playerNum == this.playerNum){
                 target = p;

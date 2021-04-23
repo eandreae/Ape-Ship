@@ -34,6 +34,7 @@ public class Player : NetworkBehaviour
     // public Camera camera;
 
     public GameManager gm;
+    public NetworkManager nm;
 
     public Slider healthBar;
     public Slider oxygenBar;
@@ -56,6 +57,7 @@ public class Player : NetworkBehaviour
         invulnerable = false;
         holding = false;
         gm = FindObjectOfType<GameManager>();
+        nm = FindObjectOfType<NetworkManager>();
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
     }
@@ -67,8 +69,9 @@ public class Player : NetworkBehaviour
         //if so will go horizontal if left or right
         //will go vertical if up or down
         //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
-        Debug.Log("islocalplayer "+isLocalPlayer);
-        Debug.Log("playercount   " +NetworkManagerApeShip.playerCount+"\n");
+        //Debug.Log("islocalplayer "+isLocalPlayer);
+        //Debug.Log("playercount   " +NetworkManagerApeShip.playerCount+"\n");
+        //Debug.Log(nm.numPlayers);
 
         if (isLocalPlayer)
         {
