@@ -1801,7 +1801,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -96.5
+      value: -77.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
@@ -1811,7 +1811,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.8
+      value: -74.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
@@ -14308,17 +14308,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 40241bf89041abf45a504fa2038caef2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -76.66
+      value: -70.51
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40241bf89041abf45a504fa2038caef2,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.7
+      value: 8.55
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40241bf89041abf45a504fa2038caef2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -75.5
+      value: -51.78
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 40241bf89041abf45a504fa2038caef2,
         type: 3}
@@ -14364,6 +14364,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StarNode
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 40241bf89041abf45a504fa2038caef2,
+        type: 3}
+      propertyPath: m_TagString
+      value: ElecControl
       objectReference: {fileID: 0}
     - target: {fileID: 4477023822318299689, guid: 40241bf89041abf45a504fa2038caef2,
         type: 3}
@@ -14883,6 +14888,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainColor: {fileID: 1279260005}
+--- !u!1 &765885864 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 40241bf89041abf45a504fa2038caef2,
+    type: 3}
+  m_PrefabInstance: {fileID: 711938518}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &765885865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765885864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myObject: {fileID: 2062883467}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  colorTracker: {fileID: 1471871104}
+  display: {fileID: 2082339951}
+  stopDistance: 12
+  canHack: 1
 --- !u!1 &773069895
 GameObject:
   m_ObjectHideFlags: 0
@@ -35184,11 +35219,11 @@ GameObject:
   - component: {fileID: 2062883465}
   m_Layer: 0
   m_Name: Electrical Controller
-  m_TagString: ElecControl
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 8
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2062883464
 Transform:
   m_ObjectHideFlags: 0
@@ -35197,7 +35232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2062883463}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -73.2, y: 3.6, z: -63.71}
+  m_LocalPosition: {x: -70.2, y: 3.6, z: -67.75}
   m_LocalScale: {x: 2, y: 5, z: 2}
   m_Children: []
   m_Father: {fileID: 1333071727}
