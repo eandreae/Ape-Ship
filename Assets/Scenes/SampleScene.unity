@@ -1409,7 +1409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f620de0059da548be959bbdbcf72ab10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 5
+  lifetime: 1000
   nodeColor: {fileID: 67938698}
   OnNeuronDeposit:
     m_PersistentCalls:
@@ -1801,7 +1801,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -25.6
+      value: -91.29
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
@@ -1811,7 +1811,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -27.25
+      value: -47.09
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 1f22c0be3a4b5114b991d1dbd053b005,
         type: 3}
@@ -14918,6 +14918,38 @@ MonoBehaviour:
   display: {fileID: 2082339951}
   stopDistance: 12
   canHack: 1
+--- !u!95 &765885866
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765885864}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fdfa238feca192f42ac07096a8e4ce8b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &765885868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 765885864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6faccaf30f90148b4abc44b5dc4554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  starColor: {fileID: 1471871104}
 --- !u!1 &773069895
 GameObject:
   m_ObjectHideFlags: 0
@@ -35622,7 +35654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f620de0059da548be959bbdbcf72ab10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifetime: 20
+  lifetime: 1000
   nodeColor: {fileID: 1626664258}
   OnNeuronDeposit:
     m_PersistentCalls:
