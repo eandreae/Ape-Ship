@@ -12360,7 +12360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5882353}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_RaycastTarget: 0
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -15345,7 +15345,8 @@ AudioSource:
   m_GameObject: {fileID: 807635376}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 3354b686a81ceaa49bc8b8eedfbb6e11, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.1

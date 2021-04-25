@@ -15,7 +15,7 @@ public class PauseMenu : MonoBehaviour
 
     public AudioSource backgroundMusic;
 
-    public Minimap mm;
+    //public Minimap mm;
 
     public Player player;
 
@@ -48,7 +48,7 @@ public class PauseMenu : MonoBehaviour
         backgroundMusic.pitch = 0.75f;
         pauseMenuPanel.SetActive(true);
         gameIsPaused = true;
-        mm.canActivateMinimap = false;
+        //mm.canActivateMinimap = false;
         player.moveSpeed = 0f;
         //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
         Time.timeScale = 0f;
