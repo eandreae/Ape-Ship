@@ -91,6 +91,7 @@ public class lungSpawner : MonoBehaviour
                 //currColor = nodeColor.text;
                 GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                 temp.GetComponent<Rigidbody>().useGravity = true;
+                //temp.GetComponent<destroyer>().enabled = true;
             }
         }
 
