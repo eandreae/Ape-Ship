@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     bool gameIsPaused = false;
 
     public GameObject pauseMenuPanel;
+    public GameObject settingsPanel;
 
     //public Animator outroAnim;
 
@@ -65,6 +66,13 @@ public class PauseMenu : MonoBehaviour
         player.moveSpeed = 14f;
         //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
         Time.timeScale = 1f;
+    }
+
+    public void OpenSettings()
+    {
+        buttonPress.Play();
+        pauseMenuPanel.SetActive(false);
+        settingsPanel.SetActive(true);
     }
 
     public void GoBackToMenu()
