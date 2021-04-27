@@ -20,15 +20,15 @@ public class destroyer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
+        
         if (lifetime > 0)
         {
             lifetime -= Time.deltaTime;
             if (lifetime <= 0)
             {
-                Destruction();
+                Destroy(this.gameObject);
             }
-        }*/
+        }
     }
     //if object enters destroy area
     private void OnTriggerEnter(Collider coll)

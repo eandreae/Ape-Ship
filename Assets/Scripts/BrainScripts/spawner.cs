@@ -73,5 +73,6 @@ public class spawner : MonoBehaviour
         spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f,8.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 5.0f));
         GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
         temp.GetComponent<Rigidbody>().useGravity = true;
+        //temp.GetComponent<destroyer>().enabled = true;
     }
 }

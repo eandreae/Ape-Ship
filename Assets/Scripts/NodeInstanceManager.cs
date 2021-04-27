@@ -15,6 +15,7 @@ public class NodeInstanceManager : MonoBehaviour
 
     public Text colorTracker;
     public Image display;
+    Animator displayAnim;
     public float stopDistance;
     private float playerDist;
     private float monkeyDist;
@@ -29,6 +30,7 @@ public class NodeInstanceManager : MonoBehaviour
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
+        displayAnim = display.GetComponent<Animator>();
         agent = monkeyObj.GetComponent<NavMeshAgent>();
         
         // Need to set starting color for each node
@@ -92,12 +94,14 @@ public class NodeInstanceManager : MonoBehaviour
         {
             myObject.material.color = Color.yellow;
             display.color = Color.yellow;
+            displayAnim.Play("MinimapYellowTask");
             color = Color.yellow;
         }
         else if (colorTracker.text == "red")
         {
             myObject.material.color = Color.red;
             display.color = Color.red;
+            displayAnim.Play("MinimapRedTask");
             color = Color.red;
         }
     }
