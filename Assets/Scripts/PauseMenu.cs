@@ -48,24 +48,22 @@ public class PauseMenu : MonoBehaviour
         buttonPress.Play();
         backgroundMusic.pitch = 0.75f;
         pauseMenuPanel.SetActive(true);
-        gameIsPaused = true;
         //mm.canActivateMinimap = false;
         player.moveSpeed = 0f;
-        //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
         Time.timeScale = 0f;
+        gameIsPaused = true;
     }
 
 
     public void Resume()
     {
+        Time.timeScale = 1f;
         buttonPress.Play();
         backgroundMusic.pitch = 1f;
         pauseMenuPanel.SetActive(false);
-        gameIsPaused = false;
         //mm.canActivateMinimap = true;
         player.moveSpeed = 14f;
-        //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
-        Time.timeScale = 1f;
+        gameIsPaused = false;
     }
 
     public void OpenSettings()
@@ -77,7 +75,6 @@ public class PauseMenu : MonoBehaviour
 
     public void GoBackToMenu()
     {
-        //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
         Time.timeScale = 1f;
         backgroundMusic.pitch = 1f;
         buttonPress.Play();
@@ -93,7 +90,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Quit()
     {
-        //REMOVE THIS WHEN THE GAME BECOMES MULTIPLAYER
         Time.timeScale = 1f;
         backgroundMusic.pitch = 1f;
         buttonPress.Play();
