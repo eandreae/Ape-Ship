@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
         //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
         
         // creating normalizing direction so that movement isnt faster on diagonals
-        this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized; 
+        this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
         if (dir.sqrMagnitude > 0){
             //Debug.Log(this.holdItem);
             // if Player is holding an item, then use the hold animation. 
@@ -81,12 +81,12 @@ public class Player : MonoBehaviour
                 this.wpArrow.SetActive(false);
             }
             this.transform.LookAt(transform.position + dir); // look in direction that player is walking
-            controller.SimpleMove(this.moveSpeed * dir);
             //StartCoroutine("PlayWalkingNoise");
             // Moved camera functionality to PlayerCamera.cs
             // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
         }
-        else if (dir.sqrMagnitude == 0){
+        controller.SimpleMove(this.moveSpeed * dir);
+        if (dir.sqrMagnitude == 0){
             if(this.holdItem){
                 this.anim.Play("Hold-Idle");
             }
