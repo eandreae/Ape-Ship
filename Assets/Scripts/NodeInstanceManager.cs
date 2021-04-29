@@ -42,6 +42,9 @@ public class NodeInstanceManager : MonoBehaviour
 
     private void Update()
     {
+        if(!playerObj)
+            playerObj = GameObject.FindGameObjectWithTag("Player");
+
         //Debug.Log(transform.position);
         playerDist = Vector3.Distance(transform.position, playerObj.transform.position);
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);

@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     public AudioSource buttonPress;
 
     public GameObject mainMenuPanel;
+    public GameObject playOptionsPanel;
+    public GameObject hostOptionsPanel;
     public GameObject tutorialPanel;
     public GameObject creditsPanel;
     public GameObject settingsPanel;
@@ -27,9 +29,42 @@ public class MainMenu : MonoBehaviour
         buttonPress.Play();
     }
 
+    public void HostGame() {
+        // code to set up or join a lobby
+        buttonPress.Play();
+    }
+
+    // Load the play options screen
+    public void ShowPlayOptions() {
+        playOptionsPanel.SetActive(true);
+        buttonPress.Play();
+        mainMenuPanel.SetActive(false);
+    }
+
+    // hide play options
+    public void HidePlayOptions() {
+        playOptionsPanel.SetActive(false);
+        buttonPress.Play();
+        mainMenuPanel.SetActive(true);
+    }
+
+    public void ShowMultiPlayOptions()
+    {
+        hostOptionsPanel.SetActive(true);
+        buttonPress.Play();
+        playOptionsPanel.SetActive(false);
+    }
+
+    public void HideMultiPlayOptions()
+    {
+        hostOptionsPanel.SetActive(false);
+        buttonPress.Play();
+        playOptionsPanel.SetActive(true);
+    }
+
     void finallyStart()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("game");
     }
 
     public void Settings()
