@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class ProgressBar : MonoBehaviour
 {
@@ -21,10 +22,25 @@ public class ProgressBar : MonoBehaviour
 
     GameManager gm;
 
+    GameObject monkey;
+    NavMeshAgent agentM;
+    GameObject gorilla;
+    NavMeshAgent agentG;
+
+    public GorillaMovement gorill;
+    public NodeInstanceManager monk;
+
+
     void Start()
     {
         progressing = true;
         gm = FindObjectOfType<GameManager>();
+
+        monkey = GameObject.FindGameObjectWithTag("Monkey");
+        agentM = monkey.GetComponent<NavMeshAgent>();
+        gorilla = GameObject.FindGameObjectWithTag("Gorilla");
+        agentG = gorilla.GetComponent<NavMeshAgent>();
+
     }
 
     // Update is called once per frame
@@ -48,6 +64,13 @@ public class ProgressBar : MonoBehaviour
                 // Subtract the time by deltatime.
                 timeRemaining -= Time.deltaTime;
                 progressSlider.value = 120 - timeRemaining;
+                if(timeRemaining < 60)
+                {
+                    agentM.speed = 40;
+                    agentG.speed = 10;
+                    gorill.chargeCooldown = 2f;
+                    monk.monkCooldown = 1.5f;
+                }
             }
             else {
                 // Set the time remaining to zero.

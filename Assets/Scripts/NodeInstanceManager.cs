@@ -25,6 +25,8 @@ public class NodeInstanceManager : MonoBehaviour
     public bool canHack = true; // can be hacked by monkey
     //private MonkeyMovement flee;
     private bool isFleeing;
+    [HideInInspector]
+    public float monkCooldown = 3f;
 
     private void Start()
     {
@@ -157,7 +159,7 @@ public class NodeInstanceManager : MonoBehaviour
         //Debug.Log("Monkey punch Node");
         monkeyObj.GetComponent<Animator>().Play("punch");
         agent.isStopped = true;
-        yield return new WaitForSeconds(3f); // time in seconds to wait
+        yield return new WaitForSeconds(monkCooldown); // time in seconds to wait
         //Debug.Log("Monkey stop punching Node");
         monkeyObj.GetComponent<Animator>().Play("walk");
         agent.isStopped = false;

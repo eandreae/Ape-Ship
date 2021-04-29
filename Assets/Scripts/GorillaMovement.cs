@@ -34,6 +34,8 @@ public class GorillaMovement : MonoBehaviour
     FieldOfView targetsList;
     public List<Transform> visibleTargets = new List<Transform>();
 
+    public float chargeCooldown = 4f;
+
 
     // Start is called before the first frame update
     private void Start()
@@ -208,7 +210,7 @@ public class GorillaMovement : MonoBehaviour
 
             StartGorilla();
         
-            yield return new WaitForSeconds(4f); // charge cooldown
+            yield return new WaitForSeconds(chargeCooldown); // charge cooldown
             canCharge = true;
         }
     }

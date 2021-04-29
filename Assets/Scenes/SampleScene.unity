@@ -6264,6 +6264,7 @@ MonoBehaviour:
   charging: 0
   stunned: 0
   visibleTargets: []
+  chargeCooldown: 4
 --- !u!54 &355819494
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -13777,6 +13778,7 @@ MonoBehaviour:
   charging: 0
   stunned: 0
   visibleTargets: []
+  chargeCooldown: 4
 --- !u!4 &564618960 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 71c38b5f98702c34f9f9defafb2b4d63,
@@ -14843,6 +14845,7 @@ MonoBehaviour:
   progressSlider: {fileID: 635993681}
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
+  gorill: {fileID: 1190199561}
 --- !u!1 &637573585
 GameObject:
   m_ObjectHideFlags: 0
@@ -29262,6 +29265,7 @@ MonoBehaviour:
   charging: 0
   stunned: 0
   visibleTargets: []
+  chargeCooldown: 4
 --- !u!195 &1190199562
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -33080,6 +33084,7 @@ MonoBehaviour:
   progressSlider: {fileID: 0}
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
+  gorill: {fileID: 0}
 --- !u!1001 &1457082283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41958,7 +41963,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147966083074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -71, y: 0.16, z: -0.6}
+  m_LocalPosition: {x: 26.1, y: 0.16, z: -0.6}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 3572240475107257093}
@@ -42367,6 +42372,7 @@ MonoBehaviour:
   charging: 0
   stunned: 0
   visibleTargets: []
+  chargeCooldown: 4
 --- !u!195 &919132148466087495
 NavMeshAgent:
   m_ObjectHideFlags: 0
