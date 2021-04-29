@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1379,7 +1379,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d23b6580d3e5346b1b3beeea103c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   moveSpeed: 0
+  playerNum: -1
   points: 0
   health: 0
   oxygen: 0
@@ -1391,6 +1394,7 @@ MonoBehaviour:
   oxygenCue: {fileID: 0}
   damageCue: {fileID: 0}
   gm: {fileID: 0}
+  nm: {fileID: 0}
   healthBar: {fileID: 0}
   oxygenBar: {fileID: 0}
   alarmSFX: {fileID: 0}
@@ -3242,7 +3246,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d23b6580d3e5346b1b3beeea103c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   moveSpeed: 14
+  playerNum: -1
   points: 0
   health: 0
   oxygen: 0
@@ -3254,6 +3261,7 @@ MonoBehaviour:
   oxygenCue: {fileID: 11714869}
   damageCue: {fileID: 2053256284}
   gm: {fileID: 0}
+  nm: {fileID: 0}
   healthBar: {fileID: 505420767}
   oxygenBar: {fileID: 337810600}
   alarmSFX: {fileID: 0}
@@ -4351,6 +4359,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 919132147966083074}
   offset: {x: 0, y: 19, z: -10}
+  playerNum: -1
 --- !u!81 &265975028
 AudioListener:
   m_ObjectHideFlags: 0
@@ -17631,8 +17640,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 933f06dc033614e4cacdcfac177b00b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 919132147966083074}
+  target: {fileID: 0}
   offset: {x: 0, y: 19, z: -13}
+  playerNum: -1
 --- !u!114 &807635381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27943,6 +27953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 919132147966083074}
   offset: {x: 0, y: 19, z: -10}
+  playerNum: -1
 --- !u!82 &1150680687
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31942,6 +31953,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 919132147966083074}
   offset: {x: 0, y: 19, z: -10}
+  playerNum: -1
 --- !u!81 &1428979467
 AudioListener:
   m_ObjectHideFlags: 0
@@ -41337,7 +41349,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &919132147966083075
 AudioSource:
   m_ObjectHideFlags: 0
