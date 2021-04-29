@@ -174,7 +174,7 @@ public class Player : NetworkBehaviour
             {
                 ChangeSpeed(defaultSpeed);
             }
-
+        }
         // code to drop items
         if(this.holding && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
             // Debug.Log("drop");
