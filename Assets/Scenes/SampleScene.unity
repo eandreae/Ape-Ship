@@ -1431,6 +1431,7 @@ MonoBehaviour:
   oxygen_text: {fileID: 212718164}
   oxygen_color: {fileID: 1759386919}
   oxygen2_color: {fileID: 0}
+  invulnerable: 0
   holding: 0
   oxygenCue: {fileID: 0}
   damageCue: {fileID: 0}
@@ -1441,6 +1442,7 @@ MonoBehaviour:
   dir: {x: 0, y: 0, z: 0}
   walkingSFX: {fileID: 0}
   walkingSamples: []
+  gorillaCollider: {fileID: 0}
   wpArrow: {fileID: 0}
 --- !u!208 &94721647
 NavMeshObstacle:
@@ -3403,6 +3405,7 @@ MonoBehaviour:
   oxygen_text: {fileID: 212718164}
   oxygen_color: {fileID: 1759386919}
   oxygen2_color: {fileID: 67938698}
+  invulnerable: 0
   holding: 0
   oxygenCue: {fileID: 11714869}
   damageCue: {fileID: 2053256284}
@@ -3416,6 +3419,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fc8df54e1916ba143b7bd9fd434e1963, type: 3}
   - {fileID: 8300000, guid: 08841b442c8b86d4d9f957946d75cf97, type: 3}
   - {fileID: 8300000, guid: ad357265b3ebc5f4ca273677ad42905a, type: 3}
+  gorillaCollider: {fileID: 0}
   wpArrow: {fileID: 476222585}
 --- !u!95 &214678576
 Animator:
@@ -6261,6 +6265,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _SPEED: 6
+  _ANGULAR_SPEED: 120
+  _ACCELERATION: 8
   charging: 0
   stunned: 0
   visibleTargets: []
@@ -13295,6 +13302,7 @@ MonoBehaviour:
   display: {fileID: 643022442}
   stopDistance: 8
   canHack: 1
+  monkCooldown: 3
 --- !u!1 &554770569
 GameObject:
   m_ObjectHideFlags: 0
@@ -13775,6 +13783,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _SPEED: 6
+  _ANGULAR_SPEED: 120
+  _ACCELERATION: 8
   charging: 0
   stunned: 0
   visibleTargets: []
@@ -14846,6 +14857,7 @@ MonoBehaviour:
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
   gorill: {fileID: 1190199561}
+  monk: {fileID: 0}
 --- !u!1 &637573585
 GameObject:
   m_ObjectHideFlags: 0
@@ -16922,6 +16934,7 @@ MonoBehaviour:
   display: {fileID: 1812103381}
   stopDistance: 8
   canHack: 1
+  monkCooldown: 3
 --- !u!1 &716777464
 GameObject:
   m_ObjectHideFlags: 0
@@ -17458,6 +17471,7 @@ MonoBehaviour:
   display: {fileID: 2082339951}
   stopDistance: 12
   canHack: 1
+  monkCooldown: 3
 --- !u!95 &765885866
 Animator:
   serializedVersion: 3
@@ -19007,6 +19021,7 @@ MonoBehaviour:
   display: {fileID: 1812103381}
   stopDistance: 8
   canHack: 1
+  monkCooldown: 3
 --- !u!4 &852433015 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 7c085b7e02c1b4d49967a47f6fef89fd,
@@ -20120,6 +20135,7 @@ MonoBehaviour:
   display: {fileID: 1812103381}
   stopDistance: 8
   canHack: 1
+  monkCooldown: 3
 --- !u!95 &896022313
 Animator:
   serializedVersion: 3
@@ -29262,6 +29278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _SPEED: 6
+  _ANGULAR_SPEED: 120
+  _ACCELERATION: 8
   charging: 0
   stunned: 0
   visibleTargets: []
@@ -30895,6 +30914,7 @@ MonoBehaviour:
   display: {fileID: 289879600}
   stopDistance: 8
   canHack: 1
+  monkCooldown: 3
 --- !u!1001 &1323967531
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33085,6 +33105,7 @@ MonoBehaviour:
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
   gorill: {fileID: 0}
+  monk: {fileID: 0}
 --- !u!1001 &1457082283
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33451,6 +33472,7 @@ MonoBehaviour:
   display: {fileID: 1412383919}
   stopDistance: 8
   canHack: 1
+  monkCooldown: 3
 --- !u!4 &1469291369
 Transform:
   m_ObjectHideFlags: 0
@@ -37555,6 +37577,7 @@ MonoBehaviour:
   display: {fileID: 1397557510}
   stopDistance: 10
   canHack: 1
+  monkCooldown: 3
 --- !u!136 &1811882724
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -40488,6 +40511,7 @@ MonoBehaviour:
   display: {fileID: 2082339951}
   stopDistance: 8
   canHack: 1
+  monkCooldown: 3
 --- !u!135 &2062883466
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -41963,7 +41987,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 919132147966083074}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 26.1, y: 0.16, z: -0.6}
+  m_LocalPosition: {x: -76.81, y: 0.16, z: -0.6}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 3572240475107257093}
@@ -42195,6 +42219,7 @@ GameObject:
   - component: {fileID: 214678576}
   - component: {fileID: 214678572}
   - component: {fileID: 919132147966083075}
+  - component: {fileID: 919132147966083077}
   - component: {fileID: 919132147966083076}
   m_Layer: 8
   m_Name: Player
@@ -42308,11 +42333,25 @@ CapsuleCollider:
   m_GameObject: {fileID: 919132147966083074}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   m_Radius: 1.5
   m_Height: 4
   m_Direction: 1
   m_Center: {x: 0, y: 0.5, z: 0.8}
+--- !u!64 &919132147966083077
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132147966083074}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &919132148063812693
 GameObject:
   m_ObjectHideFlags: 0
@@ -42369,6 +42408,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _SPEED: 6
+  _ANGULAR_SPEED: 120
+  _ACCELERATION: 8
   charging: 0
   stunned: 0
   visibleTargets: []
@@ -45980,7 +46022,7 @@ MeshCollider:
   m_GameObject: {fileID: 7985974570107302820}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -45994,7 +46036,7 @@ MeshCollider:
   m_GameObject: {fileID: 7985974570107302820}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30

@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public Text oxygen_text;
     public Text oxygen_color;
     public Text oxygen2_color;
-    private bool invulnerable;
+    public bool invulnerable;
     private GameObject holdItem;
     public bool holding;
     private float invulnTime = 2;
@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     public Vector3 dir;
     public AudioSource walkingSFX;
     public AudioClip[] walkingSamples;
-    private Collider gorillaCollider;
+    public Collider gorillaCollider;
     public GameObject wpArrow;
 
     // Start is called before the first frame update
@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
+        Physics.IgnoreCollision(gorillaCollider, GetComponent<CapsuleCollider>(), true);
     }
 
     // Update is called once per frame
@@ -177,19 +178,19 @@ public class Player : MonoBehaviour
     {
         //Debug.Log("Collided with something!");
 
-        if (other.gameObject.CompareTag("Gorilla") && !invulnerable && !other.gameObject.GetComponent<GorillaMovement>().stunned)
-        {
-            Debug.Log("Hit the Gorilla!");
-            // Subtract one from the health of the Player.
-            health--;
-            // Make the player temporarily invulnerable
-            invulnerable = true;
-            gorillaCollider = other.GetComponent<Collider>();
-            // Update the health of the player.
-            StartCoroutine("updateHealth");
-        }
+        // if (other.gameObject.CompareTag("Gorilla") && !invulnerable && !other.gameObject.GetComponent<GorillaMovement>().stunned)
+        // {
+        //     Debug.Log("Hit the Gorilla!");
+        //     // Subtract one from the health of the Player.
+        //     health--;
+        //     // Make the player temporarily invulnerable
+        //     invulnerable = true;
+        //     gorillaCollider = other.GetComponent<Collider>();
+        //     // Update the health of the player.
+        //     StartCoroutine("updateHealth");
+        // }
 
-        else if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
+        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
     	{
             this.holdItem = other.gameObject;
     		

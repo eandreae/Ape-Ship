@@ -27,7 +27,7 @@ public class MinimapPlayerMovement : MonoBehaviour
     {
         movement.x = pcc.velocity.x;
         movement.y = pcc.velocity.z;
-        Debug.Log(pcc.velocity);
+        //Debug.Log(pcc.velocity);
     }
 
     void FixedUpdate()
