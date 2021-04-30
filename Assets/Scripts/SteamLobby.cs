@@ -92,8 +92,7 @@ public class SteamLobby : MonoBehaviour
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
 
-        //buttons.SetActive(false);
+        buttons.SetActive(false);
     }
 
-   
 }
