@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class NetworkManagerApeShip : NetworkManager
+public class NetworkManagerApeShip : NetworkRoomManager
 {
 
     private NetworkManager networkManager;
@@ -22,7 +22,6 @@ public class NetworkManagerApeShip : NetworkManager
         maxconnections = networkManager.maxConnections;
         connections = new NetworkConnection[maxconnections];
 
-        
         base.OnStartServer();
     }
 
