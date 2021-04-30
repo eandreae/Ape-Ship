@@ -28,6 +28,9 @@ public class NetworkManagerApeShip : NetworkManager
 
     public override void OnServerConnect(NetworkConnection conn)
     {
+        poptionscanvas.SetActive(false);
+        mplobbycanvas.SetActive(true);
+
         networkManager = GetComponent<NetworkManager>();
         base.OnServerConnect(conn);
     }
@@ -45,7 +48,9 @@ public class NetworkManagerApeShip : NetworkManager
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         base.OnServerDisconnect(conn);
-        
+        poptionscanvas.SetActive(true);
+        mplobbycanvas.SetActive(false);
+
     }
 
     public override void OnClientDisconnect(NetworkConnection conn)
