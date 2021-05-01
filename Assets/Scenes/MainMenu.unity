@@ -1838,7 +1838,7 @@ MonoBehaviour:
   serverBatching: 1
   serverBatchInterval: 0
   offlineScene: Assets/Scenes/MainMenu.unity
-  onlineScene: Assets/Scenes/MainMenu.unity
+  onlineScene: Assets/Scenes/room.unity
   transport: {fileID: 172373108}
   networkAddress: localhost
   maxConnections: 4
@@ -2656,8 +2656,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 172373109}
-        m_MethodName: ServerChangeScene
+      - m_Target: {fileID: 1299843946}
+        m_MethodName: changeScene
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
