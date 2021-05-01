@@ -326,7 +326,7 @@ public class Player : NetworkBehaviour
         if ( health == 0 )
         { 
             Debug.Log("You Died!");
-            health_text.text = ""; 
+            //health_text.text = ""; 
             moveSpeed = 0f;
             gm.Defeat();
         }
@@ -343,7 +343,7 @@ public class Player : NetworkBehaviour
         if ( Mathf.Floor(oxygen) == 0 ) 
         { 
             Debug.Log("You Died!");
-            oxygen_text.text = ""; 
+            //oxygen_text.text = ""; 
             moveSpeed = 0f;
             gm.Defeat();
         }
