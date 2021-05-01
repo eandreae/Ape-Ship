@@ -111,6 +111,8 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnRoomClientConnect(conn);
         Debug.Log("room client connect");
+
+        base.OnClientSceneChanged(conn);
     }
 
     public override void OnRoomClientDisconnect(NetworkConnection conn)
