@@ -47,7 +47,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnRoomServerAddPlayer(NetworkConnection conn)
     {
-        //base.OnRoomServerAddPlayer(conn);
+        base.OnRoomServerAddPlayer(conn);
 
         Debug.Log("room server add player");
     }
