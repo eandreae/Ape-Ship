@@ -20,8 +20,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
         base.OnStartServer();
     }
 
-   
-
     public override void OnServerConnect(NetworkConnection conn)
     {
         networkManager = GetComponent<NetworkRoomManager>();
@@ -43,9 +41,13 @@ public class NetworkManagerApeShip : NetworkRoomManager
       //  //NetworkServer.Spawn(cam);
     }
 
+
+
+
     public override void OnRoomServerAddPlayer(NetworkConnection conn)
     {
         //base.OnRoomServerAddPlayer(conn);
+
         Debug.Log("room server add player");
     }
 
@@ -58,7 +60,8 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnRoomServerConnect(NetworkConnection conn)
     {
         base.OnRoomServerConnect(conn);
-        Debug.Log("room server connect");
+        
+        Debug.Log("room server connect (conn: " + conn +")");
     }
 
     public override void OnRoomServerSceneChanged(string sceneName)
