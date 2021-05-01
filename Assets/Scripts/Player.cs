@@ -13,21 +13,23 @@ using Mirror;
 
 public class Player : NetworkBehaviour
 {
-	public float moveSpeed = 14f;
+	private CharacterController controller;
+    public float moveSpeed = 14f;
     public int playerNum = -1; 
+    public Vector3 dir;
+
     float defaultSpeed;
-    public int points;
     public float health;
     public float oxygen;
-    public Text health_text;
-    public Text oxygen_text;
+    //public Text health_text;
+    //public Text oxygen_text;
     public Text oxygen_color;
     public Text oxygen2_color;
     private bool invulnerable;
     private GameObject holdItem;
     public bool holding;
     private float invulnTime = 2;
-    private CharacterController controller;
+    
     private Animator anim;
     public Animator oxygenCue;
     public Animator damageCue;
@@ -40,10 +42,10 @@ public class Player : NetworkBehaviour
     public Slider healthBar;
     public Slider oxygenBar;
 
-    public AudioSource alarmSFX;
-    public Vector3 dir;
-    public AudioSource walkingSFX;
+    //public AudioSource alarmSFX;
+    private AudioSource walkingSFX;
     public AudioClip[] walkingSamples;
+    
     private Collider gorillaCollider;
     public GameObject wpArrow;
     public GameObject CameraObj;
@@ -51,6 +53,8 @@ public class Player : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        
         defaultSpeed = moveSpeed;
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
@@ -65,7 +69,21 @@ public class Player : NetworkBehaviour
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
         //Debug.Log(nm.numPlayers);
-        GameObject.Instantiate(CameraObj);
+        
+        if(CameraObj){
+            GameObject.Instantiate(CameraObj);
+        }
+
+        healthBar = GameObject.Find("HealthBarSlider").GetComponent<Slider>();
+        //health_text = GameObject.Find("HealthBarText").GetComponent<Text>();
+        
+        oxygenBar = GameObject.Find("OxygenBarSlider").GetComponent<Slider>();
+        //oxygen_text =  GameObject.Find("OxygenBarText").GetComponent<Text>();
+        oxygen_color = GameObject.Find("OxygenColor").GetComponent<Text>();
+        oxygen2_color = GameObject.Find("Oxygen2Color").GetComponent<Text>();
+
+        oxygenCue = GameObject.Find("Oxygen Cue").GetComponent<Animator>();
+        damageCue = GameObject.Find("Damage Cue").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -302,9 +320,6 @@ public class Player : NetworkBehaviour
     	}
     }
     
-    //private void OnGUI(){
-    	//GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
-    //}
     public IEnumerator updateHealth() {
         damageCue.SetTrigger("DamageTrigger");
         healthBar.value = health;
