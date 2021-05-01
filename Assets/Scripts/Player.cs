@@ -234,6 +234,29 @@ public class Player : MonoBehaviour
             //Debug.Log(this.holdItem);
     	}
     }
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+        var pushPower = 10.0f;
+        // no rigidbody
+        if (body == null || body.isKinematic)
+        {
+            return;
+        }
+
+        // We dont want to push objects below us
+        if (hit.moveDirection.y < -0.3)
+        {
+            return;
+        }
+
+        // Calculate push direction from move direction,
+        // we only push objects to the sides never up and down
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
+        // Apply the push
+        body.velocity = pushDir * pushPower;
+    }
     
     //private void OnGUI(){
     	//GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
