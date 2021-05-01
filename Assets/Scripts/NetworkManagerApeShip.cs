@@ -8,8 +8,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     private NetworkRoomManager networkManager;
 
-
-    [Header("")]
+    [Header("start game button")]
+    [SerializeField] private GameObject startbutton = null;
+    
 
     private int maxconnections;
     private List<NetworkConnection> connections { get; } = new List<NetworkConnection>();
@@ -70,8 +71,12 @@ public class NetworkManagerApeShip : NetworkRoomManager
         base.OnRoomServerSceneChanged(sceneName);
         Debug.Log("room server scene changed");
 
-        if (sceneName == "game")
+        Debug.Log("numplayers " + numPlayers);
+
+        if (sceneName == "room")
         {
+            Debug.Log("numplayers (gamescene) " + numPlayers);
+
             for (int i=0; i<=numPlayers; i++)
             {
                 //Debug.Log("numplayers init:" + numPlayers);
@@ -86,6 +91,18 @@ public class NetworkManagerApeShip : NetworkRoomManager
                 //NetworkServer.Spawn(cam);
             }
         }
+    }
+
+    public override void OnRoomServerPlayersReady()
+    {
+        Debug.Log("ready");
+        startbutton.SetActive(true);
+    }
+
+    public override void OnRoomServerPlayersNotReady()
+    {
+        Debug.Log("not ready");
+        startbutton.SetActive(false);
     }
 
     public override void OnRoomClientConnect(NetworkConnection conn)
