@@ -83,6 +83,14 @@ public class NetworkManagerApeShip : NetworkRoomManager
         //NetworkServer.AddPlayerForConnection(conn, player);
     }
 
+    public override void OnRoomClientDisconnect(NetworkConnection conn)
+    {
+        base.OnRoomClientDisconnect(conn);
+
+        Debug.Log("room client disconnect");
+
+    }
+
     public override void OnRoomClientEnter()
     {
         base.OnRoomClientEnter();
