@@ -32,26 +32,12 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         networkManager = GetComponent<NetworkRoomManager>();
 
-<<<<<<< Updated upstream
-
         /*
          * can join lobbies without using the weird join scene
          * joining client can't click ready, but can see host click ready
          * maybe move this connection code to a different method? maybe on client
         */
 
-        connections.Add(conn);
-        //Debug.Log("numplayers init:" + numPlayers);
-        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
-        //player.GetComponent<Player>().playerNum = numPlayers + 1;
-        //Debug.Log("before adding connect:" + numPlayers);
-        NetworkServer.AddPlayerForConnection(conn, player);
-        //Debug.Log("after spawn:" + numPlayers);
-        //GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "TestCamera"));
-        //cam.GetComponent<PlayerCamera>().playerNum = numPlayers;
-        Debug.Log("added player: " + numPlayers);
-        //NetworkServer.Spawn(cam);
-=======
         if(numPlayers > 0){
             connections.Add(conn);
             //Debug.Log("numplayers init:" + numPlayers);
@@ -65,7 +51,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
             Debug.Log("added player: " + numPlayers);
             //NetworkServer.Spawn(cam);
         }
->>>>>>> Stashed changes
 
         base.OnServerConnect(conn);
     }
