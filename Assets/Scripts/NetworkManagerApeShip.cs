@@ -79,8 +79,8 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
         
         //Debug.Log("numplayers init:" + numPlayers);
-        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
-        NetworkServer.AddPlayerForConnection(conn, player);
+        //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
+        //NetworkServer.AddPlayerForConnection(conn, player);
     }
 
     public override void OnRoomClientEnter()
