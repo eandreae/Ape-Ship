@@ -8,13 +8,10 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     private NetworkRoomManager networkManager;
 
-    [SerializeField] private GameObject _roomPlayerPrefab = null;
 
     [Header("")]
 
     private int maxconnections;
-    //private List<NetworkManagerApeShip> RoomPlayers { get; } = new List<NetworkManagerApeShip>();
-    //private List<NetworkManagerApeShip> GamePlayers { get; } = new List<NetworkManagerApeShip>();
     private List<NetworkConnection> connections { get; } = new List<NetworkConnection>();
 
     public override void OnStartServer()
