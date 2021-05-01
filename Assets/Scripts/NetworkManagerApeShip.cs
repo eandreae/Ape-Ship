@@ -48,7 +48,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
         base.OnRoomServerAddPlayer(conn);
         Debug.Log("room server add player");
         //Debug.Log("numplayers init:" + numPlayers);
-        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.GetComponent<Transform>());
+        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         NetworkServer.AddPlayerForConnection(conn, player);
 
     }
