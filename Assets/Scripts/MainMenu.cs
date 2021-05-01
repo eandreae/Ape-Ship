@@ -67,6 +67,11 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("game");
     }
 
+    public void changeScene(string scenename)
+    {
+        SceneManager.LoadScene(scenename);
+    }
+
     public void Settings()
     {
         Debug.Log("Go to settings screen!");
