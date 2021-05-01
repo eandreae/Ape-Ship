@@ -6,88 +6,85 @@ using Mirror;
 public class NetworkManagerApeShip : NetworkRoomManager
 {
 
-    private NetworkManager networkManager;
+    private NetworkRoomManager networkManager;
 
-    public GameObject poptionscanvas = null;
-    public GameObject mplobbycanvas = null;
+    [Header("")]
 
     private int maxconnections;
-    private NetworkConnection[] connections;
-    private int connectionCount = 0;
     
-
     public override void OnStartServer()
     {
-        networkManager = GetComponent<NetworkManager>();
+        networkManager = GetComponent<NetworkRoomManager>();
         maxconnections = networkManager.maxConnections;
-        connections = new NetworkConnection[maxconnections];
 
         base.OnStartServer();
     }
 
+   
+
     public override void OnServerConnect(NetworkConnection conn)
     {
-        poptionscanvas.SetActive(false);
-        mplobbycanvas.SetActive(true);
-
-        networkManager = GetComponent<NetworkManager>();
+        networkManager = GetComponent<NetworkRoomManager>();
         base.OnServerConnect(conn);
     }
 
+    
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
-        poptionscanvas.SetActive(false);
-        mplobbycanvas.SetActive(true);
-
-        connections[connectionCount] = conn;
-        connectionCount++;
+      //  //Debug.Log("numplayers init:" + numPlayers);
+      //  GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
+      //  player.GetComponent<Player>().playerNum = numPlayers + 1;
+      //  //Debug.Log("before adding connect:" + numPlayers);
+      //  NetworkServer.AddPlayerForConnection(conn, player);
+      //  //Debug.Log("after spawn:" + numPlayers);
+      //  //GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "TestCamera"));
+      //  //cam.GetComponent<PlayerCamera>().playerNum = numPlayers;
+      //
+      //  //NetworkServer.Spawn(cam);
     }
 
-
-    public override void OnServerDisconnect(NetworkConnection conn)
+    public override void OnRoomServerAddPlayer(NetworkConnection conn)
     {
-        base.OnServerDisconnect(conn);
-        poptionscanvas.SetActive(true);
-        mplobbycanvas.SetActive(false);
+        base.OnRoomServerAddPlayer(conn);
+        Debug.Log("room server add player");
+        //Debug.Log("numplayers init:" + numPlayers);
+        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.GetComponent<Transform>());
+        NetworkServer.AddPlayerForConnection(conn, player);
 
     }
 
-    public override void OnClientDisconnect(NetworkConnection conn)
+    public override void OnRoomStartServer()
     {
-        base.OnClientDisconnect(conn);
-        poptionscanvas.SetActive(true);
-        mplobbycanvas.SetActive(false);
+        base.OnRoomStartServer();
+        Debug.Log("room start server");
     }
 
-    public override void OnServerSceneChanged(string sceneName)
+    public override void OnRoomServerConnect(NetworkConnection conn)
     {
-        base.OnServerSceneChanged(sceneName);
-        connectpls();
+        base.OnRoomServerConnect(conn);
+        Debug.Log("room server connect");
     }
 
-    public void connectpls()
+    public override void OnRoomServerSceneChanged(string sceneName)
     {
-        //this would be very messed up for players disconnecting while in lobby
-
-        //weird stuff is happening
-
-        int itr = 0;
-        while (connections[itr] != null && itr < networkManager.maxConnections)
-        {
-            //Debug.Log("numplayers init:" + numPlayers);
-            GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
-            player.GetComponent<Player>().playerNum = numPlayers + 1;
-            //Debug.Log("before adding connect:" + numPlayers);
-            NetworkServer.AddPlayerForConnection(connections[itr], player);
-            //Debug.Log("after spawn:" + numPlayers);
-            //GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "TestCamera"));
-            //cam.GetComponent<PlayerCamera>().playerNum = numPlayers;
-
-            //NetworkServer.Spawn(cam);
-            itr++;
-        }
-
+        base.OnRoomServerSceneChanged(sceneName);
+        Debug.Log("room server scene changed");
     }
 
-    
+    public override void OnRoomClientConnect(NetworkConnection conn)
+    {
+        base.OnRoomClientConnect(conn);
+        
+        Debug.Log("room client connect");
+
+        OnRoomServerAddPlayer(conn);
+    }
+
+    public override void OnRoomClientEnter()
+    {
+        base.OnRoomClientEnter();
+        Debug.Log("room client enter");
+    }
+
+
 }
