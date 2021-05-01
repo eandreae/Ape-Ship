@@ -45,12 +45,8 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnRoomServerAddPlayer(NetworkConnection conn)
     {
-        base.OnRoomServerAddPlayer(conn);
+        //base.OnRoomServerAddPlayer(conn);
         Debug.Log("room server add player");
-        //Debug.Log("numplayers init:" + numPlayers);
-        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
-        NetworkServer.AddPlayerForConnection(conn, player);
-
     }
 
     public override void OnRoomStartServer()
@@ -77,7 +73,10 @@ public class NetworkManagerApeShip : NetworkRoomManager
         
         Debug.Log("room client connect");
 
-        OnRoomServerAddPlayer(conn);
+        
+        //Debug.Log("numplayers init:" + numPlayers);
+        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
+        NetworkServer.AddPlayerForConnection(conn, player);
     }
 
     public override void OnRoomClientEnter()
