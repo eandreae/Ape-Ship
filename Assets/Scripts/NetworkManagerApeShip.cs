@@ -70,20 +70,21 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnServerChangeScene(string newSceneName)
     {
         Debug.Log("numplayers " + numPlayers);
-        if (newSceneName == "game")
-            for (int i = 0; i < numPlayers; i++)
+        if (newSceneName == "game"){
+            foreach (NetworkConnection nc in connections)
             {
                 //Debug.Log("numplayers init:" + numPlayers);
                 GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
                 player.GetComponent<Player>().playerNum = numPlayers + 1;
                 //Debug.Log("before adding connect:" + numPlayers);
-                NetworkServer.ReplacePlayerForConnection(connections[i], player, true);
+                NetworkServer.ReplacePlayerForConnection(nc, player);
                 //Debug.Log("after spawn:" + numPlayers);
                 //GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "TestCamera"));
                 //cam.GetComponent<PlayerCamera>().playerNum = numPlayers;
                 Debug.Log("added player: " + numPlayers);
                 //NetworkServer.Spawn(cam);
             }
+        }
     }
 
     public override void OnRoomServerAddPlayer(NetworkConnection conn)
@@ -130,12 +131,16 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnRoomClientConnect(NetworkConnection conn)
     {
         base.OnRoomClientConnect(conn);
+        // force client to join roomScene
+        //roomClient
         Debug.Log("room client connect");
     }
 
     public override void OnRoomClientDisconnect(NetworkConnection conn)
     {
-        base.OnRoomClientDisconnect(conn);
+        // foreach (Object o in conn.clientOwnedObjects)
+        //     Object.Destroy(o);
+        // base.OnRoomClientDisconnect(conn);
         Debug.Log("room client disconnect");
     }
 
@@ -143,6 +148,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnRoomClientEnter();
         Debug.Log("room client enter");
+        //ClientChangeScene(roomScene);
     }
 
 
