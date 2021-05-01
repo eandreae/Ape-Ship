@@ -469,8 +469,8 @@ GameObject:
   - component: {fileID: 32783112}
   - component: {fileID: 32783111}
   - component: {fileID: 32783110}
-  m_Layer: 0
-  m_Name: Stopper
+  m_Layer: 13
+  m_Name: Stopper1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -484,11 +484,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32783108}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.27, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2}
+  m_LocalScale: {x: 0.3, y: 1, z: 0.1}
   m_Children: []
-  m_Father: {fileID: 1433625403}
-  m_RootOrder: 1
+  m_Father: {fileID: 1961080861}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &32783110
 BoxCollider:
@@ -32130,8 +32130,8 @@ GameObject:
   - component: {fileID: 1340646629}
   - component: {fileID: 1340646628}
   - component: {fileID: 1340646627}
-  m_Layer: 0
-  m_Name: Stopper
+  m_Layer: 13
+  m_Name: Stopper2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32145,11 +32145,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340646625}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.94, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -2}
+  m_LocalScale: {x: 0.3, y: 1, z: 0.1}
   m_Children: []
-  m_Father: {fileID: 1433625403}
-  m_RootOrder: 2
+  m_Father: {fileID: 1961080861}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1340646627
 BoxCollider:
@@ -34203,12 +34203,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1433625402}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -70.7, y: 0.79, z: -62.49}
+  m_LocalPosition: {x: -73.62, y: 1, z: -62.11}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 1699700788}
-  - {fileID: 32783109}
-  - {fileID: 1340646626}
+  - {fileID: 1961080861}
   m_Father: {fileID: 0}
   m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -37192,7 +37191,7 @@ GameObject:
   - component: {fileID: 1699700785}
   - component: {fileID: 1699700784}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: MirrorCart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37212,7 +37211,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 120
+  m_Constraints: 118
   m_CollisionDetection: 0
 --- !u!65 &1699700785
 BoxCollider:
@@ -41002,6 +41001,38 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 0, z: 0}
   m_TimeToStationary: 0.5
+--- !u!1 &1961080860
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1961080861}
+  m_Layer: 0
+  m_Name: Stoppers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1961080861
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961080860}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 32783109}
+  - {fileID: 1340646626}
+  m_Father: {fileID: 1433625403}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1986706984
 GameObject:
   m_ObjectHideFlags: 0
