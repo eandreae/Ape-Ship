@@ -16,6 +16,7 @@ public class ProgressBar : MonoBehaviour
 
     //public Text timeText;
     public Slider progressSlider;
+    public Image barFill;
 
     public Text NavigationColor;
     public Text ReactorColor;
@@ -30,6 +31,8 @@ public class ProgressBar : MonoBehaviour
     public GorillaMovement gorill;
     public NodeInstanceManager monk;
 
+    public Gradient barGradient;
+
 
     void Start()
     {
@@ -40,7 +43,7 @@ public class ProgressBar : MonoBehaviour
         agentM = monkey.GetComponent<NavMeshAgent>();
         gorilla = GameObject.FindGameObjectWithTag("Gorilla");
         agentG = gorilla.GetComponent<NavMeshAgent>();
-
+        barFill.color = barGradient.Evaluate(1f);
     }
 
     // Update is called once per frame
@@ -64,6 +67,7 @@ public class ProgressBar : MonoBehaviour
                 // Subtract the time by deltatime.
                 timeRemaining -= Time.deltaTime;
                 progressSlider.value = 120 - timeRemaining;
+                barFill.color = barGradient.Evaluate(progressSlider.normalizedValue);
                 if(timeRemaining < 60)
                 {
                     agentM.speed = 40;
