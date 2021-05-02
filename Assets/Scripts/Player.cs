@@ -37,12 +37,13 @@ public class Player : MonoBehaviour
     public Slider healthBar;
     public Slider oxygenBar;
 
-    public AudioSource alarmSFX;
+    //public AudioSource alarmSFX;
     public Vector3 dir;
     public AudioSource walkingSFX;
     public AudioClip[] walkingSamples;
     public Collider gorillaCollider;
     public GameObject wpArrow;
+    public AudioSource playerHurtSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -264,6 +265,7 @@ public class Player : MonoBehaviour
     public IEnumerator updateHealth() {
         damageCue.SetTrigger("DamageTrigger");
         healthBar.value = health;
+        playerHurtSFX.Play();
         if ( health == 0 )
         { 
             Debug.Log("You Died!");

@@ -28,12 +28,15 @@ public class NodeInstanceManager : MonoBehaviour
     [HideInInspector]
     public float monkCooldown = 3f;
 
+    AudioSource nodeDisabledSFX;
+
     private void Start()
     {
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         displayAnim = display.GetComponent<Animator>();
         agent = monkeyObj.GetComponent<NavMeshAgent>();
+        nodeDisabledSFX = GetComponent<AudioSource>();
         
         // Need to set starting color for each node
 
@@ -101,6 +104,7 @@ public class NodeInstanceManager : MonoBehaviour
         }
         else if (colorTracker.text == "red")
         {
+            nodeDisabledSFX.Play();
             myObject.material.color = Color.red;
             display.color = Color.red;
             displayAnim.Play("MinimapRedTask");

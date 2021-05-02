@@ -33,6 +33,8 @@ public class ProgressBar : MonoBehaviour
 
     public Gradient barGradient;
 
+    public Vector3 sizeDelta;
+
 
     void Start()
     {
@@ -74,6 +76,10 @@ public class ProgressBar : MonoBehaviour
                     agentG.speed = 10;
                     gorill.chargeCooldown = 2f;
                     monk.monkCooldown = 1.5f;
+                }
+                if (timeRemaining < 30 && (transform.localScale.x < 2) && (transform.localScale.y < 2) && (transform.localScale.z < 2))
+                {
+                    progressSlider.transform.localScale += sizeDelta;
                 }
             }
             else {
