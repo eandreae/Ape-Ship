@@ -22,16 +22,19 @@ public class PauseMenu : MonoBehaviour
 
     public Animator transitionPanel;
 
+
     void Start()
     {
         //mm = FindObjectOfType<Minimap>();
         //player = FindObjectOfType<Player>();
+        //canPauseViaEscape = true;
     }
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("p"))
         {
+
             if (gameIsPaused)
             {
                 Resume();
