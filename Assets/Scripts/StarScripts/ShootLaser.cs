@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Used this tutorial for laser beam
+//https://www.youtube.com/watch?v=pNE3rfMGEAw&ab_channel=Doc
 public class ShootLaser : MonoBehaviour
 {
     public Material material;
