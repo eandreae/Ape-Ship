@@ -17,6 +17,7 @@ public class SettingsPauseMenu : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 0f;
         resolutions = Screen.resolutions;
         resolutionDropdown.ClearOptions();
 
@@ -41,6 +42,7 @@ public class SettingsPauseMenu : MonoBehaviour
 
     public void CloseSettings()
     {
+        Time.timeScale = 1f;
         buttonPress.Play();
         pausePanel.SetActive(true);
         gameObject.SetActive(false);

@@ -8,9 +8,9 @@ using UnityEngine.AI;
 public class GorillaMovement : MonoBehaviour
 {
 	float stoppingDistance = 15f;
-    float _SPEED = 6f;
-    float _ACCELERATION = 8f;
-    float _ANGULAR_SPEED = 120f;
+    public float _SPEED = 6f;
+    public float _ANGULAR_SPEED = 120f;
+    public float _ACCELERATION = 8f;
 
 	NavMeshAgent agent;
 
@@ -33,6 +33,8 @@ public class GorillaMovement : MonoBehaviour
     private float playerDist = 0f;
     FieldOfView targetsList;
     public List<Transform> visibleTargets = new List<Transform>();
+
+    public float chargeCooldown = 4f;
 
 
     // Start is called before the first frame update
@@ -162,10 +164,12 @@ public class GorillaMovement : MonoBehaviour
         }
     }
 
+    
+
     void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Player" || other.tag == "PlayerMod" && !this.stunned) {
-            StartCoroutine("AttackPlayer");
+        if (other.tag == "Player" && !this.stunned) {
+            StartCoroutine("AttackPlayer", other.GetComponent<Player>());
         }
         else if (other.tag == "Pick Up" && !stunned) {
             if (other.gameObject.GetComponent<ItemScript>().type == "Banana" && other.gameObject.GetComponent<ItemScript>().active){
@@ -208,16 +212,16 @@ public class GorillaMovement : MonoBehaviour
 
             StartGorilla();
         
-            yield return new WaitForSeconds(4f); // charge cooldown
+            yield return new WaitForSeconds(chargeCooldown); // charge cooldown
             canCharge = true;
         }
     }
 
     // This coroutine handles part of the Gorilla/Player collision interaction.
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
-    IEnumerator AttackPlayer(){
-        //Debug.Log("ATTACK PLAYER");
-        //this.stunned = true;
+    IEnumerator AttackPlayer(Player player){
+        Debug.Log("ATTACK PLAYER");
+        this.stunned = true;
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false;
         
@@ -227,8 +231,18 @@ public class GorillaMovement : MonoBehaviour
         this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
         this.GetComponent<Rigidbody>().isKinematic = true;
 
-        //animator.play("attack-anim"); // play the gorilla attack animation
-
+        Debug.Log("Hit the Gorilla!");
+            // Subtract one from the health of the Player.
+        if(!player.invulnerable){
+            player.health--;
+            // Make the player temporarily invulnerable
+            player.invulnerable = true;
+            player.gorillaCollider = this.GetComponent<Collider>();
+            // Update the health of the player.
+            player.StartCoroutine("updateHealth");
+        }
+        
+        //animator.play("attack-anim"); // play the gorilla attack animation (?)
         yield return new WaitForSeconds(0.75f); // wait
         
         StartGorilla();
@@ -247,13 +261,9 @@ public class GorillaMovement : MonoBehaviour
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false;
         
-
         StopCoroutine("ChargeAttack");  // stop charging
         StopCoroutine("AttackPlayer");  // stop attackplayer coroutine in case of overlap
-        
-        StopGorilla();
-
-        
+        StopGorilla();        
         
         this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
         this.GetComponent<Rigidbody>().isKinematic = true;
