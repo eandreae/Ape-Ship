@@ -6,6 +6,7 @@ public class Laser : MonoBehaviour
 {
     private string hitting = "";
     private bool reflecting = false;
+    private bool reset = false;
     private float scalar = 0.1f;
     private Vector3 defaultPosition;
     private Vector3 defaultScale;
@@ -19,9 +20,18 @@ public class Laser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (reset == true)
+        {
+
+        }
         //if not currently hitting wall, move and scale until wall is hit
         if (hitting == "Mirror")
         {
+            gameObject.transform.position = defaultPosition;
+            gameObject.transform.localScale = defaultScale;
+
+            gameObject.transform.position = new Vector3(gameObject.transform.position.x - scalar, gameObject.transform.position.y, gameObject.transform.position.z);
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, gameObject.transform.localScale.y + scalar, gameObject.transform.localScale.z);
             reflecting = true;
         }
         else if (hitting == "Wall" && reflecting == false)
@@ -38,6 +48,7 @@ public class Laser : MonoBehaviour
     {
         if (other.tag == "Mirror")
         {
+            reset = true;
             hitting = "Mirror";
         } else if(other.tag == "Walls" && reflecting == false)
         {
