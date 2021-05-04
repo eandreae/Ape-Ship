@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
 public class ProgressBar : MonoBehaviour
 {
@@ -15,16 +16,36 @@ public class ProgressBar : MonoBehaviour
 
     //public Text timeText;
     public Slider progressSlider;
+    public Image barFill;
 
     public Text NavigationColor;
     public Text ReactorColor;
 
     GameManager gm;
 
+    GameObject monkey;
+    NavMeshAgent agentM;
+    GameObject gorilla;
+    NavMeshAgent agentG;
+
+    public GorillaMovement gorill;
+    public NodeInstanceManager monk;
+
+    public Gradient barGradient;
+
+    public Vector3 sizeDelta;
+
+
     void Start()
     {
         progressing = true;
         gm = FindObjectOfType<GameManager>();
+
+        monkey = GameObject.FindGameObjectWithTag("Monkey");
+        agentM = monkey.GetComponent<NavMeshAgent>();
+        gorilla = GameObject.FindGameObjectWithTag("Gorilla");
+        agentG = gorilla.GetComponent<NavMeshAgent>();
+        barFill.color = barGradient.Evaluate(1f);
     }
 
     // Update is called once per frame
@@ -48,6 +69,18 @@ public class ProgressBar : MonoBehaviour
                 // Subtract the time by deltatime.
                 timeRemaining -= Time.deltaTime;
                 progressSlider.value = 120 - timeRemaining;
+                barFill.color = barGradient.Evaluate(progressSlider.normalizedValue);
+                if(timeRemaining < 60)
+                {
+                    agentM.speed = 40;
+                    agentG.speed = 10;
+                    gorill.chargeCooldown = 2f;
+                    monk.monkCooldown = 1.5f;
+                }
+                if (timeRemaining < 30 && (transform.localScale.x < 2) && (transform.localScale.y < 2) && (transform.localScale.z < 2))
+                {
+                    progressSlider.transform.localScale += sizeDelta;
+                }
             }
             else {
                 // Set the time remaining to zero.

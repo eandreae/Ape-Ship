@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
     public Text oxygen_text;
     public Text oxygen_color;
     public Text oxygen2_color;
-    private bool invulnerable;
+    public bool invulnerable;
     private GameObject holdItem;
     public bool holding;
     private float invulnTime = 2;
@@ -37,12 +37,13 @@ public class Player : MonoBehaviour
     public Slider healthBar;
     public Slider oxygenBar;
 
-    public AudioSource alarmSFX;
+    //public AudioSource alarmSFX;
     public Vector3 dir;
     public AudioSource walkingSFX;
     public AudioClip[] walkingSamples;
-    private Collider gorillaCollider;
+    public Collider gorillaCollider;
     public GameObject wpArrow;
+    public AudioSource playerHurtSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
+        Physics.IgnoreCollision(gorillaCollider, GetComponent<CapsuleCollider>(), true);
     }
 
     // Update is called once per frame
@@ -68,7 +70,7 @@ public class Player : MonoBehaviour
         //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
         
         // creating normalizing direction so that movement isnt faster on diagonals
-        this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized; 
+        this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
         if (dir.sqrMagnitude > 0){
             //Debug.Log(this.holdItem);
             // if Player is holding an item, then use the hold animation. 
@@ -81,12 +83,12 @@ public class Player : MonoBehaviour
                 this.wpArrow.SetActive(false);
             }
             this.transform.LookAt(transform.position + dir); // look in direction that player is walking
-            controller.SimpleMove(this.moveSpeed * dir);
             //StartCoroutine("PlayWalkingNoise");
             // Moved camera functionality to PlayerCamera.cs
             // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
         }
-        else if (dir.sqrMagnitude == 0){
+        controller.SimpleMove(this.moveSpeed * dir);
+        if (dir.sqrMagnitude == 0){
             if(this.holdItem){
                 this.anim.Play("Hold-Idle");
             }
@@ -177,19 +179,19 @@ public class Player : MonoBehaviour
     {
         //Debug.Log("Collided with something!");
 
-        if (other.gameObject.CompareTag("Gorilla") && !invulnerable && !other.gameObject.GetComponent<GorillaMovement>().stunned)
-        {
-            Debug.Log("Hit the Gorilla!");
-            // Subtract one from the health of the Player.
-            health--;
-            // Make the player temporarily invulnerable
-            invulnerable = true;
-            gorillaCollider = other.GetComponent<Collider>();
-            // Update the health of the player.
-            StartCoroutine("updateHealth");
-        }
+        // if (other.gameObject.CompareTag("Gorilla") && !invulnerable && !other.gameObject.GetComponent<GorillaMovement>().stunned)
+        // {
+        //     Debug.Log("Hit the Gorilla!");
+        //     // Subtract one from the health of the Player.
+        //     health--;
+        //     // Make the player temporarily invulnerable
+        //     invulnerable = true;
+        //     gorillaCollider = other.GetComponent<Collider>();
+        //     // Update the health of the player.
+        //     StartCoroutine("updateHealth");
+        // }
 
-        else if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
+        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
     	{
             this.holdItem = other.gameObject;
     		
@@ -233,6 +235,29 @@ public class Player : MonoBehaviour
             //Debug.Log(this.holdItem);
     	}
     }
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+        var pushPower = 10.0f;
+        // no rigidbody
+        if (body == null || body.isKinematic)
+        {
+            return;
+        }
+
+        // We dont want to push objects below us
+        if (hit.moveDirection.y < -0.3)
+        {
+            return;
+        }
+
+        // Calculate push direction from move direction,
+        // we only push objects to the sides never up and down
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
+        // Apply the push
+        body.velocity = pushDir * pushPower;
+    }
     
     //private void OnGUI(){
     	//GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
@@ -240,6 +265,7 @@ public class Player : MonoBehaviour
     public IEnumerator updateHealth() {
         damageCue.SetTrigger("DamageTrigger");
         healthBar.value = health;
+        playerHurtSFX.Play();
         if ( health == 0 )
         { 
             Debug.Log("You Died!");
