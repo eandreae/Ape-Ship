@@ -15,8 +15,6 @@ public class foodSpawner : MonoBehaviour
     //GorillaMovement gorillaScript;
     private bool charging;
     private bool canSpawn;
-    private Animator foodAnim;
-    private GameObject vendingMachine;
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +35,6 @@ public class foodSpawner : MonoBehaviour
 
         spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
         //gorillaScript = GetComponent<GorillaMovement>();
-
-        vendingMachine = GameObject.Find("TexturedVendingMachine");
-        foodAnim = vendingMachine.GetComponent<Animator>();
-
     }
 
     // Update is called once per frame
@@ -55,32 +49,28 @@ public class foodSpawner : MonoBehaviour
         {
             //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
-            //Changed to always spawn
-            //if (nodeColor.text != "green")
-            //{
-                foodAnim.Play("PushButton");
+            if (nodeColor.text != "green")
+            {
                 currColor = nodeColor.text;
                 GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                 temp.GetComponent<Rigidbody>().useGravity = true;
                 temp.GetComponent<destroyer>().enabled = true;
                 canSpawn = false;
                 StartCoroutine("SpawnTimer", 5.0f); // add 5 second cd to using vending machine
-            //}
+            }
         } else if(coll.gameObject.tag == "Gorilla" && coll.GetComponent<GorillaMovement>().charging) // gorilla collision when charging means spawn item no matter what
         {
             //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
-            //Changed to always spawn
-            //if (nodeColor.text != "green")
-            //{
-                foodAnim.Play("PushButton");
+            if (nodeColor.text != "green")
+            {
                 currColor = nodeColor.text;
                 GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                 temp.GetComponent<Rigidbody>().useGravity = true;
                 temp.GetComponent<destroyer>().enabled = true;
                 canSpawn = false;
                 StartCoroutine("SpawnTimer", 2.0f); // add 2 second cd to using vending machine
-            //}
+            }
         }
     }
 

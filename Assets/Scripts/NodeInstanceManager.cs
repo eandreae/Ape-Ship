@@ -25,10 +25,6 @@ public class NodeInstanceManager : MonoBehaviour
     public bool canHack = true; // can be hacked by monkey
     //private MonkeyMovement flee;
     private bool isFleeing;
-    [HideInInspector]
-    public float monkCooldown = 3f;
-
-    AudioSource nodeDisabledSFX;
 
     private void Start()
     {
@@ -36,7 +32,6 @@ public class NodeInstanceManager : MonoBehaviour
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         displayAnim = display.GetComponent<Animator>();
         agent = monkeyObj.GetComponent<NavMeshAgent>();
-        nodeDisabledSFX = GetComponent<AudioSource>();
         
         // Need to set starting color for each node
 
@@ -104,7 +99,6 @@ public class NodeInstanceManager : MonoBehaviour
         }
         else if (colorTracker.text == "red")
         {
-            nodeDisabledSFX.Play();
             myObject.material.color = Color.red;
             display.color = Color.red;
             displayAnim.Play("MinimapRedTask");
@@ -163,7 +157,7 @@ public class NodeInstanceManager : MonoBehaviour
         //Debug.Log("Monkey punch Node");
         monkeyObj.GetComponent<Animator>().Play("punch");
         agent.isStopped = true;
-        yield return new WaitForSeconds(monkCooldown); // time in seconds to wait
+        yield return new WaitForSeconds(3f); // time in seconds to wait
         //Debug.Log("Monkey stop punching Node");
         monkeyObj.GetComponent<Animator>().Play("walk");
         agent.isStopped = false;
