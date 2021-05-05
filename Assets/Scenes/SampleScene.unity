@@ -32869,7 +32869,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1340646625}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -4.88}
+  m_LocalPosition: {x: 0, y: 0, z: -6.36}
   m_LocalScale: {x: 0.3, y: 1, z: 0.1}
   m_Children: []
   m_Father: {fileID: 1961080861}
@@ -33244,17 +33244,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: b91f69dce963fa74e91cfaa0d6e5cbfb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -70.36
+      value: -70.37
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91f69dce963fa74e91cfaa0d6e5cbfb,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.12
+      value: 0.45
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91f69dce963fa74e91cfaa0d6e5cbfb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -79.74
+      value: -78.39
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b91f69dce963fa74e91cfaa0d6e5cbfb,
         type: 3}
@@ -33316,6 +33316,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: laserReciever
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b91f69dce963fa74e91cfaa0d6e5cbfb,
+        type: 3}
+      propertyPath: m_TagString
+      value: Reciever
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b91f69dce963fa74e91cfaa0d6e5cbfb, type: 3}
 --- !u!1 &1348309732 stripped
@@ -33343,6 +33348,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!65 &1348309735
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348309732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 6, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1359659561
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34179,6 +34197,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 392e3ed4b70ff2d4ba55539bfbb3390d, type: 2}
+  LaserCorrect:
+    m_PersistentCalls:
+      m_Calls: []
+  starColor: {fileID: 0}
 --- !u!1 &1399534777
 GameObject:
   m_ObjectHideFlags: 0
@@ -40515,7 +40537,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1824220320}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -70.51, y: 5.28, z: -52.3}
+  m_LocalPosition: {x: -70.96, y: 3.33, z: -56.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -40540,10 +40562,21 @@ MonoBehaviour:
       m_Calls: []
   OnNodeDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1857003606}
+        m_MethodName: ShuffleMirror
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   colorTracker: {fileID: 1471871104}
   display: {fileID: 2082339951}
-  stopDistance: 15
+  stopDistance: 5
   canHack: 1
   monkCooldown: 3
 --- !u!1 &1824413874 stripped
@@ -40915,6 +40948,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 392e3ed4b70ff2d4ba55539bfbb3390d, type: 2}
+  LaserCorrect:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1824220322}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  starColor: {fileID: 1471871104}
 --- !u!65 &1857003607
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -45481,7 +45529,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &983554213056895336
 Transform:
   m_ObjectHideFlags: 0
