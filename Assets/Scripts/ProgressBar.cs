@@ -74,6 +74,7 @@ public class ProgressBar : MonoBehaviour
                 {
                     agentM.speed = 40;
                     agentG.speed = 10;
+                    gorill._SPEED = 10;
                     gorill.chargeCooldown = 2f;
                     monk.monkCooldown = 1.5f;
                 }

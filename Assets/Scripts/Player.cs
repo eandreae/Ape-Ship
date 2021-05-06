@@ -58,7 +58,7 @@ public class Player : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
-        Physics.IgnoreCollision(gorillaCollider, GetComponent<CapsuleCollider>(), true);
+        //Physics.IgnoreCollision(gorillaCollider, GetComponent<CapsuleCollider>(), true);
     }
 
     // Update is called once per frame
