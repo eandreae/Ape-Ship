@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
         }
 
         // code to drop items
-        if(this.holding && Input.GetKeyDown("Jump")){ // if player is holding an item and presses space bar
+        if(this.holding && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
             // Debug.Log("drop");
             // un-parent the player from the item
             this.holdItem.transform.parent = null;
@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
         //     StartCoroutine("updateHealth");
         // }
 
-        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("Jump"))
+        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
     	{
             this.holdItem = other.gameObject;
     		
@@ -215,7 +215,7 @@ public class Player : MonoBehaviour
     // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
     void OnTriggerStay(Collider other){
         //test tag, if string is same as pick up...
-    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("Jump"))
+    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
     	{
             this.holdItem = other.gameObject;
     		
