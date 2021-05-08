@@ -38,6 +38,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
          * maybe move this connection code to a different method? maybe on client
         */
         connections.Add(conn);
+        Debug.Log(conn);
         GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         NetworkServer.AddPlayerForConnection(conn, player);
 
