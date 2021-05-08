@@ -15,9 +15,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     [SerializeField] private int maxconnections;
     public List<NetworkConnection> connections { get; } = new List<NetworkConnection>();
 
-
-    //our own function for starting game
-    private void ServerStartGame()
+    public void StartGame()
     {
         ServerChangeScene("game");
     }
@@ -61,7 +59,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        base.OnClientSceneChanged(conn); 
+        //base.OnClientSceneChanged(conn); 
         
         //GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
         //player.GetComponent<Player>().playerNum = numPlayers;
@@ -93,7 +91,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     }
     
     public override void OnClientConnect(NetworkConnection conn){
-        //base.OnClientConnect(conn);
+        base.OnClientConnect(conn);
     }
 
     public override void OnRoomServerAddPlayer(NetworkConnection conn)
