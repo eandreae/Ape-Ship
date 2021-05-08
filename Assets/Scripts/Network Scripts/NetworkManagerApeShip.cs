@@ -69,10 +69,15 @@ public class NetworkManagerApeShip : NetworkRoomManager
             int i = 0;
             foreach (NetworkConnection nc in connections)
             {
+                GameObject cube  = nc.identity.gameObject;
+                Debug.Log(cube);
+
                 GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
                 player.GetComponent<Player>().playerNum = i;
                 NetworkServer.ReplacePlayerForConnection(nc, player);
                 i++;
+
+                NetworkServer.Destroy(cube);
             }
         }
     }
