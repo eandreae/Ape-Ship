@@ -70,6 +70,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnServerSceneChanged(string newSceneName)
     {
         //base.OnServerSceneChanged(newSceneName);
+        /*
         Debug.Log("numplayers " + numPlayers);
         Debug.Log(newSceneName);
         if (newSceneName == "game"){
@@ -88,6 +89,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
                 //NetworkServer.Destroy(cube);
             }
         }
+        */
     }
     
     public override void OnClientConnect(NetworkConnection conn){
