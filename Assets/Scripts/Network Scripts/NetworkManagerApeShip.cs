@@ -40,16 +40,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
         if(numPlayers > 0 || true){
             connections.Add(conn);
-            //Debug.Log("numplayers init:" + numPlayers);
             GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
-            //player.GetComponent<Player>().playerNum = numPlayers + 1;
-            //Debug.Log("before adding connect:" + numPlayers);
             NetworkServer.AddPlayerForConnection(conn, player);
-            //Debug.Log("after spawn:" + numPlayers);
-            //GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "TestCamera"));
-            //cam.GetComponent<PlayerCamera>().playerNum = numPlayers;
             Debug.Log("added player: " + numPlayers);
-            //NetworkServer.Spawn(cam);
         }
 
         base.OnServerConnect(conn);
