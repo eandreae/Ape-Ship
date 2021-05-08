@@ -1284,6 +1284,7 @@ namespace Mirror
             if (clientSceneOperation == SceneOperation.Normal && autoCreatePlayer && NetworkClient.localPlayer == null)
             {
                 // add player if existing one is null
+                Debug.Log("ADD PLAYERRRRR");
                 NetworkClient.AddPlayer();
             }
         }
