@@ -67,10 +67,22 @@ public class NetworkManagerApeShip : NetworkRoomManager
         base.OnServerAddPlayer(conn);
     }
 
+    public override void OnClientSceneChanged(NetworkConnection conn)
+    {
+        base.OnClientSceneChanged(conn);
+        //Debug.Log("numplayers init:" + numPlayers);
+        GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
+        player.GetComponent<Player>().playerNum = numPlayers + 1;
+        //Debug.Log("before adding connect:" + numPlayers);
+        NetworkServer.ReplacePlayerForConnection(conn, player);
+        //Debug.Log("after spawn:" + numPlayers);
+        Debug.Log("added player: " + numPlayers);
+    }
+
     public override void OnServerSceneChanged(string newSceneName)
     {
         Debug.Log("numplayers " + numPlayers);
-        if (newSceneName == "game"){
+        if (newSceneName == "game" && false){
             Debug.Log(connections.Count);
             foreach (NetworkConnection nc in connections)
             {
@@ -80,10 +92,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
                 //Debug.Log("before adding connect:" + numPlayers);
                 NetworkServer.ReplacePlayerForConnection(nc, player);
                 //Debug.Log("after spawn:" + numPlayers);
-                //GameObject cam = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "TestCamera"));
-                //cam.GetComponent<PlayerCamera>().playerNum = numPlayers;
                 Debug.Log("added player: " + numPlayers);
-                //NetworkServer.Spawn(cam);
             }
         }
     }
