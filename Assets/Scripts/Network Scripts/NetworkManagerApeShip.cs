@@ -64,8 +64,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
     
     public override void OnServerSceneChanged(string newSceneName)
     {
-        base.OnServerSceneChanged(newSceneName);
+        //base.OnServerSceneChanged(newSceneName);
         Debug.Log("numplayers " + numPlayers);
+        Debug.Log(newSceneName);
         if (newSceneName == "game"){
             Debug.Log(connections.Count);
             int i = 0;
