@@ -210,6 +210,12 @@ public class Player : MonoBehaviour
             //this.holding = true;
             //Debug.Log(this.holdItem);
     	}
+        if (other.gameObject.tag == "ThrownObject")
+        {
+            Debug.Log("Hit by object");
+            health = health - 1 ;
+            StartCoroutine("updateHealth");
+        }
     }
 
     // by using OnTriggerStay, we can check for picking up as long as player is touching the item.

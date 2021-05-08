@@ -10,10 +10,12 @@ public class FieldOfView : MonoBehaviour
 	public float viewAngle;
 
 	public LayerMask targetMask;
+	public LayerMask objectMask;
 	public LayerMask obstacleMask;
 
 	//[HideInInspector]
 	public List<Transform> visibleTargets = new List<Transform>();
+	public List<Transform> visibleObjects = new List<Transform>();
 	void Start()
 	{
 		StartCoroutine("FindTargetsWithDelay", .2f);
@@ -35,7 +37,10 @@ public class FieldOfView : MonoBehaviour
 	public void FindVisibleTargets()
 	{
 		visibleTargets.Clear();
+		visibleTargets.Clear();
+
 		Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+		Collider[] objectsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, objectMask);
 
 		for (int i = 0; i < targetsInViewRadius.Length; i++)
 		{
@@ -52,6 +57,23 @@ public class FieldOfView : MonoBehaviour
 				}
 			}
 		}
+
+		for (int i = 0; i < objectsInViewRadius.Length; i++)
+		{
+			Transform targetObj = objectsInViewRadius[i].transform;
+			Vector3 dirToTarget = (targetObj.position - transform.position).normalized;
+			if (Vector3.Angle(transform.forward, dirToTarget) < viewAngle / 2)
+			{
+				float dstToTarget = Vector3.Distance(transform.position, targetObj.position);
+
+				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+				{
+					visibleObjects.Add(targetObj);
+					// Debug.Log("Found Target");
+				}
+			}
+		}
+
 	}
 
 
