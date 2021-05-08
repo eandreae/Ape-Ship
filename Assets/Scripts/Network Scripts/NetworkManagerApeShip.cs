@@ -37,13 +37,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
          * joining client can't click ready, but can see host click ready
          * maybe move this connection code to a different method? maybe on client
         */
-
-        if(numPlayers > 0 || true){
-            connections.Add(conn);
-            GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
-            NetworkServer.AddPlayerForConnection(conn, player);
-            Debug.Log("added player: " + numPlayers);
-        }
+        connections.Add(conn);
+        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
+        NetworkServer.AddPlayerForConnection(conn, player);
 
         base.OnServerConnect(conn);
     }
@@ -104,8 +100,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnRoomServerSceneChanged(sceneName);
         Debug.Log("room server scene changed");
-
-        Debug.Log("numplayers " + numPlayers);
     }
 
 
