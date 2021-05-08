@@ -65,7 +65,7 @@ namespace Mirror
         /// </summary>
         [Tooltip("Diagnostic flag indicating all players are ready to play")]
         [FormerlySerializedAs("allPlayersReady")]
-        [SerializeField] bool _allPlayersReady;
+        [SerializeField] public bool _allPlayersReady;
 
         /// <summary>
         /// These slots track players that enter the room.

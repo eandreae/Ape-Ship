@@ -3632,7 +3632,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5849908636383424026}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1572404164}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a13ba4af5cd681b47b9e8ee1f79c1093, type: 3}
@@ -5199,7 +5199,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 5849908636383424026}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1572404164}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e07e2b0b6d78b064690aa1e4f2d9d059, type: 3}
@@ -8663,6 +8663,10 @@ MonoBehaviour:
   tutorialPanel: {fileID: 783163200}
   creditsPanel: {fileID: 1704128414}
   settingsPanel: {fileID: 1538226970}
+  startGameButton: {fileID: 1863320929899374906, guid: c004ff85742bf164d9e394a07c025c7d,
+    type: 3}
+  networkManager: {fileID: 2580750289424340342, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    type: 3}
 --- !u!1 &1304485138
 GameObject:
   m_ObjectHideFlags: 0
@@ -10876,6 +10880,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1571091587}
   m_CullTransparentMesh: 0
+--- !u!1 &1572404164 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2580750289424340342, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    type: 3}
+  m_PrefabInstance: {fileID: 5849908636383424026}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1588973583
 GameObject:
   m_ObjectHideFlags: 0
@@ -14324,7 +14334,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: room
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
       - m_Target: {fileID: 682740935}
         m_MethodName: SetActive
         m_Mode: 6
@@ -14335,24 +14345,13 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+        m_CallState: 0
+      - m_Target: {fileID: 1572404164}
         m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -15063,18 +15062,29 @@ PrefabInstance:
     - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: onlineScene
-      value: Assets/Scenes/MainMenu.unity
+      value: Assets/Scenes/room.unity
       objectReference: {fileID: 0}
     - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: RoomScene
-      value: Assets/Scenes/MainMenu.unity
+      value: Assets/Scenes/room.unity
       objectReference: {fileID: 0}
     - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: startbutton
       value: 
-      objectReference: {fileID: 1334017163}
+      objectReference: {fileID: 1863320929899374906, guid: c004ff85742bf164d9e394a07c025c7d,
+        type: 3}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: offlineScene
+      value: Assets/Scenes/MainMenu.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580750289424340342, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5849908636841861482, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: onlineScene

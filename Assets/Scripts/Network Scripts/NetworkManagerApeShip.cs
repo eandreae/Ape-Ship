@@ -8,12 +8,12 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     private NetworkRoomManager networkManager;
 
-    [Header("start game button")]
+    [Header("Start game button")]
     [SerializeField] private GameObject startbutton = null;
     
-
-    private int maxconnections;
-    private List<NetworkConnection> connections { get; } = new List<NetworkConnection>();
+    [Header("Connections")]
+    [SerializeField] private int maxconnections;
+    [SerializeField] public List<NetworkConnection> connections { get; } = new List<NetworkConnection>();
 
     public void StartGame()
     {
@@ -38,7 +38,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
          * maybe move this connection code to a different method? maybe on client
         */
 
-        if(numPlayers > 0){
+        if(numPlayers > 0 || true){
             connections.Add(conn);
             //Debug.Log("numplayers init:" + numPlayers);
             GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
@@ -57,7 +57,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        connections.Remove(conn);
+        connections.Remove(conn); //potentially need to fix this
 
         base.OnServerDisconnect(conn);
     }
@@ -67,10 +67,11 @@ public class NetworkManagerApeShip : NetworkRoomManager
         base.OnServerAddPlayer(conn);
     }
 
-    public override void OnServerChangeScene(string newSceneName)
+    public override void OnServerSceneChanged(string newSceneName)
     {
         Debug.Log("numplayers " + numPlayers);
         if (newSceneName == "game"){
+            Debug.Log(connections.Count);
             foreach (NetworkConnection nc in connections)
             {
                 //Debug.Log("numplayers init:" + numPlayers);
