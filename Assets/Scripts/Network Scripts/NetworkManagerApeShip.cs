@@ -13,7 +13,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     
     [Header("Connections")]
     [SerializeField] private int maxconnections;
-    [SerializeField] public List<NetworkConnection> connections { get; } = new List<NetworkConnection>();
+    public List<NetworkConnection> connections { get; } = new List<NetworkConnection>();
 
     public void StartGame()
     {
@@ -64,6 +64,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     
     public override void OnServerSceneChanged(string newSceneName)
     {
+        base.OnServerSceneChanged(newSceneName);
         Debug.Log("numplayers " + numPlayers);
         if (newSceneName == "game"){
             Debug.Log(connections.Count);
@@ -98,7 +99,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnRoomServerConnect(NetworkConnection conn)
     {
         base.OnRoomServerConnect(conn);
-        
         Debug.Log("room server connect (conn: " + conn +")");
     }
 
@@ -112,29 +112,28 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnRoomServerPlayersReady()
     {
+        base.OnRoomServerPlayersReady();
         Debug.Log("ready");
         startbutton.SetActive(true);
     }
 
     public override void OnRoomServerPlayersNotReady()
     {
+        base.OnRoomServerPlayersNotReady();
         Debug.Log("not ready");
+        
         startbutton.SetActive(false);
     }
 
     public override void OnRoomClientConnect(NetworkConnection conn)
     {
         base.OnRoomClientConnect(conn);
-        // force client to join roomScene
-        //roomClient
         Debug.Log("room client connect");
     }
 
     public override void OnRoomClientDisconnect(NetworkConnection conn)
     {
-        // foreach (Object o in conn.clientOwnedObjects)
-        //     Object.Destroy(o);
-        // base.OnRoomClientDisconnect(conn);
+        base.OnRoomClientDisconnect(conn);
         Debug.Log("room client disconnect");
     }
 
@@ -142,7 +141,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnRoomClientEnter();
         Debug.Log("room client enter");
-        //ClientChangeScene(roomScene);
     }
 
 
