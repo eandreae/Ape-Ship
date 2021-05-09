@@ -89,7 +89,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
         base.OnServerSceneChanged(newSceneName);
         
 
-        for (int i=0; i<roomSlots.Capacity; i+=2)
+        for (int i=0; i<(roomSlots.Capacity/2); i++)
         {
             NetworkServer.Destroy(roomSlots[i].gameObject);
         }
