@@ -30,11 +30,13 @@ public class NetworkManagerApeShip : NetworkRoomManager
          * working on custom player spawns
         */
 
-        //Debug.Log(conn);
-        //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
-        //NetworkServer.AddPlayerForConnection(conn, player);
+        
 
         base.OnServerConnect(conn);
+
+        //Debug.Log(conn);
+        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
+        NetworkServer.AddPlayerForConnection(conn, player);
     }
 
     public override void OnServerDisconnect(NetworkConnection conn)
@@ -56,9 +58,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnClientSceneChanged(conn);
 
-        //GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
+        //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         //player.GetComponent<Player>().playerNum = numPlayers;
-        //NetworkServer.ReplacePlayerForConnection(conn, player);
+        //NetworkServer.AddPlayerForConnection(conn, player);
     }
 
 
@@ -66,26 +68,14 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnServerSceneChanged(newSceneName);
 
-
-        // Debug.Log("numplayers " + numPlayers);
-        // Debug.Log(newSceneName);
-        // if (newSceneName == "game"){
-        //     Debug.Log(connections.Count);
-        //     int i = 0;
-        //     foreach (NetworkConnection nc in connections)
-        //     {
-        //         GameObject cube  = nc.identity.gameObject;
-        //         //Debug.Log(cube);
-
-        //         GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
-        //         player.GetComponent<Player>().playerNum = i;
-        //         NetworkServer.ReplacePlayerForConnection(nc, player);
-        //         i++;
-
-        //         NetworkServer.Destroy(cube);
-        //     }
-        // }
-        
+        if (newSceneName == "game")
+            for(int i=0; i<roomSlots.Count; i++)
+            {
+                GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
+                GameObject roomplayer = roomSlots[i].gameObject;
+                NetworkServer.ReplacePlayerForConnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient, player);
+                NetworkServer.Destroy(roomplayer);
+            }
     }
     
     public override void OnClientConnect(NetworkConnection conn){
