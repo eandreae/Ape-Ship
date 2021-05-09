@@ -36,14 +36,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
         networkManager = GetComponent<NetworkRoomManager>();
 
         /*
-         * can join lobbies without using the weird join scene
-         * joining client can't click ready, but can see host click ready
-         * maybe move this connection code to a different method? maybe on client
-         * 
-         * remote client kicked immediately once local client loads in
-         * 
-         * why does remote client not have authority? why is remote client shown as isserver?
-         * 
+         * working on custom player spawns
         */
 
         connections.Add(conn);
