@@ -10,9 +10,27 @@ public class MonkeJail : MonoBehaviour
     public float jailCooldown;
 
     public Animator[] jailBars;
+    public Animator interactAnim;
+
     void OnTriggerEnter(Collider other)
     {
-        if ((other.gameObject.tag == "Player" && canPush) || (other.gameObject.tag == "Gorilla" && other.GetComponent<GorillaMovement>().charging))// player/charging gorilla can push the button
+        if (canPush)
+        {
+            interactAnim.Play("PickUpTextRaise");
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (canPush)
+        {
+            interactAnim.Play("PickUpTextLower");
+        }
+    }
+
+    void Update()
+    {
+        if(Input.GetKeyDown("space") && canPush)
         {
             CloseJail();
         }
@@ -20,7 +38,8 @@ public class MonkeJail : MonoBehaviour
 
     void CloseJail()
     {
-        foreach(Animator jailBar in jailBars)
+        interactAnim.Play("PickUpTextLower");
+        foreach (Animator jailBar in jailBars)
         {
             jailBar.Play("CloseBar");
         }
