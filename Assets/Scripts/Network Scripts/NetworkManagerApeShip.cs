@@ -45,6 +45,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
          * why does remote client not have authority? why is remote client shown as isserver?
          * 
         */
+
         connections.Add(conn);
         //Debug.Log(conn);
         //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
@@ -84,6 +85,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnServerSceneChanged(newSceneName);
 
+        if (false)
         foreach (NetworkConnection nc in connections)
         {
             GameObject cube  = nc.identity.gameObject;
