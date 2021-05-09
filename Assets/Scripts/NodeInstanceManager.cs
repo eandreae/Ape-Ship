@@ -104,7 +104,6 @@ public class NodeInstanceManager : MonoBehaviour
         }
         else if (colorTracker.text == "red")
         {
-            nodeDisabledSFX.Play();
             myObject.material.color = Color.red;
             display.color = Color.red;
             displayAnim.Play("MinimapRedTask");
@@ -129,6 +128,7 @@ public class NodeInstanceManager : MonoBehaviour
         Debug.Log("DamageNode");
         if (color == Color.yellow)
         {
+            nodeDisabledSFX.Play();
             SetColor(Color.red);
             colorTracker.text = "red";
             OnNodeDamage.Invoke();
