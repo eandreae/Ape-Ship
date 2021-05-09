@@ -30,14 +30,10 @@ public class SteamLobby : MonoBehaviour
     }
 
     // Start is called before the first frame update
-    public void HostLobby(int lobbysize)
+    public void HostLobby()
     {
         //buttons.SetActive(false);
-
-        if (lobbysize == 0)
-            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, networkManager.maxConnections);
-        else
-            SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, lobbysize);
+        SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 4);
     }
 
     public void StopLobby()
