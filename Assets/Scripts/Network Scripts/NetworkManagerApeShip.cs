@@ -72,23 +72,22 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
-        GameObject cube = conn.identity.gameObject;
-
         base.OnClientSceneChanged(conn);
 
         //GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
         //player.GetComponent<Player>().playerNum = numPlayers;
         //NetworkServer.ReplacePlayerForConnection(conn, player);
-
-        if (networkSceneName == "game")
-            NetworkServer.Destroy(cube);
-        
     }
 
 
     public override void OnServerSceneChanged(string newSceneName)
     {
         base.OnServerSceneChanged(newSceneName);
+
+        for (int i=roomSlots.Capacity-1; i>=0; i--)
+        {
+            NetworkServer.Destroy(roomSlots[i].gameObject);
+        }
 
         /*
         Debug.Log("numplayers " + numPlayers);
