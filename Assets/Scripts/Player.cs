@@ -70,9 +70,9 @@ public class Player : NetworkBehaviour
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
         //Debug.Log(nm.numPlayers);
         
-        if(CameraObj){
-            GameObject.Instantiate(CameraObj);
-        }
+        //if(CameraObj){
+        //    GameObject.Instantiate(CameraObj);
+        //}
 
         healthBar = GameObject.Find("HealthBarSlider").GetComponent<Slider>();
         //health_text = GameObject.Find("HealthBarText").GetComponent<Text>();

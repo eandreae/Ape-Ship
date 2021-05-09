@@ -45,8 +45,8 @@ public class NetworkManagerApeShip : NetworkRoomManager
          * why does remote client not have authority? why is remote client shown as isserver?
          * 
         */
-        //connections.Add(conn);
-        Debug.Log(conn);
+        connections.Add(conn);
+        //Debug.Log(conn);
         //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         //NetworkServer.AddPlayerForConnection(conn, player);
 
@@ -84,31 +84,31 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnServerSceneChanged(newSceneName);
 
-        for (int i=roomSlots.Capacity-1; i>=0; i--)
+        foreach (NetworkConnection nc in connections)
         {
-            NetworkServer.Destroy(roomSlots[i].gameObject);
+            GameObject cube  = nc.identity.gameObject;
+            NetworkServer.Destroy(cube);
         }
 
-        /*
-        Debug.Log("numplayers " + numPlayers);
-        Debug.Log(newSceneName);
-        if (newSceneName == "game"){
-            Debug.Log(connections.Count);
-            int i = 0;
-            foreach (NetworkConnection nc in connections)
-            {
-                //GameObject cube  = nc.identity.gameObject;
-                //Debug.Log(cube);
+        // Debug.Log("numplayers " + numPlayers);
+        // Debug.Log(newSceneName);
+        // if (newSceneName == "game"){
+        //     Debug.Log(connections.Count);
+        //     int i = 0;
+        //     foreach (NetworkConnection nc in connections)
+        //     {
+        //         GameObject cube  = nc.identity.gameObject;
+        //         //Debug.Log(cube);
 
-                GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
-                player.GetComponent<Player>().playerNum = i;
-                NetworkServer.ReplacePlayerForConnection(nc, player);
-                i++;
+        //         GameObject player = Instantiate(playerPrefab, playerPrefab.GetComponent<Transform>());
+        //         player.GetComponent<Player>().playerNum = i;
+        //         NetworkServer.ReplacePlayerForConnection(nc, player);
+        //         i++;
 
-                //NetworkServer.Destroy(cube);
-            }
-        }
-        */
+        //         NetworkServer.Destroy(cube);
+        //     }
+        // }
+        
     }
     
     public override void OnClientConnect(NetworkConnection conn){
