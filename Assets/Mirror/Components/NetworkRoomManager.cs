@@ -191,11 +191,7 @@ namespace Mirror
                 return;
 
             // replace room player with game player
-            /*
-            GameObject cube = conn.identity.gameObject;
             NetworkServer.ReplacePlayerForConnection(conn, gamePlayer, true);
-            NetworkServer.Destroy(cube);
-            */
         }
 
         /// <summary>
