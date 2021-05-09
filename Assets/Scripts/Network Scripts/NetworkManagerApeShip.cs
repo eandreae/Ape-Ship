@@ -15,7 +15,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     [SerializeField] private GameObject startbutton = null;
     
     [Header("Connections")]
-    [SerializeField] private int maxconnections;
+    private int maxconnections;
     public List<NetworkConnection> connections { get; } = new List<NetworkConnection>();
 
     public void StartGame()
@@ -45,7 +45,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
          * why does remote client not have authority? why is remote client shown as isserver?
          * 
         */
-        connections.Add(conn);
+        //connections.Add(conn);
         Debug.Log(conn);
         //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         //NetworkServer.AddPlayerForConnection(conn, player);
@@ -55,7 +55,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        connections.Remove(conn); //potentially need to fix this
+        //connections.Remove(conn); //potentially need to fix this
 
         base.OnServerDisconnect(conn);
     }
@@ -82,7 +82,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     
     public override void OnServerSceneChanged(string newSceneName)
     {
-        base.OnServerSceneChanged(newSceneName);
+        //base.OnServerSceneChanged(newSceneName);
         /*
         Debug.Log("numplayers " + numPlayers);
         Debug.Log(newSceneName);
