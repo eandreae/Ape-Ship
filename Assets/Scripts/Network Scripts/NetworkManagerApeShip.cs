@@ -87,11 +87,11 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnServerSceneChanged(string newSceneName)
     {
         base.OnServerSceneChanged(newSceneName);
-        
 
-        for (int i=0; i<(roomSlots.Capacity/2); i++)
+        int index = (roomSlots.Capacity / 2)-1;
+        while (roomSlots[index] != null)
         {
-            NetworkServer.Destroy(roomSlots[i].gameObject);
+            NetworkServer.Destroy(roomSlots[index].gameObject);
         }
 
         /*
