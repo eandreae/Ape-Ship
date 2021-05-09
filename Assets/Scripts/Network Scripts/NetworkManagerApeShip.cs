@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
+
+
+
 public class NetworkManagerApeShip : NetworkRoomManager
 {
 
@@ -36,6 +39,11 @@ public class NetworkManagerApeShip : NetworkRoomManager
          * can join lobbies without using the weird join scene
          * joining client can't click ready, but can see host click ready
          * maybe move this connection code to a different method? maybe on client
+         * 
+         * remote client kicked immediately once local client loads in
+         * 
+         * why does remote client not have authority? why is remote client shown as isserver?
+         * 
         */
         connections.Add(conn);
         Debug.Log(conn);
@@ -55,6 +63,11 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
         base.OnServerAddPlayer(conn);
+    }
+
+    public override void OnClientDisconnect(NetworkConnection conn)
+    {
+        base.OnClientDisconnect(conn);
     }
 
     public override void OnClientSceneChanged(NetworkConnection conn)
@@ -125,6 +138,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnRoomServerPlayersReady()
     {
         //base.OnRoomServerPlayersReady();
+        //base function automatically starts game when all are ready
         Debug.Log("ready");
         startbutton.SetActive(true);
     }
@@ -154,6 +168,5 @@ public class NetworkManagerApeShip : NetworkRoomManager
         base.OnRoomClientEnter();
         Debug.Log("room client enter");
     }
-
 
 }
