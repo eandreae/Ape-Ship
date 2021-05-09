@@ -13,10 +13,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     [Header("Start game button")]
     [SerializeField] private GameObject startbutton = null;
-    
-    [Header("Connections")]
-    private int maxconnections;
-    public List<NetworkConnection> connections { get; } = new List<NetworkConnection>();
 
     public void StartGame()
     {
@@ -25,21 +21,15 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnStartServer()
     {
-        networkManager = GetComponent<NetworkRoomManager>();
-        maxconnections = networkManager.maxConnections;
-
         base.OnStartServer();
     }
 
     public override void OnServerConnect(NetworkConnection conn)
     {
-        networkManager = GetComponent<NetworkRoomManager>();
-
         /*
          * working on custom player spawns
         */
 
-        connections.Add(conn);
         //Debug.Log(conn);
         //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         //NetworkServer.AddPlayerForConnection(conn, player);
@@ -49,8 +39,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
-        //connections.Remove(conn); //potentially need to fix this
-
         base.OnServerDisconnect(conn);
     }
 
@@ -78,12 +66,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnServerSceneChanged(newSceneName);
 
-        if (false)
-        foreach (NetworkConnection nc in connections)
-        {
-            GameObject cube  = nc.identity.gameObject;
-            NetworkServer.Destroy(cube);
-        }
 
         // Debug.Log("numplayers " + numPlayers);
         // Debug.Log(newSceneName);
@@ -148,7 +130,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnRoomServerPlayersNotReady();
         Debug.Log("not ready");
-        
         startbutton.SetActive(false);
     }
 
