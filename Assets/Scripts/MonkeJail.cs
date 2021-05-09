@@ -14,7 +14,7 @@ public class MonkeJail : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (canPush)
+        if (canPush && other.gameObject.CompareTag("Player"))
         {
             interactAnim.Play("PickUpTextRaise");
         }
@@ -22,7 +22,7 @@ public class MonkeJail : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (canPush)
+        if (canPush && other.gameObject.CompareTag("Player"))
         {
             interactAnim.Play("PickUpTextLower");
         }
