@@ -27,7 +27,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnServerConnect(NetworkConnection conn)
     {
         /*
-         * working on custom player spawns
+         * remote client cameras are locked on roomplayers
         */
 
         
