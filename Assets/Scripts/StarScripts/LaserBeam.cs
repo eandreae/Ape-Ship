@@ -44,7 +44,7 @@ public class LaserBeam: MonoBehaviour
             CheckHit(hit, dir, laser);
         } else
         {
-            laserIndices.Add(ray.GetPoint(30));
+            laserIndices.Add(ray.GetPoint(100));
             UpdateLaser();
         }
     }
