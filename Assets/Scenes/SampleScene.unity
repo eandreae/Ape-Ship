@@ -16936,6 +16936,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eead1e607abe34c4db50b04acec23791,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.9999999
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: eead1e607abe34c4db50b04acec23791,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.99999994
+      objectReference: {fileID: 0}
     - target: {fileID: -5971518295728010373, guid: eead1e607abe34c4db50b04acec23791,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -35330,6 +35340,22 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   starColor: {fileID: 0}
+--- !u!208 &1398904223
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398904219}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 3.5, y: 2.06, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.5, y: 2, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1399534777
 GameObject:
   m_ObjectHideFlags: 0
