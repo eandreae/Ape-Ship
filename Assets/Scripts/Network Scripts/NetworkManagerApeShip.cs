@@ -35,7 +35,16 @@ public class NetworkManagerApeShip : NetworkRoomManager
         base.OnServerConnect(conn);
 
         //Debug.Log(conn);
-        GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
+        
+        Vector3 playerPos = roomPlayerPrefab.gameObject.GetComponent<Transform>().position;
+        Vector3 offset = new Vector3(5f * numPlayers, 0, -3);
+        //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
+        
+        // spawn room player at given transform with correct rotation
+        GameObject player = Instantiate(   roomPlayerPrefab.gameObject,                                         // gameobject
+                                          (playerPos + offset),                                                 // new position
+                                           roomPlayerPrefab.gameObject.GetComponent<Transform>().rotation   );  // rotation
+
         NetworkServer.AddPlayerForConnection(conn, player);
     }
 
