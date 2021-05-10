@@ -77,10 +77,7 @@ public class ProgressBar : MonoBehaviour
                     gorill._SPEED = 10;
                     gorill.chargeCooldown = 2f;
                     monk.monkCooldown = 1.5f;
-                }
-                if (timeRemaining < 30 && (transform.localScale.x < 2) && (transform.localScale.y < 2) && (transform.localScale.z < 2))
-                {
-                    progressSlider.transform.localScale += sizeDelta;
+                    //progressSlider.transform.localScale = Vector3.Lerp(progressSlider.transform.localScale, sizeDelta, 1f);
                 }
             }
             else {

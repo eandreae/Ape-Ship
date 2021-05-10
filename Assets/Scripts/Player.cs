@@ -191,7 +191,7 @@ public class Player : MonoBehaviour
         //     StartCoroutine("updateHealth");
         // }
 
-        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("jump"))
+        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
     	{
             this.holdItem = other.gameObject;
     		
@@ -221,7 +221,7 @@ public class Player : MonoBehaviour
     // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
     void OnTriggerStay(Collider other){
         //test tag, if string is same as pick up...
-    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("jump"))
+    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
     	{
             this.holdItem = other.gameObject;
     		

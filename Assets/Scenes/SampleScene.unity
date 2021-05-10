@@ -16100,7 +16100,7 @@ MonoBehaviour:
   progressing: 0
   timeRemaining: 120
   progressSlider: {fileID: 635993681}
-  barFill: {fileID: 1294557612}
+  barFill: {fileID: 1253067052}
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
   gorill: {fileID: 1190199561}
@@ -16108,17 +16108,17 @@ MonoBehaviour:
   barGradient:
     serializedVersion: 2
     key0: {r: 0, g: 0.69803923, b: 0.8235295, a: 1}
-    key1: {r: 0, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
+    key1: {r: 0.39215687, g: 0, b: 1, a: 1}
+    key2: {r: 0.9819277, g: 0.012615204, b: 0.014883101, a: 0}
+    key3: {r: 0.9819277, g: 0.012615204, b: 0.014883101, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
     key5: {r: 0, g: 0, b: 0, a: 0}
     key6: {r: 0, g: 0, b: 0, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
     ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
+    ctime1: 32768
+    ctime2: 65535
+    ctime3: 65535
     ctime4: 0
     ctime5: 0
     ctime6: 0
@@ -16132,9 +16132,9 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 2
+    m_NumColorKeys: 3
     m_NumAlphaKeys: 2
-  sizeDelta: {x: 0.1, y: 0.1, z: 0.1}
+  sizeDelta: {x: 2, y: 2, z: 2}
 --- !u!1 &637573585
 GameObject:
   m_ObjectHideFlags: 0
