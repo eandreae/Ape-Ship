@@ -61,7 +61,7 @@ public class NodeInstanceManager : MonoBehaviour
         if (playerDist < stopDistance)
         {
             //temporary until all minigames are implemented
-            if(gameObject.tag != "Nav" && gameObject.tag != "Stomach" && gameObject.tag != "O2_2" && gameObject.tag != "O2" && gameObject.tag != "Reactor")
+            if(gameObject.tag != "Nav" && gameObject.tag != "Stomach" && gameObject.tag != "O2_2" && gameObject.tag != "O2" && gameObject.tag != "Reactor" && gameObject.tag != "ElecControl")
             {
                 myObject.material.color = Color.green;
                 display.color = Color.green;
@@ -104,7 +104,6 @@ public class NodeInstanceManager : MonoBehaviour
         }
         else if (colorTracker.text == "red")
         {
-            nodeDisabledSFX.Play();
             myObject.material.color = Color.red;
             display.color = Color.red;
             displayAnim.Play("MinimapRedTask");
@@ -129,6 +128,7 @@ public class NodeInstanceManager : MonoBehaviour
         Debug.Log("DamageNode");
         if (color == Color.yellow)
         {
+            nodeDisabledSFX.Play();
             SetColor(Color.red);
             colorTracker.text = "red";
             OnNodeDamage.Invoke();
