@@ -271,13 +271,16 @@ public class Player : MonoBehaviour
     public IEnumerator updateHealth() {
         damageCue.SetTrigger("DamageTrigger");
         healthBar.value = health;
-        playerHurtSFX.Play();
         if ( health == 0 )
         { 
             Debug.Log("You Died!");
             health_text.text = ""; 
             moveSpeed = 0f;
             gm.Defeat();
+        }
+        else
+        {
+            playerHurtSFX.Play();
         }
         yield return new WaitForSeconds(0.2f); // get knocked by gorilla, then ignore collisions
         Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), true);
