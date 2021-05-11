@@ -268,14 +268,21 @@ public class GorillaMovement : MonoBehaviour
 
             holdingObject = false;
             StartCoroutine("ThrowWait");
+            StartCoroutine("DestroyThrown", objectHeld);
             StartGorilla();
         }
     }
 
     IEnumerator ThrowWait()
     {
-        yield return new WaitForSeconds(5f); // wait for 1 second
+        yield return new WaitForSeconds(5f); // wait for 5 seconds
         canPickup = true;
+    }
+
+    IEnumerator DestroyThrown(GameObject obj)
+    {
+        yield return new WaitForSeconds(5f);
+        Destroy(obj);
     }
 
     // This coroutine handles part of the Gorilla/Player collision interaction.
