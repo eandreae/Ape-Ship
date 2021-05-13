@@ -7,7 +7,6 @@ using Mirror;
 
 public class SteamLobby : MonoBehaviour
 {
-    [SerializeField] private GameObject buttons = null;
     [SerializeField] private Text displayid = null;
 
     protected Callback<LobbyCreated_t> lobbyCreated;
@@ -87,8 +86,6 @@ public class SteamLobby : MonoBehaviour
 
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
-
-        buttons.SetActive(false);
     }
 
 }

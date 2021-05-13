@@ -150,4 +150,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
         Debug.Log("room client enter");
     }
 
+    public override void OnStopClient()
+    {
+        base.OnStopClient();
+    }
+
 }
