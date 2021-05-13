@@ -6166,7 +6166,7 @@ GameObject:
   - component: {fileID: 355819501}
   m_Layer: 9
   m_Name: Gorilla LEGACY 2
-  m_TagString: Gorilla
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13953,7 +13953,7 @@ GameObject:
   - component: {fileID: 564618959}
   m_Layer: 0
   m_Name: Gorilla LEGACY 1
-  m_TagString: Gorilla
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35485,6 +35485,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b457a986a774c469d56a8d42211718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   stoppingDistance: 10
   color1: {fileID: 1626664258}
   color2: {fileID: 1471871104}
@@ -43834,7 +43836,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 71c38b5f98702c34f9f9defafb2b4d63,
         type: 3}
       propertyPath: m_TagString
-      value: Gorilla
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 71c38b5f98702c34f9f9defafb2b4d63,
         type: 3}
@@ -51477,7 +51479,7 @@ PrefabInstance:
     - target: {fileID: 5916922076573431473, guid: 647432554ee5b714f96cf4e78bdde332,
         type: 3}
       propertyPath: m_TagString
-      value: Gorilla
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 5916922076573431473, guid: 647432554ee5b714f96cf4e78bdde332,
         type: 3}

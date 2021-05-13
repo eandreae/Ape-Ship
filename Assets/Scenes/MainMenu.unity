@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -12342,6 +12342,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
+      propertyPath: spawnPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
       propertyPath: onlineScene
       value: Assets/Scenes/room.unity
       objectReference: {fileID: 0}
@@ -12388,6 +12393,42 @@ PrefabInstance:
       propertyPath: PersistNetworkManagerToOfflineScene
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 758380405924426014, guid: 816f15a9cd6bcf043bb9bd87f0a3f3dc,
+        type: 3}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 2675963936397640661, guid: 61c9fd4594c1a2541927750e1f466594,
+        type: 3}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 587971008673105628, guid: 061fd7889da23d54d98a34ef6ac07c88,
+        type: 3}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 2970312886035349680, guid: 5ebada6d77670344084ba2b1a5165efe,
+        type: 3}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 518392120109687607, guid: ea14fd73e34a13c49b2e479abd588d4f,
+        type: 3}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 3442019651058028904, guid: 5c1621398a3b3b54c96fcab9321cf852,
+        type: 3}
     - target: {fileID: 2580750289424340340, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: Timeout
