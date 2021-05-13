@@ -159,9 +159,12 @@ public class GorillaMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Player" && !this.stunned) {
-            StartCoroutine("AttackPlayer", other.GetComponent<Player>());
-        } else if (other.gameObject == target && !holdingObject)
+        if (other.tag == "Player") {
+            if (!this.stunned) {
+                StartCoroutine("AttackPlayer", other.GetComponent<Player>());
+            }
+        } 
+        else if (other.gameObject == target && !holdingObject)
         {
             PickUpObject(other);
         } else if (other.tag == "Pick Up" && !stunned) {
