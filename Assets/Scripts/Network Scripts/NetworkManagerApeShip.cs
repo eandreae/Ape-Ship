@@ -150,4 +150,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
         Debug.Log("room client enter");
     }
 
+    
+
 }
