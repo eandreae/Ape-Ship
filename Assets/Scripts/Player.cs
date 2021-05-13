@@ -74,10 +74,10 @@ public class Player : NetworkBehaviour
         //    GameObject.Instantiate(CameraObj);
         //}
 
-        healthBar = GameObject.Find("HealthBarSlider").GetComponent<Slider>();
+        healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         //health_text = GameObject.Find("HealthBarText").GetComponent<Text>();
         
-        oxygenBar = GameObject.Find("OxygenBarSlider").GetComponent<Slider>();
+        oxygenBar = GameObject.Find("OxygenBar").GetComponent<Slider>();
         //oxygen_text =  GameObject.Find("OxygenBarText").GetComponent<Text>();
         oxygen_color = GameObject.Find("OxygenColor").GetComponent<Text>();
         oxygen2_color = GameObject.Find("Oxygen2Color").GetComponent<Text>();
