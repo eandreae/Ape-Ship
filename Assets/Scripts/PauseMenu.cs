@@ -52,7 +52,7 @@ public class PauseMenu : MonoBehaviour
         backgroundMusic.pitch = 0.75f;
         pauseMenuPanel.SetActive(true);
         //mm.canActivateMinimap = false;
-        player.moveSpeed = 0f;
+        //player.moveSpeed = 0f;
         Time.timeScale = 0f;
         gameIsPaused = true;
     }
@@ -65,7 +65,7 @@ public class PauseMenu : MonoBehaviour
         backgroundMusic.pitch = 1f;
         pauseMenuPanel.SetActive(false);
         //mm.canActivateMinimap = true;
-        player.moveSpeed = 14f;
+        //player.moveSpeed = 14f;
         gameIsPaused = false;
     }
 

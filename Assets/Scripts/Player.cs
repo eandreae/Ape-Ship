@@ -194,6 +194,42 @@ public class Player : NetworkBehaviour
                 ChangeSpeed(defaultSpeed);
             }
         }
+        // else {
+        //     if (dir.sqrMagnitude > 0)
+        //     {
+        //         //Debug.Log(this.holdItem);
+        //         // if Player is holding an item, then use the hold animation. 
+        //         if (this.holdItem)
+        //         {
+        //             this.anim.Play("Hold");
+        //         }
+        //         else
+        //         {
+        //             this.anim.Play("Walk"); // play walking animation when moving
+        //             this.holding = false; // if no holdItem, then holding must be false
+        //             this.wpArrow.SetActive(false);
+        //         }
+        //         this.transform.LookAt(transform.position + dir); // look in direction that player is walking
+        //         controller.SimpleMove(this.moveSpeed * dir);
+        //         //StartCoroutine("PlayWalkingNoise");
+        //         // Moved camera functionality to PlayerCamera.cs
+        //         // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
+        //     }
+        //     else if (dir.sqrMagnitude == 0)
+        //     {
+        //         if (this.holdItem)
+        //         {
+        //             this.anim.Play("Hold-Idle");
+        //         }
+        //         else
+        //         {
+        //             this.anim.Play("Idle"); // if not moving, play idle anim
+        //             this.holding = false; // if no holdItem, then holding must be false
+        //             this.wpArrow.SetActive(false);
+        //         }
+        //     }
+        // }
+
         // code to drop items
         if(this.holding && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
             // Debug.Log("drop");

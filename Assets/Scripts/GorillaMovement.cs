@@ -4,8 +4,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Mirror;
 
-public class GorillaMovement : MonoBehaviour
+public class GorillaMovement : NetworkBehaviour
 {
 	float stoppingDistance = 15f;
     public float _SPEED = 6f;
@@ -14,7 +15,8 @@ public class GorillaMovement : MonoBehaviour
 
 	NavMeshAgent agent;
 
-	GameObject target;
+	[SyncVar] GameObject target; // make sure gorilla has the same target on all clients/servers
+
     GameObject node1;
     GameObject node2;
     GameObject node3;

@@ -11,7 +11,7 @@ public class ItemScript : MonoBehaviour
     //private GameObject[] playerObjs;
     public string type;
     private float height;
-    private Rigidbody rigidbody;
+    //private Rigidbody rigidbody;
     public GameObject glowEffect;
     GameObject playerObj;
     public Player playerScript;
@@ -23,7 +23,7 @@ public class ItemScript : MonoBehaviour
         active = false;
         thrown = false;
         //playerRoot = GameObject.FindWithTag("PlayerRoot").GetComponent<Transform>();
-        this.rigidbody = this.GetComponent<Rigidbody>();
+        //this.rigidbody = this.GetComponent<Rigidbody>();
         //this.rigidbody.isKinematic = false;
         //this.rigidbody.isKinematic = true;
         this.height = this.transform.position.y;
@@ -49,7 +49,7 @@ public class ItemScript : MonoBehaviour
             //if(this.glowEffect)
             //    this.glowEffect.SetActive(false);
             this.active = false;
-            this.rigidbody.isKinematic = true; // if picked up, item become kinematic
+            this.GetComponent<Rigidbody>().isKinematic = true; // if picked up, item become kinematic
             transform.localPosition = new Vector3(0f, 1.2f, 0.5f); // sets position relative to the player transform
             //Debug.Log(playerRoot.position);
             
@@ -85,7 +85,7 @@ public class ItemScript : MonoBehaviour
         	//Add 1 to points.
         	//Destroy(gameObject); //Destroys coin, when touched.
             this.playerRoot = other.gameObject.GetComponent<Transform>(); // save the player transform (use this in case of multiple playerobjects)
-            this.rigidbody.isKinematic = false;
+            this.GetComponent<Rigidbody>().isKinematic = false;
             //if (this.glowEffect && !this.pickedUp && !playerRoot.GetComponent<Player>().holding){
             //    this.glowEffect.SetActive(true);
             //}
@@ -118,7 +118,7 @@ public class ItemScript : MonoBehaviour
     	if (other.tag == "Player"){
             if (!this.thrown){  
                 //this.rigidbody.isKinematic = true;
-                this.rigidbody.velocity = Vector3.zero;
+                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
             // else {
             //     StartCoroutine("ThrownPhysics"); // set object to kinematic 

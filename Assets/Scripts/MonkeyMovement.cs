@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using Mirror;
 
-public class MonkeyMovement : MonoBehaviour
+public class MonkeyMovement : NetworkBehaviour
 {
     public float stoppingDistance  = 12.0f;
+
     public Text color1;
     public Text color2;
     public Text color3;
@@ -24,7 +26,7 @@ public class MonkeyMovement : MonoBehaviour
         "O2_2"
         };
     List<GameObject> nodes;
-    GameObject target;
+    [SyncVar] GameObject target;
     Text targetColor;
     FieldOfView targetsList;
     public List<Transform> visibleTargets = new List<Transform>();

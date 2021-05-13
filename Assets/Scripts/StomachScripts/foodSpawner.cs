@@ -23,16 +23,16 @@ public class foodSpawner : MonoBehaviour
     {
         currColor = nodeColor.text;
         canSpawn = true;
-        foodItems = new GameObject[9]; // 33% sandwich, 33% kebab, 22% banana, 11% nuke
-        foodItems[0] = GameObject.Find("KrillSandwich");
-        foodItems[1] = GameObject.Find("KrillSandwich");
-        foodItems[2] = GameObject.Find("KrillSandwich");
-        foodItems[3] = GameObject.Find("SeaFoodKebab");
-        foodItems[4] = GameObject.Find("SeaFoodKebab");
-        foodItems[5] = GameObject.Find("SeaFoodKebab");
-        foodItems[6] = GameObject.Find("Banana");
-        foodItems[7] = GameObject.Find("Banana");
-        foodItems[8] = GameObject.Find("SodaNuke");
+        // foodItems = new GameObject[9]; // 33% sandwich, 33% kebab, 22% banana, 11% nuke
+        // foodItems[0] = GameObject.Find("KrillSandwich");
+        // foodItems[1] = GameObject.Find("KrillSandwich");
+        // foodItems[2] = GameObject.Find("KrillSandwich");
+        // foodItems[3] = GameObject.Find("SeaFoodKebab");
+        // foodItems[4] = GameObject.Find("SeaFoodKebab");
+        // foodItems[5] = GameObject.Find("SeaFoodKebab");
+        // foodItems[6] = GameObject.Find("Banana");
+        // foodItems[7] = GameObject.Find("Banana");
+        // foodItems[8] = GameObject.Find("SodaNuke");
         
 
         spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
