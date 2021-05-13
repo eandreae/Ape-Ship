@@ -53,9 +53,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
         //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         
         // spawn ROOM PLAYER at given transform with correct rotation
-        GameObject player = Instantiate(   roomPlayerPrefab.gameObject,                                         // gameobject
-                                          (playerPos + offset),                                                 // new position
-                                           roomPlayerPrefab.gameObject.GetComponent<Transform>().rotation   );  // rotation
+        GameObject player = Instantiate(   roomPlayerPrefab.gameObject,                                     // gameobject
+                                          (playerPos + offset),                                             // new position
+                                           roomPlayerPrefab.gameObject.GetComponent<Transform>().rotation); // rotation
 
         NetworkServer.AddPlayerForConnection(conn, player);
     }
@@ -89,18 +89,24 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         base.OnServerSceneChanged(newSceneName);
 
-        if (newSceneName == "game")
-            for(int i=0; i<roomSlots.Count; i++)
+        if (newSceneName == "game"){
+            
+            int i = 0;
+            while (roomSlots.Count > 0)
             {
                 // spawning PLAYER CLONES into game
-                GameObject player = Instantiate(  playerPrefab,             // prefab
+                GameObject player = Instantiate(  playerPrefab,             // prefab/gameobject
                                                   spawnPos[i],              // position
                                                   Quaternion.identity);     // rotation
+                //Debug.Log("spawn player at " + spawnPos[i]);
 
-                GameObject roomplayer = roomSlots[i].gameObject;
-                NetworkServer.ReplacePlayerForConnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient, player);
+                GameObject roomplayer = roomSlots[0].gameObject;
+                NetworkServer.ReplacePlayerForConnection(roomSlots[0].GetComponent<NetworkIdentity>().connectionToClient, player);
                 NetworkServer.Destroy(roomplayer);
+                
+                i++;
             }
+        }
     }
     
     public override void OnClientConnect(NetworkConnection conn){
