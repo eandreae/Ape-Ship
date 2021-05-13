@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using Mirror;
 
-public class MonkeyMovement : MonoBehaviour
+public class Monkey1P : MonoBehaviour
 {
     public float stoppingDistance  = 12.0f;
 
@@ -37,6 +37,10 @@ public class MonkeyMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        if (GameObject.FindObjectOfType<NetworkManager>()){
+            Object.Destroy(this.gameObject);
+        }
+        
         runningAway = false;
         agent = GetComponent<NavMeshAgent>();
         playerObj = GameObject.FindGameObjectWithTag("Player");

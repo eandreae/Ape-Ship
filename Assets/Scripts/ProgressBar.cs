@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using Mirror;
 
 public class ProgressBar : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class ProgressBar : MonoBehaviour
     NavMeshAgent agentG;
 
     public GorillaMovement gorill;
+    public Gorilla1P gorill1P;
     public NodeInstanceManager monk;
 
     public Gradient barGradient;
@@ -74,8 +76,15 @@ public class ProgressBar : MonoBehaviour
                 {
                     agentM.speed = 40;
                     agentG.speed = 10;
-                    gorill._SPEED = 10;
-                    gorill.chargeCooldown = 2f;
+                    
+                    if (GameObject.FindObjectOfType<NetworkManager>()){
+                        gorill._SPEED = 10;
+                        gorill.chargeCooldown = 2f;
+                    }else {
+                        gorill1P._SPEED = 10;
+                        gorill1P.chargeCooldown = 2f;
+                    }
+                    
                     monk.monkCooldown = 1.5f;
                     //progressSlider.transform.localScale = Vector3.Lerp(progressSlider.transform.localScale, sizeDelta, 1f);
                 }

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using Mirror;
 
 public class NodeInstanceManager : MonoBehaviour
 {
@@ -54,7 +55,13 @@ public class NodeInstanceManager : MonoBehaviour
         playerDist = Vector3.Distance(transform.position, playerObj.transform.position);
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);
         //flee = GetComponent<MonkeyMovement>();
-        isFleeing = MonkeyMovement.runningAway;
+
+        if(GameObject.FindObjectOfType<NetworkManager>()){
+            isFleeing = MonkeyMovement.runningAway;
+        } else {
+            isFleeing = Monkey1P.runningAway;
+        }
+        
         //Debug.Log(isFleeing);
         //Change color to match text color
         UpdateColor();

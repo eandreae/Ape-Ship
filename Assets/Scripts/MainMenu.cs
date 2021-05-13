@@ -20,6 +20,7 @@ public class MainMenu : MonoBehaviour
 
     public void StartGame()
     {
+        Object.Destroy(GameObject.Find("NetworkManager"));
         Debug.Log("Start the game!");
         //Play an animation that leads into the game using a UI panel
         startGameAnim.Play("PanelOutro");

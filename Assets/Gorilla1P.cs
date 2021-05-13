@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
 
-public class GorillaMovement : MonoBehaviour
+public class Gorilla1P : MonoBehaviour
 {
 	float stoppingDistance = 15f;
     public float _SPEED = 6f;
@@ -47,6 +47,10 @@ public class GorillaMovement : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        if (GameObject.FindObjectOfType<NetworkManager>()){
+            Object.Destroy(this.gameObject);
+        }
+
         agent = GetComponent<NavMeshAgent>();
         nodes = new List<GameObject>();
         node1 = GameObject.FindGameObjectWithTag("Stomach");
