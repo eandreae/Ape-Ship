@@ -18,13 +18,13 @@ public class NodeInstanceManager : MonoBehaviour
     Animator displayAnim;
     public float stopDistance;
     private float playerDist;
-    private float monkeyDist;
+    public float monkeyDist;
     GameObject playerObj;
     GameObject monkeyObj;
     NavMeshAgent agent;
     public bool canHack = true; // can be hacked by monkey
     //private MonkeyMovement flee;
-    private bool isFleeing;
+    public bool isFleeing;
     [HideInInspector]
     public float monkCooldown = 3f;
 
