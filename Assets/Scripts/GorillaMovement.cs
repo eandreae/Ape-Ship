@@ -24,6 +24,7 @@ public class GorillaMovement : MonoBehaviour
 
     List<GameObject> nodes; 
     GameObject targetNode;
+    GameObject playerObj;
 
     private bool canCharge = true;
     private bool canPickup = true;

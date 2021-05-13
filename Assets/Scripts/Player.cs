@@ -46,7 +46,7 @@ public class Player : NetworkBehaviour
     private AudioSource walkingSFX;
     public AudioClip[] walkingSamples;
     
-    private Collider gorillaCollider;
+    public Collider gorillaCollider;
     public GameObject wpArrow;
     public GameObject CameraObj;
 
@@ -361,7 +361,7 @@ public class Player : NetworkBehaviour
         }
         else
         {
-            playerHurtSFX.Play();
+            //playerHurtSFX.Play();
         }
         yield return new WaitForSeconds(0.2f); // get knocked by gorilla, then ignore collisions
         Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), true);
