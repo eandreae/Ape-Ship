@@ -47,6 +47,9 @@ public class NodeInstanceManager : MonoBehaviour
 
     private void Update()
     {
+        if(!playerObj)
+            playerObj = GameObject.FindGameObjectWithTag("Player");
+
         //Debug.Log(transform.position);
         playerDist = Vector3.Distance(transform.position, playerObj.transform.position);
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);
@@ -60,13 +63,13 @@ public class NodeInstanceManager : MonoBehaviour
         //player turns every node immediately green
         if (playerDist < stopDistance)
         {
-            //temporary until all minigames are implemented
+            /*//temporary until all minigames are implemented
             if(gameObject.tag != "Nav" && gameObject.tag != "Stomach" && gameObject.tag != "O2_2" && gameObject.tag != "O2" && gameObject.tag != "Reactor" && gameObject.tag != "ElecControl")
             {
                 myObject.material.color = Color.green;
                 display.color = Color.green;
                 colorTracker.text = "green";
-            }
+            }*/
         }
         //TEMPORARY
         //monkey turns every node down one level
