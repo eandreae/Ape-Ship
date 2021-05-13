@@ -14,10 +14,10 @@ public class PlayerCamera : MonoBehaviour
 
     void Start() {
 
-//        nm = FindObjectOfType<NetworkManager>();
-//        Debug.Log("nm.numPlayers:" + nm.numPlayers);
-//        this.playerNum = nm.numPlayers;
-
+        //nm = FindObjectOfType<NetworkManager>();
+        target = GameObject.Find("_DEBUGGER_PLAYER");
+        //        Debug.Log("nm.numPlayers:" + nm.numPlayers);
+        //        this.playerNum = nm.numPlayers;
         // foreach (GameObject p in playerList){
         //     //Debug.Log("player's num: " + p.GetComponent<Player>().playerNum);
         //     //Debug.Log("cam's num: " + this.playerNum);
@@ -28,7 +28,6 @@ public class PlayerCamera : MonoBehaviour
         //     }
         // }
 
-
     }
 
     // Update is called once per frame
@@ -36,7 +35,13 @@ public class PlayerCamera : MonoBehaviour
     {
         if(!target){
             GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
-            target = playerList[playerList.Length - 1];
+            //target = playerList[playerList.Length - 1];
+            foreach (GameObject player in playerList){
+                if (player.GetComponent<Player>().isLocalPlayer) {
+                    target = player;
+                    break;
+                }
+            }
         }
         Vector3 desiredPosition = target.transform.position + offset;
         transform.position = desiredPosition;
