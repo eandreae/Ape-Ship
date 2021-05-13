@@ -23,7 +23,6 @@ public class GorillaMovement : MonoBehaviour
     GameObject node6;
 
     List<GameObject> nodes; 
-    GameObject playerObj;
     GameObject targetNode;
 
     private bool canCharge = true;
@@ -60,9 +59,6 @@ public class GorillaMovement : MonoBehaviour
         node6 = GameObject.FindGameObjectWithTag("O2_2");
         nodes.Add(node6);
 
-        playerObj = GameObject.FindGameObjectWithTag("Player");
-        playerDist = Vector3.Distance (transform.position, playerObj.transform.position);
-
         // foreach (GameObject g in nodes)
         //     Debug.Log(g);
         //agent.speed = _SPEED;
@@ -90,46 +86,16 @@ public class GorillaMovement : MonoBehaviour
             visibleTargets.Add(t);
         }
 
-        //Get list of objects from FieldOfView list
-        objectsList = GetComponent<FieldOfView>();
-        //transfer each target into local list
-        visibleObjects.Clear();
-        foreach (Transform t in objectsList.visibleObjects)
-        {
-            visibleObjects.Add(t);
-        }
-
-
-        // check for nearby player - from what I can tell, 20-25 units is right on the edge of the player's screen
-        playerDist = Vector3.Distance (transform.position, playerObj.transform.position);
-        //Debug.Log("Player is " + playerDist + " units away");
-            
         // if gorilla is not following player, check for the player distance
-        if (target != playerObj){
-            /*if (playerDist <= 30f){ // if player is close enough, set it as the target
-                Debug.Log("Gorilla has locked on Player");
-                stoppingDistance = 0; // make stopping distance 0 if tracking the player
-                target = playerObj;
-            }*/
-            if (visibleObjects.Count != 0 && !holdingObject && canPickup)
-            {
-                Debug.Log("Gorilla is picking up object");
-                stoppingDistance = 0;
-                target = visibleObjects[0].gameObject;
-            }
-            else if (visibleTargets.Count != 0)
+        if (target.tag != "Player"){
+            if (visibleTargets.Count != 0)
             {
                 Debug.Log("Gorilla has locked on Player");
                 playerLock = true;
                 stoppingDistance = 0; // make stopping distance 0 if tracking the player
-                target = playerObj;
+                target = visibleTargets[0].gameObject;
             }
         }
-        //else if (playerDist > 30f && !charging){ // if target is player but player is too far, ignore the player.
-        //    Debug.Log("Gorilla is ignoring the Player");
-        //    target = targetNode;
-        //    stoppingDistance = 15f; // make stopping distance 15 if idle
-        //}
 
         float dist = Vector3.Distance(transform.position, target.transform.position);
 
@@ -162,7 +128,7 @@ public class GorillaMovement : MonoBehaviour
     private void GoToTarget()
     {
          // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
-        if (target == playerObj && canCharge && playerLock && !this.stunned && !holdingObject){
+        if (target.tag == "Player" && canCharge && playerLock && !this.stunned){
             //Debug.Log("Gorilla is charging");
             StartCoroutine("ChargeAttack");
             canCharge = false;
@@ -227,7 +193,7 @@ public class GorillaMovement : MonoBehaviour
             charging = true;
 
             StopGorilla();
-            this.transform.LookAt(playerObj.transform.position);
+            this.transform.LookAt(target.transform.position);
             this.GetComponent<Rigidbody>().ResetInertiaTensor(); // reset inertia before charging
 
             yield return new WaitForSeconds(0.75f); // time in seconds to wait

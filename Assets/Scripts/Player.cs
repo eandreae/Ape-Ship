@@ -9,23 +9,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class Player : MonoBehaviour
+public class Player : NetworkBehaviour
 {
-	public float moveSpeed = 14f;
+	private CharacterController controller;
+    public float moveSpeed = 14f;
+    public int playerNum = -1; 
+    public Vector3 dir;
+
     float defaultSpeed;
-    public int points;
     public float health;
     public float oxygen;
-    public Text health_text;
-    public Text oxygen_text;
+    //public Text health_text;
+    //public Text oxygen_text;
     public Text oxygen_color;
     public Text oxygen2_color;
     public bool invulnerable;
     private GameObject holdItem;
     public bool holding;
     private float invulnTime = 2;
-    private CharacterController controller;
+    
     private Animator anim;
     public Animator oxygenCue;
     public Animator damageCue;
@@ -33,21 +37,24 @@ public class Player : MonoBehaviour
     // public Camera camera;
 
     public GameManager gm;
+    public NetworkManager nm;
 
     public Slider healthBar;
     public Slider oxygenBar;
 
     //public AudioSource alarmSFX;
-    public Vector3 dir;
-    public AudioSource walkingSFX;
+    private AudioSource walkingSFX;
     public AudioClip[] walkingSamples;
-    public Collider gorillaCollider;
+    
+    private Collider gorillaCollider;
     public GameObject wpArrow;
-    public AudioSource playerHurtSFX;
+    public GameObject CameraObj;
 
     // Start is called before the first frame update
     void Start()
     {
+        
+        
         defaultSpeed = moveSpeed;
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
@@ -56,9 +63,27 @@ public class Player : MonoBehaviour
         invulnerable = false;
         holding = false;
         gm = FindObjectOfType<GameManager>();
+        nm = FindObjectOfType<NetworkManager>();
+        Debug.Log("nm.numPlayers:" + nm.numPlayers);
+        playerNum = nm.numPlayers;
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
-        //Physics.IgnoreCollision(gorillaCollider, GetComponent<CapsuleCollider>(), true);
+        //Debug.Log(nm.numPlayers);
+        
+        //if(CameraObj){
+        //    GameObject.Instantiate(CameraObj);
+        //}
+
+        healthBar = GameObject.Find("HealthBarSlider").GetComponent<Slider>();
+        //health_text = GameObject.Find("HealthBarText").GetComponent<Text>();
+        
+        oxygenBar = GameObject.Find("OxygenBarSlider").GetComponent<Slider>();
+        //oxygen_text =  GameObject.Find("OxygenBarText").GetComponent<Text>();
+        oxygen_color = GameObject.Find("OxygenColor").GetComponent<Text>();
+        oxygen2_color = GameObject.Find("Oxygen2Color").GetComponent<Text>();
+
+        oxygenCue = GameObject.Find("Oxygen Cue").GetComponent<Animator>();
+        damageCue = GameObject.Find("Damage Cue").GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -68,49 +93,107 @@ public class Player : MonoBehaviour
         //if so will go horizontal if left or right
         //will go vertical if up or down
         //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
-        
-        // creating normalizing direction so that movement isnt faster on diagonals
-        this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
-        if (dir.sqrMagnitude > 0){
-            //Debug.Log(this.holdItem);
-            // if Player is holding an item, then use the hold animation. 
-            if(this.holdItem){
-                this.anim.Play("Hold");
-            }
-            else{
-                this.anim.Play("Walk"); // play walking animation when moving
-                this.holding = false; // if no holdItem, then holding must be false
-                this.wpArrow.SetActive(false);
-            }
-            this.transform.LookAt(transform.position + dir); // look in direction that player is walking
-            //StartCoroutine("PlayWalkingNoise");
-            // Moved camera functionality to PlayerCamera.cs
-            // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
-        }
-        controller.SimpleMove(this.moveSpeed * dir);
-        if (dir.sqrMagnitude == 0){
-            if(this.holdItem){
-                this.anim.Play("Hold-Idle");
-            }
-            else{
-                this.anim.Play("Idle"); // if not moving, play idle anim
-                this.holding = false; // if no holdItem, then holding must be false
-                this.wpArrow.SetActive(false);
-            }
-        }
-        
-        // Check if the player is invulnerable
-        if ( invulnerable ){
-            if ( invulnTime > 0 ){
-                invulnTime -= Time.deltaTime;
-            }
-            else {
-                invulnerable = false;
-                Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), false);
-                invulnTime = 2;
-            }
-        }
+        //Debug.Log("islocalplayer "+isLocalPlayer);
+        //Debug.Log("playercount   " +NetworkManagerApeShip.playerCount+"\n");
 
+        if (isLocalPlayer)
+        {
+            // creating normalizing direction so that movement isnt faster on diagonals
+            this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
+            if (dir.sqrMagnitude > 0)
+            {
+                //Debug.Log(this.holdItem);
+                // if Player is holding an item, then use the hold animation. 
+                if (this.holdItem)
+                {
+                    this.anim.Play("Hold");
+                }
+                else
+                {
+                    this.anim.Play("Walk"); // play walking animation when moving
+                    this.holding = false; // if no holdItem, then holding must be false
+                    this.wpArrow.SetActive(false);
+                }
+                this.transform.LookAt(transform.position + dir); // look in direction that player is walking
+                controller.SimpleMove(this.moveSpeed * dir);
+                //StartCoroutine("PlayWalkingNoise");
+                // Moved camera functionality to PlayerCamera.cs
+                // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
+            }
+            else if (dir.sqrMagnitude == 0)
+            {
+                if (this.holdItem)
+                {
+                    this.anim.Play("Hold-Idle");
+                }
+                else
+                {
+                    this.anim.Play("Idle"); // if not moving, play idle anim
+                    this.holding = false; // if no holdItem, then holding must be false
+                    this.wpArrow.SetActive(false);
+                }
+            }
+
+            // Check if the player is invulnerable
+            if (invulnerable)
+            {
+                if (invulnTime > 0)
+                {
+                    invulnTime -= Time.deltaTime;
+                }
+                else
+                {
+                    invulnerable = false;
+                    Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), false);
+                    invulnTime = 2;
+                }
+            }
+
+            // code to drop items
+            if (this.holding && Input.GetKeyDown("space"))
+            { // if player is holding an item and presses space bar
+                // Debug.Log("drop");
+                // un-parent the player from the item
+                this.holdItem.transform.parent = null;
+                // un-mark the coin as picked up.
+                this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+                this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+
+                //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
+                // get rid of hold item
+                this.holdItem = null;
+                this.wpArrow.SetActive(false);
+
+                StartCoroutine("PickUpCD");
+                //this.holding = false;
+            }
+
+            // code to throw items
+            else if (this.holding && Input.GetKeyDown(KeyCode.LeftShift))
+            { // holding item + press left shift
+
+                this.holdItem.transform.parent = null; // unparent player from item
+
+                this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+                this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+                this.holdItem.GetComponent<ItemScript>().thrown = true;
+                this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
+                this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
+                                                                                                                    //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
+                                                                                                                    //Debug.Log("throw");
+
+
+                // get rid of hold item
+                this.holdItem = null;
+                this.wpArrow.SetActive(false);
+                StartCoroutine("PickUpCD");
+            }
+            //if player isn't holding an item, reset to default speed
+            if (!this.holding)
+            {
+                ChangeSpeed(defaultSpeed);
+            }
+        }
         // code to drop items
         if(this.holding && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
             // Debug.Log("drop");
@@ -172,6 +255,7 @@ public class Player : MonoBehaviour
                 updateOxygen(1);
             }
         }
+
     }
 
     //checks to see if picked up object, activated everytime touch a trigger collider
@@ -265,16 +349,13 @@ public class Player : MonoBehaviour
         body.velocity = pushDir * pushPower;
     }
     
-    //private void OnGUI(){
-    	//GUI.Label(new Rect(10, 10, 100, 20), "Bananas : " + points);
-    //}
     public IEnumerator updateHealth() {
         damageCue.SetTrigger("DamageTrigger");
         healthBar.value = health;
         if ( health == 0 )
         { 
             Debug.Log("You Died!");
-            health_text.text = ""; 
+            //health_text.text = ""; 
             moveSpeed = 0f;
             gm.Defeat();
         }
@@ -295,7 +376,7 @@ public class Player : MonoBehaviour
         if ( Mathf.Floor(oxygen) == 0 ) 
         { 
             Debug.Log("You Died!");
-            oxygen_text.text = ""; 
+            //oxygen_text.text = ""; 
             moveSpeed = 0f;
             gm.Defeat();
         }
