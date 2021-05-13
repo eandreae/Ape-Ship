@@ -15646,7 +15646,7 @@ MonoBehaviour:
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
   gorill: {fileID: 1190199561}
-  gorill1P: {fileID: 0}
+  gorill1P: {fileID: 3608863098772767487}
   monk: {fileID: 0}
   barGradient:
     serializedVersion: 2
@@ -60873,7 +60873,6 @@ GameObject:
   - component: {fileID: 4527287573547122592}
   - component: {fileID: 4527287573547122593}
   - component: {fileID: 3608863098772767487}
-  - component: {fileID: 4527287573547122594}
   - component: {fileID: 4527287573547122595}
   - component: {fileID: 4527287573547122604}
   - component: {fileID: 4527287573547122605}
@@ -64316,26 +64315,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &4527287573547122594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3608863098772767486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _SPEED: 6
-  _ANGULAR_SPEED: 120
-  _ACCELERATION: 8
-  charging: 0
-  stunned: 0
-  visibleTargets: []
-  visibleObjects: []
-  chargeCooldown: 4
 --- !u!65 &4527287573547122595
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -74702,26 +74681,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 3
   m_ObstacleAvoidanceType: 4
---- !u!114 &8118134905521011926
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8964416701492549726}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 65b457a986a774c469d56a8d42211718, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stoppingDistance: 10
-  color1: {fileID: 1626664258}
-  color2: {fileID: 1471871104}
-  color3: {fileID: 1279260005}
-  color4: {fileID: 741311113}
-  color5: {fileID: 1759386919}
-  color6: {fileID: 67938698}
-  visibleTargets: []
 --- !u!114 &8118134905521011927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77327,7 +77286,6 @@ GameObject:
   - component: {fileID: 8118134905521011932}
   - component: {fileID: 8118134905521011924}
   - component: {fileID: 8118134905521011927}
-  - component: {fileID: 8118134905521011926}
   - component: {fileID: 8964416701492549727}
   m_Layer: 0
   m_Name: single player monkey (debug)
