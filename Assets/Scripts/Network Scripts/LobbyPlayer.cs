@@ -34,12 +34,10 @@ public class LobbyPlayer : NetworkBehaviour
     public void toggle()
     {
         player.CmdChangeReadyState(!player.readyToBegin);
-        currentvalue = !currentvalue;
     }
 
     public void setbool(bool value)
     {
         player.CmdChangeReadyState(value);
-        currentvalue = value;
     }
 }

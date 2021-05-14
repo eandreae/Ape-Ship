@@ -52,7 +52,7 @@ public class foodSpawner : NetworkBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-        if(coll.gameObject.tag == "Player" && canSpawn) // player can spawn items from vending machine on a cooldown
+        if(coll.gameObject.tag == "Player" && canSpawn && coll.gameObject.GetComponent<Player>().isLocalPlayer) // player can spawn items from vending machine on a cooldown
         {
             //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
