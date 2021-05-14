@@ -16,8 +16,10 @@ public class LobbyPlayer : NetworkBehaviour
     void Start()
     {
         player = this.GetComponent<NetworkRoomPlayer>();
+
         readybutton = GameObject.Find("ready").GetComponent<Button>();
         readybutton.onClick.AddListener(toggle);
+
         disconnect = GameObject.Find("disconnect").GetComponent<Button>();
         disconnect.onClick.AddListener(() => setbool(true));
         Debug.Log(player);
@@ -27,19 +29,16 @@ public class LobbyPlayer : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
             toggle();
-
     }
 
     public void toggle()
     {
-        Debug.Log(player);
-        player.CmdChangeReadyState(!currentvalue);
+        player.CmdChangeReadyState(!player.readyToBegin);
         currentvalue = !currentvalue;
     }
 
     public void setbool(bool value)
     {
-        Debug.Log(player);
         player.CmdChangeReadyState(value);
         currentvalue = value;
     }
