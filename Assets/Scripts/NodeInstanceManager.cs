@@ -27,7 +27,7 @@ public class NodeInstanceManager : MonoBehaviour
     //private MonkeyMovement flee;
     public bool isFleeing;
     [HideInInspector]
-    public float monkCooldown = 3f;
+    public static float monkCooldown = 3f;
     static bool greyed = false;
 
     AudioSource nodeDisabledSFX;
@@ -49,8 +49,16 @@ public class NodeInstanceManager : MonoBehaviour
 
     private void Update()
     {
-        if(!playerObj)
+         // temporary fix -- maybe use a list of all players for player distance?  maybe use a ontriggerenter? 
+        if (!playerObj)
+        {
             playerObj = GameObject.FindGameObjectWithTag("Player");
+        }   
+        if (!monkeyObj)
+        {
+            monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
+            agent = monkeyObj.GetComponent<NavMeshAgent>();
+        }
 
         //Debug.Log(transform.position);
         playerDist = Vector3.Distance(transform.position, playerObj.transform.position);

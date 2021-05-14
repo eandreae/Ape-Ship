@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class SinglePlayer : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGING IN EDITOR
+public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGING IN EDITOR
 {
 	private CharacterController controller;
     public float moveSpeed = 14f;

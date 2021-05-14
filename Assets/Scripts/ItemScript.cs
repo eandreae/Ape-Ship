@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class ItemScript : MonoBehaviour
 {
@@ -14,8 +15,9 @@ public class ItemScript : MonoBehaviour
     //private Rigidbody rigidbody;
     public GameObject glowEffect;
     GameObject playerObj;
-    public Player playerScript;
     public Waypoint wp;
+    NetworkManager nm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,8 +29,7 @@ public class ItemScript : MonoBehaviour
         //this.rigidbody.isKinematic = false;
         //this.rigidbody.isKinematic = true;
         this.height = this.transform.position.y;
-        playerObj = GameObject.FindGameObjectWithTag("Player");
-        //playerObjs = GameObject.FindGameObjectsWithTag("Player");
+        nm = GameObject.FindObjectOfType<NetworkManager>();
 
         //if (this.glowEffect)
         //    this.glowEffect.SetActive(false);
@@ -100,18 +101,12 @@ public class ItemScript : MonoBehaviour
         }
     }
 
-    // public void OnCollisionEnter(Collision col){
-    //     Debug.Log("Object collision");
-    //     if(col.gameObject.tag == "PlayerMod" && !this.pickedUp && !this.thrown){ // if run into player when not picked up
-    //         Vector3 pushDir = col.gameObject.GetComponent<Transform>().forward * 5;
-    //         Debug.Log(pushDir);
-    //         this.rigidbody.velocity = (pushDir); // push
-    //     }
-    // }
-
     public void AlterSpeed(float newSpeed)
     {
-        playerScript.ChangeSpeed(newSpeed);
+        if(nm)
+            playerRoot.GetComponent<Player>().ChangeSpeed(newSpeed);
+        else 
+            playerRoot.GetComponent<Player1P>().ChangeSpeed(newSpeed);
     }
 
     private void OnTriggerExit(Collider other) {
@@ -126,20 +121,5 @@ public class ItemScript : MonoBehaviour
         }
         
     }
-
-    // public IEnumerator ThrownPhysics (){
-        
-    //     yield return new WaitForSeconds(1f); // wait as object is thrown before resetting object to kinematic
-    //     //this.rigidbody.isKinematic = true;
-    //     this.thrown = false; // reset thrown to false
-    // }
-
-    // private void OnTriggerEnter(Collider other) {
-    // 	if(other.name == "Capsule" || other.name == "Player") {
-    // 		other.GetComponent<Player>().points++;
-    //     	//Add 1 to points.
-    //     	Destroy(gameObject); //Destroys coin, when touched.
-    //     }
-    // }
 
 }

@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1691,7 +1691,6 @@ MonoBehaviour:
   thrown: 0
   type: Canister2
   glowEffect: {fileID: 0}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!114 &107861820
 MonoBehaviour:
@@ -4817,7 +4816,6 @@ MonoBehaviour:
   thrown: 0
   type: Canister1
   glowEffect: {fileID: 0}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!136 &291733766
 CapsuleCollider:
@@ -13592,7 +13590,6 @@ MonoBehaviour:
   thrown: 0
   type: Coin
   glowEffect: {fileID: 0}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!1001 &562625130
 PrefabInstance:
@@ -14278,7 +14275,6 @@ MonoBehaviour:
   thrown: 0
   type: Neuron
   glowEffect: {fileID: 1102424649}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!135 &566263461
 SphereCollider:
@@ -17700,19 +17696,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 40241bf89041abf45a504fa2038caef2, type: 3}
---- !u!1 &711938519 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -4061846736403995670, guid: 40241bf89041abf45a504fa2038caef2,
-    type: 3}
-  m_PrefabInstance: {fileID: 711938518}
-  m_PrefabAsset: {fileID: 0}
 --- !u!64 &711938520
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 711938519}
+  m_GameObject: {fileID: 5161525300086977084}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -18558,18 +18548,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   brainColor: {fileID: 1279260005}
---- !u!1 &765885864 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 40241bf89041abf45a504fa2038caef2,
-    type: 3}
-  m_PrefabInstance: {fileID: 711938518}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &765885865 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 40241bf89041abf45a504fa2038caef2,
-    type: 3}
-  m_PrefabInstance: {fileID: 711938518}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &765885866
 Animator:
   serializedVersion: 3
@@ -18577,7 +18555,7 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765885864}
+  m_GameObject: {fileID: 919132148791929991}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: fdfa238feca192f42ac07096a8e4ce8b, type: 2}
@@ -18595,8 +18573,8 @@ AudioSource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765885864}
-  m_Enabled: 1
+  m_GameObject: {fileID: 919132148791929991}
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
     type: 2}
@@ -18692,7 +18670,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 765885864}
+  m_GameObject: {fileID: 919132148791929991}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c6faccaf30f90148b4abc44b5dc4554, type: 3}
@@ -19710,7 +19688,6 @@ MonoBehaviour:
   thrown: 0
   type: Coin
   glowEffect: {fileID: 0}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!1 &818175810
 GameObject:
@@ -21278,7 +21255,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896022311}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
   m_Name: 
@@ -39444,7 +39421,6 @@ MonoBehaviour:
   thrown: 0
   type: Banana
   glowEffect: {fileID: 970841656}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!136 &1766069666
 CapsuleCollider:
@@ -40290,6 +40266,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1824220321}
   - component: {fileID: 1824220322}
+  - component: {fileID: 1824220323}
   m_Layer: 0
   m_Name: Star Target
   m_TagString: ElecControl
@@ -40308,7 +40285,7 @@ Transform:
   m_LocalPosition: {x: 2.63, y: -8.68, z: 1.92}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 765885865}
+  m_Father: {fileID: 543450652996679229}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1824220322
@@ -40349,6 +40326,103 @@ MonoBehaviour:
   canHack: 1
   isFleeing: 0
   monkCooldown: 3
+--- !u!82 &1824220323
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824220320}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: c082fdf7624191b47b2ecf3830d7391e, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1824413874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 96c9509895c478a45bee8c3f12a863b7,
@@ -40895,7 +40969,7 @@ MonoBehaviour:
   LaserCorrect:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1824220322}
+      - m_Target: {fileID: 0}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -44086,7 +44160,6 @@ MonoBehaviour:
   thrown: 0
   type: Coin
   glowEffect: {fileID: 0}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!1 &2082339949
 GameObject:
@@ -44342,7 +44415,6 @@ MonoBehaviour:
   thrown: 0
   type: Food
   glowEffect: {fileID: 1096256794}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!135 &2083132828
 SphereCollider:
@@ -47318,6 +47390,12 @@ Transform:
   m_Father: {fileID: 543450653071185261}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: -86.448006, z: 0}
+--- !u!4 &543450652996679229 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 40241bf89041abf45a504fa2038caef2,
+    type: 3}
+  m_PrefabInstance: {fileID: 711938518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &543450652999101244
 Transform:
   m_ObjectHideFlags: 0
@@ -49539,6 +49617,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
+--- !u!1 &919132148791929991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 40241bf89041abf45a504fa2038caef2,
+    type: 3}
+  m_PrefabInstance: {fileID: 711938518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &919132148803242156
 GameObject:
   m_ObjectHideFlags: 0
@@ -66002,6 +66086,12 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &5161525300086977084 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4061846736403995670, guid: 40241bf89041abf45a504fa2038caef2,
+    type: 3}
+  m_PrefabInstance: {fileID: 711938518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5170209943178330459
 Transform:
   m_ObjectHideFlags: 0
@@ -73420,7 +73510,10 @@ MonoBehaviour:
   nm: {fileID: 0}
   healthBar: {fileID: 0}
   oxygenBar: {fileID: 0}
-  walkingSamples: []
+  walkingSamples:
+  - {fileID: 8300000, guid: fc8df54e1916ba143b7bd9fd434e1963, type: 3}
+  - {fileID: 8300000, guid: 08841b442c8b86d4d9f957946d75cf97, type: 3}
+  - {fileID: 8300000, guid: ad357265b3ebc5f4ca273677ad42905a, type: 3}
   gorillaCollider: {fileID: 0}
   wpArrow: {fileID: 7413137237959594449}
   CameraObj: {fileID: 0}
