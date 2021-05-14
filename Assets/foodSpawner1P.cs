@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using Mirror;
 
 
-public class foodSpawner : NetworkBehaviour
+public class foodSpawner1P : MonoBehaviour
 {
     public Transform spawnPos;
     public GameObject spawnee;
@@ -18,10 +18,16 @@ public class foodSpawner : NetworkBehaviour
     private bool canSpawn;
     private Animator foodAnim;
     private GameObject vendingMachine;
+    private NetworkManager nm; 
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        nm = GameObject.FindObjectOfType<NetworkManager>();
+        if (nm){
+            Object.Destroy(this.gameObject);
+        }
+
         currColor = nodeColor.text;
         canSpawn = true;
         // foodItems = new GameObject[9]; // 33% sandwich, 33% kebab, 22% banana, 11% nuke
@@ -61,11 +67,13 @@ public class foodSpawner : NetworkBehaviour
             //{
                 foodAnim.Play("PushButton");
                 currColor = nodeColor.text;
-                CmdSpawnObject(spawnee, spawnLoc, spawnPos.rotation);
+                GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
+                temp.GetComponent<Rigidbody>().useGravity = true;
+                temp.GetComponent<destroyer>().enabled = true;
                 canSpawn = false;
                 StartCoroutine("SpawnTimer", 5.0f); // add 5 second cd to using vending machine
             //}
-        } else if(coll.gameObject.tag == "Gorilla" && coll.GetComponent<GorillaMovement>().charging) // gorilla collision when charging means spawn item no matter what
+        } else if(coll.gameObject.tag == "Gorilla" && coll.GetComponent<Gorilla1P>().charging) // gorilla collision when charging means spawn item no matter what
         {
             //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
@@ -84,8 +92,7 @@ public class foodSpawner : NetworkBehaviour
     }
 
     IEnumerator SpawnTimer(float cooldown){
-         // get a NEW random foodItem to spawn
-        spawnee = foodItems[ Random.Range(0, foodItems.Length) ];
+        spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
         Debug.Log(spawnee);
         yield return new WaitForSeconds(cooldown);
         canSpawn = true;
@@ -107,12 +114,5 @@ public class foodSpawner : NetworkBehaviour
 
         }
     }*/
-    //[Command]
-    public void CmdSpawnObject(GameObject spawnee, Vector3 spawnLoc, Quaternion rotation){
-        GameObject temp = Instantiate(spawnee, spawnLoc, rotation);
-        temp.GetComponent<Rigidbody>().useGravity = true;
-        temp.GetComponent<destroyer>().enabled = true;
 
-        NetworkServer.Spawn(temp);
-    }
 }
