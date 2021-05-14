@@ -11,7 +11,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class SinglePlayer : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGING IN EDITOR
+public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGING IN EDITOR
 {
 	private CharacterController controller;
     public float moveSpeed = 14f;
@@ -195,7 +195,7 @@ public class SinglePlayer : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEB
         }
 
         // code to drop items
-        if(this.holding && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
+        if(this.holding && Input.GetKeyDown(KeyCode.Space)){ // if player is holding an item and presses space bar
             // Debug.Log("drop");
             // un-parent the player from the item
             this.holdItem.transform.parent = null;
@@ -275,7 +275,7 @@ public class SinglePlayer : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEB
         //     StartCoroutine("updateHealth");
         // }
 
-        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
+        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown(KeyCode.Space))
     	{
             this.holdItem = other.gameObject;
     		
@@ -305,7 +305,7 @@ public class SinglePlayer : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEB
     // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
     void OnTriggerStay(Collider other){
         //test tag, if string is same as pick up...
-    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
+    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown(KeyCode.Space))
     	{
             this.holdItem = other.gameObject;
     		

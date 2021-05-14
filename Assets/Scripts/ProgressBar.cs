@@ -31,7 +31,7 @@ public class ProgressBar : MonoBehaviour
 
     public GorillaMovement gorill;
     public Gorilla1P gorill1P;
-    public NodeInstanceManager monk;
+    //public NodeInstanceManager monk;
 
     public Gradient barGradient;
 
@@ -85,7 +85,7 @@ public class ProgressBar : MonoBehaviour
                         gorill1P.chargeCooldown = 2f;
                     }
                     
-                    monk.monkCooldown = 1.5f;
+                    NodeInstanceManager.monkCooldown = 1.5f;
                     //progressSlider.transform.localScale = Vector3.Lerp(progressSlider.transform.localScale, sizeDelta, 1f);
                 }
             }

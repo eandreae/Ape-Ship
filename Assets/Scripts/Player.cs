@@ -53,8 +53,6 @@ public class Player : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        
         defaultSpeed = moveSpeed;
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
@@ -68,17 +66,10 @@ public class Player : NetworkBehaviour
         playerNum = nm.numPlayers;
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
-        //Debug.Log(nm.numPlayers);
-        
-        //if(CameraObj){
-        //    GameObject.Instantiate(CameraObj);
-        //}
 
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
-        //health_text = GameObject.Find("HealthBarText").GetComponent<Text>();
         
         oxygenBar = GameObject.Find("OxygenBar").GetComponent<Slider>();
-        //oxygen_text =  GameObject.Find("OxygenBarText").GetComponent<Text>();
         oxygen_color = GameObject.Find("OxygenColor").GetComponent<Text>();
         oxygen2_color = GameObject.Find("Oxygen2Color").GetComponent<Text>();
 
@@ -89,13 +80,8 @@ public class Player : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        //checks to see if pressing any arrow keys
-        //if so will go horizontal if left or right
-        //will go vertical if up or down
-        //transform.Translate(moveSpeed*Input.GetAxis("Horizontal")*Time.deltaTime, 0f, moveSpeed*Input.GetAxis("Vertical")*Time.deltaTime);
         //Debug.Log("islocalplayer "+isLocalPlayer);
         //Debug.Log("playercount   " +NetworkManagerApeShip.playerCount+"\n");
-
         if (isLocalPlayer)
         {
             // creating normalizing direction so that movement isnt faster on diagonals
@@ -193,110 +179,132 @@ public class Player : NetworkBehaviour
             {
                 ChangeSpeed(defaultSpeed);
             }
-        }
-        // else {
-        //     if (dir.sqrMagnitude > 0)
-        //     {
-        //         //Debug.Log(this.holdItem);
-        //         // if Player is holding an item, then use the hold animation. 
-        //         if (this.holdItem)
-        //         {
-        //             this.anim.Play("Hold");
-        //         }
-        //         else
-        //         {
-        //             this.anim.Play("Walk"); // play walking animation when moving
-        //             this.holding = false; // if no holdItem, then holding must be false
-        //             this.wpArrow.SetActive(false);
-        //         }
-        //         this.transform.LookAt(transform.position + dir); // look in direction that player is walking
-        //         controller.SimpleMove(this.moveSpeed * dir);
-        //         //StartCoroutine("PlayWalkingNoise");
-        //         // Moved camera functionality to PlayerCamera.cs
-        //         // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
-        //     }
-        //     else if (dir.sqrMagnitude == 0)
-        //     {
-        //         if (this.holdItem)
-        //         {
-        //             this.anim.Play("Hold-Idle");
-        //         }
-        //         else
-        //         {
-        //             this.anim.Play("Idle"); // if not moving, play idle anim
-        //             this.holding = false; // if no holdItem, then holding must be false
-        //             this.wpArrow.SetActive(false);
-        //         }
-        //     }
-        // }
 
-        // code to drop items
-        if(this.holding && Input.GetKeyDown("space")){ // if player is holding an item and presses space bar
-            // Debug.Log("drop");
-            // un-parent the player from the item
-            this.holdItem.transform.parent = null;
-            // un-mark the coin as picked up.
-            this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-            this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-   
-            //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
-            // get rid of hold item
-            this.holdItem = null;
-            this.wpArrow.SetActive(false);
-            
-            StartCoroutine("PickUpCD");
-            //this.holding = false;
-        }
+            // code to drop items
+            if(this.holding && Input.GetKeyDown(KeyCode.Space)){ // if player is holding an item and presses space bar
+                // Debug.Log("drop");
+                // un-parent the player from the item
+                this.holdItem.transform.parent = null;
+                // un-mark the coin as picked up.
+                this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+                this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+    
+                //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
+                // get rid of hold item
+                this.holdItem = null;
+                this.wpArrow.SetActive(false);
+                
+                StartCoroutine("PickUpCD");
+                //this.holding = false;
+            }
 
-        // code to throw items
-        else if(this.holding && Input.GetKeyDown(KeyCode.LeftShift)){ // holding item + press left shift
+            // code to throw items
+            else if(this.holding && Input.GetKeyDown(KeyCode.LeftShift)){ // holding item + press left shift
+                
+                this.holdItem.transform.parent = null; // unparent player from item
+                
+                this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+                this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+                this.holdItem.GetComponent<ItemScript>().thrown = true;
+                this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
+                this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
+                //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
+                //Debug.Log("throw");
+                
+                
+                // get rid of hold item
+                this.holdItem = null;
+                this.wpArrow.SetActive(false);
+                StartCoroutine("PickUpCD");
+            }
+
             
-            this.holdItem.transform.parent = null; // unparent player from item
+            //if player isn't holding an item, reset to default speed
+            if (!this.holding)
+            {
+                ChangeSpeed(defaultSpeed);
+            }
             
-            this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-            this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-            this.holdItem.GetComponent<ItemScript>().thrown = true;
-            this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-            this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
-            //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
-            //Debug.Log("throw");
-            
-            
-            // get rid of hold item
-            this.holdItem = null;
-            this.wpArrow.SetActive(false);
-            StartCoroutine("PickUpCD");
-        }
-        //if player isn't holding an item, reset to default speed
-        if (!this.holding)
-        {
-            ChangeSpeed(defaultSpeed);
-        }
-        
-        // Check if both oxygens are red.
-        if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
-            if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
-            //If you update oxygen with a 0, the animation will play, otherwise it wont
-            updateOxygen(0);
-        // Check if one oxygen is red
-        } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
-        {
-            if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
-            //If you update oxygen with a 0, the animation will play, otherwise it wont
-            updateOxygen(0);
-        }
-        else {
-            if ( oxygen < 60 ) {
-                oxygen += Time.deltaTime * 2;
-                updateOxygen(1);
+            // Check if both oxygens are red.
+            if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
+                if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
+                //If you update oxygen with a 0, the animation will play, otherwise it wont
+                updateOxygen(0);
+            // Check if one oxygen is red
+            } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
+            {
+                if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
+                //If you update oxygen with a 0, the animation will play, otherwise it wont
+                updateOxygen(0);
+            }
+            else {
+                if ( oxygen < 60 ) {
+                    oxygen += Time.deltaTime * 2;
+                    updateOxygen(1);
+                }
             }
         }
+        // if not the Local Player, still play animations.
+        else {
+            Debug.Log("other player velocity: "  +this.GetComponent<CharacterController>().velocity);
 
+            if (this.GetComponent<CharacterController>().velocity != Vector3.zero)
+            {
+                if (this.holdItem)
+                {
+                    this.anim.Play("Hold");
+                }
+                else
+                {
+                    this.anim.Play("Walk"); // play walking animation when moving
+                    this.holding = false; // if no holdItem, then holding must be false
+                }
+            }
+            else
+            {
+                if (this.holdItem)
+                {
+                    this.anim.Play("Hold-Idle");
+                }
+                else
+                {
+                    this.anim.Play("Idle"); // if not moving, play idle anim
+                    this.holding = false; // if no holdItem, then holding must be false
+                }
+            }
+        }
     }
 
     //checks to see if picked up object, activated everytime touch a trigger collider
     void OnTriggerEnter(Collider other) 
     {
+        if (isLocalPlayer){
+            if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown(KeyCode.Space))
+            {
+                this.holdItem = other.gameObject;
+                
+                //deactivates game object
+                //other.gameObject.SetActive(false);
+
+                // Sets player to the pick-up item's parent so the item will move around with the player.            
+                other.gameObject.transform.parent = this.transform;
+
+                // mark the coin (or whatever object) as picked up 
+                other.gameObject.GetComponent<ItemScript>().pickedUp = true;
+                other.gameObject.GetComponent<ItemScript>().thrown = false;
+                this.wpArrow.SetActive(true);
+                //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+                StartCoroutine("PickUpCD");
+                //this.holding = true;
+                //Debug.Log(this.holdItem);
+            }
+            if (other.gameObject.tag == "ThrownObject")
+            {
+                Debug.Log("Hit by object");
+                health = health - 1 ;
+                StartCoroutine("updateHealth");
+            }
+        }
         //Debug.Log("Collided with something!");
 
         // if (other.gameObject.CompareTag("Gorilla") && !invulnerable && !other.gameObject.GetComponent<GorillaMovement>().stunned)
@@ -310,57 +318,34 @@ public class Player : NetworkBehaviour
         //     // Update the health of the player.
         //     StartCoroutine("updateHealth");
         // }
-
-        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
-    	{
-            this.holdItem = other.gameObject;
-    		
-            //deactivates game object
-    		//other.gameObject.SetActive(false);
-
-            // Sets player to the pick-up item's parent so the item will move around with the player.            
-            other.gameObject.transform.parent = this.transform;
-
-            // mark the coin (or whatever object) as picked up 
-            other.gameObject.GetComponent<ItemScript>().pickedUp = true;
-            other.gameObject.GetComponent<ItemScript>().thrown = false;
-            this.wpArrow.SetActive(true);
-            //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
-            StartCoroutine("PickUpCD");
-            //this.holding = true;
-            //Debug.Log(this.holdItem);
-    	}
-        if (other.gameObject.tag == "ThrownObject")
-        {
-            Debug.Log("Hit by object");
-            health = health - 1 ;
-            StartCoroutine("updateHealth");
-        }
     }
 
     // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
     void OnTriggerStay(Collider other){
-        //test tag, if string is same as pick up...
-    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown("space"))
-    	{
-            this.holdItem = other.gameObject;
-    		
-            //deactivates game object
-    		//other.gameObject.SetActive(false);
+        if (isLocalPlayer) {
+            //test tag, if string is same as pick up...
+            if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown(KeyCode.Space))
+            {
+                this.holdItem = other.gameObject;
+                
+                //deactivates game object
+                //other.gameObject.SetActive(false);
 
-            // Sets player to the pick-up item's parent so the item will move around with the player.            
-            other.gameObject.transform.parent = this.transform;
+                // Sets player to the pick-up item's parent so the item will move around with the player.            
+                other.gameObject.transform.parent = this.transform;
 
-            // mark the coin (or whatever object) as picked up 
-            other.gameObject.GetComponent<ItemScript>().pickedUp = true;
-            other.gameObject.GetComponent<ItemScript>().thrown = false;
-            this.wpArrow.SetActive(true);
-            //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
-            StartCoroutine("PickUpCD");
-            //this.holding = true;
-            //Debug.Log(this.holdItem);
-    	}
+                // mark the coin (or whatever object) as picked up 
+                other.gameObject.GetComponent<ItemScript>().pickedUp = true;
+                other.gameObject.GetComponent<ItemScript>().thrown = false;
+                this.wpArrow.SetActive(true);
+                //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+                StartCoroutine("PickUpCD");
+                //this.holding = true;
+                //Debug.Log(this.holdItem);
+            }
+        }
     }
+
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;

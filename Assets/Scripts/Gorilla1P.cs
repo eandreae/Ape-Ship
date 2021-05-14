@@ -167,7 +167,7 @@ public class Gorilla1P : MonoBehaviour
     {
         if (other.tag == "Player") {
             if (!this.stunned) {
-                StartCoroutine("AttackPlayer", other.GetComponent<Player>());
+                StartCoroutine("AttackPlayer", other.GetComponent<Player1P>());
             }
         } 
         else if (other.gameObject == target && !holdingObject)
@@ -263,7 +263,7 @@ public class Gorilla1P : MonoBehaviour
 
     // This coroutine handles part of the Gorilla/Player collision interaction.
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
-    IEnumerator AttackPlayer(Player player){
+    IEnumerator AttackPlayer(Player1P player){
         Debug.Log("ATTACK PLAYER");
         this.stunned = true;
         this.charging = false;  // in case gorilla was charging
