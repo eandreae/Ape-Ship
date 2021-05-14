@@ -4,7 +4,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerCamera : MonoBehaviour
 {
@@ -12,7 +11,6 @@ public class PlayerCamera : MonoBehaviour
     public GameObject target;
     public Vector3 offset = new Vector3(0, 19f, -10);
     public int playerNum = -1;
-    Text currentRoomText;
 
     void Start() {
 
@@ -30,24 +28,6 @@ public class PlayerCamera : MonoBehaviour
         //     }
         // }
 
-    }
-
-    private void Update()
-    {
-        currentRoomText = GameObject.Find("CurrentRoomText").GetComponent<Text>();
-        if(currentRoomText.text == "Heart Reactor")
-        {
-            while (this.gameObject.GetComponent<Camera>().orthographicSize < 20f)
-            {
-                this.gameObject.GetComponent<Camera>().orthographicSize += 0.0001f;
-            }
-        } else
-        {
-            while (this.gameObject.GetComponent<Camera>().orthographicSize > 15f)
-            {
-                this.gameObject.GetComponent<Camera>().orthographicSize -= 0.0001f;
-            }
-        }
     }
 
     // Update is called once per frame
