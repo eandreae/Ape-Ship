@@ -45,9 +45,9 @@ public class destroyer : MonoBehaviour
             if (this.gameObject.name == "KrillSandwich(Clone)" || 
                 this.gameObject.name == "SeaFoodKebab(Clone)" || 
                 this.gameObject.name == "Banana(Clone)" ||
-                this.gameObject.name == "KrillSandwich(1P)(Clone)" || 
-                this.gameObject.name == "SeaFoodKebab(1P)(Clone)" || 
-                this.gameObject.name == "Banana(1P)(Clone)"
+                this.gameObject.name == "KrillSandwich (1P)(Clone)" || 
+                this.gameObject.name == "SeaFoodKebab (1P)(Clone)" || 
+                this.gameObject.name == "Banana (1P)(Clone)"
                 )
             {
                 Destruction();

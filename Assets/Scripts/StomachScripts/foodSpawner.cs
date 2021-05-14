@@ -36,7 +36,8 @@ public class foodSpawner : NetworkBehaviour
         // foodItems[8] = GameObject.Find("SodaNuke");
         
 
-        spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+        //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+        //Debug.Log(spawnee);
         //gorillaScript = GetComponent<GorillaMovement>();
 
         vendingMachine = GameObject.Find("TexturedVendingMachine");
@@ -54,14 +55,14 @@ public class foodSpawner : NetworkBehaviour
     {
         if(coll.gameObject.tag == "Player" && canSpawn && coll.gameObject.GetComponent<Player>().isLocalPlayer) // player can spawn items from vending machine on a cooldown
         {
-            //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+            //
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
             //Changed to always spawn
             //if (nodeColor.text != "green")
             //{
                 foodAnim.Play("PushButton");
                 currColor = nodeColor.text;
-                CmdSpawnObject(spawnee, spawnLoc, spawnPos.rotation);
+                CmdSpawnObject(spawnLoc, spawnPos.rotation);
                 canSpawn = false;
                 StartCoroutine("SpawnTimer", 5.0f); // add 5 second cd to using vending machine
             //}
@@ -107,9 +108,12 @@ public class foodSpawner : NetworkBehaviour
 
         }
     }*/
-    //[Command]
-    public void CmdSpawnObject(GameObject spawnee, Vector3 spawnLoc, Quaternion rotation){
+    //  [Command (requiresAuthority = false)]
+    public void CmdSpawnObject(Vector3 spawnLoc, Quaternion rotation){
+        spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+        Debug.Log(spawnee);
         GameObject temp = Instantiate(spawnee, spawnLoc, rotation);
+        Debug.Log(temp);
         temp.GetComponent<Rigidbody>().useGravity = true;
         temp.GetComponent<destroyer>().enabled = true;
 
