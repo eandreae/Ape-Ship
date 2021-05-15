@@ -4847,6 +4847,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &295197101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 295197102}
+  m_Layer: 0
+  m_Name: GorillaSpawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &295197102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 295197101}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -113, y: -23.811436, z: -12.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 41
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &295342300 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0321d5a8f760970438b7ccf74b1ffa83,
@@ -15759,6 +15789,7 @@ MonoBehaviour:
   barFill: {fileID: 1253067052}
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
+  gorilla2Tex: {fileID: 2800000, guid: ab12e5a47a54e384ea48dcd568bb6f2f, type: 3}
   gorill: {fileID: 1190199561}
   gorill1P: {fileID: 3608863098772767487}
   barGradient:
@@ -35281,6 +35312,7 @@ MonoBehaviour:
   barFill: {fileID: 0}
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
+  gorilla2Tex: {fileID: 0}
   gorill: {fileID: 0}
   gorill1P: {fileID: 0}
   barGradient:
@@ -43742,12 +43774,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2088ad545b29a34bb6e6d5f72198e02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitting: 
-  reflecting: 0
-  reset: 0
-  scalar: 0.1
-  defaultPosition: {x: 0, y: 0, z: 0}
-  defaultScale: {x: 0, y: 0, z: 0}
 --- !u!54 &2021861721
 Rigidbody:
   m_ObjectHideFlags: 0

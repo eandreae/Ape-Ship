@@ -13,7 +13,7 @@ public class ProgressBar : MonoBehaviour
     // https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/#timer
 
     public bool progressing = false;
-    public float timeRemaining = 120;
+    public float timeRemaining = 180;
 
     //public Text timeText;
     public Slider progressSlider;
@@ -21,6 +21,7 @@ public class ProgressBar : MonoBehaviour
 
     public Text NavigationColor;
     public Text ReactorColor;
+    public Texture gorilla2Tex;
 
     GameManager gm;
 
@@ -36,7 +37,9 @@ public class ProgressBar : MonoBehaviour
     public Gradient barGradient;
 
     public Vector3 sizeDelta;
+    private Vector3 spawnLoc;
 
+    private static bool spawned = false;
 
     void Start()
     {
@@ -48,6 +51,8 @@ public class ProgressBar : MonoBehaviour
         gorilla = GameObject.FindGameObjectWithTag("Gorilla");
         agentG = gorilla.GetComponent<NavMeshAgent>();
         barFill.color = barGradient.Evaluate(1f);
+
+        spawnLoc = GameObject.Find("GorillaSpawn").transform.position;
     }
 
     // Update is called once per frame
@@ -70,9 +75,19 @@ public class ProgressBar : MonoBehaviour
             if ( timeRemaining > 0 ){
                 // Subtract the time by deltatime.
                 timeRemaining -= Time.deltaTime;
-                progressSlider.value = 120 - timeRemaining;
+                progressSlider.value = 180 - timeRemaining;
                 barFill.color = barGradient.Evaluate(progressSlider.normalizedValue);
-                if(timeRemaining < 60)
+                if(timeRemaining < 60 && spawned == false)
+                {
+                    spawned = true;
+
+                    GameObject gorilla2 = Instantiate(gorilla, spawnLoc, gorilla.transform.rotation);
+                    /*GameObject mat = GameObject.Find("QuadDrawGorilla_LowPoly_UVUnwrapped_final1(Clone)");
+                    Renderer render = mat.GetComponent<Renderer>();
+                    render.material.SetTexture("Gorilla2Body", gorilla2Tex);*/
+
+                }
+                else if(timeRemaining < 90)
                 {
                     agentM.speed = 40;
                     agentG.speed = 10;
