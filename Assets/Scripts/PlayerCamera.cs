@@ -13,6 +13,7 @@ public class PlayerCamera : MonoBehaviour
     public Vector3 offset = new Vector3(0, 19f, -10);
     public int playerNum = -1;
     Text currentRoomText;
+    private float fadeNum = 0.01f;
 
     void Start() {
 
@@ -33,19 +34,20 @@ public class PlayerCamera : MonoBehaviour
     }
     private void Update()
     {
+        Debug.Log(fadeNum * Time.deltaTime);
         currentRoomText = GameObject.Find("CurrentRoomText").GetComponent<Text>();
         if (currentRoomText.text == "Heart Reactor")
         {
             while (this.gameObject.GetComponent<Camera>().orthographicSize < 20f)
             {
-                this.gameObject.GetComponent<Camera>().orthographicSize += 0.0001f;
+                this.gameObject.GetComponent<Camera>().orthographicSize = this.gameObject.GetComponent<Camera>().orthographicSize + (fadeNum * Time.deltaTime);
             }
         }
         else
         {
-            while (this.gameObject.GetComponent<Camera>().orthographicSize > 15f)
+            while (this.gameObject.GetComponent<Camera>().orthographicSize > 11f)
             {
-                this.gameObject.GetComponent<Camera>().orthographicSize -= 0.0001f;
+                this.gameObject.GetComponent<Camera>().orthographicSize -= fadeNum * Time.deltaTime;
             }
         }
     }

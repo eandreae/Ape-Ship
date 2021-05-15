@@ -13,7 +13,7 @@ public class ProgressBar : MonoBehaviour
     // https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/#timer
 
     public bool progressing = false;
-    public float timeRemaining = 180;
+    public float timeRemaining = 120;
 
     //public Text timeText;
     public Slider progressSlider;
@@ -75,7 +75,7 @@ public class ProgressBar : MonoBehaviour
             if ( timeRemaining > 0 ){
                 // Subtract the time by deltatime.
                 timeRemaining -= Time.deltaTime;
-                progressSlider.value = 180 - timeRemaining;
+                progressSlider.value = 120 - timeRemaining;
                 barFill.color = barGradient.Evaluate(progressSlider.normalizedValue);
                 if(timeRemaining < 60 && spawned == false)
                 {
