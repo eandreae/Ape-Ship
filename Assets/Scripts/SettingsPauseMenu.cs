@@ -40,14 +40,6 @@ public class SettingsPauseMenu : MonoBehaviour
         resolutionDropdown.RefreshShownValue();
     }
 
-    public void CloseSettings()
-    {
-        Time.timeScale = 1f;
-        buttonPress.Play();
-        pausePanel.SetActive(true);
-        gameObject.SetActive(false);
-    }
-
     public void SetVolume(float volume)
     {
         am.SetFloat("Volume", volume);
