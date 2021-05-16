@@ -58,9 +58,4 @@ public class GameManager : MonoBehaviour
     {
         pauseMenuPanel.GetComponent<PauseMenu>().Pause();
     }
-
-    private void OnApplicationFocus(bool focus)
-    {
-        pauseMenuPanel.GetComponent<PauseMenu>().Resume();
-    }
 }
