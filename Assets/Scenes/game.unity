@@ -4158,6 +4158,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 1150680687}
   player: {fileID: 0}
   transitionPanel: {fileID: 679739732}
+  canPause: 1
 --- !u!1 &260882064
 GameObject:
   m_ObjectHideFlags: 0
@@ -5646,7 +5647,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 810647742}
+      - m_Target: {fileID: 260787862}
         m_MethodName: CloseSettings
         m_Mode: 1
         m_Arguments:
@@ -19806,6 +19807,7 @@ MonoBehaviour:
   buttonPress: {fileID: 260787861}
   am: {fileID: 24100000, guid: feb58187f84593a4583ee2fe1fe5c3bc, type: 2}
   resolutionDropdown: {fileID: 1086683590}
+  volumeSlider: {fileID: 1162531209}
 --- !u!1 &812942563 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3559605853003654339, guid: a04dfa26b54f8c94fa8ea49565b8b389,
