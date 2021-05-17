@@ -74,7 +74,7 @@ public class PlayerCamera : MonoBehaviour
     public void OnBrokenStomach()
     {
         Debug.Log("Broken Stomach");
-        StartCoroutine(Rumble(1, 2, 5));
+        StartCoroutine(Rumble(2, 0.5f, 15));
     }
 
     public void OnFixedStomach()
