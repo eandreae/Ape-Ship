@@ -54,8 +54,4 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
     }
-    void OnApplicationPause(bool pause)
-    {
-        pauseMenuPanel.GetComponent<PauseMenu>().Pause();
-    }
 }
