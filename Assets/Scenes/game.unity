@@ -33044,7 +33044,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 16f364703013aa34c9aff7c8cc8956ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.812
+      value: 1.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16f364703013aa34c9aff7c8cc8956ea,
         type: 3}
@@ -35284,8 +35284,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 21.05, y: -0.62, z: 6.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 106313613}
+  m_Children: [{fileID: 106313613}]
   m_Father: {fileID: 760349883}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -40614,18 +40613,10 @@ MonoBehaviour:
         m_CallState: 2
   OnNodeDamage:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1811882726}
-        m_MethodName: OnBrokenStomach
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 1811882726}, m_MethodName: OnBrokenStomach, m_Mode: 1,
+          m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}]
   colorTracker: {fileID: 1626664258}
   display: {fileID: 1397557510}
   stopDistance: 10
@@ -41951,7 +41942,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 16f364703013aa34c9aff7c8cc8956ea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.148
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 16f364703013aa34c9aff7c8cc8956ea,
         type: 3}
@@ -42044,7 +42035,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1862118868}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 169.3, y: 225.53868, z: 171.6491}
