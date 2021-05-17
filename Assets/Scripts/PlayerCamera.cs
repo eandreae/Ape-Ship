@@ -71,35 +71,14 @@ public class PlayerCamera : MonoBehaviour
         Vector3 desiredPosition = target.transform.position + offset;
         transform.position = desiredPosition + shakeOffset;
     }
-    public void OnBrokenStomach()
-    {
-        Debug.Log("Broken Stomach");
-        StartCoroutine(Rumble(2, 0.5f, 15));
-    }
 
-    public void OnFixedStomach()
+    public void ShakeCamera (float duration, float magnitude)
     {
-        Debug.Log("Fixed Stomach");
-        StopAllCoroutines();
-    }
-
-    IEnumerator Rumble (float duration, float magnitude, float frequency)
-    {
-        // Infinite loop is broken by StopAllCoroutines from StomachTarget On Node Fix
-        Debug.Log("Rumble Start");
-        while(true) {
-            StartCoroutine(Shake(duration, magnitude));
-            float elapsed = 0.0f;
-            while (elapsed < frequency) {
-                elapsed += Time.deltaTime;
-                yield return null;
-            }
-        }
+        StartCoroutine(Shake(duration, magnitude));
     }
 
     IEnumerator Shake (float duration, float magnitude)
     {
-        Debug.Log("Shake Start");
         float elapsed = 0.0f;
         while (elapsed < duration)
         {
