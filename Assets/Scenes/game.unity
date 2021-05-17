@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -13582,6 +13582,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -18118,6 +18121,9 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -20721,6 +20727,9 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -21595,6 +21604,9 @@ MonoBehaviour:
   myObject: {fileID: 852433013}
   color: {r: 0, g: 0, b: 0, a: 0}
   OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
   OnNodeDamage:
@@ -32292,6 +32304,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeDamage:
     m_PersistentCalls:
       m_Calls:
@@ -35858,6 +35873,9 @@ MonoBehaviour:
   myObject: {fileID: 336465493}
   color: {r: 0, g: 0, b: 0, a: 0}
   OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
   OnNodeDamage:
@@ -40579,9 +40597,34 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 807635380}
+        m_MethodName: OnFixedStomach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnNodeDamage:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 807635380}
+        m_MethodName: OnBrokenStomach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   colorTracker: {fileID: 1626664258}
   display: {fileID: 1397557510}
   stopDistance: 10
@@ -41025,6 +41068,9 @@ MonoBehaviour:
   myObject: {fileID: 2062883467}
   color: {r: 0, g: 0, b: 0, a: 0}
   OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
   OnNodeDamage:
@@ -44852,6 +44898,9 @@ MonoBehaviour:
   myObject: {fileID: 2062883467}
   color: {r: 0, g: 0, b: 0, a: 0}
   OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
   OnNodeDamage:

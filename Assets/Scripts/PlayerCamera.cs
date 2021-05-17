@@ -52,6 +52,9 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
+    // Used with camera
+    private Vector3 shakeOffset = new Vector3(0,0,0);
+
     // Update is called once per frame
     void LateUpdate()
     {
@@ -66,6 +69,51 @@ public class PlayerCamera : MonoBehaviour
             }
         }
         Vector3 desiredPosition = target.transform.position + offset;
-        transform.position = desiredPosition;
+        transform.position = desiredPosition + shakeOffset;
+    }
+    public void OnBrokenStomach()
+    {
+        Debug.Log("Broken Stomach");
+        StartCoroutine(Rumble(1, 2, 5));
+    }
+
+    public void OnFixedStomach()
+    {
+        Debug.Log("Fixed Stomach");
+        StopAllCoroutines();
+    }
+
+    IEnumerator Rumble (float duration, float magnitude, float frequency)
+    {
+        // Infinite loop is broken by StopAllCoroutines from StomachTarget On Node Fix
+        Debug.Log("Rumble Start");
+        while(true) {
+            StartCoroutine(Shake(duration, magnitude));
+            float elapsed = 0.0f;
+            while (elapsed < frequency) {
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+        }
+    }
+
+    IEnumerator Shake (float duration, float magnitude)
+    {
+        Debug.Log("Shake Start");
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            float x = Random.Range(-1f, 1f) * magnitude;
+            float y = Random.Range(-1f, 1f) * magnitude;
+            float z = Random.Range(-1f, 1f) * magnitude;
+
+            shakeOffset.Set(x, y, z);
+
+            elapsed += Time.deltaTime;
+
+            yield return null;
+        }
+
+        shakeOffset.Set(0,0,0);
     }
 }

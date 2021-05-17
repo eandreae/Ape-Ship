@@ -12,6 +12,7 @@ public class NodeInstanceManager : MonoBehaviour
 
     public UnityEngine.Color color;
     public UnityEvent OnNodeFix;
+    public UnityEvent OnNodeGreen;
     public UnityEvent OnNodeDamage;
 
     public Text colorTracker;
@@ -190,6 +191,7 @@ public class NodeInstanceManager : MonoBehaviour
             SetColor(Color.green);
             colorTracker.text = "green";
             OnNodeFix.Invoke();
+            OnNodeGreen.Invoke();
         }
         else if (color == Color.red)
         {
