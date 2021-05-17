@@ -20,15 +20,15 @@ public class ShootLaser : MonoBehaviour
     public List<float> angles = new List<float>();
     static float[] angleList =
     {
-        143.0f,
-        104.0f,
-        295.0f,
-        73.0f,
-        176.0f,
-        -94.0f,
-        116.5f,
-        -82.5f,
-        104.0f
+        158.0f,
+        -77.0f,
+        0.0f,
+        85.0f,
+        -35.0f,
+        -123.0f,
+        -186.5f,
+        0.0f,
+        157.0f
     };
 
 
