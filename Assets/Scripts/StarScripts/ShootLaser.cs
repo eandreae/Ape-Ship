@@ -81,9 +81,13 @@ public class ShootLaser : MonoBehaviour
         GameObject mirror1 = cart1.transform.GetChild(0).gameObject;
         GameObject mirror2 = cart2.transform.GetChild(0).gameObject;
         GameObject mirror3 = cart3.transform.GetChild(0).gameObject;
+        //reset angles to 0
+        mirror1.transform.rotation = Quaternion.Euler(0,0,0);
+        mirror2.transform.rotation = Quaternion.Euler(0, 0, 0);
+        mirror3.transform.rotation = Quaternion.Euler(0, 0, 0);
 
         int index = GetIndex();
-
+        //choose working angle combo
         mirror1.transform.Rotate(0.0f, angleList[index], 0.0f);
         mirror2.transform.Rotate(0.0f, angleList[index + 1], 0.0f);
         mirror3.transform.Rotate(0.0f, angleList[index + 2], 0.0f);

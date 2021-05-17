@@ -34,7 +34,7 @@ public class PlayerCamera : MonoBehaviour
     }
     private void Update()
     {
-        Debug.Log(fadeNum * Time.deltaTime);
+        //Debug.Log(fadeNum * Time.deltaTime);
         currentRoomText = GameObject.Find("CurrentRoomText").GetComponent<Text>();
         if (currentRoomText.text == "Heart Reactor")
         {

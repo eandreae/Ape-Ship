@@ -40,6 +40,7 @@ public class ProgressBar : MonoBehaviour
     private Vector3 spawnLoc;
 
     private static bool spawned = false;
+    public bool teleport = false;
 
     void Start()
     {
@@ -54,6 +55,7 @@ public class ProgressBar : MonoBehaviour
 
         spawnLoc = GameObject.Find("GorillaSpawn").transform.position;
     }
+
 
     // Update is called once per frame
     void Update()
@@ -109,7 +111,8 @@ public class ProgressBar : MonoBehaviour
                 timeRemaining = 0;
                 // Set progressing to false.
                 progressing = false;
-                gm.Victory();
+                teleport = true;
+                //gm.Victory();
             }
         }
     }
