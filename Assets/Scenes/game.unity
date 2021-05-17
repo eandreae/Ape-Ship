@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1668,6 +1668,99 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105215878}
   m_CullTransparentMesh: 0
+--- !u!1 &106313612
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 106313613}
+  - component: {fileID: 106313616}
+  - component: {fileID: 106313615}
+  - component: {fileID: 106313614}
+  m_Layer: 0
+  m_Name: Highlight Sphere
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &106313613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106313612}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.6349983, y: 1.5580001, z: -2.2250001}
+  m_LocalScale: {x: 2.0569916, y: 2.0569916, z: 1.0741111}
+  m_Children: []
+  m_Father: {fileID: 1444354088}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &106313614
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106313612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &106313615
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106313612}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 528250bea5605da4abc94972ff1659c0, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &106313616
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106313612}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &107861815 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -349969160363973960, guid: 36e70f48dd71d7341881c4b8bf69476f,
@@ -4053,7 +4146,8 @@ AudioSource:
   m_GameObject: {fileID: 260787855}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 15009ad5f1d78cb4d8f791edebfaf029, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -4158,6 +4252,7 @@ MonoBehaviour:
   backgroundMusic: {fileID: 1150680687}
   player: {fileID: 0}
   transitionPanel: {fileID: 679739732}
+  canPause: 1
 --- !u!1 &260882064
 GameObject:
   m_ObjectHideFlags: 0
@@ -5646,7 +5741,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 810647742}
+      - m_Target: {fileID: 260787862}
         m_MethodName: CloseSettings
         m_Mode: 1
         m_Arguments:
@@ -6413,7 +6508,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6643870a4ddf66e4db82188e0cba3ec5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 38
+      value: 38.91
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6643870a4ddf66e4db82188e0cba3ec5,
         type: 3}
@@ -15632,7 +15727,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &635318016
 RectTransform:
   m_ObjectHideFlags: 0
@@ -16902,7 +16997,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: spacebar
+  m_Text: Press Space To Interact
 --- !u!222 &684792716
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -19583,7 +19678,7 @@ AudioSource:
     type: 2}
   m_audioClip: {fileID: 8300000, guid: 3354b686a81ceaa49bc8b8eedfbb6e11, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -19864,6 +19959,7 @@ MonoBehaviour:
   buttonPress: {fileID: 260787861}
   am: {fileID: 24100000, guid: feb58187f84593a4583ee2fe1fe5c3bc, type: 2}
   resolutionDropdown: {fileID: 1086683590}
+  volumeSlider: {fileID: 1162531209}
 --- !u!1 &812942563 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3559605853003654339, guid: a04dfa26b54f8c94fa8ea49565b8b389,
@@ -30213,7 +30309,7 @@ MonoBehaviour:
   m_FillRect: {fileID: 604861035}
   m_HandleRect: {fileID: 431791123}
   m_Direction: 0
-  m_MinValue: -80
+  m_MinValue: -60
   m_MaxValue: 0
   m_WholeNumbers: 0
   m_Value: -20
@@ -35173,7 +35269,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 21.05, y: -0.62, z: 6.17}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children: [{fileID: 106313613}]
   m_Father: {fileID: 760349883}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -35270,8 +35366,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 3.5, z: 4}
-  m_Center: {x: -1.6, y: 0.8, z: -2.25}
+  m_Size: {x: 8, y: 3.5, z: 9}
+  m_Center: {x: -1.6, y: 0.8, z: -6}
 --- !u!1 &1447599416
 GameObject:
   m_ObjectHideFlags: 0
