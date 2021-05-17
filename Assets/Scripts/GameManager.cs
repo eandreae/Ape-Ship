@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
     bool won = false;
     bool lost = false;
 
+    void Start()
+    {
+        Time.timeScale = 1f;
+    }
+
     public void Victory()
     {
         if (!lost)
