@@ -18,6 +18,11 @@ public class MainMenu : MonoBehaviour
     public GameObject creditsPanel;
     public GameObject settingsPanel;
 
+    void Start()
+    {
+        Time.timeScale = 1f;
+    }
+
     public void StartGame()
     {
         Object.Destroy(GameObject.Find("NetworkManager"));
