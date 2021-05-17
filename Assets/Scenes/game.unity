@@ -40957,7 +40957,12 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 71eba778bc6f84246b89ea03c286c737,
         type: 3}
       propertyPath: m_Name
-      value: FloorInputPad_V6
+      value: NewFloorInputPad
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 71eba778bc6f84246b89ea03c286c737,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6466650845613109520, guid: 71eba778bc6f84246b89ea03c286c737,
         type: 3}
@@ -47895,7 +47900,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e8240021278ac754ea7c381e60c01a33, type: 2}
+  - {fileID: 2100000, guid: ca603e75cbdc2d64fb51b67a5214a5d5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -48131,6 +48136,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GorillaUpdated
       objectReference: {fileID: 0}
+    - target: {fileID: 4399248660304107136, guid: 816f15a9cd6bcf043bb9bd87f0a3f3dc,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: ca603e75cbdc2d64fb51b67a5214a5d5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 816f15a9cd6bcf043bb9bd87f0a3f3dc, type: 3}
 --- !u!4 &454375203540546578
