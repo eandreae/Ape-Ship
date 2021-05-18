@@ -19,6 +19,11 @@ public class GameManager : MonoBehaviour
     bool won = false;
     bool lost = false;
 
+    void Start()
+    {
+        Time.timeScale = 1f;
+    }
+
     public void Victory()
     {
         if (!lost)
@@ -53,14 +58,5 @@ public class GameManager : MonoBehaviour
     void FinallyReturnToMenu()
     {
         SceneManager.LoadScene("MainMenu");
-    }
-    void OnApplicationPause(bool pause)
-    {
-        pauseMenuPanel.GetComponent<PauseMenu>().Pause();
-    }
-
-    private void OnApplicationFocus(bool focus)
-    {
-        pauseMenuPanel.GetComponent<PauseMenu>().Resume();
     }
 }

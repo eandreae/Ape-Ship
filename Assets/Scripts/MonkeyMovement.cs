@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
+using Mirror;
 
 public class MonkeyMovement : MonoBehaviour
 {
     public float stoppingDistance  = 12.0f;
+
     public Text color1;
     public Text color2;
     public Text color3;

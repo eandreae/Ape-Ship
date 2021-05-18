@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
 
-public class foodSpawner : MonoBehaviour
+public class foodSpawner : NetworkBehaviour
 {
     public Transform spawnPos;
     public GameObject spawnee;
@@ -23,19 +24,20 @@ public class foodSpawner : MonoBehaviour
     {
         currColor = nodeColor.text;
         canSpawn = true;
-        foodItems = new GameObject[9]; // 33% sandwich, 33% kebab, 22% banana, 11% nuke
-        foodItems[0] = GameObject.Find("KrillSandwich");
-        foodItems[1] = GameObject.Find("KrillSandwich");
-        foodItems[2] = GameObject.Find("KrillSandwich");
-        foodItems[3] = GameObject.Find("SeaFoodKebab");
-        foodItems[4] = GameObject.Find("SeaFoodKebab");
-        foodItems[5] = GameObject.Find("SeaFoodKebab");
-        foodItems[6] = GameObject.Find("Banana");
-        foodItems[7] = GameObject.Find("Banana");
-        foodItems[8] = GameObject.Find("SodaNuke");
+        // foodItems = new GameObject[9]; // 33% sandwich, 33% kebab, 22% banana, 11% nuke
+        // foodItems[0] = GameObject.Find("KrillSandwich");
+        // foodItems[1] = GameObject.Find("KrillSandwich");
+        // foodItems[2] = GameObject.Find("KrillSandwich");
+        // foodItems[3] = GameObject.Find("SeaFoodKebab");
+        // foodItems[4] = GameObject.Find("SeaFoodKebab");
+        // foodItems[5] = GameObject.Find("SeaFoodKebab");
+        // foodItems[6] = GameObject.Find("Banana");
+        // foodItems[7] = GameObject.Find("Banana");
+        // foodItems[8] = GameObject.Find("SodaNuke");
         
 
-        spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+        //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+        //Debug.Log(spawnee);
         //gorillaScript = GetComponent<GorillaMovement>();
 
         vendingMachine = GameObject.Find("TexturedVendingMachine");
@@ -51,18 +53,16 @@ public class foodSpawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-        if(coll.gameObject.tag == "Player" && canSpawn) // player can spawn items from vending machine on a cooldown
+        if(coll.gameObject.tag == "Player" && canSpawn && coll.gameObject.GetComponent<Player>().isServer) // player can spawn items from vending machine on a cooldown
         {
-            //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+            //
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
             //Changed to always spawn
             //if (nodeColor.text != "green")
             //{
                 foodAnim.Play("PushButton");
                 currColor = nodeColor.text;
-                GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
-                temp.GetComponent<Rigidbody>().useGravity = true;
-                temp.GetComponent<destroyer>().enabled = true;
+                CmdSpawnObject(spawnLoc, spawnPos.rotation);
                 canSpawn = false;
                 StartCoroutine("SpawnTimer", 5.0f); // add 5 second cd to using vending machine
             //}
@@ -85,7 +85,8 @@ public class foodSpawner : MonoBehaviour
     }
 
     IEnumerator SpawnTimer(float cooldown){
-        spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+         // get a NEW random foodItem to spawn
+        spawnee = foodItems[ Random.Range(0, foodItems.Length) ];
         Debug.Log(spawnee);
         yield return new WaitForSeconds(cooldown);
         canSpawn = true;
@@ -107,5 +108,15 @@ public class foodSpawner : MonoBehaviour
 
         }
     }*/
+    //  [Command (requiresAuthority = false)]
+    public void CmdSpawnObject(Vector3 spawnLoc, Quaternion rotation){
+        spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+        Debug.Log(spawnee);
+        GameObject temp = Instantiate(spawnee, spawnLoc, rotation);
+        Debug.Log(temp);
+        temp.GetComponent<Rigidbody>().useGravity = true;
+        temp.GetComponent<destroyer>().enabled = true;
 
+        NetworkServer.Spawn(temp);
+    }
 }

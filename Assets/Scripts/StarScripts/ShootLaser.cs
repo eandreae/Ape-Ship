@@ -17,6 +17,29 @@ public class ShootLaser : MonoBehaviour
     GameObject mirror1;
     GameObject mirror2;
     GameObject mirror3;
+    public List<float> angles = new List<float>();
+    static float[] angleList =
+    {
+        158.0f,
+        -77.0f,
+        0.0f,
+        85.0f,
+        -35.0f,
+        -123.0f,
+        -186.5f,
+        0.0f,
+        157.0f
+    };
+
+
+    private void Start()
+    {
+        mirror1 = GameObject.Find("MirrorCart/Rail");
+        mirror2 = GameObject.Find("MirrorCart/Rail (1)");
+        mirror3 = GameObject.Find("MirrorCart/Rail (2)");
+
+        ChooseRotation(mirror1.transform.GetChild(0).gameObject, mirror2.transform.GetChild(0).gameObject, mirror3.transform.GetChild(0).gameObject);
+    }
 
     // Update is called once per frame
     void Update()
@@ -38,9 +61,6 @@ public class ShootLaser : MonoBehaviour
 
     public void ShuffleMirror()
     {
-        mirror1 = GameObject.Find("MirrorCart/Rail");
-        mirror2 = GameObject.Find("MirrorCart/Rail (1)");
-        mirror3 = GameObject.Find("MirrorCart/Rail (2)");
         GameObject child1 = mirror1.transform.GetChild(1).gameObject;
         GameObject child2 = mirror2.transform.GetChild(1).gameObject;
         GameObject child3 = mirror3.transform.GetChild(1).gameObject;
@@ -52,6 +72,42 @@ public class ShootLaser : MonoBehaviour
         mirror1.transform.GetChild(0).gameObject.transform.position = new Vector3(mirror1.transform.GetChild(0).gameObject.transform.position.x, mirror1.transform.GetChild(0).gameObject.transform.position.y, RandZ1);
         mirror2.transform.GetChild(0).gameObject.transform.position = new Vector3(mirror2.transform.GetChild(0).gameObject.transform.position.x, mirror2.transform.GetChild(0).gameObject.transform.position.y, RandZ2);
         mirror3.transform.GetChild(0).gameObject.transform.position = new Vector3(mirror3.transform.GetChild(0).gameObject.transform.position.x, mirror3.transform.GetChild(0).gameObject.transform.position.y, RandZ3);
+
+        ChooseRotation(mirror1.transform.GetChild(0).gameObject, mirror2.transform.GetChild(0).gameObject, mirror3.transform.GetChild(0).gameObject);
+    }
+
+    private void ChooseRotation(GameObject cart1, GameObject cart2, GameObject cart3)
+    {
+        GameObject mirror1 = cart1.transform.GetChild(0).gameObject;
+        GameObject mirror2 = cart2.transform.GetChild(0).gameObject;
+        GameObject mirror3 = cart3.transform.GetChild(0).gameObject;
+        //reset angles to 0
+        mirror1.transform.rotation = Quaternion.Euler(0,0,0);
+        mirror2.transform.rotation = Quaternion.Euler(0, 0, 0);
+        mirror3.transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        int index = GetIndex();
+        //choose working angle combo
+        mirror1.transform.Rotate(0.0f, angleList[index], 0.0f);
+        mirror2.transform.Rotate(0.0f, angleList[index + 1], 0.0f);
+        mirror3.transform.Rotate(0.0f, angleList[index + 2], 0.0f);
+
+    }
+
+    private int GetIndex()
+    {
+        int choose =  Random.Range(0, 3);
+
+        if(choose == 0)
+        {
+            return 0;
+        } else if(choose == 1)
+        {
+            return 3;
+        } else
+        {
+            return 6;
+        }
     }
 
     IEnumerator DestroyLaser ()

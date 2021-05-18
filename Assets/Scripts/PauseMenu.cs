@@ -21,6 +21,7 @@ public class PauseMenu : MonoBehaviour
     public Player player;
 
     public Animator transitionPanel;
+    public bool canPause = true;
 
 
     void Start()
@@ -32,9 +33,8 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("p"))
+        if ((Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("p")) && canPause)
         {
-
             if (gameIsPaused)
             {
                 Resume();
@@ -52,7 +52,7 @@ public class PauseMenu : MonoBehaviour
         backgroundMusic.pitch = 0.75f;
         pauseMenuPanel.SetActive(true);
         //mm.canActivateMinimap = false;
-        player.moveSpeed = 0f;
+        //player.moveSpeed = 0f;
         Time.timeScale = 0f;
         gameIsPaused = true;
     }
@@ -65,7 +65,7 @@ public class PauseMenu : MonoBehaviour
         backgroundMusic.pitch = 1f;
         pauseMenuPanel.SetActive(false);
         //mm.canActivateMinimap = true;
-        player.moveSpeed = 14f;
+        //player.moveSpeed = 14f;
         gameIsPaused = false;
     }
 
@@ -74,6 +74,15 @@ public class PauseMenu : MonoBehaviour
         buttonPress.Play();
         pauseMenuPanel.SetActive(false);
         settingsPanel.SetActive(true);
+        canPause = false;
+    }
+
+    public void CloseSettings()
+    {
+        buttonPress.Play();
+        pauseMenuPanel.SetActive(true);
+        canPause = true;
+        settingsPanel.SetActive(false);
     }
 
     public void GoBackToMenu()

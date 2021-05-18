@@ -5,6 +5,7 @@ using UnityEngine;
 public class MonkeJail : MonoBehaviour
 {
     bool canPush = true;
+    bool canCloseJail = false;
 
     public float jailDuration;
     public float jailCooldown;
@@ -12,11 +13,20 @@ public class MonkeJail : MonoBehaviour
     public Animator[] jailBars;
     public Animator interactAnim;
 
+    GameObject highlight;
+
+    void Start()
+    {
+        highlight = transform.GetChild(0).gameObject;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (canPush && other.gameObject.CompareTag("Player"))
         {
             interactAnim.Play("PickUpTextRaise");
+            canCloseJail = true;
+            highlight.SetActive(true);
         }
     }
 
@@ -25,12 +35,14 @@ public class MonkeJail : MonoBehaviour
         if (canPush && other.gameObject.CompareTag("Player"))
         {
             interactAnim.Play("PickUpTextLower");
+            canCloseJail = false;
+            highlight.SetActive(false);
         }
     }
 
     void Update()
     {
-        if(Input.GetKeyDown("space") && canPush)
+        if(Input.GetKeyDown("space") && canPush && canCloseJail)
         {
             CloseJail();
         }

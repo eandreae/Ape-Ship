@@ -1,5 +1,20 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-6595408847320811091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990287667806073576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3f8b4fc1d67660498c2a845588ee582, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  player: {fileID: 3175258193332163116}
 --- !u!114 &3175258193332163116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,7 +117,7 @@ PrefabInstance:
     - target: {fileID: 7647579302506435261, guid: 1c0e73ee6d52be74898a438a05e29e56,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: RoomPlayer
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1c0e73ee6d52be74898a438a05e29e56, type: 3}

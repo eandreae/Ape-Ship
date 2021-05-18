@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4471785885756750063
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4471785885756750062}
+  - component: {fileID: 4471785885756750056}
+  - component: {fileID: 4471785885756750057}
+  - component: {fileID: 4471785885756750059}
+  - component: {fileID: 4471785885756750058}
+  m_Layer: 0
+  m_Name: NetworkFoodSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4471785885756750062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471785885756750063}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 26.54, y: -7.07, z: 6.63}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &4471785885756750056
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471785885756750063}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4471785885756750057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471785885756750063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be431b6957f214c36803197d7d82f03b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  spawnPos: {fileID: 0}
+  spawnee: {fileID: 0}
+  foodItems:
+  - {fileID: 3442019651058028904, guid: 5c1621398a3b3b54c96fcab9321cf852, type: 3}
+  - {fileID: 3442019651058028904, guid: 5c1621398a3b3b54c96fcab9321cf852, type: 3}
+  - {fileID: 3442019651058028904, guid: 5c1621398a3b3b54c96fcab9321cf852, type: 3}
+  - {fileID: 2970312886035349680, guid: 5ebada6d77670344084ba2b1a5165efe, type: 3}
+  - {fileID: 2970312886035349680, guid: 5ebada6d77670344084ba2b1a5165efe, type: 3}
+  - {fileID: 2970312886035349680, guid: 5ebada6d77670344084ba2b1a5165efe, type: 3}
+  - {fileID: 587971008673105628, guid: 061fd7889da23d54d98a34ef6ac07c88, type: 3}
+  - {fileID: 587971008673105628, guid: 061fd7889da23d54d98a34ef6ac07c88, type: 3}
+  - {fileID: 518392120109687607, guid: ea14fd73e34a13c49b2e479abd588d4f, type: 3}
+  nodeColor: {fileID: 0}
+--- !u!54 &4471785885756750059
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471785885756750063}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!114 &4471785885756750058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4471785885756750063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0

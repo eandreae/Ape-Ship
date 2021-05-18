@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class ItemScript : MonoBehaviour
 {
@@ -11,11 +12,12 @@ public class ItemScript : MonoBehaviour
     //private GameObject[] playerObjs;
     public string type;
     private float height;
-    private Rigidbody rigidbody;
+    //private Rigidbody rigidbody;
     public GameObject glowEffect;
     GameObject playerObj;
-    public Player playerScript;
     public Waypoint wp;
+    NetworkManager nm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +25,11 @@ public class ItemScript : MonoBehaviour
         active = false;
         thrown = false;
         //playerRoot = GameObject.FindWithTag("PlayerRoot").GetComponent<Transform>();
-        this.rigidbody = this.GetComponent<Rigidbody>();
+        //this.rigidbody = this.GetComponent<Rigidbody>();
         //this.rigidbody.isKinematic = false;
         //this.rigidbody.isKinematic = true;
         this.height = this.transform.position.y;
-        playerObj = GameObject.FindGameObjectWithTag("Player");
-        //playerObjs = GameObject.FindGameObjectsWithTag("Player");
+        nm = GameObject.FindObjectOfType<NetworkManager>();
 
         //if (this.glowEffect)
         //    this.glowEffect.SetActive(false);
@@ -49,7 +50,7 @@ public class ItemScript : MonoBehaviour
             //if(this.glowEffect)
             //    this.glowEffect.SetActive(false);
             this.active = false;
-            this.rigidbody.isKinematic = true; // if picked up, item become kinematic
+            this.GetComponent<Rigidbody>().isKinematic = true; // if picked up, item become kinematic
             transform.localPosition = new Vector3(0f, 1.2f, 0.5f); // sets position relative to the player transform
             //Debug.Log(playerRoot.position);
             
@@ -85,7 +86,7 @@ public class ItemScript : MonoBehaviour
         	//Add 1 to points.
         	//Destroy(gameObject); //Destroys coin, when touched.
             this.playerRoot = other.gameObject.GetComponent<Transform>(); // save the player transform (use this in case of multiple playerobjects)
-            this.rigidbody.isKinematic = false;
+            this.GetComponent<Rigidbody>().isKinematic = false;
             //if (this.glowEffect && !this.pickedUp && !playerRoot.GetComponent<Player>().holding){
             //    this.glowEffect.SetActive(true);
             //}
@@ -100,25 +101,19 @@ public class ItemScript : MonoBehaviour
         }
     }
 
-    // public void OnCollisionEnter(Collision col){
-    //     Debug.Log("Object collision");
-    //     if(col.gameObject.tag == "PlayerMod" && !this.pickedUp && !this.thrown){ // if run into player when not picked up
-    //         Vector3 pushDir = col.gameObject.GetComponent<Transform>().forward * 5;
-    //         Debug.Log(pushDir);
-    //         this.rigidbody.velocity = (pushDir); // push
-    //     }
-    // }
-
     public void AlterSpeed(float newSpeed)
     {
-        playerScript.ChangeSpeed(newSpeed);
+        if(nm)
+            playerRoot.GetComponent<Player>().ChangeSpeed(newSpeed);
+        else 
+            playerRoot.GetComponent<Player1P>().ChangeSpeed(newSpeed);
     }
 
     private void OnTriggerExit(Collider other) {
     	if (other.tag == "Player"){
             if (!this.thrown){  
                 //this.rigidbody.isKinematic = true;
-                this.rigidbody.velocity = Vector3.zero;
+                this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
             // else {
             //     StartCoroutine("ThrownPhysics"); // set object to kinematic 
@@ -126,20 +121,5 @@ public class ItemScript : MonoBehaviour
         }
         
     }
-
-    // public IEnumerator ThrownPhysics (){
-        
-    //     yield return new WaitForSeconds(1f); // wait as object is thrown before resetting object to kinematic
-    //     //this.rigidbody.isKinematic = true;
-    //     this.thrown = false; // reset thrown to false
-    // }
-
-    // private void OnTriggerEnter(Collider other) {
-    // 	if(other.name == "Capsule" || other.name == "Player") {
-    // 		other.GetComponent<Player>().points++;
-    //     	//Add 1 to points.
-    //     	Destroy(gameObject); //Destroys coin, when touched.
-    //     }
-    // }
 
 }

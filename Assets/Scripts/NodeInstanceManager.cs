@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using Mirror;
 
 public class NodeInstanceManager : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class NodeInstanceManager : MonoBehaviour
 
     public UnityEngine.Color color;
     public UnityEvent OnNodeFix;
+    public UnityEvent OnNodeGreen;
     public UnityEvent OnNodeDamage;
 
     public Text colorTracker;
@@ -18,15 +20,16 @@ public class NodeInstanceManager : MonoBehaviour
     Animator displayAnim;
     public float stopDistance;
     private float playerDist;
-    private float monkeyDist;
+    public float monkeyDist;
     GameObject playerObj;
     GameObject monkeyObj;
     NavMeshAgent agent;
     public bool canHack = true; // can be hacked by monkey
     //private MonkeyMovement flee;
-    private bool isFleeing;
+    public bool isFleeing;
     [HideInInspector]
-    public float monkCooldown = 3f;
+    public static float monkCooldown = 3f;
+    static bool greyed = false;
 
     AudioSource nodeDisabledSFX;
 
@@ -47,15 +50,41 @@ public class NodeInstanceManager : MonoBehaviour
 
     private void Update()
     {
-        if(!playerObj)
+         // temporary fix -- maybe use a list of all players for player distance?  maybe use a ontriggerenter? 
+        if (!playerObj)
+        {
             playerObj = GameObject.FindGameObjectWithTag("Player");
+        }   
+        if (!monkeyObj)
+        {
+            monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
+            agent = monkeyObj.GetComponent<NavMeshAgent>();
+        }
 
         //Debug.Log(transform.position);
         playerDist = Vector3.Distance(transform.position, playerObj.transform.position);
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);
         //flee = GetComponent<MonkeyMovement>();
-        isFleeing = MonkeyMovement.runningAway;
+
+        if(GameObject.FindObjectOfType<NetworkManager>()){
+            isFleeing = MonkeyMovement.runningAway;
+        } else {
+            isFleeing = Monkey1P.runningAway;
+        }
+
         //Debug.Log(isFleeing);
+        if (this.gameObject.tag == "ElecControl")
+        {
+            if (colorTracker.text == "red")
+            {
+                greyed = true;
+            }
+            else
+            {
+                greyed = false;
+            }
+        }
+
         //Change color to match text color
         UpdateColor();
 
@@ -71,6 +100,8 @@ public class NodeInstanceManager : MonoBehaviour
                 colorTracker.text = "green";
             }*/
         }
+
+
         //TEMPORARY
         //monkey turns every node down one level
         if (monkeyDist < stopDistance && canHack && !isFleeing)
@@ -92,25 +123,33 @@ public class NodeInstanceManager : MonoBehaviour
 
     private void UpdateColor()
     {
-        if (colorTracker.text == "green")
+        if (greyed == true && this.gameObject.tag != "ElecControl")
         {
-            myObject.material.color = Color.green;
-            display.color = Color.green;
-            color = Color.green;
+            myObject.material.color = Color.grey;
+            display.color = Color.grey;
         }
-        else if (colorTracker.text == "yellow")
+        else
         {
-            myObject.material.color = Color.yellow;
-            display.color = Color.yellow;
-            displayAnim.Play("MinimapYellowTask");
-            color = Color.yellow;
-        }
-        else if (colorTracker.text == "red")
-        {
-            myObject.material.color = Color.red;
-            display.color = Color.red;
-            displayAnim.Play("MinimapRedTask");
-            color = Color.red;
+            if (colorTracker.text == "green")
+            {
+                myObject.material.color = Color.green;
+                display.color = Color.green;
+                color = Color.green;
+            }
+            else if (colorTracker.text == "yellow")
+            {
+                myObject.material.color = Color.yellow;
+                display.color = Color.yellow;
+                displayAnim.Play("MinimapYellowTask");
+                color = Color.yellow;
+            }
+            else if (colorTracker.text == "red")
+            {
+                myObject.material.color = Color.red;
+                display.color = Color.red;
+                displayAnim.Play("MinimapRedTask");
+                color = Color.red;
+            }
         }
     }
 
@@ -152,6 +191,7 @@ public class NodeInstanceManager : MonoBehaviour
             SetColor(Color.green);
             colorTracker.text = "green";
             OnNodeFix.Invoke();
+            OnNodeGreen.Invoke();
         }
         else if (color == Color.red)
         {

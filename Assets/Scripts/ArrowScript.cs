@@ -204,7 +204,7 @@ public class ArrowScript : MonoBehaviour
     {
         if (HeartColor.text != "green" && !flashing && !paused)
         {
-            if (coll.gameObject.name == "Player")
+            if (coll.gameObject.tag == "Player")
             {
                 //turn on all arrows if correct non-center tile is touched
                 if (started == true && tileList[rand].name == gameObject.name && gameObject.name != "Center")
