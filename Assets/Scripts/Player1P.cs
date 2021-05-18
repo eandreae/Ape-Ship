@@ -150,43 +150,41 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         }
 
         // code to drop items
-        if (this.holding && Input.GetKeyDown("space"))
-        { // if player is holding an item and presses space bar
-            // Debug.Log("drop");
-            // un-parent the player from the item
-            this.holdItem.transform.parent = null;
-            // un-mark the coin as picked up.
-            this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-            this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+        if (this.holding)
+        {   // if player is holding an item and presses space bar
+            if (Input.GetKeyDown("space")){
+                // Debug.Log("drop");
+                // un-parent the player from the item
+                this.holdItem.transform.parent = null;
+                // un-mark the coin as picked up.
+                this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+                this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
 
-            //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
-            // get rid of hold item
-            this.holdItem = null;
-            this.wpArrow.SetActive(false);
+                //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
+                // get rid of hold item
+                this.holdItem = null;
+                this.wpArrow.SetActive(false);
 
-            StartCoroutine("PickUpCD");
-            //this.holding = false;
-        }
+                StartCoroutine("PickUpCD");
+            }
+            // code to throw items
+            else if (Input.GetKeyDown(KeyCode.LeftShift))
+            { // holding item + press left shift
 
-        // code to throw items
-        else if (this.holding && Input.GetKeyDown(KeyCode.LeftShift))
-        { // holding item + press left shift
+                this.holdItem.transform.parent = null; // unparent player from item
 
-            this.holdItem.transform.parent = null; // unparent player from item
-
-            this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-            this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-            this.holdItem.GetComponent<ItemScript>().thrown = true;
-            this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-            this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
-                                                                                                                //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
-                                                                                                                //Debug.Log("throw");
-
-
-            // get rid of hold item
-            this.holdItem = null;
-            this.wpArrow.SetActive(false);
-            StartCoroutine("PickUpCD");
+                this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+                this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+                this.holdItem.GetComponent<ItemScript>().thrown = true;
+                this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
+                this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
+                                                                                                                    //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
+                                                                                                                    //Debug.Log("throw");
+                // get rid of hold item
+                this.holdItem = null;
+                this.wpArrow.SetActive(false);
+                StartCoroutine("PickUpCD");
+            }
         }
         //if player isn't holding an item, reset to default speed
         if (!this.holding)
@@ -194,49 +192,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             ChangeSpeed(defaultSpeed);
         }
 
-        // code to drop items
-        if(this.holding && Input.GetKeyDown(KeyCode.Space)){ // if player is holding an item and presses space bar
-            // Debug.Log("drop");
-            // un-parent the player from the item
-            this.holdItem.transform.parent = null;
-            // un-mark the coin as picked up.
-            this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-            this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-   
-            //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
-            // get rid of hold item
-            this.holdItem = null;
-            this.wpArrow.SetActive(false);
-            
-            StartCoroutine("PickUpCD");
-            //this.holding = false;
-        }
-
-        // code to throw items
-        else if(this.holding && Input.GetKeyDown(KeyCode.LeftShift)){ // holding item + press left shift
-            
-            this.holdItem.transform.parent = null; // unparent player from item
-            
-            this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-            this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-            this.holdItem.GetComponent<ItemScript>().thrown = true;
-            this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-            this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
-            //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
-            //Debug.Log("throw");
-            
-            
-            // get rid of hold item
-            this.holdItem = null;
-            this.wpArrow.SetActive(false);
-            StartCoroutine("PickUpCD");
-        }
-        //if player isn't holding an item, reset to default speed
-        if (!this.holding)
-        {
-            ChangeSpeed(defaultSpeed);
-        }
-        
         // Check if both oxygens are red.
         if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
             if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
@@ -261,26 +216,9 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     //checks to see if picked up object, activated everytime touch a trigger collider
     void OnTriggerEnter(Collider other) 
     {
-        //Debug.Log("Collided with something!");
-
-        // if (other.gameObject.CompareTag("Gorilla") && !invulnerable && !other.gameObject.GetComponent<GorillaMovement>().stunned)
-        // {
-        //     Debug.Log("Hit the Gorilla!");
-        //     // Subtract one from the health of the Player.
-        //     health--;
-        //     // Make the player temporarily invulnerable
-        //     invulnerable = true;
-        //     gorillaCollider = other.GetComponent<Collider>();
-        //     // Update the health of the player.
-        //     StartCoroutine("updateHealth");
-        // }
-
-        if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && !this.holdItem && other.gameObject.CompareTag("Pick Up"))
     	{
             this.holdItem = other.gameObject;
-    		
-            //deactivates game object
-    		//other.gameObject.SetActive(false);
 
             // Sets player to the pick-up item's parent so the item will move around with the player.            
             other.gameObject.transform.parent = this.transform;
@@ -291,8 +229,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             this.wpArrow.SetActive(true);
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
-            //this.holding = true;
-            //Debug.Log(this.holdItem);
     	}
         if (other.gameObject.tag == "ThrownObject")
         {
@@ -305,13 +241,9 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
     void OnTriggerStay(Collider other){
         //test tag, if string is same as pick up...
-    	if (!this.holdItem && other.gameObject.CompareTag("Pick Up") && Input.GetKeyDown(KeyCode.Space))
+    	if (Input.GetKeyDown(KeyCode.Space) && !this.holdItem && other.gameObject.CompareTag("Pick Up") )
     	{
             this.holdItem = other.gameObject;
-    		
-            //deactivates game object
-    		//other.gameObject.SetActive(false);
-
             // Sets player to the pick-up item's parent so the item will move around with the player.            
             other.gameObject.transform.parent = this.transform;
 
@@ -321,8 +253,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             this.wpArrow.SetActive(true);
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
-            //this.holding = true;
-            //Debug.Log(this.holdItem);
     	}
     }
     void OnControllerColliderHit(ControllerColliderHit hit)

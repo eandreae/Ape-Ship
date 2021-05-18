@@ -161,15 +161,16 @@ public class GorillaMovement : MonoBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "Player") {
+        if (other.tag == "PlayerMod") {
             if (!this.stunned) {
-                StartCoroutine("AttackPlayer", other.GetComponent<Player>());
+                StartCoroutine("AttackPlayer", other.transform.parent.GetComponent<Player>());
             }
         } 
-        else if (other.gameObject == target && !holdingObject)
+        else if (other.tag != "Player" && other.gameObject == target && !holdingObject)
         {
             PickUpObject(other);
-        } else if (other.tag == "Pick Up" && !stunned) {
+        } 
+        else if (other.tag == "Pick Up" && !stunned) {
             if (other.gameObject.GetComponent<ItemScript>().type == "Banana" && other.gameObject.GetComponent<ItemScript>().active){
                 this.stunned = true;
                 StartCoroutine("SelfStun");
