@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2209,6 +2209,53 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.5, y: 4.5543203, z: 0.5}
   m_Center: {x: 0, y: 2.2982836, z: -0.00000667572}
+--- !u!1 &168417202 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7915350926439076445, guid: 71eba778bc6f84246b89ea03c286c737,
+    type: 3}
+  m_PrefabInstance: {fileID: 1812331924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &168417206
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168417202}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7107255479525456589, guid: 71eba778bc6f84246b89ea03c286c737, type: 3}
+--- !u!114 &168417207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 168417202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DanceComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!1001 &169690965
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18127,7 +18174,7 @@ MonoBehaviour:
   OnNodeDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1855929738}
+      - m_Target: {fileID: 932031583}
         m_MethodName: ChangeBroken
         m_Mode: 1
         m_Arguments:
@@ -18574,6 +18621,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741311111}
   m_CullTransparentMesh: 0
+--- !u!1 &741489087 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4245381251258037316, guid: 71eba778bc6f84246b89ea03c286c737,
+    type: 3}
+  m_PrefabInstance: {fileID: 1812331924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &741489091
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741489087}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7193587715174255723, guid: 71eba778bc6f84246b89ea03c286c737, type: 3}
+--- !u!114 &741489092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 741489087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DanceComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!1 &741665742 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6401627273931755403, guid: c606d5077ed59104a89116c6e36709a9,
@@ -21596,7 +21690,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 896022311}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
   m_Name: 
@@ -22120,6 +22214,53 @@ Transform:
   m_Father: {fileID: 974410304}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &932031578 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7700415784563316646, guid: 71eba778bc6f84246b89ea03c286c737,
+    type: 3}
+  m_PrefabInstance: {fileID: 1812331924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &932031582
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932031578}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3475776824385773643, guid: 71eba778bc6f84246b89ea03c286c737, type: 3}
+--- !u!114 &932031583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 932031578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DanceComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!1 &933216101
 GameObject:
   m_ObjectHideFlags: 0
@@ -40944,6 +41085,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1.0864
       objectReference: {fileID: 0}
+    - target: {fileID: -7915350926439076445, guid: 71eba778bc6f84246b89ea03c286c737,
+        type: 3}
+      propertyPath: m_Name
+      value: RIGHT
+      objectReference: {fileID: 0}
     - target: {fileID: -7431099819044423976, guid: 71eba778bc6f84246b89ea03c286c737,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -40954,6 +41100,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2d6a62aba5c486541bbfa5c4d10ea182, type: 2}
+    - target: {fileID: 442477961715900916, guid: 71eba778bc6f84246b89ea03c286c737,
+        type: 3}
+      propertyPath: m_Name
+      value: UP
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 71eba778bc6f84246b89ea03c286c737,
         type: 3}
       propertyPath: m_Name
@@ -40964,11 +41115,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4245381251258037316, guid: 71eba778bc6f84246b89ea03c286c737,
+        type: 3}
+      propertyPath: m_Name
+      value: DOWN
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376673583278432005, guid: 71eba778bc6f84246b89ea03c286c737,
+        type: 3}
+      propertyPath: m_Name
+      value: LEFT
+      objectReference: {fileID: 0}
     - target: {fileID: 6466650845613109520, guid: 71eba778bc6f84246b89ea03c286c737,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 157517e8028d9554082046b9d99c247e, type: 2}
+    - target: {fileID: 7700415784563316646, guid: 71eba778bc6f84246b89ea03c286c737,
+        type: 3}
+      propertyPath: m_Name
+      value: Center
+      objectReference: {fileID: 0}
     - target: {fileID: 7829138855111377134, guid: 71eba778bc6f84246b89ea03c286c737,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -43460,6 +43626,53 @@ Transform:
   m_Father: {fileID: 1433625403}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1973194600 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 442477961715900916, guid: 71eba778bc6f84246b89ea03c286c737,
+    type: 3}
+  m_PrefabInstance: {fileID: 1812331924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &1973194604
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973194600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7048334837942511895, guid: 71eba778bc6f84246b89ea03c286c737, type: 3}
+--- !u!114 &1973194605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973194600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DanceComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!1001 &1983376261
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46203,6 +46416,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2096911887 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4376673583278432005, guid: 71eba778bc6f84246b89ea03c286c737,
+    type: 3}
+  m_PrefabInstance: {fileID: 1812331924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2096911891
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096911887}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7870418917143252838, guid: 71eba778bc6f84246b89ea03c286c737, type: 3}
+--- !u!114 &2096911892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2096911887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DanceComplete:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HeartColor: {fileID: 741311113}
 --- !u!1 &2099549558
 GameObject:
   m_ObjectHideFlags: 0
