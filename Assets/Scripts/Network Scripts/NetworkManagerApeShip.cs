@@ -17,6 +17,8 @@ public class NetworkManagerApeShip : NetworkRoomManager
      // Array containing positions to spawn players in-game
     public Vector3[] spawnPos;
 
+    List<NetworkRoomPlayer> previousRoomSlots = null;
+
     public void Start() {
         spawnPos = new Vector3[] {
             new Vector3(36.0f, 0f,  3f), // p1
@@ -30,6 +32,19 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         ServerChangeScene("game");
     }
+
+    public void ReturnToRoom()
+    {
+        int count = previousRoomSlots.Count;
+        for (int i = 0; i < count; i++)
+        {
+            NetworkServer.ReplacePlayerForConnection(previousRoomSlots[i].GetComponent<LobbyPlayer>().getconnection(), previousRoomSlots[i].gameObject);
+        }
+        previousRoomSlots.Clear();
+
+        ServerChangeScene("room");
+    }
+
 
     public override void OnStartServer()
     {
@@ -91,8 +106,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
         if (newSceneName == "game"){
             
-            int i = 0;
-            while (roomSlots.Count > 0)
+            for (int i=0; i<roomSlots.Count; i++)
             {
                 // spawning PLAYER CLONES into game
                 GameObject player = Instantiate(  playerPrefab,             // prefab/gameobject
@@ -100,11 +114,11 @@ public class NetworkManagerApeShip : NetworkRoomManager
                                                   Quaternion.identity);     // rotation
                 //Debug.Log("spawn player at " + spawnPos[i]);
 
-                GameObject roomplayer = roomSlots[0].gameObject;
-                NetworkServer.ReplacePlayerForConnection(roomSlots[0].GetComponent<NetworkIdentity>().connectionToClient, player);
-                NetworkServer.Destroy(roomplayer);
-                
-                i++;
+                //GameObject roomplayer = roomSlots[0].gameObject;
+                roomSlots[i].GetComponent<LobbyPlayer>().saveconnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient);
+                previousRoomSlots.Add(roomSlots[i]);
+                NetworkServer.ReplacePlayerForConnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient, player);
+                //NetworkServer.Destroy(roomplayer);
             }
         }
     }
