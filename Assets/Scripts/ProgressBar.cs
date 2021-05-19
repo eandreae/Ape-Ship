@@ -25,10 +25,10 @@ public class ProgressBar : MonoBehaviour
 
     GameManager gm;
 
-    GameObject monkey;
-    NavMeshAgent agentM;
-    GameObject gorilla;
-    NavMeshAgent agentG;
+    public GameObject monkey;
+    public NavMeshAgent agentM;
+    public GameObject gorilla;
+    public NavMeshAgent agentG;
 
     public GorillaMovement gorill;
     public Gorilla1P gorill1P;
@@ -60,6 +60,15 @@ public class ProgressBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //-- for netcode --d// 
+        if (!monkey) {
+            monkey = GameObject.FindGameObjectWithTag("Monkey");
+            agentM = monkey.GetComponent<NavMeshAgent>();
+        }
+        if (!gorilla) {
+            gorilla = GameObject.FindGameObjectWithTag("Gorilla");
+            agentG = gorilla.GetComponent<NavMeshAgent>();
+        }
 
         // Check if either NavigationColor or ReactorColor are red.
         if ( NavigationColor.text == "red" || ReactorColor.text == "red" ){

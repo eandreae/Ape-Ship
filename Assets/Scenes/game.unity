@@ -1446,7 +1446,6 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   moveSpeed: 0
-  playerNum: -1
   dir: {x: 0, y: 0, z: 0}
   health: 0
   oxygen: 0
@@ -1782,8 +1781,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Canister2
-  glowEffect: {fileID: 0}
   wp: {fileID: 0}
 --- !u!114 &107861820
 MonoBehaviour:
@@ -4956,8 +4955,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Canister1
-  glowEffect: {fileID: 0}
   wp: {fileID: 0}
 --- !u!136 &291733766
 CapsuleCollider:
@@ -13845,8 +13844,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Coin
-  glowEffect: {fileID: 0}
   wp: {fileID: 0}
 --- !u!1001 &562625130
 PrefabInstance:
@@ -14384,10 +14383,10 @@ GameObject:
   - component: {fileID: 566263453}
   - component: {fileID: 566263459}
   - component: {fileID: 566263458}
-  - component: {fileID: 566263457}
   - component: {fileID: 566263456}
   - component: {fileID: 566263455}
   - component: {fileID: 566263460}
+  - component: {fileID: 566263454}
   - component: {fileID: 566263461}
   m_Layer: 0
   m_Name: neuronSpawn
@@ -14411,6 +14410,20 @@ Transform:
   m_Father: {fileID: 1277547814}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &566263454
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 566263452}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &566263455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14455,19 +14468,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!135 &566263457
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 566263452}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &566263458
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14530,8 +14530,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Neuron
-  glowEffect: {fileID: 1102424649}
   wp: {fileID: 0}
 --- !u!135 &566263461
 SphereCollider:
@@ -15992,6 +15992,10 @@ MonoBehaviour:
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
   gorilla2Tex: {fileID: 2800000, guid: ab12e5a47a54e384ea48dcd568bb6f2f, type: 3}
+  monkey: {fileID: 0}
+  agentM: {fileID: 0}
+  gorilla: {fileID: 0}
+  agentG: {fileID: 0}
   gorill: {fileID: 1190199561}
   gorill1P: {fileID: 3608863098772767487}
   barGradient:
@@ -20087,8 +20091,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Coin
-  glowEffect: {fileID: 0}
   wp: {fileID: 0}
 --- !u!1 &818175810
 GameObject:
@@ -23124,12 +23128,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ab4818cbcab5f41a3a9dcada01fafb, type: 3}
---- !u!1 &970841656 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
-    type: 3}
-  m_PrefabInstance: {fileID: 970841655}
-  m_PrefabAsset: {fileID: 0}
 --- !u!64 &971976898
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -35624,6 +35622,10 @@ MonoBehaviour:
   NavigationColor: {fileID: 1279260005}
   ReactorColor: {fileID: 741311113}
   gorilla2Tex: {fileID: 0}
+  monkey: {fileID: 0}
+  agentM: {fileID: 0}
+  gorilla: {fileID: 0}
+  agentG: {fileID: 0}
   gorill: {fileID: 0}
   gorill1P: {fileID: 0}
   barGradient:
@@ -40212,8 +40214,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Banana
-  glowEffect: {fileID: 970841656}
   wp: {fileID: 0}
 --- !u!136 &1766069666
 CapsuleCollider:
@@ -45501,8 +45503,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Coin
-  glowEffect: {fileID: 0}
   wp: {fileID: 0}
 --- !u!1 &2082339949
 GameObject:
@@ -45756,8 +45758,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Food
-  glowEffect: {fileID: 1096256794}
   wp: {fileID: 0}
 --- !u!135 &2083132828
 SphereCollider:
@@ -47719,12 +47721,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ab4818cbcab5f41a3a9dcada01fafb, type: 3}
---- !u!1 &353969444642203072 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
-    type: 3}
-  m_PrefabInstance: {fileID: 353969444642203071}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &353969444642203073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
@@ -47793,6 +47789,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 353969444122098563, guid: 061fd7889da23d54d98a34ef6ac07c88,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 353969444122098565, guid: 061fd7889da23d54d98a34ef6ac07c88,
         type: 3}
       propertyPath: sceneId
@@ -47837,7 +47838,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -47884,8 +47885,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Banana
-  glowEffect: {fileID: 353969444642203072}
   wp: {fileID: 0}
 --- !u!136 &353969446163947428
 CapsuleCollider:
@@ -48406,6 +48407,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: ca603e75cbdc2d64fb51b67a5214a5d5, type: 2}
+    - target: {fileID: 4450307437463283787, guid: 816f15a9cd6bcf043bb9bd87f0a3f3dc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 816f15a9cd6bcf043bb9bd87f0a3f3dc, type: 3}
 --- !u!4 &454375203540546578
@@ -50034,7 +50040,7 @@ MeshCollider:
   m_GameObject: {fileID: 590851735394956812}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -50048,7 +50054,7 @@ MeshCollider:
   m_GameObject: {fileID: 590851735394956812}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -50846,6 +50852,11 @@ PrefabInstance:
       propertyPath: OnNeuronDeposit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1811882723}
+    - target: {fileID: 860428540919818474, guid: ea14fd73e34a13c49b2e479abd588d4f,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 860428540919818477, guid: ea14fd73e34a13c49b2e479abd588d4f,
         type: 3}
       propertyPath: sceneId
@@ -50930,7 +50941,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -51005,8 +51016,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Nuke
-  glowEffect: {fileID: 0}
   wp: {fileID: 0}
 --- !u!136 &860428543030315102
 CapsuleCollider:
@@ -56670,7 +56681,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -56715,8 +56726,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Sandwich
-  glowEffect: {fileID: 0}
   wp: {fileID: 0}
 --- !u!114 &2523682045962763870
 MonoBehaviour:
@@ -56767,6 +56778,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2523682047053840260, guid: 5c1621398a3b3b54c96fcab9321cf852,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2523682047053840264, guid: 5c1621398a3b3b54c96fcab9321cf852,
         type: 3}
       propertyPath: nodeColor
@@ -58675,8 +58691,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Kebab
-  glowEffect: {fileID: 0}
   wp: {fileID: 0}
 --- !u!54 &2736431573751466077
 Rigidbody:
@@ -58690,7 +58706,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -58823,6 +58839,11 @@ PrefabInstance:
       propertyPath: OnNeuronDeposit.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1811882723}
+    - target: {fileID: 2736431574349014839, guid: 5ebada6d77670344084ba2b1a5165efe,
+        type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2970312886035349680, guid: 5ebada6d77670344084ba2b1a5165efe,
         type: 3}
       propertyPath: m_Name

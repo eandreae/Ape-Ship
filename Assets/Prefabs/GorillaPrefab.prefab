@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 758380405924426012}
   - component: {fileID: 758380405924426013}
   m_Layer: 0
-  m_Name: GorillaUpdated
+  m_Name: GorillaPrefab
   m_TagString: Gorilla
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,8 +335,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
   _SPEED: 6
   _ANGULAR_SPEED: 120
   _ACCELERATION: 8
@@ -1392,7 +1390,7 @@ GameObject:
   - component: {fileID: 7726581728769097916}
   m_Layer: 0
   m_Name: Everything
-  m_TagString: Gorilla
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
