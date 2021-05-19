@@ -10,6 +10,9 @@ public class LobbyPlayer : NetworkBehaviour
     [SerializeField] private NetworkRoomPlayer player = null;
     [SerializeField] private Button readybutton = null;
     [SerializeField] private Button disconnect = null;
+
+    public NetworkConnection previousConnection;
+
     bool currentvalue = false;
 
     // Start is called before the first frame update
@@ -30,6 +33,18 @@ public class LobbyPlayer : NetworkBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             toggle();
     }
+
+
+    public void saveconnection(NetworkConnection conn)
+    {
+        previousConnection = conn;
+    }
+
+    public NetworkConnection getconnection()
+    {
+        return previousConnection;
+    }
+
 
     public void toggle()
     {
