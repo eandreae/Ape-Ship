@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -19748,6 +19748,7 @@ GameObject:
   - component: {fileID: 807635381}
   - component: {fileID: 807635380}
   - component: {fileID: 807635379}
+  - component: {fileID: 807635378}
   m_Layer: 1
   m_Name: TestCamera
   m_TagString: Untagged
@@ -19769,6 +19770,25 @@ Transform:
   m_Father: {fileID: 1399534778}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 52.22, y: 0, z: 0}
+--- !u!95 &807635378
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807635376}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 844612a68d88e5b43883666d1f5b0416, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &807635379
 AudioSource:
   m_ObjectHideFlags: 0
@@ -47901,7 +47921,7 @@ CapsuleCollider:
   m_Radius: 0.026
   m_Height: 0.09
   m_Direction: 1
-  m_Center: {x: 0, y: -0.003, z: 0.005}
+  m_Center: {x: 0, y: -0.003, z: 0.007}
 --- !u!114 &353969446163947448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -50040,7 +50060,7 @@ MeshCollider:
   m_GameObject: {fileID: 590851735394956812}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -50054,7 +50074,7 @@ MeshCollider:
   m_GameObject: {fileID: 590851735394956812}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -62870,7 +62890,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6442527989155909959}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: 0, z: 1.3}
+  m_LocalPosition: {x: -0, y: -0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8584936014801961700}

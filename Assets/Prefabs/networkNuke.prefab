@@ -13,14 +13,13 @@ GameObject:
   - component: {fileID: 2031491299312419554}
   - component: {fileID: 860428540919818474}
   - component: {fileID: 860428540919818468}
-  - component: {fileID: 860428540919818475}
   - component: {fileID: 860428540919818472}
   - component: {fileID: 860428540919818473}
   - component: {fileID: 860428540919818478}
   - component: {fileID: 860428540919818477}
   - component: {fileID: 860428540919818479}
   m_Layer: 0
-  m_Name: SodaNuke
+  m_Name: networkNuke
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,20 +116,6 @@ CapsuleCollider:
   m_Height: 6
   m_Direction: 1
   m_Center: {x: -0.21572453, y: 0.75, z: -0.00000011920929}
---- !u!136 &860428540919818475
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518392120109687607}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 1.5
-  m_Height: 4
-  m_Direction: 1
-  m_Center: {x: -0.21572453, y: 0.75, z: -0.00000011920929}
 --- !u!64 &860428540919818472
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -188,9 +173,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Nuke
-  glowEffect: {fileID: 0}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!114 &860428540919818477
 MonoBehaviour:

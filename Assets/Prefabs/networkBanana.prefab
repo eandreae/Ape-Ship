@@ -13,14 +13,13 @@ GameObject:
   - component: {fileID: 1380380723392800521}
   - component: {fileID: 353969444122098563}
   - component: {fileID: 353969444122098562}
-  - component: {fileID: 353969444122098561}
   - component: {fileID: 353969444122098567}
   - component: {fileID: 353969444122098560}
   - component: {fileID: 353969444122098587}
   - component: {fileID: 353969444122098565}
   - component: {fileID: 353969444122098566}
   m_Layer: 0
-  m_Name: Banana
+  m_Name: networkBanana
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -118,20 +117,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5076798556035486163, guid: 52ab4818cbcab5f41a3a9dcada01fafb, type: 3}
---- !u!136 &353969444122098561
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587971008673105628}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 0.013
-  m_Height: 0.06
-  m_Direction: 1
-  m_Center: {x: 0, y: -0.003, z: 0.005}
 --- !u!136 &353969444122098567
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -145,7 +130,7 @@ CapsuleCollider:
   m_Radius: 0.026
   m_Height: 0.09
   m_Direction: 1
-  m_Center: {x: 0, y: -0.003, z: 0.005}
+  m_Center: {x: 0, y: -0.003, z: 0.007}
 --- !u!114 &353969444122098560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,9 +146,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Banana
-  glowEffect: {fileID: 587971007981845709}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!114 &353969444122098587
 MonoBehaviour:
@@ -340,12 +324,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ab4818cbcab5f41a3a9dcada01fafb, type: 3}
---- !u!1 &587971007981845709 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
-    type: 3}
-  m_PrefabInstance: {fileID: 353969445576720796}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &244096154001483383 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
