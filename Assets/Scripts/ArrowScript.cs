@@ -221,7 +221,7 @@ public class ArrowScript : MonoBehaviour
                         }
                     }
 
-                    if (count == 3)
+                    if (count == 2)
                     {
                         DanceComplete.Invoke();
                         count = 0;

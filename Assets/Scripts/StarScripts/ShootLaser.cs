@@ -20,7 +20,8 @@ public class ShootLaser : MonoBehaviour
     public List<float> angles = new List<float>();
     static float[] angleList =
     {
-        158.0f,
+        //multiplayer angles
+        /*158.0f,
         -77.0f,
         0.0f,
         85.0f,
@@ -28,7 +29,17 @@ public class ShootLaser : MonoBehaviour
         -123.0f,
         -186.5f,
         0.0f,
-        157.0f
+        157.0f*/
+        //single player angles
+        0f,
+        70f,
+        -121f,
+        106f,
+        0f,
+        -121f,
+        -2.2f,
+        0f,
+        -196.0f
     };
 
 
@@ -82,7 +93,7 @@ public class ShootLaser : MonoBehaviour
         GameObject mirror2 = cart2.transform.GetChild(0).gameObject;
         GameObject mirror3 = cart3.transform.GetChild(0).gameObject;
         //reset angles to 0
-        mirror1.transform.rotation = Quaternion.Euler(0,0,0);
+        mirror1.transform.rotation = Quaternion.Euler(0, 0, 0);
         mirror2.transform.rotation = Quaternion.Euler(0, 0, 0);
         mirror3.transform.rotation = Quaternion.Euler(0, 0, 0);
 
