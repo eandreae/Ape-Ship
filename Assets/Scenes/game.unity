@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -658,6 +658,36 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -5927274441439339571, guid: d1ebb65e661e8de4682f0a744da57548, type: 3}
+--- !u!1 &26568802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 26568803}
+  m_Layer: 8
+  m_Name: canisterSpawn3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &26568803
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 26568802}
+  m_LocalRotation: {x: -0.18080516, y: -0, z: -0, w: 0.98351896}
+  m_LocalPosition: {x: -28.5, y: 5.5, z: 4.9}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1212149684}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &32435457
 GameObject:
   m_ObjectHideFlags: 0
@@ -1258,7 +1288,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77906704}
   m_LocalRotation: {x: -0.18080516, y: -0, z: -0, w: 0.98351896}
-  m_LocalPosition: {x: -1.3, y: -1.17, z: -12.46}
+  m_LocalPosition: {x: -12.2, y: 8.1, z: 11.8}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1212149684}
@@ -20936,6 +20966,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828111157}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &830866445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 830866446}
+  m_Layer: 8
+  m_Name: canisterSpawn2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &830866446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830866445}
+  m_LocalRotation: {x: -0.18080516, y: -0, z: -0, w: 0.98351896}
+  m_LocalPosition: {x: 33.4, y: 8.4, z: 12.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1212149684}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &836168922
 GameObject:
   m_ObjectHideFlags: 0
@@ -21127,6 +21187,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPos: {fileID: 77906705}
+  spawnPos2: {fileID: 830866446}
+  spawnPos3: {fileID: 26568803}
   spawnee: {fileID: 107861815}
   nodeColor: {fileID: 67938698}
 --- !u!114 &850851371
@@ -31392,6 +31454,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1199241879}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1204619317
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1204619318}
+  m_Layer: 8
+  m_Name: canisterSpawn(O1) (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1204619318
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204619317}
+  m_LocalRotation: {x: -0.18080516, y: -0, z: -0, w: 0.98351896}
+  m_LocalPosition: {x: -28.95, y: -4.7, z: -21.74}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1874073420}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1205096486
 GameObject:
   m_ObjectHideFlags: 0
@@ -35314,7 +35406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416022111}
   m_LocalRotation: {x: -0.18080516, y: -0, z: -0, w: 0.98351896}
-  m_LocalPosition: {x: -1.3, y: -1.17, z: -12.46}
+  m_LocalPosition: {x: 4.4, y: -4.7, z: -21.74}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 1874073420}
@@ -39982,6 +40074,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739738755}
   m_CullTransparentMesh: 0
+--- !u!1 &1739838929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1739838930}
+  m_Layer: 8
+  m_Name: canisterSpawn(O1) (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1739838930
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739838929}
+  m_LocalRotation: {x: -0.18080516, y: -0, z: -0, w: 0.98351896}
+  m_LocalPosition: {x: 28.13, y: -10.1, z: -35.8}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 1874073420}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1740258985
 GameObject:
   m_ObjectHideFlags: 0
@@ -42782,6 +42904,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPos: {fileID: 1416022112}
+  spawnPos2: {fileID: 1204619318}
+  spawnPos3: {fileID: 1739838930}
   spawnee: {fileID: 291733763}
   nodeColor: {fileID: 1759386919}
 --- !u!4 &1874073420 stripped
@@ -77652,7 +77776,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8964416701492549726}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 21.4, y: 0, z: -47.8}
+  m_LocalPosition: {x: -95.9, y: 0, z: 6.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8541674987224713017}
