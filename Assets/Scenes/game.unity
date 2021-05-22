@@ -13904,6 +13904,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
@@ -13932,6 +13935,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 67938698}
   display: {fileID: 643022442}
   stopDistance: 8
@@ -18567,6 +18576,9 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
@@ -18584,6 +18596,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 741311113}
   display: {fileID: 1812103381}
   stopDistance: 10
@@ -21396,6 +21414,9 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
@@ -21413,6 +21434,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 741311113}
   display: {fileID: 1812103381}
   stopDistance: 8
@@ -22267,6 +22294,9 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
@@ -22284,6 +22314,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 741311113}
   display: {fileID: 1812103381}
   stopDistance: 8
@@ -32989,6 +33025,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
@@ -33017,6 +33056,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 1759386919}
   display: {fileID: 289879600}
   stopDistance: 8
@@ -36604,6 +36649,9 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
@@ -36621,6 +36669,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 1279260005}
   display: {fileID: 1412383919}
   stopDistance: 8
@@ -41355,11 +41409,25 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1811882726}
+        m_MethodName: OnDamagedStomach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnNodeGreen:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1811882726}
-        m_MethodName: StopAllCoroutines
+        m_MethodName: OnFixedStomach
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -41370,6 +41438,23 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1811882726}
+        m_MethodName: OnDamagedStomach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNodeRed:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1811882726}
@@ -41512,9 +41597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3f603c3d9a888408ec9b822805bcad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 2
-  magnitude: 0.5
-  frequency: 15
   OnStomachRumble:
     m_PersistentCalls:
       m_Calls:
@@ -41996,6 +42078,9 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
@@ -42013,6 +42098,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
   colorTracker: {fileID: 1471871104}
   display: {fileID: 2082339951}
   stopDistance: 6
@@ -45670,10 +45761,19 @@ MonoBehaviour:
   OnNodeFix:
     m_PersistentCalls:
       m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
   OnNodeGreen:
     m_PersistentCalls:
       m_Calls: []
   OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
     m_PersistentCalls:
       m_Calls: []
   colorTracker: {fileID: 1471871104}
