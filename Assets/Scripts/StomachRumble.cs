@@ -8,13 +8,35 @@ public class FloatFloatEvent : UnityEvent<float, float> {}
 
 public class StomachRumble : MonoBehaviour
 {
-    public float duration;
-    public float magnitude;
-    public float frequency;
     public FloatFloatEvent OnStomachRumble;
+    
+    private IEnumerator rumbleCoroutine;
+
     public void OnBrokenStomach()
     {
-        StartCoroutine(Rumble(duration, magnitude, frequency));
+        if(rumbleCoroutine != null)
+        {
+            StopCoroutine(rumbleCoroutine);
+        }
+
+        rumbleCoroutine = Rumble(2f, 0.5f, 15f); 
+        StartCoroutine(rumbleCoroutine);
+    }
+    public void OnDamagedStomach()
+    {
+        if(rumbleCoroutine != null)
+        {
+            StopCoroutine(rumbleCoroutine);
+        }
+        rumbleCoroutine = Rumble(2.5f, 0.05f, 20f);
+        StartCoroutine(rumbleCoroutine);
+    }
+    public void OnFixedStomach()
+    {
+        if(rumbleCoroutine != null)
+        {
+            StopCoroutine(rumbleCoroutine);
+        }
     }
 
     IEnumerator Rumble (float dur, float mag, float freq)
