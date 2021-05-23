@@ -12,6 +12,8 @@ public class StomachRumble : MonoBehaviour
     
     private IEnumerator rumbleCoroutine;
 
+    public AudioSource angryWhaleSFX;
+
     public void OnBrokenStomach()
     {
         if(rumbleCoroutine != null)
@@ -37,12 +39,14 @@ public class StomachRumble : MonoBehaviour
         {
             StopCoroutine(rumbleCoroutine);
         }
+        angryWhaleSFX.Stop();
     }
 
     IEnumerator Rumble (float dur, float mag, float freq)
     {
+        angryWhaleSFX.Play();
         // Infinite loop is broken by StopAllCoroutines from StomachTarget On Node Fix
-        while(true) {
+        while (true) {
             OnStomachRumble.Invoke(dur, mag);
             float elapsed = 0.0f;
             while (elapsed < freq) {
