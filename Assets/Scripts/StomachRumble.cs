@@ -21,7 +21,7 @@ public class StomachRumble : MonoBehaviour
             StopCoroutine(rumbleCoroutine);
         }
 
-        rumbleCoroutine = Rumble(2f, 0.5f, 15f); 
+        rumbleCoroutine = Rumble(2f, 0.25f, 15f); 
         StartCoroutine(rumbleCoroutine);
     }
     public void OnDamagedStomach()
@@ -39,12 +39,12 @@ public class StomachRumble : MonoBehaviour
         {
             StopCoroutine(rumbleCoroutine);
         }
-        angryWhaleSFX.Stop();
+        //angryWhaleSFX.Stop();
     }
 
     IEnumerator Rumble (float dur, float mag, float freq)
     {
-        angryWhaleSFX.Play();
+        //angryWhaleSFX.Play();
         // Infinite loop is broken by StopAllCoroutines from StomachTarget On Node Fix
         while (true) {
             OnStomachRumble.Invoke(dur, mag);
