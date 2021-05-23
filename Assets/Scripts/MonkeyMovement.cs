@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using Mirror;
 
-public class MonkeyMovement : MonoBehaviour
+public class MonkeyMovement : NetworkBehaviour
 {
     public float stoppingDistance  = 12.0f;
 
@@ -26,7 +26,7 @@ public class MonkeyMovement : MonoBehaviour
         "O2_2"
         };
     List<GameObject> nodes;
-    GameObject target;
+    public GameObject target;
     Text targetColor;
     FieldOfView targetsList;
     public List<Transform> visibleTargets = new List<Transform>();
@@ -99,6 +99,7 @@ public class MonkeyMovement : MonoBehaviour
         }
     }
 
+    [Server]
     private void FindNewTarget()
     {
         // Find nearest node, disqualifying the current target
@@ -158,6 +159,7 @@ public class MonkeyMovement : MonoBehaviour
         }
         return gotAway;
     }
+
     private void SetTargetColor(int index)
     {
         switch (index+1) {
@@ -184,6 +186,7 @@ public class MonkeyMovement : MonoBehaviour
         }
     }
 
+    [Server]
     private void GoToTarget()
     {
         //agent.isStopped = false;

@@ -17,7 +17,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
      // Array containing positions to spawn players in-game
     public Vector3[] spawnPos;
 
-    List<NetworkRoomPlayer> previousRoomSlots = null;
+    List<NetworkRoomPlayer> previousRoomSlots;
 
     public void Start() {
         spawnPos = new Vector3[] {
@@ -26,6 +26,8 @@ public class NetworkManagerApeShip : NetworkRoomManager
             new Vector3(36.0f, 0f, -3f), // p3
             new Vector3(41.5f, 0f, -3f), // p4
         };
+
+        previousRoomSlots = new List<NetworkRoomPlayer>();
     }
 
     public void StartGame()
@@ -120,6 +122,11 @@ public class NetworkManagerApeShip : NetworkRoomManager
                 NetworkServer.ReplacePlayerForConnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient, player);
                 //NetworkServer.Destroy(roomplayer);
             }
+            // GameObject monkey = Instantiate( spawnPrefabs[1]);
+            // GameObject gorilla = Instantiate( spawnPrefabs[2] );
+            
+            // NetworkServer.Spawn(monkey);
+            // NetworkServer.Spawn(gorilla);
         }
     }
     
