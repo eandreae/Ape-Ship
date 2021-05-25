@@ -34,7 +34,7 @@ public class destroyer : MonoBehaviour
         if (lifetime > 0)
         {
             lifetime -= Time.deltaTime;
-            if (lifetime <= 0)
+            if (lifetime <= 0 && !this.gameObject.GetComponent<ItemScript>().pickedUp)
             {
                 Destroy(this.gameObject);
             }
