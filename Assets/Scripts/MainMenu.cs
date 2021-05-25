@@ -13,7 +13,6 @@ public class MainMenu : MonoBehaviour
 
     public GameObject mainMenuPanel;
     public GameObject playOptionsPanel;
-    public GameObject hostOptionsPanel;
     public GameObject tutorialPanel;
     public GameObject creditsPanel;
     public GameObject settingsPanel;
