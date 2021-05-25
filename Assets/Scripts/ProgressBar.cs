@@ -24,11 +24,12 @@ public class ProgressBar : MonoBehaviour
     public Texture gorilla2Tex;
 
     GameManager gm;
+    NetworkManager nm;
 
-    GameObject monkey;
-    NavMeshAgent agentM;
-    GameObject gorilla;
-    NavMeshAgent agentG;
+    public GameObject monkey;
+    public NavMeshAgent agentM;
+    public GameObject gorilla;
+    public NavMeshAgent agentG;
 
     public GorillaMovement gorill;
     public Gorilla1P gorill1P;
@@ -46,7 +47,7 @@ public class ProgressBar : MonoBehaviour
     {
         progressing = true;
         gm = FindObjectOfType<GameManager>();
-
+        nm = GameObject.FindObjectOfType<NetworkManager>();
         monkey = GameObject.FindGameObjectWithTag("Monkey");
         agentM = monkey.GetComponent<NavMeshAgent>();
         gorilla = GameObject.FindGameObjectWithTag("Gorilla");
@@ -60,6 +61,15 @@ public class ProgressBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //-- for netcode --d// 
+        if (!monkey) {
+            monkey = GameObject.FindGameObjectWithTag("Monkey");
+            agentM = monkey.GetComponent<NavMeshAgent>();
+        }
+        if (!gorilla) {
+            gorilla = GameObject.FindGameObjectWithTag("Gorilla");
+            agentG = gorilla.GetComponent<NavMeshAgent>();
+        }
 
         // Check if either NavigationColor or ReactorColor are red.
         if ( NavigationColor.text == "red" || ReactorColor.text == "red" ){
@@ -82,8 +92,14 @@ public class ProgressBar : MonoBehaviour
                 if(timeRemaining < 60 && spawned == false)
                 {
                     spawned = true;
+                    if (nm){
 
-                    GameObject gorilla2 = Instantiate(gorilla, spawnLoc, gorilla.transform.rotation);
+                        GameObject gorilla2 = Instantiate( nm.spawnPrefabs[0] );
+                        NetworkServer.Spawn(gorilla2);
+                    } 
+                    else {
+                        GameObject gorilla2 = Instantiate(gorilla, spawnLoc, gorilla.transform.rotation);
+                    }
                     /*GameObject mat = GameObject.Find("QuadDrawGorilla_LowPoly_UVUnwrapped_final1(Clone)");
                     Renderer render = mat.GetComponent<Renderer>();
                     render.material.SetTexture("Gorilla2Body", gorilla2Tex);*/
@@ -94,7 +110,7 @@ public class ProgressBar : MonoBehaviour
                     agentM.speed = 40;
                     agentG.speed = 10;
                     
-                    if (GameObject.FindObjectOfType<NetworkManager>()){
+                    if (nm){
                         gorill._SPEED = 10;
                         gorill.chargeCooldown = 2f;
                     }else {

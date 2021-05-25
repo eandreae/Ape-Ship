@@ -38,17 +38,19 @@ public class PlayerCamera : MonoBehaviour
         currentRoomText = GameObject.Find("CurrentRoomText").GetComponent<Text>();
         if (currentRoomText.text == "Heart Reactor")
         {
-            while (this.gameObject.GetComponent<Camera>().orthographicSize < 20f)
-            {
-                this.gameObject.GetComponent<Camera>().orthographicSize = this.gameObject.GetComponent<Camera>().orthographicSize + (fadeNum * Time.deltaTime);
-            }
+            // while (this.gameObject.GetComponent<Camera>().orthographicSize < 20f)
+            // {
+            //     this.gameObject.GetComponent<Camera>().orthographicSize = this.gameObject.GetComponent<Camera>().orthographicSize + (fadeNum * Time.deltaTime);
+            // }
+            this.GetComponent<Animator>().Play("zoomOut");
         }
         else
         {
-            while (this.gameObject.GetComponent<Camera>().orthographicSize > 11f)
-            {
-                this.gameObject.GetComponent<Camera>().orthographicSize -= fadeNum * Time.deltaTime;
-            }
+            // while (this.gameObject.GetComponent<Camera>().orthographicSize > 11f)
+            // {
+            //     this.gameObject.GetComponent<Camera>().orthographicSize -= fadeNum * Time.deltaTime;
+            // }
+            this.GetComponent<Animator>().Play("zoomIn");
         }
     }
 

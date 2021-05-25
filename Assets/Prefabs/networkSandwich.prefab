@@ -14,13 +14,12 @@ GameObject:
   - component: {fileID: 2523682047053840260}
   - component: {fileID: 2523682047053840270}
   - component: {fileID: 2523682047053840265}
-  - component: {fileID: 2523682047053840261}
   - component: {fileID: 2523682047053840271}
   - component: {fileID: 2523682047053840264}
   - component: {fileID: 2523682047053840267}
   - component: {fileID: 2523682047053840266}
   m_Layer: 0
-  m_Name: KrillSandwich
+  m_Name: networkSandwich
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -134,19 +133,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 3903880152712711428, guid: 5a2330efb555f7e4a8702cc4b89f3e73, type: 3}
---- !u!135 &2523682047053840261
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3442019651058028904}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 2
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2523682047053840271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,9 +148,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Sandwich
-  glowEffect: {fileID: 0}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!114 &2523682047053840264
 MonoBehaviour:

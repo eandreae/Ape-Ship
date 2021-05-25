@@ -111,9 +111,9 @@ public class foodSpawner : NetworkBehaviour
     //  [Command (requiresAuthority = false)]
     public void CmdSpawnObject(Vector3 spawnLoc, Quaternion rotation){
         spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
-        Debug.Log(spawnee);
+        
         GameObject temp = Instantiate(spawnee, spawnLoc, rotation);
-        Debug.Log(temp);
+        
         temp.GetComponent<Rigidbody>().useGravity = true;
         temp.GetComponent<destroyer>().enabled = true;
 

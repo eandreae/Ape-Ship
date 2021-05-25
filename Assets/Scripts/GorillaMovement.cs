@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
 
-public class GorillaMovement : MonoBehaviour
+public class GorillaMovement : NetworkBehaviour
 {
 	float stoppingDistance = 15f;
     public float _SPEED = 6f;
@@ -74,7 +74,6 @@ public class GorillaMovement : MonoBehaviour
         Debug.Log("Gorilla moving to: " + target);
     }
 
-
     // Update is called once per frame
     private void Update()    
     {
@@ -119,6 +118,7 @@ public class GorillaMovement : MonoBehaviour
         }
     }
 
+    [Server]
     private void FindNewTarget()
     {
         agent.isStopped = true;
@@ -128,6 +128,7 @@ public class GorillaMovement : MonoBehaviour
         Debug.Log("Gorilla moving to: " + target);
     }
 
+    [Server]
     private void GoToTarget()
     {
          // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge

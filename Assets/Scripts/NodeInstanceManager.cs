@@ -12,8 +12,11 @@ public class NodeInstanceManager : MonoBehaviour
 
     public UnityEngine.Color color;
     public UnityEvent OnNodeFix;
+    public UnityEvent OnNodeRedToYellow;
     public UnityEvent OnNodeGreen;
     public UnityEvent OnNodeDamage;
+    public UnityEvent OnNodeGreenToYellow;
+    public UnityEvent OnNodeRed;
 
     public Text colorTracker;
     public Image display;
@@ -167,20 +170,20 @@ public class NodeInstanceManager : MonoBehaviour
 
     public void DamageNode()
     {
-        Debug.Log("DamageNode");
         if (color == Color.yellow)
         {
             nodeDisabledSFX.Play();
             SetColor(Color.red);
             colorTracker.text = "red";
             OnNodeDamage.Invoke();
+            OnNodeRed.Invoke();
         }
         else if (color == Color.green)
         {
-            Debug.Log("DamageNodeGreen-Yellow");
             SetColor(Color.yellow);
             colorTracker.text = "yellow";
             OnNodeDamage.Invoke();
+            OnNodeGreenToYellow.Invoke();
         }
     }
 
@@ -198,6 +201,7 @@ public class NodeInstanceManager : MonoBehaviour
             SetColor(Color.yellow);
             colorTracker.text = "yellow";
             OnNodeFix.Invoke();
+            OnNodeRedToYellow.Invoke();
         }
     }
 

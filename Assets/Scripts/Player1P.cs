@@ -155,11 +155,13 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             if (Input.GetKeyDown("space")){
                 // Debug.Log("drop");
                 // un-parent the player from the item
-                this.holdItem.transform.parent = null;
+                //this.holdItem.transform.parent = null;
                 // un-mark the coin as picked up.
                 this.holdItem.GetComponent<ItemScript>().pickedUp = false;
                 this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-
+                
+                // reenable collision
+                Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
                 //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
                 // get rid of hold item
                 this.holdItem = null;
@@ -171,7 +173,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             else if (Input.GetKeyDown(KeyCode.LeftShift))
             { // holding item + press left shift
 
-                this.holdItem.transform.parent = null; // unparent player from item
+                //this.holdItem.transform.parent = null; // unparent player from item
 
                 this.holdItem.GetComponent<ItemScript>().pickedUp = false;
                 this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
@@ -180,6 +182,8 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
                 this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
                                                                                                                     //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
                                                                                                                     //Debug.Log("throw");
+
+                Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
                 // get rid of hold item
                 this.holdItem = null;
                 this.wpArrow.SetActive(false);
@@ -221,11 +225,16 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             this.holdItem = other.gameObject;
 
             // Sets player to the pick-up item's parent so the item will move around with the player.            
-            other.gameObject.transform.parent = this.transform;
+            //other.gameObject.transform.parent = this.transform;
+            other.gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
 
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
             other.gameObject.GetComponent<ItemScript>().thrown = false;
+
+            // disable collision with held item
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), other.gameObject.GetComponent<MeshCollider>(), true);
+            
             this.wpArrow.SetActive(true);
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
@@ -245,11 +254,16 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     	{
             this.holdItem = other.gameObject;
             // Sets player to the pick-up item's parent so the item will move around with the player.            
-            other.gameObject.transform.parent = this.transform;
+            //other.gameObject.transform.parent = this.transform;
+            other.gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
 
             // mark the coin (or whatever object) as picked up 
             other.gameObject.GetComponent<ItemScript>().pickedUp = true;
             other.gameObject.GetComponent<ItemScript>().thrown = false;
+
+            // disable collision with held item
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), other.gameObject.GetComponent<MeshCollider>(), true);
+
             this.wpArrow.SetActive(true);
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");

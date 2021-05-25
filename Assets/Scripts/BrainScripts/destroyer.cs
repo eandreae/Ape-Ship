@@ -14,7 +14,17 @@ public class destroyer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(!nodeColor){
+            if(this.GetComponent<ItemScript>().type == "Neuron" || this.GetComponent<ItemScript>().type == "Canister2" ){
+                this.nodeColor = GameObject.Find("NavigationColor").GetComponent<Text>();
+            }
+            else if(this.GetComponent<ItemScript>().type == "Canister1" || this.GetComponent<ItemScript>().type == "Canister2" ){
+                this.nodeColor = GameObject.Find("OxygenColor").GetComponent<Text>();
+            }
+            else {
+                this.nodeColor = GameObject.Find("StomachColor").GetComponent<Text>();
+            }
+        }
     }
 
     // Update is called once per frame
@@ -37,14 +47,14 @@ public class destroyer : MonoBehaviour
         {
             if (this.gameObject.name == "neuronSpawn(Clone)")
             {
-                Destruction();
+                //Destruction();
             }
         }
         else if (coll.gameObject.name == "foodDestroyer" && nodeColor.text != "green")
         {
-            if (this.gameObject.name == "KrillSandwich(Clone)" || 
-                this.gameObject.name == "SeaFoodKebab(Clone)" || 
-                this.gameObject.name == "Banana(Clone)" ||
+            if (this.gameObject.name == "networkSandwich(Clone)" || 
+                this.gameObject.name == "networkKebab(Clone)" || 
+                this.gameObject.name == "networkBanana(Clone)" ||
                 this.gameObject.name == "KrillSandwich (1P)(Clone)" || 
                 this.gameObject.name == "SeaFoodKebab (1P)(Clone)" || 
                 this.gameObject.name == "Banana (1P)(Clone)"

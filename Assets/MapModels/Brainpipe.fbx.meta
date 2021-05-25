@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 372921d73f5fc0542a71dba38a1c186d
+guid: f88614b55f3154a4db17f40de28ad03b
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
@@ -7,73 +7,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: BackRoom
-    second: {fileID: 2100000, guid: 73b78de5519168445911e72b5924aa50, type: 2}
+      name: Band.001
+    second: {fileID: 2100000, guid: 454a70bd78b34e04181fde348bc7510f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Glass
-    second: {fileID: 2100000, guid: 62f99bc169163df4da3b607645f1046c, type: 2}
+      name: Metal
+    second: {fileID: 2100000, guid: 1f2cbbb3553890c46b827df222c50861, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: HeartRoom
-    second: {fileID: 2100000, guid: 9c0b70f5e808159418edad7ab4104188, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LungRoomBottom
-    second: {fileID: 2100000, guid: d2654dc53b49f324fa116303e1012393, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Lungs
-    second: {fileID: 2100000, guid: bcae280099bd3c541a27c1ea49c9672d, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MainMetalColor
-    second: {fileID: 2100000, guid: e86e1e048584fb94cb7b6570278aa989, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 9ade4591fcfc75147b7369377aec0168, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: StarRoom
-    second: {fileID: 2100000, guid: 72d9665e0dce68149b691a172230efb1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: StomachRoom
-    second: {fileID: 2100000, guid: 0ef7431df06e1bb48b5876e6f7b1cb1c, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: centerGround
-    second: {fileID: 2100000, guid: aa43a5d7f8610264d851147fa1e1c4b8, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: groundEdge
-    second: {fileID: 2100000, guid: d1f9c3f06c404f14081d9ac4121357e5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: railing
-    second: {fileID: 2100000, guid: aae0457418d52c44ea27715d83ddd5a6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: railingEdge
-    second: {fileID: 2100000, guid: 9ca8be06d7b26dd4399e372d8da50d82, type: 2}
+      name: Pipe
+    second: {fileID: 2100000, guid: 3453ce58a73d74446b4df6b1da0ddc05, type: 2}
   materials:
-    materialImportMode: 2
-    materialName: 1
+    materialImportMode: 1
+    materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0

@@ -15,7 +15,6 @@ public class Player : NetworkBehaviour
 {
 	private CharacterController controller;
     public float moveSpeed = 14f;
-    public int playerNum = -1; 
     public Vector3 dir;
 
     float defaultSpeed;
@@ -62,8 +61,6 @@ public class Player : NetworkBehaviour
         holding = false;
         gm = FindObjectOfType<GameManager>();
         nm = FindObjectOfType<NetworkManager>();
-        Debug.Log("nm.numPlayers:" + nm.numPlayers);
-        playerNum = nm.numPlayers;
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
 
@@ -106,7 +103,7 @@ public class Player : NetworkBehaviour
                 // Moved camera functionality to PlayerCamera.cs
                 // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
             }
-            else if (dir.sqrMagnitude == 0)
+            else
             {
                 if (this.holdItem)
                 {
@@ -145,7 +142,7 @@ public class Player : NetworkBehaviour
                     this.holdItem.GetComponent<ItemScript>().pickedUp = false;
                     this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
 
-                    //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
+                    Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
                     // get rid of hold item
                     this.holdItem = null;
                     this.wpArrow.SetActive(false);
@@ -165,6 +162,9 @@ public class Player : NetworkBehaviour
                     this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
                                                                                                                         //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
                                                                                                                         //Debug.Log("throw");
+                    
+                    Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
+                    
                     // get rid of hold item
                     this.holdItem = null;
                     this.wpArrow.SetActive(false);
@@ -176,45 +176,6 @@ public class Player : NetworkBehaviour
             {
                 ChangeSpeed(defaultSpeed);
             }
-
-            // code to drop items
-            if(this.holding && Input.GetKeyDown(KeyCode.Space)){ // if player is holding an item and presses space bar
-                // Debug.Log("drop");
-                // un-parent the player from the item
-                this.holdItem.transform.parent = null;
-                // un-mark the coin as picked up.
-                this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-                this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-    
-                //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
-                // get rid of hold item
-                this.holdItem = null;
-                this.wpArrow.SetActive(false);
-                
-                StartCoroutine("PickUpCD");
-                //this.holding = false;
-            }
-
-            // code to throw items
-            else if(this.holding && Input.GetKeyDown(KeyCode.LeftShift)){ // holding item + press left shift
-                
-                this.holdItem.transform.parent = null; // unparent player from item
-                
-                this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-                this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-                this.holdItem.GetComponent<ItemScript>().thrown = true;
-                this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-                this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
-                //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
-                //Debug.Log("throw");
-                
-                
-                // get rid of hold item
-                this.holdItem = null;
-                this.wpArrow.SetActive(false);
-                StartCoroutine("PickUpCD");
-            }
-
             
             //if player isn't holding an item, reset to default speed
             if (!this.holding)
@@ -241,7 +202,7 @@ public class Player : NetworkBehaviour
                 }
             }
         }
-        // if not the Local Player, still play animations.
+        // if not the Local Player, still play animations.  ** WORK IN PROGRESS ** 
         else {
             Debug.Log("other player velocity: "  +this.GetComponent<CharacterController>().velocity);
 
@@ -284,11 +245,14 @@ public class Player : NetworkBehaviour
                 //other.gameObject.SetActive(false);
 
                 // Sets player to the pick-up item's parent so the item will move around with the player.            
-                other.gameObject.transform.parent = this.transform;
-
+                //other.gameObject.transform.parent = this.transform;
+                other.gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
                 // mark the coin (or whatever object) as picked up 
                 other.gameObject.GetComponent<ItemScript>().pickedUp = true;
                 other.gameObject.GetComponent<ItemScript>().thrown = false;
+                // re-enable collisions
+                Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), true);
+                
                 this.wpArrow.SetActive(true);
                 //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
                 StartCoroutine("PickUpCD");
@@ -313,11 +277,16 @@ public class Player : NetworkBehaviour
                 this.holdItem = other.gameObject;
 
                 // Sets player to the pick-up item's parent so the item will move around with the player.            
-                other.gameObject.transform.parent = this.transform;
+                //other.gameObject.transform.parent = this.transform;
+                other.gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
+
 
                 // mark the coin (or whatever object) as picked up 
                 other.gameObject.GetComponent<ItemScript>().pickedUp = true;
                 other.gameObject.GetComponent<ItemScript>().thrown = false;
+                
+                Physics.IgnoreCollision(this.GetComponent<Collider>(), other.gameObject.GetComponent<MeshCollider>(), true);
+                
                 this.wpArrow.SetActive(true);
                 //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
                 StartCoroutine("PickUpCD");

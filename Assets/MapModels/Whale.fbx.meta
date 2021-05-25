@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: 628ef31b6790642429e02be84bfa9fa1
+guid: a537152e6f4f0c84c938526c9ff56fbd
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Whale belly
+    second: {fileID: 2100000, guid: cdd5cbb5dda77a54fa3e3a5a50efa2fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WhaleBlue
+    second: {fileID: 2100000, guid: 9a8ba8119e0354f4b8e9dd58c47a5b60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: railing
+    second: {fileID: 2100000, guid: 3453ce58a73d74446b4df6b1da0ddc05, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0

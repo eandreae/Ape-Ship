@@ -13,14 +13,13 @@ GameObject:
   - component: {fileID: 3618738667533148517}
   - component: {fileID: 2736431574349014839}
   - component: {fileID: 2736431574349014825}
-  - component: {fileID: 2736431574349014824}
   - component: {fileID: 2736431574349014836}
   - component: {fileID: 2736431574349014838}
   - component: {fileID: 2736431574349014837}
   - component: {fileID: 2736431574349014834}
   - component: {fileID: 2736431574349014835}
   m_Layer: 0
-  m_Name: SeaFoodKebab
+  m_Name: networkKebab
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,20 +119,6 @@ CapsuleCollider:
   m_Height: 12
   m_Direction: 1
   m_Center: {x: 0.023215443, y: 3.8929021, z: -0.116259634}
---- !u!136 &2736431574349014824
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2970312886035349680}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  m_Radius: 1.5
-  m_Height: 8
-  m_Direction: 1
-  m_Center: {x: 0.023215443, y: 3.8929021, z: -0.116259634}
 --- !u!64 &2736431574349014836
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -163,9 +148,8 @@ MonoBehaviour:
   pickedUp: 0
   active: 0
   thrown: 0
+  playerRoot: {fileID: 0}
   type: Kebab
-  glowEffect: {fileID: 0}
-  playerScript: {fileID: 0}
   wp: {fileID: 0}
 --- !u!114 &2736431574349014837
 MonoBehaviour:

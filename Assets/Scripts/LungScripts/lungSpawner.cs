@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class lungSpawner : MonoBehaviour
 {
     public Transform spawnPos;
+    public Transform spawnPos2;
+    public Transform spawnPos3;
     public GameObject spawnee;
     string currColor;
     public Text nodeColor;
@@ -82,7 +84,17 @@ public class lungSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 5.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 5.0f));
+        int choose = Random.Range(0, 3);
+        if(choose == 0)
+        {
+            spawnLoc = new Vector3((float)spawnPos.position.x, (float)spawnPos.position.y, (float)spawnPos.position.z);
+        } else if(choose == 1)
+        {
+            spawnLoc = new Vector3((float)spawnPos2.position.x, (float)spawnPos2.position.y, (float)spawnPos2.position.z);
+        } else
+        {
+            spawnLoc = new Vector3((float)spawnPos3.position.x, (float)spawnPos3.position.y, (float)spawnPos3.position.z);
+        }
 
         if (nodeColor.text != currColor)
         {

@@ -8,13 +8,12 @@ public class ItemScript : MonoBehaviour
     public bool pickedUp;
     public bool active;
     public bool thrown;
-    private Transform playerRoot;
+    public Transform playerRoot;
     //private GameObject[] playerObjs;
     public string type;
     private float height;
     //private Rigidbody rigidbody;
-    public GameObject glowEffect;
-    GameObject playerObj;
+    //public GameObject glowEffect;
     public Waypoint wp;
     NetworkManager nm;
 
@@ -45,38 +44,47 @@ public class ItemScript : MonoBehaviour
             //if (this.type == "Banana" || this.type == "Coin"){
             //transform.Rotate(0, 0, 90 * Time.deltaTime);
             //}
+            this.playerRoot = null;
         }
         else {  // code to execute if object is picked up
             //if(this.glowEffect)
             //    this.glowEffect.SetActive(false);
             this.active = false;
             this.GetComponent<Rigidbody>().isKinematic = true; // if picked up, item become kinematic
-            transform.localPosition = new Vector3(0f, 1.2f, 0.5f); // sets position relative to the player transform
             //Debug.Log(playerRoot.position);
-            
+
+            transform.position = playerRoot.position + 1.2f * (playerRoot.forward) + new Vector3(0, 2f, 0); // sets position relative to the player transform
+
             if (type == "Neuron"){
-                transform.localRotation = Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(0);
             }
             else if(type == "Banana"){
-                transform.localRotation = Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
+                transform.rotation = playerRoot.rotation *  Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(1);
             } 
             else if(type == "Canister1"){
-                transform.localRotation = Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(2);
                 AlterSpeed(6f);
             }
             else if(type == "Canister2"){
-                transform.localRotation = Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(3);
                 AlterSpeed(6f);
             }
-            else if(type == "Sandwich" || type == "Kebab"/*  || type == "Nuke" */){
-                transform.localRotation = Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+            else if (type == "Sandwich"){
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(4);
             }
-            //Debug.Log("Arrow should be pointing at " + type);
+            else if (type == "Kebab"){
+                transform.position -= new Vector3(0, 2f, 0); // sets position relative to the player transform
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+                Waypoint.WhichWaypoint(4);
+            }
+            else if (type == "Nuke"){
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+            }
         }
     }
 
@@ -85,7 +93,7 @@ public class ItemScript : MonoBehaviour
     		//other.GetComponent<Player>().points++;
         	//Add 1 to points.
         	//Destroy(gameObject); //Destroys coin, when touched.
-            this.playerRoot = other.gameObject.GetComponent<Transform>(); // save the player transform (use this in case of multiple playerobjects)
+            //this.playerRoot = other.gameObject.GetComponent<Transform>(); // save the player transform (use this in case of multiple playerobjects)
             this.GetComponent<Rigidbody>().isKinematic = false;
             //if (this.glowEffect && !this.pickedUp && !playerRoot.GetComponent<Player>().holding){
             //    this.glowEffect.SetActive(true);
