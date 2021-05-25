@@ -13,7 +13,6 @@ public class MainMenu : MonoBehaviour
 
     public GameObject mainMenuPanel;
     public GameObject playOptionsPanel;
-    public GameObject hostOptionsPanel;
     public GameObject tutorialPanel;
     public GameObject creditsPanel;
     public GameObject settingsPanel;
@@ -52,20 +51,6 @@ public class MainMenu : MonoBehaviour
         playOptionsPanel.SetActive(false);
         buttonPress.Play();
         mainMenuPanel.SetActive(true);
-    }
-
-    public void ShowMultiPlayOptions()
-    {
-        hostOptionsPanel.SetActive(true);
-        buttonPress.Play();
-        playOptionsPanel.SetActive(false);
-    }
-
-    public void HideMultiPlayOptions()
-    {
-        hostOptionsPanel.SetActive(false);
-        buttonPress.Play();
-        playOptionsPanel.SetActive(true);
     }
 
     void finallyStart()
