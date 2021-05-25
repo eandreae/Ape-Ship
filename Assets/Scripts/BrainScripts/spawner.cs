@@ -10,6 +10,7 @@ public class spawner : MonoBehaviour
     public GameObject neuronBlue;
     public GameObject neuronRed;
     public GameObject neuronGreen;
+    public Text brainColor;
     Vector3 spawnLoc;
 
     // Start is called before the first frame update
@@ -41,5 +42,26 @@ public class spawner : MonoBehaviour
 
         GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
         temp.GetComponent<Rigidbody>().useGravity = true;
+
+        if(brainColor.text == "red")
+        {
+            spawnLoc = new Vector3(spawnPos.position.x + Random.Range(-4.0f, 4.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(-3.0f, 3.0f));
+            GameObject spawnee2 = neuronBlue;
+
+            int sw2 = Random.Range(0, 3);
+            switch (sw2)
+            {
+                case 1:
+                    spawnee = neuronRed;
+                    break;
+                case 2:
+                    spawnee = neuronGreen;
+                    break;
+            }
+
+            GameObject temp2 = Instantiate(spawnee2, spawnLoc, spawnPos.rotation);
+            temp2.GetComponent<Rigidbody>().useGravity = true;
+
+        }
     }
 }
