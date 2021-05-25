@@ -54,20 +54,6 @@ public class MainMenu : MonoBehaviour
         mainMenuPanel.SetActive(true);
     }
 
-    public void ShowMultiPlayOptions()
-    {
-        hostOptionsPanel.SetActive(true);
-        buttonPress.Play();
-        playOptionsPanel.SetActive(false);
-    }
-
-    public void HideMultiPlayOptions()
-    {
-        hostOptionsPanel.SetActive(false);
-        buttonPress.Play();
-        playOptionsPanel.SetActive(true);
-    }
-
     void finallyStart()
     {
         SceneManager.LoadScene("game");
