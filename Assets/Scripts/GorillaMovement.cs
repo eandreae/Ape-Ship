@@ -88,33 +88,49 @@ public class GorillaMovement : NetworkBehaviour
             visibleTargets.Add(t);
         }
 
+        //Get list of targets from FieldOfView list
+        objectsList = GetComponent<FieldOfView>();
+        //transfer each target into local list
+        visibleObjects.Clear();
+        foreach (Transform t in objectsList.visibleObjects)
+        {
+            visibleObjects.Add(t);
+        }
+
         // if gorilla is not following player, check for the player distance
-        if (target.tag != "Player"){
-            if (visibleTargets.Count != 0)
+        if (target.tag != "Player")
+        {
+            if (visibleObjects.Count != 0)
+            {
+                Debug.Log("Gorilla has found object");
+                target = visibleObjects[0].gameObject;
+            }
+            else if (visibleTargets.Count != 0)
             {
                 Debug.Log("Gorilla has locked on Player");
                 playerLock = true;
                 stoppingDistance = 0; // make stopping distance 0 if tracking the player
                 target = visibleTargets[0].gameObject;
+
             }
-        }
 
-        float dist = Vector3.Distance(transform.position, target.transform.position);
+            float dist = Vector3.Distance(transform.position, target.transform.position);
 
-        if (dist < stoppingDistance)
-        {
-        	FindNewTarget();
-        }
-        //if the gorilla lost sight of the player
-        else if (playerLock == true && visibleTargets.Count == 0)
-        {
-            playerLock = false;
-            stoppingDistance = 15f;
-            FindNewTarget();
-        }
-        else
-        {
-        	GoToTarget();
+            if (dist < stoppingDistance)
+            {
+                FindNewTarget();
+            }
+            //if the gorilla lost sight of the player
+            else if (playerLock == true && visibleTargets.Count == 0)
+            {
+                playerLock = false;
+                stoppingDistance = 15f;
+                FindNewTarget();
+            }
+            else
+            {
+                GoToTarget();
+            }
         }
     }
 
