@@ -47,7 +47,7 @@ public class destroyer : MonoBehaviour
         {
             if (this.gameObject.name == "neuronSpawn(Clone)")
             {
-                Destruction();
+                //Destruction();
             }
         }
         else if (coll.gameObject.name == "foodDestroyer" && nodeColor.text != "green")

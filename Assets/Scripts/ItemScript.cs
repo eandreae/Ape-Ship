@@ -84,7 +84,6 @@ public class ItemScript : MonoBehaviour
             }
             else if (type == "Nuke"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(4);
             }
         }
     }

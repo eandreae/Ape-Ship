@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Mirror;
 
-public class GorillaMovement : MonoBehaviour
+public class GorillaMovement : NetworkBehaviour
 {
 	float stoppingDistance = 15f;
     public float _SPEED = 6f;
@@ -74,7 +74,6 @@ public class GorillaMovement : MonoBehaviour
         Debug.Log("Gorilla moving to: " + target);
     }
 
-
     // Update is called once per frame
     private void Update()    
     {
@@ -89,36 +88,53 @@ public class GorillaMovement : MonoBehaviour
             visibleTargets.Add(t);
         }
 
+        //Get list of targets from FieldOfView list
+        objectsList = GetComponent<FieldOfView>();
+        //transfer each target into local list
+        visibleObjects.Clear();
+        foreach (Transform t in objectsList.visibleObjects)
+        {
+            visibleObjects.Add(t);
+        }
+
         // if gorilla is not following player, check for the player distance
-        if (target.tag != "Player"){
-            if (visibleTargets.Count != 0)
+        if (target.tag != "Player")
+        {
+            if (visibleObjects.Count != 0)
+            {
+                Debug.Log("Gorilla has found object");
+                target = visibleObjects[0].gameObject;
+            }
+            else if (visibleTargets.Count != 0)
             {
                 Debug.Log("Gorilla has locked on Player");
                 playerLock = true;
                 stoppingDistance = 0; // make stopping distance 0 if tracking the player
                 target = visibleTargets[0].gameObject;
+
             }
-        }
 
-        float dist = Vector3.Distance(transform.position, target.transform.position);
+            float dist = Vector3.Distance(transform.position, target.transform.position);
 
-        if (dist < stoppingDistance)
-        {
-        	FindNewTarget();
-        }
-        //if the gorilla lost sight of the player
-        else if (playerLock == true && visibleTargets.Count == 0)
-        {
-            playerLock = false;
-            stoppingDistance = 15f;
-            FindNewTarget();
-        }
-        else
-        {
-        	GoToTarget();
+            if (dist < stoppingDistance)
+            {
+                FindNewTarget();
+            }
+            //if the gorilla lost sight of the player
+            else if (playerLock == true && visibleTargets.Count == 0)
+            {
+                playerLock = false;
+                stoppingDistance = 15f;
+                FindNewTarget();
+            }
+            else
+            {
+                GoToTarget();
+            }
         }
     }
 
+    [Server]
     private void FindNewTarget()
     {
         agent.isStopped = true;
@@ -128,6 +144,7 @@ public class GorillaMovement : MonoBehaviour
         Debug.Log("Gorilla moving to: " + target);
     }
 
+    [Server]
     private void GoToTarget()
     {
          // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
