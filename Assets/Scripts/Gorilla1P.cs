@@ -38,8 +38,8 @@ public class Gorilla1P : MonoBehaviour
     FieldOfView objectsList;
     public List<Transform> visibleTargets = new List<Transform>();
     public List<Transform> visibleObjects = new List<Transform>();
-    private bool holdingObject = false;
-    private GameObject objectHeld;
+    public bool holdingObject = false;
+    public GameObject objectHeld;
 
     public float chargeCooldown = 4f;
 
@@ -102,7 +102,7 @@ public class Gorilla1P : MonoBehaviour
             visibleObjects.Add(t);
         }
 
-
+        /* ------------------ Temp Disabled -----------------------------
         // if gorilla is not following player, check for the player distance
         if (visibleObjects.Count != 0 && !holdingObject)
         {
@@ -112,12 +112,15 @@ public class Gorilla1P : MonoBehaviour
         }
         else if (visibleTargets.Count != 0)
         {
-            Debug.Log("Gorilla has locked on Player");
+            //Debug.Log("Gorilla has locked on Player");
             playerLock = true;
             stoppingDistance = 0; // make stopping distance 0 if tracking the player
             target = visibleTargets[0].gameObject;
 
         }
+        -------------------------------------------------------------------------------
+        */
+
 
         float dist = Vector3.Distance(transform.position, target.transform.position);
 
@@ -149,14 +152,15 @@ public class Gorilla1P : MonoBehaviour
 
     private void GoToTarget()
     {
-         // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
-        if (target.tag == "Player" && canCharge && playerLock && !this.stunned){
+        // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
+        if (target.tag == "Player" && holdingObject)
+        {
+            StartCoroutine("ThrowObject");
+        }
+         else if (target.tag == "Player" && canCharge && playerLock && !this.stunned && !holdingObject){
             //Debug.Log("Gorilla is charging");
             StartCoroutine("ChargeAttack");
             canCharge = false;
-        } else if (target == playerObj && holdingObject)
-        {
-            StartCoroutine("ThrowObject");
         }
         else if (!charging){
        	    agent.isStopped = false;
@@ -248,8 +252,8 @@ public class Gorilla1P : MonoBehaviour
     {
         if (holdingObject)
         {
-            StopGorilla();
-            this.transform.LookAt(playerObj.transform.position);
+            agent.speed = 0;
+            gameObject.transform.LookAt(playerObj.transform.position);
             yield return new WaitForSeconds(0.5f); // wait for 1 second
 
             objectHeld.GetComponent<Rigidbody>().isKinematic = false;
