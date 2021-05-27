@@ -8,6 +8,8 @@ public class MainMenu : MonoBehaviour
     public float startDelay = 1f;
 
     public Animator startGameAnim;
+    public Animator whaleAnim;
+    public Animator apesShipAnim;
 
     public AudioSource buttonPress;
 
@@ -32,6 +34,8 @@ public class MainMenu : MonoBehaviour
         Invoke("finallyStart", startDelay);
         //Plays a button press sound effect
         buttonPress.Play();
+        whaleAnim.Play("WhaleChaseOne");
+        apesShipAnim.Play("WhaleChaseTwo");
     }
 
     public void HostGame() {
