@@ -15207,7 +15207,7 @@ GameObject:
   - component: {fileID: 566263460}
   - component: {fileID: 566263454}
   - component: {fileID: 566263461}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: neuronSpawnBlue
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
@@ -23540,7 +23540,7 @@ GameObject:
   - component: {fileID: 896580574}
   - component: {fileID: 896580573}
   - component: {fileID: 896580572}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: neuronSpawnGreen
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
@@ -43439,7 +43439,7 @@ GameObject:
   - component: {fileID: 1788428400}
   - component: {fileID: 1788428399}
   - component: {fileID: 1788428398}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: neuronSpawnRed
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
@@ -51095,6 +51095,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 52ab4818cbcab5f41a3a9dcada01fafb, type: 3}
 --- !u!4 &353969444642203073 stripped
@@ -52031,7 +52036,7 @@ GameObject:
   - component: {fileID: 860428543030315090}
   - component: {fileID: 860428543030315091}
   - component: {fileID: 860428543030315092}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SodaNuke (1P)
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
@@ -53273,7 +53278,7 @@ GameObject:
   - component: {fileID: 353969446163947428}
   - component: {fileID: 353969446163947427}
   - component: {fileID: 353969446163947448}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Banana (1P)
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
@@ -59839,6 +59844,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: KrillSandwich
       objectReference: {fileID: 0}
+    - target: {fileID: 3442019651058028904, guid: 5c1621398a3b3b54c96fcab9321cf852,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5c1621398a3b3b54c96fcab9321cf852, type: 3}
 --- !u!4 &2527490131908737781
@@ -62640,7 +62650,7 @@ GameObject:
   - component: {fileID: 2736431573751466078}
   - component: {fileID: 2736431573751466076}
   - component: {fileID: 2736431573751466079}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: SeaFoodKebab (1P)
   m_TagString: Pick Up
   m_Icon: {fileID: 0}
@@ -77955,6 +77965,7 @@ GameObject:
   - component: {fileID: 7647579301248157099}
   - component: {fileID: 7647579301248157100}
   - component: {fileID: 7647579301248157101}
+  - component: {fileID: 7647579301248157102}
   m_Layer: 8
   m_Name: _DEBUGGER_PLAYER
   m_TagString: Player
@@ -78106,6 +78117,28 @@ MonoBehaviour:
   gorillaCollider: {fileID: 0}
   wpArrow: {fileID: 7413137237959594449}
   CameraObj: {fileID: 0}
+  visibleTargets: []
+--- !u!114 &7647579301248157102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7647579301248157098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f471a905c590dc54d83eecfc2e3e6763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 5.46
+  viewAngle: 97
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 32768
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  visibleTargets: []
 --- !u!4 &7650706908952199611
 Transform:
   m_ObjectHideFlags: 0

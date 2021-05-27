@@ -50,11 +50,13 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     public GameObject wpArrow;
     public GameObject CameraObj;
 
+    public List<Transform> visibleTargets = new List<Transform>();
+    PlayerFOV targetsList;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+       
         defaultSpeed = moveSpeed;
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
@@ -92,6 +94,36 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     // Update is called once per frame
     void Update()
     {
+        //Get list of targets from FieldOfView list
+        targetsList = GetComponent<PlayerFOV>();
+        //transfer each target into local list
+        visibleTargets.Clear();
+        foreach (Transform t in targetsList.visibleTargets)
+        {
+            visibleTargets.Add(t);
+        }
+
+        if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0)
+        {
+            this.holdItem = visibleTargets[0].gameObject;
+
+            // Sets player to the pick-up item's parent so the item will move around with the player.            
+            //other.gameObject.transform.parent = this.transform;
+            visibleTargets[0].gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
+
+            // mark the coin (or whatever object) as picked up 
+            visibleTargets[0].gameObject.GetComponent<ItemScript>().pickedUp = true;
+            visibleTargets[0].gameObject.GetComponent<ItemScript>().thrown = false;
+
+            // disable collision with held item
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), visibleTargets[0].gameObject.GetComponent<MeshCollider>(), true);
+
+            this.wpArrow.SetActive(true);
+            //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+            StartCoroutine("PickUpCD");
+        }
+
+
         //checks to see if pressing any arrow keys
         //if so will go horizontal if left or right
         //will go vertical if up or down
@@ -220,7 +252,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     //checks to see if picked up object, activated everytime touch a trigger collider
     void OnTriggerEnter(Collider other) 
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !this.holdItem && other.gameObject.CompareTag("Pick Up"))
+        /*if (Input.GetKeyDown("space") && !this.holdItem && other.gameObject.CompareTag("Pick Up"))
     	{
             this.holdItem = other.gameObject;
 
@@ -238,7 +270,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             this.wpArrow.SetActive(true);
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
-    	}
+    	}*/
         if (other.gameObject.tag == "ThrownObject")
         {
             Debug.Log("Hit by object");
