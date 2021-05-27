@@ -110,7 +110,9 @@ public class Gorilla1P : MonoBehaviour
             target = visibleObjects[0].gameObject;
             stoppingDistance = 0;
         }
-        else if (visibleTargets.Count != 0)
+        else         -------------------------------------------------------------------------------
+        */
+        if (visibleTargets.Count != 0)
         {
             //Debug.Log("Gorilla has locked on Player");
             playerLock = true;
@@ -118,8 +120,7 @@ public class Gorilla1P : MonoBehaviour
             target = visibleTargets[0].gameObject;
 
         }
-        -------------------------------------------------------------------------------
-        */
+
 
 
         float dist = Vector3.Distance(transform.position, target.transform.position);
@@ -198,7 +199,7 @@ public class Gorilla1P : MonoBehaviour
                 this.stunned = true;
                 StartCoroutine("SelfStun");
             }
-            else if (other.gameObject.GetComponent<ItemScript>().type == "Nuke" && other.gameObject.GetComponent<ItemScript>().thrown){
+            else if (other.gameObject.GetComponent<ItemScript>().type == "Nuke" && other.gameObject.GetComponent<ItemScript>().active){
                 this.stunned = true;
                 StartCoroutine("KnockBack", other.transform.position);
             }

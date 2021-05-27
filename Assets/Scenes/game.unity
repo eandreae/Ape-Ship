@@ -4755,8 +4755,13 @@ MonoBehaviour:
   roomName: {fileID: 63642798}
   introDuration: 3
   blackBarAnimDuration: 1
-  minimapNodes: [{fileID: 1412383921}, {fileID: 289879602}, {fileID: 643022444}, {
-      fileID: 1812103383}, {fileID: 1397557512}, {fileID: 2082339953}]
+  minimapNodes:
+  - {fileID: 1412383921}
+  - {fileID: 289879602}
+  - {fileID: 643022444}
+  - {fileID: 1812103383}
+  - {fileID: 1397557512}
+  - {fileID: 2082339953}
 --- !u!82 &260787861
 AudioSource:
   m_ObjectHideFlags: 0
@@ -78165,10 +78170,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
-  m_Radius: 1.75
-  m_Height: 4
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.7, z: 0.8}
+  m_Radius: 1.27
+  m_Height: 2.29
+  m_Direction: 2
+  m_Center: {x: 0, y: 0.7, z: 0.34}
 --- !u!114 &7647579301248157101
 MonoBehaviour:
   m_ObjectHideFlags: 0
