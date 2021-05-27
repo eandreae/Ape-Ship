@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -4754,6 +4754,7 @@ MonoBehaviour:
   healthOxygen: {fileID: 1009109129}
   roomName: {fileID: 63642798}
   introDuration: 3
+  blackBarAnimDuration: 1
   minimapNodes:
   - {fileID: 1412383921}
   - {fileID: 289879602}
@@ -78183,12 +78184,12 @@ MonoBehaviour:
   oxygen2_color: {fileID: 0}
   invulnerable: 0
   holding: 0
-  oxygenCue: {fileID: 0}
-  damageCue: {fileID: 0}
-  gm: {fileID: 0}
+  oxygenCue: {fileID: 11714869}
+  damageCue: {fileID: 2053256284}
+  gm: {fileID: 934901780}
   nm: {fileID: 0}
-  healthBar: {fileID: 0}
-  oxygenBar: {fileID: 0}
+  healthBar: {fileID: 505420767}
+  oxygenBar: {fileID: 337810600}
   walkingSamples:
   - {fileID: 8300000, guid: fc8df54e1916ba143b7bd9fd434e1963, type: 3}
   - {fileID: 8300000, guid: 08841b442c8b86d4d9f957946d75cf97, type: 3}

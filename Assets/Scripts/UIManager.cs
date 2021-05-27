@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public Animator roomName;
 
     public float introDuration;
+    public float blackBarAnimDuration = 1f;
 
     [Header("Endgame")]
     public Animator[] minimapNodes;
@@ -21,13 +22,18 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Invoke("SlideInUI", introDuration);
+        Invoke("BlackBarsLeave", introDuration);
+    }
+
+    void BlackBarsLeave()
+    {
+        blackBarTop.Play("TopBarLeave");
+        blackBarBottom.Play("BottomBarLeave");
+        Invoke("SlideInUI", blackBarAnimDuration);
     }
 
     void SlideInUI()
     {
-        blackBarTop.Play("TopBarLeave");
-        blackBarBottom.Play("BottomBarLeave");
         progressBar.Play("ProgressBarSlideIn");
         minimap.Play("MinimapSlideIn");
         healthOxygen.Play("HealthOxygenSlideIn");
