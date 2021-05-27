@@ -4,34 +4,43 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.AI;
 using UnityEngine.Events;
+using Mirror;
 
 public class destroyer : MonoBehaviour
 {
+    public NetworkManager nm;
     public float lifetime = 5f;
     public Text nodeColor;
-    public UnityEvent OnNeuronDeposit;
+    public NodeInstanceManager selfNode;
+    //public UnityEvent OnNeuronDeposit;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(!nodeColor){
-            if(this.GetComponent<ItemScript>().type == "Neuron" || this.GetComponent<ItemScript>().type == "Canister2" ){
-                this.nodeColor = GameObject.Find("NavigationColor").GetComponent<Text>();
-            }
-            else if(this.GetComponent<ItemScript>().type == "Canister1" || this.GetComponent<ItemScript>().type == "Canister2" ){
-                this.nodeColor = GameObject.Find("OxygenColor").GetComponent<Text>();
-            }
-            else {
-                this.nodeColor = GameObject.Find("StomachColor").GetComponent<Text>();
-            }
-        }
+        nm = GameObject.FindObjectOfType<NetworkManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (lifetime > 0)
+        if (nm){
+            if (this.GetComponent<ItemScript>().type == "Canister1"){
+                this.nodeColor = GameObject.Find("OxygenColor").GetComponent<Text>();
+                selfNode = GameObject.Find("LungTarget").GetComponent<NodeInstanceManager>();
+            }
+            else if (this.GetComponent<ItemScript>().type == "Canister2" ) {
+                this.nodeColor = GameObject.Find("Oxygen2Color").GetComponent<Text>();
+                selfNode = GameObject.Find("Lungs_2Target").GetComponent<NodeInstanceManager>();
+            }
+            else {
+                this.nodeColor = GameObject.Find("StomachColor").GetComponent<Text>();
+                selfNode = GameObject.Find("StomachTarget").GetComponent<NodeInstanceManager>();
+            }
+        }
+
+
+        if (lifetime > 0 && !(this.GetComponent<ItemScript>().type == "Canister1"
+                         || this.GetComponent<ItemScript>().type == "Canister2"))
         {
             lifetime -= Time.deltaTime;
             if (lifetime <= 0 && !this.gameObject.GetComponent<ItemScript>().pickedUp)
@@ -66,12 +75,14 @@ public class destroyer : MonoBehaviour
         {
             if (this.gameObject.name == "Air_Tank_3(Clone)")
             {
+                Debug.Log("air canister destroyed");
                 Destruction();
             }
         } else if (coll.gameObject.name == "canisterDestroyer(O1)")
         {
             if (this.gameObject.name == "Air_Tank_3(O1)(Clone)")
             {
+                Debug.Log("air canister destroyed");
                 Destruction();
             }
         }
@@ -82,6 +93,7 @@ public class destroyer : MonoBehaviour
     {
         Destroy(this.gameObject);
         //fix the brain
-        OnNeuronDeposit.Invoke();
+        //OnNeuronDeposit.Invoke();
+        selfNode.FixNode();
     }
 }

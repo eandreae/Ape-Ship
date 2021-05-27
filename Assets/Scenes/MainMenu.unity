@@ -5580,7 +5580,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &883802886
 Transform:
   m_ObjectHideFlags: 0
@@ -12605,184 +12605,60 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: onlineScene
-      value: Assets/Scenes/room.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: RoomScene
-      value: Assets/Scenes/room.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: startbutton
-      value: 
-      objectReference: {fileID: 1863320929899374906, guid: c004ff85742bf164d9e394a07c025c7d,
-        type: 3}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: offlineScene
-      value: Assets/Scenes/MainMenu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: roomPlayerPrefab
-      value: 
-      objectReference: {fileID: 3175258193332163116, guid: 8d5a3b95a8068414ca9a2ceece733aa2,
-        type: 3}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: playerSpawnMethod
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: playerPrefab
-      value: 
-      objectReference: {fileID: 7647579302506435261, guid: 1c0e73ee6d52be74898a438a05e29e56,
-        type: 3}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: autoCreatePlayer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: PersistNetworkManagerToOfflineScene
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 758380405924426014, guid: 816f15a9cd6bcf043bb9bd87f0a3f3dc,
-        type: 3}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 2675963936397640661, guid: 61c9fd4594c1a2541927750e1f466594,
-        type: 3}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 587971008673105628, guid: 061fd7889da23d54d98a34ef6ac07c88,
-        type: 3}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 2970312886035349680, guid: 5ebada6d77670344084ba2b1a5165efe,
-        type: 3}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[4]
-      value: 
-      objectReference: {fileID: 518392120109687607, guid: ea14fd73e34a13c49b2e479abd588d4f,
-        type: 3}
-    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: spawnPrefabs.Array.data[5]
-      value: 
-      objectReference: {fileID: 3442019651058028904, guid: 5c1621398a3b3b54c96fcab9321cf852,
-        type: 3}
-    - target: {fileID: 2580750289424340340, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: Timeout
-      value: 60
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340340, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: UseNextGenSteamNetworking
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2580750289424340342, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861482, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: onlineScene
-      value: Assets/Scenes/MainMenu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861482, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: RoomScene
-      value: Assets/Scenes/MainMenu.unity
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861482, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
-      propertyPath: showRoomGUI
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861483, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340330, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5849908636841861495, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+    - target: {fileID: 2580750289424340342, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_Name
       value: NetworkManager
