@@ -5599,7 +5599,7 @@ MonoBehaviour:
   minimap: {fileID: 1143806242}
   healthOxygen: {fileID: 1009109129}
   roomName: {fileID: 63642798}
-  introDuration: 3
+  introDuration: 8
   blackBarAnimDuration: 1
   minimapNodes:
   - {fileID: 1412383921}
@@ -6170,6 +6170,7 @@ MonoBehaviour:
   target: {fileID: 0}
   offset: {x: 0, y: 19, z: -10}
   playerNum: -1
+  followPlayer: 0
 --- !u!81 &265975028
 AudioListener:
   m_ObjectHideFlags: 0
@@ -22737,6 +22738,7 @@ MonoBehaviour:
   target: {fileID: 0}
   offset: {x: 0, y: 19, z: -13}
   playerNum: -1
+  followPlayer: 0
 --- !u!114 &807635381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34864,6 +34866,7 @@ MonoBehaviour:
   target: {fileID: 0}
   offset: {x: 0, y: 19, z: -10}
   playerNum: -1
+  followPlayer: 0
 --- !u!82 &1150680687
 AudioSource:
   m_ObjectHideFlags: 0
@@ -41020,6 +41023,7 @@ MonoBehaviour:
   target: {fileID: 0}
   offset: {x: 0, y: 19, z: -10}
   playerNum: -1
+  followPlayer: 0
 --- !u!81 &1428979467
 AudioListener:
   m_ObjectHideFlags: 0

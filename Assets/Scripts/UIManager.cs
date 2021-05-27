@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
 
     Player1P p1p;
 
+    PlayerCamera pc;
+
     [Header("Endgame")]
     public Animator[] minimapNodes;
 
@@ -24,6 +26,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pc.followPlayer = false;
         p1p = FindObjectOfType<Player1P>();
         p1p.canMove = false;
         Invoke("BlackBarsLeave", introDuration);
@@ -31,6 +34,7 @@ public class UIManager : MonoBehaviour
 
     void BlackBarsLeave()
     {
+        pc.followPlayer = true;
         p1p.canMove = true;
         blackBarTop.Play("TopBarLeave");
         blackBarBottom.Play("BottomBarLeave");
