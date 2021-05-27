@@ -11,18 +11,12 @@ public class KillZone : MonoBehaviour
         gm = FindObjectOfType<GameManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         //Debug.Log(other);
         if (other.tag == "Player"){ // in case player falls in
             Debug.Log("Player entered the Kill Zone.");
-            gm.Defeat();
+            gm.Defeat(4);
         }
 
         Object.Destroy(other);
