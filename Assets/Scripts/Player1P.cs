@@ -61,7 +61,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
         health = 3;
-        oxygen = 60;
+        oxygen = 90;
         invulnerable = false;
         holding = false;
         gm = FindObjectOfType<GameManager>();
