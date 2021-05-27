@@ -73,16 +73,14 @@ public class destroyer : MonoBehaviour
             }
         } else if (coll.gameObject.name == "canisterDestroyer")
         {
-            if (this.gameObject.name == "Air_Tank_3(Clone)")
+            if (this.gameObject.name == "Air_Tank_3(Clone)" || this.gameObject.name == "1p Air_Tank_3(Clone)" )
             {
-                Debug.Log("air canister destroyed");
                 Destruction();
             }
         } else if (coll.gameObject.name == "canisterDestroyer(O1)")
         {
-            if (this.gameObject.name == "Air_Tank_3(O1)(Clone)")
+            if (this.gameObject.name == "Air_Tank_3(O1)(Clone)" || this.gameObject.name == "1p Air_Tank_3(O1)(Clone)" )
             {
-                Debug.Log("air canister destroyed");
                 Destruction();
             }
         }
