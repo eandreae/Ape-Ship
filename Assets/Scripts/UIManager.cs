@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
     public float introDuration;
     public float blackBarAnimDuration = 1f;
 
+    Player1P p1p;
+
     [Header("Endgame")]
     public Animator[] minimapNodes;
 
@@ -22,11 +24,14 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        p1p = FindObjectOfType<Player1P>();
+        p1p.canMove = false;
         Invoke("BlackBarsLeave", introDuration);
     }
 
     void BlackBarsLeave()
     {
+        p1p.canMove = true;
         blackBarTop.Play("TopBarLeave");
         blackBarBottom.Play("BottomBarLeave");
         Invoke("SlideInUI", blackBarAnimDuration);

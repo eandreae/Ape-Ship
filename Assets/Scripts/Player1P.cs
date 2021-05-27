@@ -15,7 +15,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 {
 	private CharacterController controller;
     public float moveSpeed = 14f;
-    public int playerNum = -1; 
+    public int playerNum = -1;
     public Vector3 dir;
 
     float defaultSpeed;
@@ -52,6 +52,9 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
     public List<Transform> visibleTargets = new List<Transform>();
     PlayerFOV targetsList;
+
+    [HideInInspector]
+    public bool canMove;
 
     // Start is called before the first frame update
     void Start()
@@ -131,41 +134,44 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         //Debug.Log("islocalplayer "+isLocalPlayer);
 
         // creating normalizing direction so that movement isnt faster on diagonals
-        this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
-        if (dir.sqrMagnitude > 0)
+        if (canMove)
         {
-            //Debug.Log(this.holdItem);
-            // if Player is holding an item, then use the hold animation. 
-            if (this.holdItem)
+            this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
+            if (dir.sqrMagnitude > 0)
             {
-                this.anim.Play("Hold");
+                //Debug.Log(this.holdItem);
+                // if Player is holding an item, then use the hold animation. 
+                if (this.holdItem)
+                {
+                    this.anim.Play("Hold");
+                }
+                else
+                {
+                    this.anim.Play("Walk"); // play walking animation when moving
+                    this.holding = false; // if no holdItem, then holding must be false
+                    this.wpArrow.SetActive(false);
+                }
+                this.transform.LookAt(transform.position + dir); // look in direction that player is walking
+                controller.SimpleMove(this.moveSpeed * dir);
+                //StartCoroutine("PlayWalkingNoise");
+                // Moved camera functionality to PlayerCamera.cs
+                // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
             }
-            else
+            else if (dir.sqrMagnitude == 0)
             {
-                this.anim.Play("Walk"); // play walking animation when moving
-                this.holding = false; // if no holdItem, then holding must be false
-                this.wpArrow.SetActive(false);
+                if (this.holdItem)
+                {
+                    this.anim.Play("Hold-Idle");
+                }
+                else
+                {
+                    this.anim.Play("Idle"); // if not moving, play idle anim
+                    this.holding = false; // if no holdItem, then holding must be false
+                    this.wpArrow.SetActive(false);
+                }
             }
-            this.transform.LookAt(transform.position + dir); // look in direction that player is walking
-            controller.SimpleMove(this.moveSpeed * dir);
-            //StartCoroutine("PlayWalkingNoise");
-            // Moved camera functionality to PlayerCamera.cs
-            // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
         }
-        else if (dir.sqrMagnitude == 0)
-        {
-            if (this.holdItem)
-            {
-                this.anim.Play("Hold-Idle");
-            }
-            else
-            {
-                this.anim.Play("Idle"); // if not moving, play idle anim
-                this.holding = false; // if no holdItem, then holding must be false
-                this.wpArrow.SetActive(false);
-            }
-        }
-
+        
         // Check if the player is invulnerable
         if (invulnerable)
         {
