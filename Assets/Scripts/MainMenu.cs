@@ -29,7 +29,7 @@ public class MainMenu : MonoBehaviour
         Object.Destroy(GameObject.Find("NetworkManager"));
         Debug.Log("Start the game!");
         //Play an animation that leads into the game using a UI panel
-        startGameAnim.Play("PanelOutro");
+        startGameAnim.Play("MenuPanelOutro");
         //This method will actually transition the game into the next scene
         Invoke("finallyStart", startDelay);
         //Plays a button press sound effect
