@@ -18,7 +18,7 @@ public class PauseMenu : MonoBehaviour
 
     //public Minimap mm;
 
-    public Player player;
+    //public Player player;
 
     public Animator transitionPanel;
     public bool canPause = true;
