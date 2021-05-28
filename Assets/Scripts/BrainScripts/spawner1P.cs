@@ -31,8 +31,7 @@ public class spawner1P : MonoBehaviour
     public void Spawn() {
         spawnLoc = new Vector3(spawnPos.position.x + Random.Range(-4.0f,4.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(-3.0f, 3.0f));
         
-        GameObject spawnee;
-        spawnee = neuronBlue;
+        GameObject spawnee = neuronBlue;
 
         int sw = Random.Range(0, 3);
         switch(sw)
@@ -51,8 +50,7 @@ public class spawner1P : MonoBehaviour
         if(brainColor.text == "red")
         {
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(-4.0f, 4.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(-3.0f, 3.0f));
-            GameObject spawnee2;
-            spawnee2 = neuronBlue;
+            GameObject spawnee2 = neuronBlue;
 
             int sw2 = Random.Range(0, 3);
             switch (sw2)

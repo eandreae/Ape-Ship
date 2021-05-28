@@ -29,16 +29,19 @@ public class spawner : NetworkBehaviour
     public void Spawn() {
         spawnLoc = new Vector3(spawnPos.position.x + Random.Range(-4.0f,4.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(-3.0f, 3.0f));
         
-        GameObject spawnee = nm.spawnPrefabs[6];
+        //GameObject spawnee = nm.spawnPrefabs[6];
+        GameObject spawnee = neuronBlue;
 
         int sw = Random.Range(0, 3);
         switch(sw)
         {
             case 1:
-                spawnee = nm.spawnPrefabs[7];
+                //spawnee = nm.spawnPrefabs[7];
+                spawnee = neuronRed;
                 break;
             case 2:
-                spawnee = nm.spawnPrefabs[8];
+                //spawnee = nm.spawnPrefabs[8];
+                spawnee = neuronGreen;
                 break;
         }
 
@@ -51,16 +54,19 @@ public class spawner : NetworkBehaviour
         if(brainColor.text == "red")
         {
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(-4.0f, 4.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(-3.0f, 3.0f));
-            GameObject spawnee2 = nm.spawnPrefabs[6];
+            //GameObject spawnee2 = nm.spawnPrefabs[6];
+            GameObject spawnee2 = neuronBlue;
 
             int sw2 = Random.Range(0, 3);
             switch (sw2)
             {
                 case 1:
-                    spawnee2 = nm.spawnPrefabs[7];
+                    //spawnee2 = nm.spawnPrefabs[7];
+                    spawnee2 = neuronRed;
                     break;
                 case 2:
-                    spawnee2 = nm.spawnPrefabs[8];
+                    //spawnee2 = nm.spawnPrefabs[8];
+                    spawnee2 = neuronGreen;
                     break;
             }
 
