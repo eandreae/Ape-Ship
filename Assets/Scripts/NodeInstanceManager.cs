@@ -36,6 +36,8 @@ public class NodeInstanceManager : MonoBehaviour
 
     AudioSource nodeDisabledSFX;
 
+    public float monkeySpawnTime = 4.3f;
+
     private void Start()
     {
         nm = GameObject.FindObjectOfType<NetworkManager>();
@@ -56,8 +58,14 @@ public class NodeInstanceManager : MonoBehaviour
 
         UpdateColor();
 
+        Invoke("CheckForMonkeyAgain", monkeySpawnTime);
     }
 
+    void CheckForMonkeyAgain()
+    {
+        monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
+        agent = monkeyObj.GetComponent<NavMeshAgent>();
+    }
 
     private void Update()
     {

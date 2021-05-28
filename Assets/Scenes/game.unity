@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -5600,14 +5600,10 @@ MonoBehaviour:
   healthOxygen: {fileID: 1009109129}
   roomName: {fileID: 63642798}
   introDuration: 10
-  teleportTime: 4
+  teleportTime: 4.25
   blackBarAnimDuration: 1
-  monkeyPrefab: {fileID: 1532112443996035609, guid: 222805d82b6712747a94aa49cf593ddf,
-    type: 3}
-  gorillaPrefab: {fileID: 7240330348077717737, guid: faf722b850fc59d4b8b73a4efa7a69e0,
-    type: 3}
-  monkeyDefaultPos: {fileID: 1301669409}
-  gorillaDefaultPos: {fileID: 1536053103}
+  monkey: {fileID: 560206137}
+  gorilla: {fileID: 1184454703}
   minimapNodes:
   - {fileID: 1412383921}
   - {fileID: 289879602}
@@ -8312,38 +8308,6 @@ MonoBehaviour:
     m_Bits: 1024
   visibleTargets: []
   visibleObjects: []
---- !u!1 &376774199
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 376774200}
-  m_Layer: 0
-  m_Name: ApesDefaultPositions
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &376774200
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 376774199}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1536053103}
-  - {fileID: 1301669409}
-  m_Father: {fileID: 0}
-  m_RootOrder: 49
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &380729901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15960,6 +15924,12 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Coin
   wp: {fileID: 0}
+--- !u!1 &560206137 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1532112443996035609, guid: 222805d82b6712747a94aa49cf593ddf,
+    type: 3}
+  m_PrefabInstance: {fileID: 7578196259863528007}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &562625130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35121,6 +35091,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1184454703 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7240330348077717737, guid: faf722b850fc59d4b8b73a4efa7a69e0,
+    type: 3}
+  m_PrefabInstance: {fileID: 6228359301459270167}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1186231742
 GameObject:
   m_ObjectHideFlags: 0
@@ -37042,36 +37018,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!1 &1301669408
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1301669409}
-  m_Layer: 0
-  m_Name: MonkeyDefaultPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1301669409
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1301669408}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -95, y: 0, z: -5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 376774200}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &1303513940 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2035796184735947794, guid: f53db286390a3294788cbdc26b1b8006,
@@ -42533,36 +42479,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1530054784}
   m_CullTransparentMesh: 0
---- !u!1 &1536053102
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1536053103}
-  m_Layer: 0
-  m_Name: GorillaDefaultPosition
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1536053103
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1536053102}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -95, y: 0, z: 5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 376774200}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1542686022
 GameObject:
   m_ObjectHideFlags: 0
@@ -58593,7 +58509,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 6228359301459270167}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1184454703}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 51a48a3b48139a34e8a770cbcd5f0a1d, type: 3}

@@ -18,11 +18,8 @@ public class UIManager : MonoBehaviour
     Player1P p1p;
     PlayerCamera pc;
 
-    public GameObject monkeyPrefab;
-    public GameObject gorillaPrefab;
-
-    public Transform monkeyDefaultPos;
-    public Transform gorillaDefaultPos;
+    public GameObject monkey;
+    public GameObject gorilla;
 
     [Header("Endgame")]
     public Animator[] minimapNodes;
@@ -42,8 +39,8 @@ public class UIManager : MonoBehaviour
 
     void TeleportApes()
     {
-        Instantiate(monkeyPrefab, monkeyDefaultPos.position, Quaternion.identity);
-        Instantiate(gorillaPrefab, gorillaDefaultPos.position, Quaternion.identity);
+        monkey.SetActive(true);
+        gorilla.SetActive(true);
     }
 
     void BlackBarsLeave()
