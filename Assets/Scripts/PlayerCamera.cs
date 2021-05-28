@@ -15,6 +15,9 @@ public class PlayerCamera : MonoBehaviour
     Text currentRoomText;
     private float fadeNum = 0.01f;
 
+    [HideInInspector]
+    public bool followPlayer = false;
+
     void Start() {
 
         //nm = FindObjectOfType<NetworkManager>();
@@ -32,26 +35,16 @@ public class PlayerCamera : MonoBehaviour
         // }
 
     }
-    private void Update()
+    
+    public void ZoomOut()
     {
-        //Debug.Log(fadeNum * Time.deltaTime);
-        currentRoomText = GameObject.Find("CurrentRoomText").GetComponent<Text>();
-        if (currentRoomText.text == "Heart Reactor")
-        {
-            // while (this.gameObject.GetComponent<Camera>().orthographicSize < 20f)
-            // {
-            //     this.gameObject.GetComponent<Camera>().orthographicSize = this.gameObject.GetComponent<Camera>().orthographicSize + (fadeNum * Time.deltaTime);
-            // }
-            this.GetComponent<Animator>().Play("zoomOut");
-        }
-        else
-        {
-            // while (this.gameObject.GetComponent<Camera>().orthographicSize > 11f)
-            // {
-            //     this.gameObject.GetComponent<Camera>().orthographicSize -= fadeNum * Time.deltaTime;
-            // }
-            this.GetComponent<Animator>().Play("zoomIn");
-        }
+        GetComponent<Animator>().Play("zoomOut");
+    }
+    
+
+    public void ZoomIn()
+    {
+        GetComponent<Animator>().Play("zoomIn");
     }
 
     // Used with camera
@@ -60,18 +53,24 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(!target){
-            GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
-            //target = playerList[playerList.Length - 1];
-            foreach (GameObject player in playerList){
-                if (player.GetComponent<Player>().isLocalPlayer) {
-                    target = player;
-                    break;
+        if (followPlayer)
+        {
+            if (!target)
+            {
+                GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+                //target = playerList[playerList.Length - 1];
+                foreach (GameObject player in playerList)
+                {
+                    if (player.GetComponent<Player>().isLocalPlayer)
+                    {
+                        target = player;
+                        break;
+                    }
                 }
             }
+            Vector3 desiredPosition = target.transform.position + offset;
+            transform.position = desiredPosition + shakeOffset;
         }
-        Vector3 desiredPosition = target.transform.position + offset;
-        transform.position = desiredPosition + shakeOffset;
     }
 
     public void ShakeCamera (float duration, float magnitude)

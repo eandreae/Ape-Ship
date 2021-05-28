@@ -113,15 +113,10 @@ public class lungSpawner : NetworkBehaviour
             {
                 //currColor = nodeColor.text;
                 GameObject temp;
-                if (nm && isServer){
+                if (isServer){
                     temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                     temp.GetComponent<Rigidbody>().useGravity = true;
                     NetworkServer.Spawn(temp);
-                }
-                else {
-                    temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
-                    temp.GetComponent<Rigidbody>().useGravity = true;
-                    //temp.GetComponent<destroyer>().enabled = true;
                 }
             }
         }

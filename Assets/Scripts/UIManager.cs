@@ -12,21 +12,42 @@ public class UIManager : MonoBehaviour
     public Animator roomName;
 
     public float introDuration;
+    public float teleportTime = 5f;
     public float blackBarAnimDuration = 1f;
+
+    Player1P p1p;
+    PlayerCamera pc;
+
+    public GameObject monkey;
+    public GameObject gorilla;
 
     [Header("Endgame")]
     public Animator[] minimapNodes;
+    public Animator teleporterText;
 
     Animator destructTimer;
 
     // Start is called before the first frame update
     void Start()
     {
+        pc = FindObjectOfType<PlayerCamera>();
+        p1p = FindObjectOfType<Player1P>();
+        pc.followPlayer = false;
+        p1p.canMove = false;
+        Invoke("TeleportApes", teleportTime);
         Invoke("BlackBarsLeave", introDuration);
+    }
+
+    void TeleportApes()
+    {
+        monkey.SetActive(true);
+        gorilla.SetActive(true);
     }
 
     void BlackBarsLeave()
     {
+        pc.followPlayer = true;
+        p1p.canMove = true;
         blackBarTop.Play("TopBarLeave");
         blackBarBottom.Play("BottomBarLeave");
         Invoke("SlideInUI", blackBarAnimDuration);
@@ -48,6 +69,7 @@ public class UIManager : MonoBehaviour
         {
             minimapNode.Play("MinimapNodeFadeOut");
         }
+        teleporterText.Play("GetToTeleporterSlideIn");
     }
 
 }

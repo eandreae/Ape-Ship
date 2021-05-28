@@ -52,7 +52,6 @@ public class Monkey1P : MonoBehaviour
 
         FindNewTarget();
     }
-
     // Update is called once per frame
     private void Update()
     {
