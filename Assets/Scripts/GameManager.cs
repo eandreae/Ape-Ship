@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
             Destroy(pausePanel);
             lost = true;
             p1p.moveSpeed = 0f;
-            p1p.GetComponent<Animator>().Play("PlayerDeath");
+            //p1p.GetComponent<Animator>().Play("PlayerDeath");
 
             if (cause == 1)
             {
