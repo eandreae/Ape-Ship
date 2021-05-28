@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
     public float blackBarAnimDuration = 1f;
 
     Player1P p1p;
-
     PlayerCamera pc;
 
     [Header("Endgame")]
@@ -27,8 +26,8 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         pc = FindObjectOfType<PlayerCamera>();
-        pc.followPlayer = false;
         p1p = FindObjectOfType<Player1P>();
+        pc.followPlayer = false;
         p1p.canMove = false;
         Invoke("BlackBarsLeave", introDuration);
     }
