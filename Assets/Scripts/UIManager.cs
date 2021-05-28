@@ -23,6 +23,7 @@ public class UIManager : MonoBehaviour
 
     [Header("Endgame")]
     public Animator[] minimapNodes;
+    public Animator teleporterText;
 
     Animator destructTimer;
 
@@ -68,6 +69,7 @@ public class UIManager : MonoBehaviour
         {
             minimapNode.Play("MinimapNodeFadeOut");
         }
+        teleporterText.Play("GetToTeleporterSlideIn");
     }
 
 }
