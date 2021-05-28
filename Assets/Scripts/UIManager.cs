@@ -26,6 +26,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pc = FindObjectOfType<PlayerCamera>();
         pc.followPlayer = false;
         p1p = FindObjectOfType<Player1P>();
         p1p.canMove = false;

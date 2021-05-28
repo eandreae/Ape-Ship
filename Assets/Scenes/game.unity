@@ -15218,6 +15218,7 @@ GameObject:
   - component: {fileID: 508056502}
   - component: {fileID: 508056501}
   - component: {fileID: 508056500}
+  - component: {fileID: 508056504}
   m_Layer: 0
   m_Name: HeartReactorTrigger
   m_TagString: Untagged
@@ -15312,6 +15313,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 508056498}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &508056504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 508056498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28c9d2a254ee85744b093a47aeb1ea04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &523085126
 GameObject:
   m_ObjectHideFlags: 0
@@ -18250,7 +18263,7 @@ Transform:
   m_Children:
   - {fileID: 1554613410}
   m_Father: {fileID: 0}
-  m_RootOrder: 57
+  m_RootOrder: 53
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!54 &637435153
 Rigidbody:
@@ -20241,11 +20254,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: fa9a55ce95f57834c89b2f5291a9e1d8,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa9a55ce95f57834c89b2f5291a9e1d8,
         type: 3}
