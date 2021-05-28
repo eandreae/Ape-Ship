@@ -13510,7 +13510,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 394345732}
   m_LocalRotation: {x: -0.502832, y: -0.49715194, z: 0.49715194, w: 0.502832}
-  m_LocalPosition: {x: 359, y: -38, z: 19.02464}
+  m_LocalPosition: {x: 359, y: -99.1, z: 19.02464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -18133,6 +18133,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   sizeDelta: {x: 2, y: 2, z: 2}
   teleport: 0
+  monkeySpawnTime: 4.3
 --- !u!95 &635993683
 Animator:
   serializedVersion: 3
@@ -32792,7 +32793,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1022490425}
   m_LocalRotation: {x: -0.502832, y: -0.49715194, z: 0.49715194, w: 0.502832}
-  m_LocalPosition: {x: 189, y: -38, z: 19.02464}
+  m_LocalPosition: {x: 189, y: -99.1, z: 19.02464}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -41483,6 +41484,7 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   sizeDelta: {x: 0, y: 0, z: 0}
   teleport: 0
+  monkeySpawnTime: 4.3
 --- !u!1001 &1457082283
 PrefabInstance:
   m_ObjectHideFlags: 0
