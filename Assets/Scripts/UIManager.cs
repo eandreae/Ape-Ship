@@ -12,12 +12,17 @@ public class UIManager : MonoBehaviour
     public Animator roomName;
 
     public float introDuration;
+    public float teleportTime = 5f;
     public float blackBarAnimDuration = 1f;
 
     Player1P p1p;
     PlayerCamera pc;
-    Monkey1P[] m1ps;
-    Gorilla1P[] g1ps;
+
+    public GameObject monkeyPrefab;
+    public GameObject gorillaPrefab;
+
+    public Transform monkeyDefaultPos;
+    public Transform gorillaDefaultPos;
 
     [Header("Endgame")]
     public Animator[] minimapNodes;
@@ -31,17 +36,14 @@ public class UIManager : MonoBehaviour
         p1p = FindObjectOfType<Player1P>();
         pc.followPlayer = false;
         p1p.canMove = false;
+        Invoke("TeleportApes", teleportTime);
         Invoke("BlackBarsLeave", introDuration);
+    }
 
-        foreach (Monkey1P m1p in m1ps)
-        {
-            m1p.StopMonkey();
-        }
-
-        foreach (Gorilla1P g1p in g1ps)
-        {
-            g1p._SPEED = 0f;
-        }
+    void TeleportApes()
+    {
+        Instantiate(monkeyPrefab, monkeyDefaultPos.position, Quaternion.identity);
+        Instantiate(gorillaPrefab, gorillaDefaultPos.position, Quaternion.identity);
     }
 
     void BlackBarsLeave()
@@ -51,16 +53,6 @@ public class UIManager : MonoBehaviour
         blackBarTop.Play("TopBarLeave");
         blackBarBottom.Play("BottomBarLeave");
         Invoke("SlideInUI", blackBarAnimDuration);
-
-        foreach (Monkey1P m1p in m1ps)
-        {
-            m1p.ResumeMonkey();
-        }
-
-        foreach (Gorilla1P g1p in g1ps)
-        {
-            g1p._SPEED = 6f;
-        }
     }
 
     void SlideInUI()
