@@ -55,32 +55,42 @@ public class ItemScript : MonoBehaviour
 
             transform.position = playerRoot.position + 1.2f * (playerRoot.forward) + new Vector3(0, 2f, 0); // sets position relative to the player transform
 
-            if (type == "Neuron"){
+            if (type == "NeuronRed"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
                 Waypoint.WhichWaypoint(0);
             }
+            else if (type == "NeuronGreen")
+            {
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
+                Waypoint.WhichWaypoint(1);
+            }
+            else if (type == "NeuronBlue")
+            {
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
+                Waypoint.WhichWaypoint(2);
+            }
             else if(type == "Banana"){
                 transform.rotation = playerRoot.rotation *  Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(1);
+                Waypoint.WhichWaypoint(3);
             } 
             else if(type == "Canister1"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(2);
+                Waypoint.WhichWaypoint(4);
                 AlterSpeed(6f);
             }
             else if(type == "Canister2"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(3);
+                Waypoint.WhichWaypoint(5);
                 AlterSpeed(6f);
             }
             else if (type == "Sandwich"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(4);
+                Waypoint.WhichWaypoint(6);
             }
             else if (type == "Kebab"){
                 transform.position -= new Vector3(0, 2f, 0); // sets position relative to the player transform
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(4);
+                Waypoint.WhichWaypoint(6);
             }
             else if (type == "Nuke"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
@@ -89,8 +99,8 @@ public class ItemScript : MonoBehaviour
             {
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
                 AlterSpeed(4f);
+                Waypoint.WhichWaypoint(7);
             }
-
         }
     }
 

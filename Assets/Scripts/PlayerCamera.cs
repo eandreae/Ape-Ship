@@ -15,6 +15,9 @@ public class PlayerCamera : MonoBehaviour
     Text currentRoomText;
     private float fadeNum = 0.01f;
 
+    [HideInInspector]
+    public bool followPlayer = false;
+
     void Start() {
 
         //nm = FindObjectOfType<NetworkManager>();
@@ -60,18 +63,24 @@ public class PlayerCamera : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
-        if(!target){
-            GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
-            //target = playerList[playerList.Length - 1];
-            foreach (GameObject player in playerList){
-                if (player.GetComponent<Player>().isLocalPlayer) {
-                    target = player;
-                    break;
+        if (followPlayer)
+        {
+            if (!target)
+            {
+                GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
+                //target = playerList[playerList.Length - 1];
+                foreach (GameObject player in playerList)
+                {
+                    if (player.GetComponent<Player>().isLocalPlayer)
+                    {
+                        target = player;
+                        break;
+                    }
                 }
             }
+            Vector3 desiredPosition = target.transform.position + offset;
+            transform.position = desiredPosition + shakeOffset;
         }
-        Vector3 desiredPosition = target.transform.position + offset;
-        transform.position = desiredPosition + shakeOffset;
     }
 
     public void ShakeCamera (float duration, float magnitude)

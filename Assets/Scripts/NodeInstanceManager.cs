@@ -9,7 +9,7 @@ using Mirror;
 public class NodeInstanceManager : MonoBehaviour
 {
     [SerializeField] private Renderer myObject; 
-
+    public NetworkManager nm;
     public UnityEngine.Color color;
     public UnityEvent OnNodeFix;
     public UnityEvent OnNodeRedToYellow;
@@ -38,6 +38,14 @@ public class NodeInstanceManager : MonoBehaviour
 
     private void Start()
     {
+        nm = GameObject.FindObjectOfType<NetworkManager>();
+
+        if(nm){
+            if (this.gameObject.name == "LungTarget (1P)")
+                Object.Destroy(this.gameObject);
+            if (this.gameObject.name == "Lungs_2Target (1P)")
+                Object.Destroy(this.gameObject);
+        }
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         displayAnim = display.GetComponent<Animator>();

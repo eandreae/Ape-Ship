@@ -326,7 +326,7 @@ public class Player : NetworkBehaviour
             Debug.Log("You Died!");
             //health_text.text = ""; 
             moveSpeed = 0f;
-            gm.Defeat();
+            gm.Defeat(2);
         }
         else
         {
@@ -347,7 +347,7 @@ public class Player : NetworkBehaviour
             Debug.Log("You Died!");
             //oxygen_text.text = ""; 
             moveSpeed = 0f;
-            gm.Defeat();
+            gm.Defeat(1);
         }
 
     }

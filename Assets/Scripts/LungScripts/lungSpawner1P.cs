@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Mirror;
 
-public class lungSpawner : NetworkBehaviour
+public class lungSpawner1P : MonoBehaviour
 {
     public NetworkManager nm;
     public Transform spawnPos;
@@ -23,20 +23,24 @@ public class lungSpawner : NetworkBehaviour
     {
 
         nm = GameObject.FindObjectOfType<NetworkManager>();
+        
+        if (nm) {
+            Object.Destroy(this.gameObject);
+        }
 
         currColor = nodeColor.text;
-        if(gameObject.name == "AirPump(O1)")
+        if(gameObject.name == "(1P) AirPump(O1)")
         {
-            canister1 = GameObject.Find("Air_Tank_1(O1)");
-            canister2 = GameObject.Find("Air_Tank_2(O1)");
+            canister1 = GameObject.Find("1p Air_Tank_1(O1)");
+            canister2 = GameObject.Find("1p Air_Tank_2(O1)");
             if (nm){
                 spawnee = (nm.spawnPrefabs[9]);
             }
         } 
-        else if(gameObject.name == "AirPump")
+        else if(gameObject.name == "(1P) AirPump")
         {
-            canister1 = GameObject.Find("Air_Tank_1");
-            canister2 = GameObject.Find("Air_Tank_2");
+            canister1 = GameObject.Find("1p Air_Tank_1");
+            canister2 = GameObject.Find("1p Air_Tank_2");
             if (nm){
                 spawnee = (nm.spawnPrefabs[10]);
             }
@@ -113,7 +117,7 @@ public class lungSpawner : NetworkBehaviour
             {
                 //currColor = nodeColor.text;
                 GameObject temp;
-                if (nm && isServer){
+                if (nm){
                     temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                     temp.GetComponent<Rigidbody>().useGravity = true;
                     NetworkServer.Spawn(temp);

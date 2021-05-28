@@ -2,14 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Mirror;
 
 public class NeuronDestroyer : MonoBehaviour
 {
     public UnityEvent OnNeuronDeposit;
+    public NetworkManager nm;
+    public NodeInstanceManager selfNode;
+    
     // Start is called before the first frame update
     void Start()
     {
-        
+        nm = GameObject.FindObjectOfType<NetworkManager>();
+        if(nm){
+            selfNode = GameObject.FindGameObjectWithTag("Nav").GetComponent<NodeInstanceManager>();
+        }
     }
 
     // Update is called once per frame
@@ -39,6 +46,7 @@ public class NeuronDestroyer : MonoBehaviour
     {
         Destroy(this.gameObject);
         //fix the brain
-        OnNeuronDeposit.Invoke();
+        //OnNeuronDeposit.Invoke();
+        selfNode.FixNode();
     }
 }
