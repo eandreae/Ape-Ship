@@ -49,16 +49,6 @@ public class MonkeyMovement : NetworkBehaviour
         FindNewTarget();
     }
 
-    public void StopMonkey()
-    {
-        agent.speed = 0;
-    }
-
-    public void ResumeMonkey()
-    {
-        agent.speed = 20;
-    }
-
     // Update is called once per frame
     private void Update()
     {
