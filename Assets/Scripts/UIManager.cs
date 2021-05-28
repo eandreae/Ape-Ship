@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
 
     Player1P p1p;
     PlayerCamera pc;
+    MonkeyMovement[] mms;
+    GorillaMovement[] gms;
 
     [Header("Endgame")]
     public Animator[] minimapNodes;
@@ -30,6 +32,16 @@ public class UIManager : MonoBehaviour
         pc.followPlayer = false;
         p1p.canMove = false;
         Invoke("BlackBarsLeave", introDuration);
+
+        foreach (MonkeyMovement mm in mms)
+        {
+            mm.StopMonkey();
+        }
+
+        foreach (GorillaMovement gm in gms)
+        {
+            gm._SPEED = 0f;
+        }
     }
 
     void BlackBarsLeave()
@@ -39,6 +51,16 @@ public class UIManager : MonoBehaviour
         blackBarTop.Play("TopBarLeave");
         blackBarBottom.Play("BottomBarLeave");
         Invoke("SlideInUI", blackBarAnimDuration);
+
+        foreach (MonkeyMovement mm in mms)
+        {
+            mm.ResumeMonkey();
+        }
+
+        foreach (GorillaMovement gm in gms)
+        {
+            gm._SPEED = 6f;
+        }
     }
 
     void SlideInUI()
