@@ -43,6 +43,8 @@ public class ProgressBar : MonoBehaviour
     private static bool spawned = false;
     public bool teleport = false;
 
+    public float monkeySpawnTime = 4.3f;
+
     void Start()
     {
         progressing = true;
@@ -55,6 +57,14 @@ public class ProgressBar : MonoBehaviour
         barFill.color = barGradient.Evaluate(1f);
 
         spawnLoc = GameObject.Find("GorillaSpawn").transform.position;
+
+        Invoke("CheckForMonkeyAgain", monkeySpawnTime);
+    }
+
+    void CheckForMonkeyAgain()
+    {
+        monkey = GameObject.FindGameObjectWithTag("Monkey");
+        agentM = monkey.GetComponent<NavMeshAgent>();
     }
 
 
