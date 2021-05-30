@@ -128,7 +128,6 @@ public class ItemScript : MonoBehaviour
 
     public void AlterSpeed(float newSpeed)
     {
-        Debug.Log("WOOOOO");
         if (nm)
             playerRoot.GetComponent<Player>().ChangeSpeed(newSpeed);
         else
