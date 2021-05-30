@@ -29,7 +29,6 @@ public class ItemScript : MonoBehaviour
         //this.rigidbody.isKinematic = true;
         this.height = this.transform.position.y;
         nm = GameObject.FindObjectOfType<NetworkManager>();
-        wp = FindObjectOfType<Waypoint>();
 
         //if (this.glowEffect)
         //    this.glowEffect.SetActive(false);

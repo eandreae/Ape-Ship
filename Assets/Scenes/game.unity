@@ -1420,7 +1420,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Neuron
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!114 &78120117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3349,7 +3349,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Canister1
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!114 &154885210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4086,7 +4086,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Neuron
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!114 &187106879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8147,7 +8147,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Neuron
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!114 &348634261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40657,7 +40657,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Canister2
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!136 &1398323086
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -52954,7 +52954,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Food
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!135 &2083132828
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -54771,7 +54771,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Banana
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!136 &353969446163947428
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -55530,7 +55530,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Nuke
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!136 &860428543030315102
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -56892,7 +56892,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Sandwich
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!114 &2523682045962763870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58095,7 +58095,7 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Kebab
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
 --- !u!54 &2736431573751466077
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -62504,7 +62504,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2996e99f5bc71c246890214de2be2973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
+  waypoints:
+  - {fileID: 417507349}
+  - {fileID: 1375474519}
+  - {fileID: 475930911}
+  - {fileID: 925522675}
+  - {fileID: 1713186130}
+  - {fileID: 836168923}
+  - {fileID: 1795425657}
+  - {fileID: 70127057}
   focus: {fileID: 0}
 --- !u!1001 &7578196259863528007
 PrefabInstance:

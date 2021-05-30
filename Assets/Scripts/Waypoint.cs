@@ -9,6 +9,7 @@ public class Waypoint : MonoBehaviour
 
     public void Start(){
         //waypoints = new Transform[8];
+        /*
         waypoints[0] = GameObject.Find("RedNeuronWaypoint").transform;
         waypoints[1] = GameObject.Find("GreenNeuronWaypoint").transform;
         waypoints[2] = GameObject.Find("BlueNeuronWaypoint").transform;
@@ -17,6 +18,7 @@ public class Waypoint : MonoBehaviour
         waypoints[5] = GameObject.Find("Oxy2Waypoint").transform;
         waypoints[6] = GameObject.Find("KrillWaypoint").transform;
         waypoints[7] = GameObject.Find("BatteryWaypoint").transform;
+        */
         
         //Debug.Log(waypoints);
     }
