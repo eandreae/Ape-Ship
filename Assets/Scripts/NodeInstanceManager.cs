@@ -52,13 +52,17 @@ public class NodeInstanceManager : MonoBehaviour
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         displayAnim = display.GetComponent<Animator>();
         agent = monkeyObj.GetComponent<NavMeshAgent>();
-        nodeDisabledSFX = GetComponent<AudioSource>();
         
         // Need to set starting color for each node
 
         UpdateColor();
 
         Invoke("CheckForMonkeyAgain", monkeySpawnTime);
+    }
+
+    private void Awake()
+    {
+        nodeDisabledSFX = GetComponent<AudioSource>();
     }
 
     void CheckForMonkeyAgain()
