@@ -50,7 +50,7 @@ public class GameManager : MonoBehaviour
         if (!won)
         {
             //Enabling a defeat panel
-            Invoke("DeathPanel", deathAnimDuration);
+            Invoke("DefeatPanel", deathAnimDuration);
             backgroundMusic.volume = 0f;
             Destroy(pausePanel);
             lost = true;
