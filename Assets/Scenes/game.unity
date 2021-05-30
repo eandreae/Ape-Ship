@@ -42951,7 +42951,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 2}
+  m_Size: {x: 5, y: 5, z: 2.5}
   m_Center: {x: 0, y: 2.5, z: 1.5}
 --- !u!65 &1493896914
 BoxCollider:
@@ -55388,7 +55388,7 @@ MeshCollider:
   m_GameObject: {fileID: 590851735394956812}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_Convex: 1
   m_CookingOptions: 30
@@ -61395,7 +61395,7 @@ PrefabInstance:
     - target: {fileID: 7240330348077717737, guid: faf722b850fc59d4b8b73a4efa7a69e0,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Gorilla
       objectReference: {fileID: 0}
     - target: {fileID: 8012188217188500051, guid: faf722b850fc59d4b8b73a4efa7a69e0,
         type: 3}
@@ -62454,7 +62454,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 95e37fbab949a6341ae14e408dd6c68f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -62504,8 +62504,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2996e99f5bc71c246890214de2be2973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: [{fileID: 417507349}, {fileID: 1375474519}, {fileID: 475930911}, {fileID: 925522675},
-    {fileID: 1713186130}, {fileID: 836168923}, {fileID: 1795425657}, {fileID: 70127057}]
+  waypoints:
+  - {fileID: 417507349}
+  - {fileID: 1375474519}
+  - {fileID: 475930911}
+  - {fileID: 925522675}
+  - {fileID: 1713186130}
+  - {fileID: 836168923}
+  - {fileID: 1795425657}
+  - {fileID: 70127057}
   focus: {fileID: 0}
 --- !u!1001 &7578196259863528007
 PrefabInstance:
@@ -62641,6 +62648,7 @@ GameObject:
   - component: {fileID: 7647579301248157100}
   - component: {fileID: 7647579301248157101}
   - component: {fileID: 7647579301248157102}
+  - component: {fileID: 7647579301248157103}
   m_Layer: 8
   m_Name: _DEBUGGER_PLAYER
   m_TagString: Player
@@ -62815,6 +62823,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   visibleTargets: []
+--- !u!64 &7647579301248157103
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7647579301248157098}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 3252224991405807402, guid: ee8365a613bc2df458f6ea1d67cd446d, type: 3}
 --- !u!4 &7730015700377902272
 Transform:
   m_ObjectHideFlags: 0
