@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
             victoryPanel.SetActive(true);
             //Turning off the gameplay music
             backgroundMusic.volume = 0f;
-            p1p.moveSpeed = 0f;
+            p1p.canMove = false;
             //We need to destroy the pause menu panel so the player can't pause once the game is technically over
             Destroy(pausePanel);
             won = true;
@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour
             backgroundMusic.volume = 0f;
             Destroy(pausePanel);
             lost = true;
-            p1p.moveSpeed = 0f;
+            p1p.canMove = false;
             //p1p.GetComponent<Animator>().Play("PlayerDeath");
 
             if (cause == 1)
