@@ -6975,7 +6975,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 201cef851e267e845b32b861cec17ba5,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 201cef851e267e845b32b861cec17ba5, type: 3}
@@ -62504,15 +62504,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2996e99f5bc71c246890214de2be2973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints:
-  - {fileID: 417507349}
-  - {fileID: 1375474519}
-  - {fileID: 475930911}
-  - {fileID: 925522675}
-  - {fileID: 1713186130}
-  - {fileID: 836168923}
-  - {fileID: 1795425657}
-  - {fileID: 70127057}
+  waypoints: [{fileID: 417507349}, {fileID: 1375474519}, {fileID: 475930911}, {fileID: 925522675},
+    {fileID: 1713186130}, {fileID: 836168923}, {fileID: 1795425657}, {fileID: 70127057}]
   focus: {fileID: 0}
 --- !u!1001 &7578196259863528007
 PrefabInstance:
