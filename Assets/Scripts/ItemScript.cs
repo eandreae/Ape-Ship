@@ -76,13 +76,13 @@ public class ItemScript : MonoBehaviour
             } 
             else if(type == "Canister1"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
-                wp.WhichWaypoint(4);
                 AlterSpeed(6f);
+                wp.WhichWaypoint(4);
             }
             else if(type == "Canister2"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
-                wp.WhichWaypoint(5);
                 AlterSpeed(6f);
+                wp.WhichWaypoint(5);
             }
             else if (type == "Sandwich"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
@@ -128,9 +128,10 @@ public class ItemScript : MonoBehaviour
 
     public void AlterSpeed(float newSpeed)
     {
-        if(nm)
+        Debug.Log("WOOOOO");
+        if (nm)
             playerRoot.GetComponent<Player>().ChangeSpeed(newSpeed);
-        else 
+        else
             playerRoot.GetComponent<Player1P>().ChangeSpeed(newSpeed);
     }
 
