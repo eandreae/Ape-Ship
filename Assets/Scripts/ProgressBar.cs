@@ -72,6 +72,7 @@ public class ProgressBar : MonoBehaviour
     void Update()
     {
         //-- for netcode --d// 
+        /*
         if (!monkey) {
             monkey = GameObject.FindGameObjectWithTag("Monkey");
             agentM = monkey.GetComponent<NavMeshAgent>();
@@ -80,6 +81,7 @@ public class ProgressBar : MonoBehaviour
             gorilla = GameObject.FindGameObjectWithTag("Gorilla");
             agentG = gorilla.GetComponent<NavMeshAgent>();
         }
+        */
 
         // Check if either NavigationColor or ReactorColor are red.
         if ( NavigationColor.text == "red" || ReactorColor.text == "red" ){

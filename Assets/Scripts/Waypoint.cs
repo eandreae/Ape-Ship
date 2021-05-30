@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    public static Transform[] waypoints;
-    public static Transform focus;
+    public Transform[] waypoints;
+    public Transform focus;
 
     public void Start(){
-        waypoints = new Transform[5];
+        //waypoints = new Transform[8];
         waypoints[0] = GameObject.Find("RedNeuronWaypoint").transform;
         waypoints[1] = GameObject.Find("GreenNeuronWaypoint").transform;
         waypoints[2] = GameObject.Find("BlueNeuronWaypoint").transform;
@@ -21,7 +21,7 @@ public class Waypoint : MonoBehaviour
         //Debug.Log(waypoints);
     }
 
-    public static void WhichWaypoint(int wp)
+    public void WhichWaypoint(int wp)
     {
         focus = waypoints[wp];
     }
