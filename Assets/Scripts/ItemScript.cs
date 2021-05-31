@@ -18,6 +18,7 @@ public class ItemScript : MonoBehaviour
     public Waypoint wp;
     NetworkManager nm;
 
+    public GameObject teleporterIndicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +103,7 @@ public class ItemScript : MonoBehaviour
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
                 AlterSpeed(4f);
                 wp.WhichWaypoint(8);
+                teleporterIndicator.SetActive(true);
             }
         }
     }

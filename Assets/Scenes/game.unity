@@ -1423,6 +1423,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Neuron
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!114 &78120117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2490,6 +2491,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Canister2
   wp: {fileID: 0}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!114 &107861820
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3354,6 +3356,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Canister1
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!114 &154885210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4177,6 +4180,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Neuron
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!114 &187106879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5970,6 +5974,7 @@ MonoBehaviour:
   - {fileID: 1397557512}
   - {fileID: 2082339953}
   teleporterText: {fileID: 96415836}
+  batteryIndicator: {fileID: 582601432}
 --- !u!82 &260787861
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6372,6 +6377,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 72a2fe7d5f6b61d4bb147baa144eb8a0,
+        type: 3}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2035796184735947797, guid: f53db286390a3294788cbdc26b1b8006,
         type: 3}
@@ -6778,6 +6794,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Canister1
   wp: {fileID: 0}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!136 &291733766
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8040,6 +8057,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 72a2fe7d5f6b61d4bb147baa144eb8a0,
+        type: 3}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2035796184735947797, guid: f53db286390a3294788cbdc26b1b8006,
         type: 3}
       propertyPath: m_Name
@@ -8270,6 +8298,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Neuron
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!114 &348634261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16603,6 +16632,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Coin
   wp: {fileID: 0}
+  teleporterIndicator: {fileID: 0}
 --- !u!1 &560206137 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1532112443996035609, guid: 222805d82b6712747a94aa49cf593ddf,
@@ -17222,6 +17252,100 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &582601432
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 582601433}
+  - component: {fileID: 582601435}
+  - component: {fileID: 582601434}
+  - component: {fileID: 582601436}
+  m_Layer: 5
+  m_Name: BatteryIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &582601433
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582601432}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1143806239}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 115, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &582601434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582601432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 72a2fe7d5f6b61d4bb147baa144eb8a0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 1
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &582601435
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582601432}
+  m_CullTransparentMesh: 0
+--- !u!95 &582601436
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 582601432}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b18d931bcd21be94dbc2f0c69a1cb748, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &585693528
 GameObject:
   m_ObjectHideFlags: 0
@@ -18489,7 +18613,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1143806239}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -18880,7 +19004,8 @@ MonoBehaviour:
   thrown: 0
   playerRoot: {fileID: 0}
   type: Battery
-  wp: {fileID: 0}
+  wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!64 &637435155
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -22503,6 +22628,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 72a2fe7d5f6b61d4bb147baa144eb8a0,
+        type: 3}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2035796184735947797, guid: f53db286390a3294788cbdc26b1b8006,
         type: 3}
       propertyPath: m_Name
@@ -23818,6 +23954,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Coin
   wp: {fileID: 0}
+  teleporterIndicator: {fileID: 0}
 --- !u!1 &818139651
 GameObject:
   m_ObjectHideFlags: 0
@@ -35975,6 +36112,8 @@ RectTransform:
   - {fileID: 1812103380}
   - {fileID: 1397557509}
   - {fileID: 2082339950}
+  - {fileID: 582601433}
+  - {fileID: 1334062129}
   - {fileID: 635318016}
   m_Father: {fileID: 260787859}
   m_RootOrder: 1
@@ -39463,6 +39602,100 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 666027495}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1334062128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1334062129}
+  - component: {fileID: 1334062131}
+  - component: {fileID: 1334062130}
+  - component: {fileID: 1334062132}
+  m_Layer: 5
+  m_Name: TeleporterIndicator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1334062129
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334062128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1143806239}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -115, y: 0}
+  m_SizeDelta: {x: 20, y: 20}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1334062130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334062128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
+  m_RaycastTarget: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 72a2fe7d5f6b61d4bb147baa144eb8a0, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 1
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1334062131
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334062128}
+  m_CullTransparentMesh: 0
+--- !u!95 &1334062132
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1334062128}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f004f08930aebca409fd18ee50fab315, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1340646625
 GameObject:
   m_ObjectHideFlags: 0
@@ -41802,6 +42035,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Canister2
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!136 &1398323086
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -45800,6 +46034,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 72a2fe7d5f6b61d4bb147baa144eb8a0,
+        type: 3}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2035796184735947797, guid: f53db286390a3294788cbdc26b1b8006,
         type: 3}
       propertyPath: m_Name
@@ -48587,6 +48832,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Banana
   wp: {fileID: 0}
+  teleporterIndicator: {fileID: 0}
 --- !u!136 &1766069666
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -50128,6 +50374,17 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 72a2fe7d5f6b61d4bb147baa144eb8a0,
+        type: 3}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2035796184735947797, guid: f53db286390a3294788cbdc26b1b8006,
         type: 3}
@@ -54035,6 +54292,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Coin
   wp: {fileID: 0}
+  teleporterIndicator: {fileID: 0}
 --- !u!1 &2082339949
 GameObject:
   m_ObjectHideFlags: 0
@@ -54279,6 +54537,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Food
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!135 &2083132828
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -56097,6 +56356,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Banana
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!136 &353969446163947428
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -56870,6 +57130,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Nuke
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!136 &860428543030315102
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -57921,7 +58182,13 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+      objectReference: {fileID: 21300000, guid: 72a2fe7d5f6b61d4bb147baa144eb8a0,
+        type: 3}
+    - target: {fileID: 2035796184735947795, guid: f53db286390a3294788cbdc26b1b8006,
+        type: 3}
+      propertyPath: m_UseSpriteMesh
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2035796184735947797, guid: f53db286390a3294788cbdc26b1b8006,
         type: 3}
       propertyPath: m_Name
@@ -58235,6 +58502,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Sandwich
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!114 &2523682045962763870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -59440,6 +59708,7 @@ MonoBehaviour:
   playerRoot: {fileID: 0}
   type: Kebab
   wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
 --- !u!54 &2736431573751466077
 Rigidbody:
   m_ObjectHideFlags: 0

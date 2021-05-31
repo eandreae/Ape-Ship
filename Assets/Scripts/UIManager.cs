@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
 
     Animator destructTimer;
 
+   public GameObject batteryIndicator;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +64,7 @@ public class UIManager : MonoBehaviour
     }
 
     public void ReplaceProgressBar()
+    //Endgame stuff happens here
     {
         progressBar.Play("ProgressBarFadeOut");
         destructTimer.Play("TimerFadeIn");
@@ -70,6 +73,7 @@ public class UIManager : MonoBehaviour
             minimapNode.Play("MinimapNodeFadeOut");
         }
         teleporterText.Play("GetToTeleporterSlideIn");
+        batteryIndicator.SetActive(true);
     }
 
 }
