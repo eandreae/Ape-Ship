@@ -120,11 +120,13 @@ public class lungSpawner1P : MonoBehaviour
                 if (nm){
                     temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                     temp.GetComponent<Rigidbody>().useGravity = true;
+                    temp.layer = 15;
                     NetworkServer.Spawn(temp);
                 }
                 else {
                     temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                     temp.GetComponent<Rigidbody>().useGravity = true;
+                    temp.layer = 15;
                     //temp.GetComponent<destroyer>().enabled = true;
                 }
             }

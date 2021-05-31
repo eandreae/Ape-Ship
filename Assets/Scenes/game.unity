@@ -19575,6 +19575,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Air_Tank_3(O1)
       objectReference: {fileID: 0}
+    - target: {fileID: -349969160363973960, guid: 36e70f48dd71d7341881c4b8bf69476f,
+        type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: -240079426153836765, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
       propertyPath: m_Convex
@@ -36470,7 +36475,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1204619317}
   m_LocalRotation: {x: -0.18080516, y: -0, z: -0, w: 0.98351896}
-  m_LocalPosition: {x: -28.95, y: -4.7, z: -21.74}
+  m_LocalPosition: {x: -28.36, y: -7.09, z: -20.83}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 543450653032732534}
@@ -41663,7 +41668,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416022111}
   m_LocalRotation: {x: -0.18080516, y: -0, z: -0, w: 0.98351896}
-  m_LocalPosition: {x: 4.4, y: -4.7, z: -21.74}
+  m_LocalPosition: {x: 4.4, y: -5.13, z: -21.23}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children: []
   m_Father: {fileID: 543450653032732534}
@@ -63430,7 +63435,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f471a905c590dc54d83eecfc2e3e6763, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 5.46
+  viewRadius: 6.13
   viewAngle: 97
   targetMask:
     serializedVersion: 2
