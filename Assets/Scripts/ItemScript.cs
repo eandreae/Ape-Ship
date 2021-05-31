@@ -100,7 +100,7 @@ public class ItemScript : MonoBehaviour
             {
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
                 AlterSpeed(4f);
-                wp.WhichWaypoint(7);
+                wp.WhichWaypoint(8);
             }
         }
     }

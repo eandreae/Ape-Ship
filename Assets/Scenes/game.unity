@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1122,7 +1122,7 @@ GameObject:
   m_Component:
   - component: {fileID: 70127057}
   m_Layer: 0
-  m_Name: BatteryWaypoint
+  m_Name: TeleporterWaypoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56863,8 +56863,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -161.54, y: 0, z: -0.28578478}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1058958568}
+  m_Children: [{fileID: 1058958568}]
   m_Father: {fileID: 0}
   m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -58138,8 +58137,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -149.21, y: 0, z: 0.5026395}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1360726859}
+  m_Children: [{fileID: 1360726859}]
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -59063,8 +59061,7 @@ Transform:
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -148.8, y: 2.16, z: 12.37}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 500915799}
+  m_Children: [{fileID: 500915799}]
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -64095,6 +64092,7 @@ MonoBehaviour:
   - {fileID: 1713186130}
   - {fileID: 836168923}
   - {fileID: 1795425657}
+  - {fileID: 1554613410}
   - {fileID: 70127057}
   focus: {fileID: 0}
 --- !u!1001 &7578196259863528007
