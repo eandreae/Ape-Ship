@@ -48,9 +48,15 @@ public class Escape : MonoBehaviour
             {
                 teleport = true;
                 Destroy(GameObject.Find("Battery(Clone)"));
+                SpawnPlayer();
                 StartCoroutine("TeleportWait");
             }
         }
+    }
+
+    private void SpawnPlayer()
+    {
+        //GameObject telePlayer = gameObject.Find("TeleportPlayerObject")
     }
 
     IEnumerator TeleportWait()
