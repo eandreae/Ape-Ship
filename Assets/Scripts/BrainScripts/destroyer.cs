@@ -10,6 +10,7 @@ public class destroyer : MonoBehaviour
 {
     public NetworkManager nm;
     public float lifetime = 5f;
+    private float startingLife;
     public Text nodeColor;
     public NodeInstanceManager selfNode;
     //public UnityEvent OnNeuronDeposit;
@@ -18,6 +19,7 @@ public class destroyer : MonoBehaviour
     void Start()
     {
         nm = GameObject.FindObjectOfType<NetworkManager>();
+        startingLife = lifetime;
     }
 
     // Update is called once per frame
@@ -46,6 +48,9 @@ public class destroyer : MonoBehaviour
             if (lifetime <= 0 && !this.gameObject.GetComponent<ItemScript>().pickedUp)
             {
                 Destroy(this.gameObject);
+            } else if (this.gameObject.GetComponent<ItemScript>().pickedUp)
+            {
+                lifetime = startingLife;
             }
         }
     }
