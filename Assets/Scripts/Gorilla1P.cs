@@ -201,11 +201,17 @@ public class Gorilla1P : MonoBehaviour
             }
             else if (other.gameObject.GetComponent<ItemScript>().type == "Nuke" && other.gameObject.GetComponent<ItemScript>().active){
                 this.stunned = true;
+                Explosion(other.gameObject);
                 StartCoroutine("KnockBack", other.transform.position);
             }
         }
     }
-    
+
+    private void Explosion(GameObject nuke)
+    {
+        Instantiate(GameObject.Find("Explosion"), nuke.transform.position, this.gameObject.transform.rotation);
+    }
+
     private void PickUpObject(Collider other)
     {
         other.transform.parent = this.transform;
