@@ -1,14 +1,27 @@
 fileFormatVersion: 2
-guid: eead1e607abe34c4db50b04acec23791
+guid: 33803d09ed41cbb458eab3b892f172d6
 ModelImporter:
   serializedVersion: 19301
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      74: -4311790365432614208
+    second: BeltAction.001
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: liquid
-    second: {fileID: 2100000, guid: f6414d267b233044e81e5d51e5bd0cce, type: 2}
+      name: BaseMetal
+    second: {fileID: 2100000, guid: 9a8ba8119e0354f4b8e9dd58c47a5b60, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Belt
+    second: {fileID: 2100000, guid: 1f2cbbb3553890c46b827df222c50861, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Teeth
+    second: {fileID: 2100000, guid: 1f2cbbb3553890c46b827df222c50861, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
