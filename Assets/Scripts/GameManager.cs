@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
             //Turning off the gameplay music
             backgroundMusic.volume = 0f;
             p1p.canMove = false;
+            p1p.GetComponent<Animator>().enabled = false;
             //We need to destroy the pause menu panel so the player can't pause once the game is technically over
             Destroy(pausePanel);
             won = true;
