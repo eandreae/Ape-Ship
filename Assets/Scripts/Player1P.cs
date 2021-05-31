@@ -247,7 +247,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
                 this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
                 this.holdItem.GetComponent<ItemScript>().thrown = true;
                 this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-                this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
+                this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 20f + this.dir * 20f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
                                                                                                                     //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
                                                                                                                     //Debug.Log("throw");
 
@@ -277,7 +277,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             updateOxygen(0);
         }
         else {
-            if ( oxygen < 60 ) {
+            if ( oxygen < 90 ) {
                 oxygen += Time.deltaTime * 2;
                 updateOxygen(1);
             }
