@@ -116,6 +116,7 @@ public class lungSpawner : NetworkBehaviour
                 if (isServer){
                     temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
                     temp.GetComponent<Rigidbody>().useGravity = true;
+                    temp.GetComponent<Rigidbody>().isKinematic = false;
                     NetworkServer.Spawn(temp);
                 }
             }
