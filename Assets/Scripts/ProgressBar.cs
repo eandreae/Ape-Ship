@@ -45,7 +45,7 @@ public class ProgressBar : MonoBehaviour
 
     public float monkeySpawnTime = 4.3f;
 
-    Waypoint wp;
+    public GameObject wpArrow;
     UIManager uim;
 
     void Start()
@@ -58,7 +58,6 @@ public class ProgressBar : MonoBehaviour
         gorilla = GameObject.Find("Single Player Gorilla (debug) old");
         agentG = gorilla.GetComponent<NavMeshAgent>();
         barFill.color = barGradient.Evaluate(1f);
-        wp = FindObjectOfType<Waypoint>();
         uim = FindObjectOfType<UIManager>();
 
         spawnLoc = GameObject.Find("GorillaSpawn").transform.position;
@@ -144,7 +143,8 @@ public class ProgressBar : MonoBehaviour
                 timeRemaining = 0;
                 // Set progressing to false.
                 progressing = false;
-                wp.WhichWaypoint(7);
+                wpArrow.SetActive(true);
+                wpArrow.GetComponent<Waypoint>().WhichWaypoint(7);
                 uim.ReplaceProgressBar();
                 teleport = true;
                 //gm.Victory();
