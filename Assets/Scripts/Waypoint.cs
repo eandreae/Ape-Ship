@@ -28,6 +28,11 @@ public class Waypoint : MonoBehaviour
         focus = waypoints[wp];
     }
 
+    public void DisableArrow()
+    {
+        gameObject.SetActive(false);
+    }
+
     // Update is called once per frame
     void Update()
     {
