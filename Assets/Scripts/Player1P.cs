@@ -57,6 +57,9 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     [HideInInspector]
     public bool canMove;
 
+    Escape canTeleport;
+    GameObject escapeObj;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -93,11 +96,20 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
         oxygenCue = GameObject.Find("Oxygen Cue").GetComponent<Animator>();
         damageCue = GameObject.Find("Damage Cue").GetComponent<Animator>();
+
+        escapeObj = GameObject.Find("Escape");
+        canTeleport = escapeObj.GetComponent<Escape>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(canTeleport.teleport == true)
+        {
+            this.anim.Play("Idle");
+            canMove = false;
+        }
+
         //Get list of targets from FieldOfView list
         targetsList = GetComponent<PlayerFOV>();
         //transfer each target into local list

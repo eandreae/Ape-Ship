@@ -6,6 +6,7 @@ public class Escape : MonoBehaviour
 {
     private bool canEscape = false;
     private bool shouldSpawn = true;
+    public bool teleport = false;
     GameManager gm;
     ProgressBar bar;
     GameObject progBar;
@@ -45,9 +46,17 @@ public class Escape : MonoBehaviour
         {
             if (other.gameObject.name == "Battery(Clone)")
             {
-                gm.Victory();
+                teleport = true;
+                Destroy(GameObject.Find("Battery(Clone)"));
+                StartCoroutine("TeleportWait");
             }
         }
+    }
+
+    IEnumerator TeleportWait()
+    {
+        yield return new WaitForSeconds(5f); // charge for 1 second
+        gm.Victory();
     }
 
 }
