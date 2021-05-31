@@ -120,7 +120,7 @@ public class ItemScript : MonoBehaviour
             if (this.type == "Banana" && other.tag == "Gorilla" && !this.pickedUp){
                 Object.Destroy(this.gameObject, 0.25f); // destroy object after contact with gorilla
             }
-            else if (this.thrown && this.type == "Nuke" && other.tag == "Gorilla" && !this.pickedUp){
+            else if (this.type == "Nuke" && other.tag == "Gorilla" && !this.pickedUp){
                 Object.Destroy(this.gameObject, 0.52f); // destroy object after contact with gorilla
             }
         }
