@@ -55,7 +55,7 @@ public class ProgressBar : MonoBehaviour
         nm = GameObject.FindObjectOfType<NetworkManager>();
         monkey = GameObject.FindGameObjectWithTag("Monkey");
         agentM = monkey.GetComponent<NavMeshAgent>();
-        gorilla = GameObject.FindGameObjectWithTag("Gorilla");
+        gorilla = GameObject.Find("Single Player Gorilla (debug) old");
         agentG = gorilla.GetComponent<NavMeshAgent>();
         barFill.color = barGradient.Evaluate(1f);
         wp = FindObjectOfType<Waypoint>();
