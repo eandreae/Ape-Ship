@@ -46,6 +46,7 @@ public class ProgressBar : MonoBehaviour
     public float monkeySpawnTime = 4.3f;
 
     Waypoint wp;
+    UIManager uim;
 
     void Start()
     {
@@ -58,6 +59,7 @@ public class ProgressBar : MonoBehaviour
         agentG = gorilla.GetComponent<NavMeshAgent>();
         barFill.color = barGradient.Evaluate(1f);
         wp = FindObjectOfType<Waypoint>();
+        uim = FindObjectOfType<UIManager>();
 
         spawnLoc = GameObject.Find("GorillaSpawn").transform.position;
 
@@ -145,6 +147,7 @@ public class ProgressBar : MonoBehaviour
                 teleport = true;
                 //gm.Victory();
                 wp.WhichWaypoint(7);
+                uim.ReplaceProgressBar();
             }
         }
     }
