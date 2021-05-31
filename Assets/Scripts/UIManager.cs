@@ -66,6 +66,7 @@ public class UIManager : MonoBehaviour
     public void ReplaceProgressBar()
     //Endgame stuff happens here
     {
+        Debug.Log("We're in the endgame now!");
         progressBar.Play("ProgressBarFadeOut");
         //destructTimer.Play("TimerFadeIn");
         foreach (Animator minimapNode in minimapNodes)

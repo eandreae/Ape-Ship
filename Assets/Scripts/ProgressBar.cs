@@ -144,10 +144,10 @@ public class ProgressBar : MonoBehaviour
                 timeRemaining = 0;
                 // Set progressing to false.
                 progressing = false;
-                teleport = true;
-                //gm.Victory();
                 wp.WhichWaypoint(7);
                 uim.ReplaceProgressBar();
+                teleport = true;
+                //gm.Victory();
             }
         }
     }
