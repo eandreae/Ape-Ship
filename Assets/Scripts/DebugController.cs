@@ -11,7 +11,8 @@ public class DebugController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("a")) {
+        if (Input.GetKeyDown("q")) {
+            Debug.Log("Debug Activated");
             Execute.Invoke();
         }
     }

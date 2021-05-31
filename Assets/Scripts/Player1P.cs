@@ -51,6 +51,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     public GameObject CameraObj;
 
     public List<Transform> visibleTargets = new List<Transform>();
+    private Transform highlightTarget;
     PlayerFOV targetsList;
 
     [HideInInspector]
@@ -104,6 +105,23 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         foreach (Transform t in targetsList.visibleTargets)
         {
             visibleTargets.Add(t);
+        }
+
+        if (visibleTargets.Count == 0 || this.holding) {
+            if (highlightTarget) {
+                highlightTarget.gameObject.GetComponent<ItemScript>().highlightOff();
+            }
+            highlightTarget = null;
+        }
+
+        if (!this.holding && visibleTargets.Count != 0 && visibleTargets[0] != highlightTarget) {
+            if (highlightTarget) {
+                highlightTarget.gameObject.GetComponent<ItemScript>().highlightOff();
+            }
+            highlightTarget = visibleTargets[0];
+            Debug.Log("target switched: "+highlightTarget.gameObject.name);
+
+            highlightTarget.gameObject.GetComponent<ItemScript>().highlightOn();
         }
 
         if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0)

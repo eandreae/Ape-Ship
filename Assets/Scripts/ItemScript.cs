@@ -5,6 +5,7 @@ using Mirror;
 
 public class ItemScript : MonoBehaviour
 {
+    public GameObject highlight;
     public bool pickedUp;
     public bool active;
     public bool thrown;
@@ -144,6 +145,14 @@ public class ItemScript : MonoBehaviour
             // }
         }
         
+    }
+
+    public void highlightOn() {
+        highlight.SetActive(true);
+    }
+
+    public void highlightOff() {
+        highlight.SetActive(false);
     }
 
 }
