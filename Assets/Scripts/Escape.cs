@@ -12,6 +12,8 @@ public class Escape : MonoBehaviour
     GameObject progBar;
     GameObject battery;
 
+    public GameObject waypointArrow;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,7 @@ public class Escape : MonoBehaviour
 
     IEnumerator TeleportWait()
     {
+        waypointArrow.SetActive(false);
         yield return new WaitForSeconds(5f); // charge for 1 second
         gm.Victory();
     }
