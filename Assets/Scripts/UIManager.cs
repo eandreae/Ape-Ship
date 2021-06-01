@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     public GameObject gorilla;
 
     [Header("Endgame")]
-    public Animator[] minimapNodes;
+    public GameObject[] minimapNodes;
     public Animator teleporterText;
 
     Animator destructTimer;
@@ -69,9 +69,9 @@ public class UIManager : MonoBehaviour
         Debug.Log("We're in the endgame now!");
         progressBar.Play("ProgressBarFadeOut");
         //destructTimer.Play("TimerFadeIn");
-        foreach (Animator minimapNode in minimapNodes)
+        foreach (GameObject minimapNode in minimapNodes)
         {
-            minimapNode.Play("MinimapNodeFadeOut");
+            minimapNode.SetActive(false);
         }
         teleporterText.Play("GetToTeleporterSlideIn");
         batteryIndicator.SetActive(true);
