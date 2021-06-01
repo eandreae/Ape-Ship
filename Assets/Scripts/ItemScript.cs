@@ -48,6 +48,10 @@ public class ItemScript : MonoBehaviour
             //transform.Rotate(0, 0, 90 * Time.deltaTime);
             //}
             this.playerRoot = null;
+            if (type == "Battery")
+            {
+                this.gameObject.GetComponent<Animator>().enabled = true;
+            }
         }
         else {  // code to execute if object is picked up
             //if(this.glowEffect)
@@ -102,6 +106,7 @@ public class ItemScript : MonoBehaviour
             else if (type == "Battery")
             {
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+                this.gameObject.GetComponent<Animator>().enabled = false;
                 AlterSpeed(4f);
                 wp.WhichWaypoint(8);
                 teleporterIndicator.SetActive(true);

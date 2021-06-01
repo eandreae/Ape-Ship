@@ -10,7 +10,8 @@ public class Escape : MonoBehaviour
     GameManager gm;
     ProgressBar bar;
     GameObject progBar;
-    GameObject battery;
+    public GameObject bat;
+    public GameObject batSpawn;
 
     public GameObject waypointArrow;
 
@@ -42,10 +43,9 @@ public class Escape : MonoBehaviour
 
     private void SpawnBattery()
     {
-        GameObject bat = GameObject.Find("Battery");
-        bat.GetComponent<Rigidbody>().useGravity = true;
-        GameObject batSpawn = GameObject.Find("BatterySpawn");
+        GameObject battery;
         battery = Instantiate(bat, batSpawn.transform.position, batSpawn.transform.rotation);
+        battery.GetComponent<Rigidbody>().useGravity = true;
     }
 
     private void OnTriggerEnter(Collider other)
