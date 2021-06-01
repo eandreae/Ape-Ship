@@ -179,7 +179,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
                 {
                     this.anim.Play("Walk"); // play walking animation when moving
                     this.holding = false; // if no holdItem, then holding must be false
-                    this.wpArrow.SetActive(false);
                 }
                 this.transform.LookAt(transform.position + dir); // look in direction that player is walking
                 controller.SimpleMove(this.moveSpeed * dir);
@@ -197,7 +196,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
                 {
                     this.anim.Play("Idle"); // if not moving, play idle anim
                     this.holding = false; // if no holdItem, then holding must be false
-                    this.wpArrow.SetActive(false);
                 }
             }
         }
