@@ -160,4 +160,10 @@ public class ItemScript : MonoBehaviour
         highlight.SetActive(false);
     }
 
+    void OnDestroy() {
+        if (pickedUp) {
+            playerRoot.GetComponent<Player1P>().wpArrow.SetActive(false);
+        }
+    }
+
 }
