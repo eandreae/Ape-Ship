@@ -21,13 +21,17 @@ public class UIManager : MonoBehaviour
     public GameObject monkey;
     public GameObject gorilla;
 
+    public AudioSource intruderAlert;
+
     [Header("Endgame")]
+    public AudioSource teleporterOffline;
     public GameObject[] minimapNodes;
     public Animator teleporterText;
 
     Animator destructTimer;
 
    public GameObject batteryIndicator;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +46,7 @@ public class UIManager : MonoBehaviour
 
     void TeleportApes()
     {
+        intruderAlert.Play();
         monkey.SetActive(true);
         gorilla.SetActive(true);
     }
