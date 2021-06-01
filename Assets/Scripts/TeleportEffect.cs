@@ -13,7 +13,7 @@ public class TeleportEffect : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        escapeObj = GameObject.Find("Escape");
+        escapeObj = GameObject.Find("Escape2");
         canTeleport = escapeObj.GetComponent<Escape>();
     }
 
@@ -28,7 +28,7 @@ public class TeleportEffect : MonoBehaviour
             int ID = Shader.PropertyToID("EdgeWidth");
             rend.material.SetFloat("_DierctionEdgeWidthScale", startval);
 
-            startval = Mathf.Lerp(startval, endval, Time.deltaTime * 0.2f);
+            startval = Mathf.Lerp(startval, endval, Time.deltaTime * 0.6f);
         }
     }
 }

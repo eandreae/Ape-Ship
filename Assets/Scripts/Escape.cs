@@ -18,6 +18,7 @@ public class Escape : MonoBehaviour
     UIManager uim;
     private float startval = -1.7f;
     private float endval = -5f;
+    public bool batteryReplaced = false;
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,8 @@ public class Escape : MonoBehaviour
 
         progBar = GameObject.Find("ProgressSlider");
         bar = progBar.GetComponent<ProgressBar>();
+        GameObject.Find("BatteryCopy").SetActive(true);
+
     }
 
     // Update is called once per frame
@@ -40,6 +43,14 @@ public class Escape : MonoBehaviour
             waypointArrow.GetComponent<Waypoint>().WhichWaypoint(7);
             shouldSpawn = false;
             canEscape = true;
+        }
+
+        if(batteryReplaced)
+        {
+            GameObject.Find("BatteryCopy").SetActive(true);
+        } else
+        {
+            GameObject.Find("BatteryCopy").SetActive(false);
         }
     }
 
@@ -62,27 +73,27 @@ public class Escape : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(batteryReplaced && other.gameObject.tag == "Player" && this.gameObject.name == "Escape2")
+        {
+            teleport = true;
+            StartCoroutine("TeleportWait");
+        }
         if (canEscape == true)
         {
-            if (other.gameObject.name == "Battery(Clone)")
+            if (other.gameObject.name == "BatteryWithAnimations" && this.gameObject.name == "Escape")
             {
-                teleport = true;
-                Destroy(GameObject.Find("Battery(Clone)"));
-                SpawnPlayer();
-                StartCoroutine("TeleportWait");
+                Destroy(GameObject.Find("BatteryWithAnimations"));
+                batteryReplaced = true;
+                GameObject.Find("Escape2").GetComponent<Escape>().batteryReplaced = true;
             }
         }
-    }
-
-    private void SpawnPlayer()
-    {
-        //GameObject telePlayer = gameObject.Find("TeleportPlayerObject")
     }
 
     IEnumerator TeleportWait()
     {
         waypointArrow.SetActive(false);
-        yield return new WaitForSeconds(5f); // charge for 1 second
+        yield return new WaitForSeconds(2f);
+        Destroy(GameObject.FindGameObjectWithTag("Player"));
         gm.Victory();
     }
 

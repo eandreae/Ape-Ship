@@ -100,7 +100,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         oxygenCue = GameObject.Find("Oxygen Cue").GetComponent<Animator>();
         damageCue = GameObject.Find("Damage Cue").GetComponent<Animator>();
 
-        escapeObj = GameObject.Find("Escape");
+        escapeObj = GameObject.Find("Escape2");
         canTeleport = escapeObj.GetComponent<Escape>();
     }
 
@@ -246,12 +246,15 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
                 this.holdItem.GetComponent<ItemScript>().pickedUp = false;
                 this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-                this.holdItem.GetComponent<ItemScript>().thrown = true;
-                this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-                this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 20f + this.dir * 20f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
-                                                                                                                    //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
-                                                                                                                    //Debug.Log("throw");
+                if(this.gameObject.name != "BatteryWithAnimations")
+                {
+                    this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 20f + this.dir * 20f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
+                                                                                                                        //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
+                                                                                                                        //Debug.Log("throw");
+                    this.holdItem.GetComponent<ItemScript>().thrown = true;
+                    this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
 
+                }
                 Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
                 // get rid of hold item
                 this.holdItem = null;
