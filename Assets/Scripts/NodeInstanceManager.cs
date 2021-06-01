@@ -35,6 +35,7 @@ public class NodeInstanceManager : MonoBehaviour
     static bool greyed = false;
 
     AudioSource nodeDisabledSFX;
+    AudioSource nodeRepairedSFX;
 
     public float monkeySpawnTime = 4.3f;
 
@@ -63,6 +64,7 @@ public class NodeInstanceManager : MonoBehaviour
     private void Awake()
     {
         nodeDisabledSFX = GetComponent<AudioSource>();
+        nodeRepairedSFX = FindObjectOfType<GameManager>().GetComponent<AudioSource>();
     }
 
     void CheckForMonkeyAgain()
@@ -215,6 +217,7 @@ public class NodeInstanceManager : MonoBehaviour
             colorTracker.text = "green";
             OnNodeFix.Invoke();
             OnNodeGreen.Invoke();
+            nodeRepairedSFX.Play();
         }
         else if (color == Color.red)
         {
@@ -222,6 +225,7 @@ public class NodeInstanceManager : MonoBehaviour
             colorTracker.text = "yellow";
             OnNodeFix.Invoke();
             OnNodeRedToYellow.Invoke();
+            nodeRepairedSFX.Play();
         }
     }
 
