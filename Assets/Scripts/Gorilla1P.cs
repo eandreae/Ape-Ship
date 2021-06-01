@@ -42,6 +42,7 @@ public class Gorilla1P : MonoBehaviour
     public GameObject objectHeld;
 
     public float chargeCooldown = 4f;
+    private bool startMoving = false;
 
 
     // Start is called before the first frame update
@@ -76,70 +77,82 @@ public class Gorilla1P : MonoBehaviour
         targetNode = nodes[targetnum];
         target = targetNode;
         Debug.Log("Gorilla moving to: " + target);
+
+        StartCoroutine("BeginningWait");
     }
 
 
     // Update is called once per frame
     private void Update()    
     {
-        if(target == null)
-            FindNewTarget();
-        //Get list of targets from FieldOfView list
-        targetsList = GetComponent<FieldOfView>();
-        //transfer each target into local list
-        visibleTargets.Clear();
-        foreach (Transform t in targetsList.visibleTargets)
+        if (startMoving)
         {
-            visibleTargets.Add(t);
-        }
+            if (target == null)
+                FindNewTarget();
+            //Get list of targets from FieldOfView list
+            targetsList = GetComponent<FieldOfView>();
+            //transfer each target into local list
+            visibleTargets.Clear();
+            foreach (Transform t in targetsList.visibleTargets)
+            {
+                visibleTargets.Add(t);
+            }
 
-        //Get list of targets from FieldOfView list
-        objectsList = GetComponent<FieldOfView>();
-        //transfer each target into local list
-        visibleObjects.Clear();
-        foreach (Transform t in objectsList.visibleObjects)
-        {
-            visibleObjects.Add(t);
-        }
+            //Get list of targets from FieldOfView list
+            objectsList = GetComponent<FieldOfView>();
+            //transfer each target into local list
+            visibleObjects.Clear();
+            foreach (Transform t in objectsList.visibleObjects)
+            {
+                visibleObjects.Add(t);
+            }
 
-        /* ------------------ Temp Disabled -----------------------------
-        // if gorilla is not following player, check for the player distance
-        if (visibleObjects.Count != 0 && !holdingObject)
-        {
-            Debug.Log("Gorilla has found object");
-            target = visibleObjects[0].gameObject;
-            stoppingDistance = 0;
-        }
-        else         -------------------------------------------------------------------------------
-        */
-        if (visibleTargets.Count != 0)
-        {
-            //Debug.Log("Gorilla has locked on Player");
-            playerLock = true;
-            stoppingDistance = 0; // make stopping distance 0 if tracking the player
-            target = visibleTargets[0].gameObject;
+            /* ------------------ Temp Disabled -----------------------------
+            // if gorilla is not following player, check for the player distance
+            if (visibleObjects.Count != 0 && !holdingObject)
+            {
+                Debug.Log("Gorilla has found object");
+                target = visibleObjects[0].gameObject;
+                stoppingDistance = 0;
+            }
+            else         -------------------------------------------------------------------------------
+            */
+            if (visibleTargets.Count != 0)
+            {
+                //Debug.Log("Gorilla has locked on Player");
+                playerLock = true;
+                stoppingDistance = 0; // make stopping distance 0 if tracking the player
+                target = visibleTargets[0].gameObject;
+
+            }
+
+
+
+            float dist = Vector3.Distance(transform.position, target.transform.position);
+
+            if (dist < stoppingDistance)
+            {
+                FindNewTarget();
+            }
+            //if the gorilla lost sight of the player
+            else if (playerLock == true && visibleTargets.Count == 0)
+            {
+                playerLock = false;
+                stoppingDistance = 15f;
+                FindNewTarget();
+            }
+            else
+            {
+                GoToTarget();
+            }
 
         }
+    }
 
-
-
-        float dist = Vector3.Distance(transform.position, target.transform.position);
-
-        if (dist < stoppingDistance)
-        {
-        	FindNewTarget();
-        }
-        //if the gorilla lost sight of the player
-        else if (playerLock == true && visibleTargets.Count == 0)
-        {
-            playerLock = false;
-            stoppingDistance = 15f;
-            FindNewTarget();
-        }
-        else
-        {
-        	GoToTarget();
-        }
+    IEnumerator BeginningWait()
+    {
+        yield return new WaitForSeconds(2f);
+        startMoving = true;
     }
 
     private void FindNewTarget()
