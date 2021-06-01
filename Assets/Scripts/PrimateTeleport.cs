@@ -10,6 +10,7 @@ public class PrimateTeleport : MonoBehaviour
     private float defaultstart;
     bool beam = false;
     private bool swap = false;
+    public float waitTime = 3.75f;
 
     // Start is called before the first frame update
     void Start()
@@ -51,13 +52,13 @@ public class PrimateTeleport : MonoBehaviour
             swap = true;
         } else if(swap && startval > (0.4 * defaultstart))
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 
     IEnumerator BeamUp()
     {
-        yield return new WaitForSeconds(3.75f);
+        yield return new WaitForSeconds(waitTime);
         beam = true;
     }
 }

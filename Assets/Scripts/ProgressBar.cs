@@ -42,6 +42,7 @@ public class ProgressBar : MonoBehaviour
 
     private static bool spawned = false;
     public bool teleport = false;
+    private bool shouldTeleport = false;
 
     public float monkeySpawnTime = 4.3f;
 
@@ -141,6 +142,11 @@ public class ProgressBar : MonoBehaviour
             else {
                 // Set the time remaining to zero.
                 timeRemaining = 0;
+                if (!shouldTeleport)
+                {
+                    StartCoroutine("MonkeyTeleport");
+                    shouldTeleport = true;
+                }
                 // Set progressing to false.
                 progressing = false;
                 //uim.ReplaceProgressBar();
@@ -148,5 +154,12 @@ public class ProgressBar : MonoBehaviour
                 //gm.Victory();
             }
         }
+    }
+
+    IEnumerator MonkeyTeleport()
+    {
+        monkey.GetComponent<Monkey1P>().StopEnemy();
+        yield return new WaitForSeconds(2f);
+        monkey.GetComponent<Monkey1P>().TeleportOut();
     }
 }

@@ -36,6 +36,9 @@ public class Monkey1P : MonoBehaviour
 
     private bool startMoving;
 
+    private float startval = -0.5f;
+    private float endval = 0.5f;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -107,6 +110,22 @@ public class Monkey1P : MonoBehaviour
             }
 
         }
+    }
+
+    public void TeleportOut()
+    {
+        GameObject monkSphere = GameObject.Find("MonkeySphereCopy");
+        Vector3 sphereLoc = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 2.5f, this.gameObject.transform.position.z);
+        GameObject sphere;
+        sphere = Instantiate(monkSphere, sphereLoc, this.gameObject.transform.rotation);
+        sphere.GetComponent<PrimateTeleport>().enabled = true;
+        StartCoroutine("Die");
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
     }
 
     IEnumerator BeginningWait()
@@ -207,8 +226,10 @@ public class Monkey1P : MonoBehaviour
         agent.SetDestination(target.transform.position);
     }
 
-    private void StopEnemy()
+    public void StopEnemy()
     {
+        agent.speed = 0;
+        agent.acceleration = 0;
         agent.isStopped = true;
     }
 
