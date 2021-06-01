@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
             //We need to destroy the pause menu panel so the player can't pause once the game is technically over
             Destroy(pausePanel);
             won = true;
+            Time.timeScale = 0f;
         }
     }
 
@@ -80,10 +81,12 @@ public class GameManager : MonoBehaviour
     void DefeatPanel()
     {
         defeatPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void ReturnToMenu()
     {
+        Time.timeScale = 1f;
         transitionPanel.Play("PanelOutro");
         Invoke("FinallyReturnToMenu", returnDelay);
     }
