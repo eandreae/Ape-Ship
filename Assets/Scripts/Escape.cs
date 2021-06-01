@@ -16,6 +16,8 @@ public class Escape : MonoBehaviour
     public GameObject waypointArrow;
 
     UIManager uim;
+    private float startval = -1.7f;
+    private float endval = -5f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,9 +45,19 @@ public class Escape : MonoBehaviour
 
     private void SpawnBattery()
     {
-        GameObject battery;
-        battery = Instantiate(bat, batSpawn.transform.position, batSpawn.transform.rotation);
-        battery.GetComponent<Rigidbody>().useGravity = true;
+        GameObject battery = GameObject.Find("BatteryWithAnimations");
+        battery.tag = "Pick Up";
+        battery.layer = 15;
+
+        GameObject glass = GameObject.Find("Glass");
+        //while(startval > -5)
+        //{
+        startval = endval;
+            //startval = Mathf.Lerp(startval, endval, Time.deltaTime);
+            glass.gameObject.transform.localPosition = new Vector3(glass.gameObject.transform.localPosition.x, startval, glass.gameObject.transform.localPosition.z);
+        //}
+        //battery = Instantiate(bat, batSpawn.transform.position, batSpawn.transform.rotation);
+        //battery.GetComponent<Rigidbody>().useGravity = true;
     }
 
     private void OnTriggerEnter(Collider other)
