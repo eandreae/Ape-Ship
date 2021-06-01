@@ -49,6 +49,8 @@ public class ProgressBar : MonoBehaviour
     public GameObject wpArrow;
     UIManager uim;
 
+    public AudioSource intruderAlert;
+
     void Start()
     {
         progressing = true;
@@ -117,6 +119,7 @@ public class ProgressBar : MonoBehaviour
                     else {
                         GameObject gorilla2 = Instantiate(gorilla, spawnLoc, gorilla.transform.rotation);
                     }
+                    intruderAlert.Play();
                     /*GameObject mat = GameObject.Find("QuadDrawGorilla_LowPoly_UVUnwrapped_final1(Clone)");
                     Renderer render = mat.GetComponent<Renderer>();
                     render.material.SetTexture("Gorilla2Body", gorilla2Tex);*/
