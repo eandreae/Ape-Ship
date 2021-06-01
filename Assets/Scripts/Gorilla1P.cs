@@ -243,10 +243,14 @@ public class Gorilla1P : MonoBehaviour
             charging = true;
 
             StopGorilla();
+            
+            //-- WINDUP ANIMATION --//
+            this.GetComponent<Animator>().Play("GorillaWindUp");
+            
             this.transform.LookAt(target.transform.position);
             this.GetComponent<Rigidbody>().ResetInertiaTensor(); // reset inertia before charging
 
-            yield return new WaitForSeconds(0.75f); // time in seconds to wait
+            yield return new WaitForSeconds(1f); // time in seconds to wait
             
             this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
@@ -279,7 +283,10 @@ public class Gorilla1P : MonoBehaviour
             objectHeld.GetComponent<Rigidbody>().isKinematic = false;
             objectHeld.tag = "ThrownObject";
             objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 3f, ForceMode.Impulse);
-
+            
+            //-- THROW ANIMATION --//
+            this.GetComponent<Animator>().Play("GorillaThrow");
+            
             yield return new WaitForSeconds(1f); // wait for 1 second
 
             holdingObject = false;
@@ -305,6 +312,10 @@ public class Gorilla1P : MonoBehaviour
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
     IEnumerator AttackPlayer(Player1P player){
         Debug.Log("ATTACK PLAYER");
+
+        //-- ATTACK ANIMATION --//
+        this.GetComponent<Animator>().Play("GorillaClap");
+
         this.stunned = true;
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false;
@@ -325,8 +336,7 @@ public class Gorilla1P : MonoBehaviour
             // Update the health of the player.
             player.StartCoroutine("updateHealth");
         }
-        
-        //animator.play("attack-anim"); // play the gorilla attack animation (?)
+            
         yield return new WaitForSeconds(0.75f); // wait
         
         StartGorilla();
