@@ -14,10 +14,13 @@ public class Escape : MonoBehaviour
 
     public GameObject waypointArrow;
 
+    UIManager uim;
+
     // Start is called before the first frame update
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        uim = FindObjectOfType<UIManager>();
 
         progBar = GameObject.Find("ProgressSlider");
         bar = progBar.GetComponent<ProgressBar>();
@@ -28,7 +31,10 @@ public class Escape : MonoBehaviour
     {
         if(bar.teleport == true && shouldSpawn == true)
         {
+            uim.ReplaceProgressBar();
             SpawnBattery();
+            waypointArrow.SetActive(true);
+            waypointArrow.GetComponent<Waypoint>().WhichWaypoint(7);
             shouldSpawn = false;
             canEscape = true;
         }

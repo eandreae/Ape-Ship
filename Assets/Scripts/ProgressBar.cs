@@ -143,9 +143,7 @@ public class ProgressBar : MonoBehaviour
                 timeRemaining = 0;
                 // Set progressing to false.
                 progressing = false;
-                wpArrow.SetActive(true);
-                wpArrow.GetComponent<Waypoint>().WhichWaypoint(7);
-                uim.ReplaceProgressBar();
+                //uim.ReplaceProgressBar();
                 teleport = true;
                 //gm.Victory();
             }

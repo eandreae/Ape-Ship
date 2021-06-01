@@ -19,6 +19,7 @@ public class ItemScript : MonoBehaviour
     NetworkManager nm;
 
     public GameObject teleporterIndicator;
+    public GameObject batteryIndicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -104,6 +105,7 @@ public class ItemScript : MonoBehaviour
                 AlterSpeed(4f);
                 wp.WhichWaypoint(8);
                 teleporterIndicator.SetActive(true);
+                batteryIndicator.SetActive(false);
             }
         }
     }
