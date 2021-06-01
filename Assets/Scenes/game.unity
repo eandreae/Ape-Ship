@@ -43637,7 +43637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1444354088
 Transform:
   m_ObjectHideFlags: 0
@@ -43734,7 +43734,6 @@ MonoBehaviour:
   - {fileID: 1457082285}
   - {fileID: 822360214}
   - {fileID: 1323967533}
-  interactAnim: {fileID: 684792717}
 --- !u!65 &1444354092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -65335,6 +65334,7 @@ MonoBehaviour:
   CameraObj: {fileID: 0}
   visibleTargets: []
   canMove: 0
+  hasWonTheGame: 0
 --- !u!114 &7647579301248157102
 MonoBehaviour:
   m_ObjectHideFlags: 0
