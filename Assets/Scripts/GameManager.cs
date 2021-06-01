@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
             //We need to destroy the pause menu panel so the player can't pause once the game is technically over
             Destroy(pausePanel);
             won = true;
+            p1p.hasWonTheGame = true;
             Time.timeScale = 0f;
         }
     }
@@ -57,6 +58,7 @@ public class GameManager : MonoBehaviour
             Destroy(pausePanel);
             lost = true;
             p1p.canMove = false;
+            p1p.hasWonTheGame = true;
             p1p.GetComponent<Animator>().Play("PlayerDeath");
 
             if (cause == 1)
