@@ -57,6 +57,9 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     [HideInInspector]
     public bool canMove;
 
+    [HideInInspector]
+    public bool hasWonTheGame;
+
     Escape canTeleport;
     GameObject escapeObj;
 
@@ -405,7 +408,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
     void PlayWalkingNoise(){
         //Debug.Log(this.dir);
-        if(this.dir.sqrMagnitude > 0){
+        if(this.dir.sqrMagnitude > 0 && health > 0 && !hasWonTheGame){
             AudioClip temp = this.walkingSamples[Random.Range(0, 3)];
             //Debug.Log(temp);
             this.walkingSFX.PlayOneShot(temp, Random.Range(0.01f, 0.05f));
