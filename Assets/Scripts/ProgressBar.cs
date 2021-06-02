@@ -38,7 +38,7 @@ public class ProgressBar : MonoBehaviour
     public Gradient barGradient;
 
     public Vector3 sizeDelta;
-    private Vector3 spawnLoc;
+    public GameObject spawnLoc;
 
     private static bool spawned = false;
     public bool teleport = false;
@@ -62,8 +62,6 @@ public class ProgressBar : MonoBehaviour
         agentG = gorilla.GetComponent<NavMeshAgent>();
         barFill.color = barGradient.Evaluate(1f);
         uim = FindObjectOfType<UIManager>();
-
-        spawnLoc = GameObject.Find("GorillaSpawn").transform.position;
 
         Invoke("CheckForMonkeyAgain", monkeySpawnTime);
     }
@@ -117,7 +115,8 @@ public class ProgressBar : MonoBehaviour
                         NetworkServer.Spawn(gorilla2);
                     } 
                     else {
-                        GameObject gorilla2 = Instantiate(gorilla, spawnLoc, gorilla.transform.rotation);
+                        GameObject gorilla2 = Instantiate(gorilla, spawnLoc.transform.position, gorilla.transform.rotation);
+                        gorilla2.GetComponent<Gorilla1P>().TeleportOut();
                     }
                     intruderAlert.Play();
                     /*GameObject mat = GameObject.Find("QuadDrawGorilla_LowPoly_UVUnwrapped_final1(Clone)");
