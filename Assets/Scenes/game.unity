@@ -3772,6 +3772,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lungColor: {fileID: 1759386919}
+--- !u!208 &154885217
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154885208}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 7.5, y: 5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 4.5, z: 3.5}
+  m_TimeToStationary: 0.5
 --- !u!95 &154885218
 Animator:
   serializedVersion: 3
@@ -43548,6 +43564,22 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1398323077}
   m_PrefabAsset: {fileID: 0}
+--- !u!208 &1398323105
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398323082}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 7.5, y: 5, z: 2}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 4.5, z: 3.5}
+  m_TimeToStationary: 0.5
 --- !u!1 &1398904219 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 7bd494daf05a2d940af1fef79ada35c4,
