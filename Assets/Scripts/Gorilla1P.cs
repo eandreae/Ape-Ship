@@ -80,7 +80,6 @@ public class Gorilla1P : MonoBehaviour
 
         StartCoroutine("BeginningWait");
 
-        Physics.IgnoreCollision(this.GetComponent<MeshCollider>(), GameObject.FindWithTag("Player").GetComponent<MeshCollider>(), true);
     }
 
 
@@ -148,6 +147,10 @@ public class Gorilla1P : MonoBehaviour
                 GoToTarget();
             }
 
+        }
+        else{
+            Physics.IgnoreCollision(this.GetComponent<MeshCollider>(), GameObject.FindWithTag("Player").GetComponent<MeshCollider>(), true);
+            Physics.IgnoreCollision(this.GetComponent<MeshCollider>(), GameObject.FindWithTag("Player").GetComponent<CharacterController>(), true);
         }
     }
 
@@ -254,6 +257,7 @@ public class Gorilla1P : MonoBehaviour
             charging = true;
 
             StopGorilla();
+            this.GetComponent<Animator>().Play("GorillaIdle");
             
             //-- WINDUP ANIMATION --//
             this.GetComponent<Animator>().Play("GorillaWindUp");
@@ -372,7 +376,8 @@ public class Gorilla1P : MonoBehaviour
         StopCoroutine("ChargeAttack");  // stop charging
         StopCoroutine("AttackPlayer");  // stop attackplayer coroutine in case of overlap
         StopCoroutine("ThrowObject");
-        StopGorilla();        
+        StopGorilla();
+        this.GetComponent<Animator>().Play("GorillaIdle");
         
         this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
         this.GetComponent<Rigidbody>().isKinematic = true;
@@ -397,6 +402,7 @@ public class Gorilla1P : MonoBehaviour
         StopCoroutine("SelfStun");
         
         StopGorilla();
+        this.GetComponent<Animator>().Play("GorillaIdle");
         
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false; 
@@ -428,8 +434,6 @@ public class Gorilla1P : MonoBehaviour
         agent.speed = 0;
         agent.acceleration = 100;
         agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
-
-        this.GetComponent<Animator>().Play("GorillaIdle");
     }
 
     private void StartGorilla(){
