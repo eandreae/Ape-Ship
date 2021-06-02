@@ -246,9 +246,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 129934076081449892}
-  - component: {fileID: 452373340052573248}
+  - component: {fileID: -3962228656306497896}
   - component: {fileID: 452373340052573249}
   - component: {fileID: 452373340052573250}
+  - component: {fileID: -842479464852379986}
   - component: {fileID: 452373340052573251}
   - component: {fileID: 452373340052573260}
   - component: {fileID: 452373340052573261}
@@ -268,39 +269,33 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758380405924426014}
-  m_LocalRotation: {x: -0, y: -0.32982674, z: -0, w: 0.9440415}
-  m_LocalPosition: {x: -95, y: 0, z: -3.2}
+  m_LocalRotation: {x: -0, y: 0.6878781, z: -0, w: 0.72582626}
+  m_LocalPosition: {x: -95, y: 0, z: -3.5}
   m_LocalScale: {x: 0.9198445, y: 0.9198445, z: 0.9198445}
   m_Children:
   - {fileID: 7726581728769097916}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: -38.517002, z: 0}
---- !u!114 &452373340052573248
-MonoBehaviour:
+  m_LocalEulerAnglesHint: {x: 0, y: 86.925, z: 0}
+--- !u!95 &-3962228656306497896
+Animator:
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 758380405924426014}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d71623e4b13e42c398fa636074676df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 40
-  viewAngle: 270
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 256
-  objectMask:
-    serializedVersion: 2
-    m_Bits: 16384
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  visibleTargets: []
-  visibleObjects: []
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 65f950230ee38b64da46f863c9af028c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!195 &452373340052573249
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -335,6 +330,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c8d3b955e92020468cd8ba7a8b342b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   _SPEED: 6
   _ANGULAR_SPEED: 120
   _ACCELERATION: 8
@@ -342,7 +339,34 @@ MonoBehaviour:
   stunned: 0
   visibleTargets: []
   visibleObjects: []
+  holdingObject: 0
+  objectHeld: {fileID: 0}
   chargeCooldown: 4
+--- !u!114 &-842479464852379986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 758380405924426014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d71623e4b13e42c398fa636074676df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 40
+  viewAngle: 270
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 256
+  objectMask:
+    serializedVersion: 2
+    m_Bits: 16384
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 1024
+  visibleTargets: []
+  visibleObjects: []
 --- !u!65 &452373340052573251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -367,7 +391,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 5, y: 5, z: 2}
+  m_Size: {x: 5, y: 5, z: 2.5}
   m_Center: {x: 0, y: 2.5, z: 1.5}
 --- !u!54 &452373340052573261
 Rigidbody:

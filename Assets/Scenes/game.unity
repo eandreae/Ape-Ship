@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -522,6 +522,102 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &20952160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 20952161}
+  - component: {fileID: 20952164}
+  - component: {fileID: 20952163}
+  - component: {fileID: 20952162}
+  - component: {fileID: 20952166}
+  m_Layer: 0
+  m_Name: nukeSpawnCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &20952161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20952160}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.8600006, y: -0.90999985, z: -2.1599998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1056242536}
+  m_RootOrder: 14
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &20952162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20952160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cd6a4876a66507459fe71a3b6c92c37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  spawnPos: {fileID: 203415736}
+  spawnee: {fileID: 0}
+--- !u!54 &20952163
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20952160}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!65 &20952164
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20952160}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3, y: 3, z: 3}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &20952166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20952160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 1187990940
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1001 &25523115
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2187,6 +2283,9 @@ MonoBehaviour:
   gorillaCollider: {fileID: 0}
   wpArrow: {fileID: 0}
   CameraObj: {fileID: 0}
+  visibleTargets: []
+  canMove: 0
+  hasWonTheGame: 0
 --- !u!208 &94721647
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -8738,6 +8837,8 @@ MonoBehaviour:
   stunned: 0
   visibleTargets: []
   visibleObjects: []
+  holdingObject: 0
+  objectHeld: {fileID: 0}
   chargeCooldown: 4
 --- !u!54 &355819494
 Rigidbody:
@@ -17422,6 +17523,8 @@ MonoBehaviour:
   stunned: 0
   visibleTargets: []
   visibleObjects: []
+  holdingObject: 0
+  objectHeld: {fileID: 0}
   chargeCooldown: 4
 --- !u!4 &564618960
 Transform:
@@ -18685,6 +18788,8 @@ MonoBehaviour:
   stunned: 0
   visibleTargets: []
   visibleObjects: []
+  holdingObject: 0
+  objectHeld: {fileID: 0}
   chargeCooldown: 4
 --- !u!195 &629005195
 NavMeshAgent:
@@ -19173,7 +19278,7 @@ MonoBehaviour:
   gorilla: {fileID: 0}
   agentG: {fileID: 0}
   gorill: {fileID: 1190199561}
-  gorill1P: {fileID: 3608863098772767487}
+  gorill1P: {fileID: 0}
   barGradient:
     serializedVersion: 2
     key0: {r: 0, g: 0.69803923, b: 0.8235295, a: 1}
@@ -43489,6 +43594,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4471785885756750057, guid: cbfd48b9f58b5c340930382de8770fb1,
         type: 3}
+      propertyPath: foodItems.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4471785885756750057, guid: cbfd48b9f58b5c340930382de8770fb1,
+        type: 3}
       propertyPath: nodeColor
       value: 
       objectReference: {fileID: 1626664258}
@@ -43497,6 +43607,12 @@ PrefabInstance:
       propertyPath: spawnPos
       value: 
       objectReference: {fileID: 1441720601}
+    - target: {fileID: 4471785885756750057, guid: cbfd48b9f58b5c340930382de8770fb1,
+        type: 3}
+      propertyPath: foodItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 6637160688469820357, guid: cd910d1fd47429f41b4de8b2a9b2e4fa,
+        type: 3}
     - target: {fileID: 4471785885756750058, guid: cbfd48b9f58b5c340930382de8770fb1,
         type: 3}
       propertyPath: sceneId
@@ -48272,9 +48388,9 @@ GameObject:
   - component: {fileID: 1666636722}
   - component: {fileID: 1666636724}
   - component: {fileID: 1666636723}
-  - component: {fileID: 1666636725}
+  - component: {fileID: 1666636726}
   m_Layer: 0
-  m_Name: nukeSpawnCollider
+  m_Name: nukeSpawnCollider (1P)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48323,7 +48439,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1666636725
+--- !u!114 &1666636726
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -48332,9 +48448,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1666636721}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2cd6a4876a66507459fe71a3b6c92c37, type: 3}
+  m_Script: {fileID: 11500000, guid: 75aa5bdadc08c904793ac4b42edcfc3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   spawnPos: {fileID: 203415736}
   spawnee: {fileID: 0}
   foodItems: []
@@ -51691,6 +51809,8 @@ MonoBehaviour:
   stunned: 0
   visibleTargets: []
   visibleObjects: []
+  holdingObject: 0
+  objectHeld: {fileID: 0}
   chargeCooldown: 4
 --- !u!1 &1822004930
 GameObject:
@@ -63308,18 +63428,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000034769066, y: 0.026224952, z: -0.0026717465}
     m_Extent: {x: 0.023008402, y: 0.027166132, z: 0.01377251}
   m_DirtyAABB: 0
---- !u!114 &3608863098772767487 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7240330348077717736, guid: faf722b850fc59d4b8b73a4efa7a69e0,
-    type: 3}
-  m_PrefabInstance: {fileID: 6228359301459270167}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51a48a3b48139a34e8a770cbcd5f0a1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!23 &3618738668013506063
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -66924,7 +67032,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 14
-  playerNum: -1
   dir: {x: 0, y: 0, z: 0}
   health: 0
   oxygen: 0

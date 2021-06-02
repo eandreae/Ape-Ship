@@ -421,6 +421,8 @@ public class Gorilla1P : MonoBehaviour
         agent.speed = 0;
         agent.acceleration = 100;
         agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
+
+        this.GetComponent<Animator>().Play("GorillaIdle");
     }
 
     private void StartGorilla(){

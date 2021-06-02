@@ -65,8 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3453ce58a73d74446b4df6b1da0ddc05, type: 2}
-  - {fileID: 2100000, guid: 11bd173bfc25cec48abff9957fabae58, type: 2}
+  - {fileID: 2100000, guid: 215278eb10233bb4da4b56d267486a09, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,12 +142,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlight: {fileID: 0}
   pickedUp: 0
   active: 0
   thrown: 0
   playerRoot: {fileID: 0}
   type: Canister2
   wp: {fileID: 0}
+  teleporterIndicator: {fileID: 0}
+  batteryIndicator: {fileID: 0}
 --- !u!114 &3336795119560283056
 MonoBehaviour:
   m_ObjectHideFlags: 0
