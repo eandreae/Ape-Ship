@@ -32,11 +32,11 @@ public class ShootLaser : MonoBehaviour
         157.0f*/
         //single player angles
         0f,
-        70f,
-        -121f,
+        103f,
+        0f,
         106f,
         0f,
-        -121f,
+        -77f,
         -2.2f,
         0f,
         -196.0f
@@ -49,7 +49,7 @@ public class ShootLaser : MonoBehaviour
         mirror2 = GameObject.Find("MirrorCart/Rail (1)");
         mirror3 = GameObject.Find("MirrorCart/Rail (2)");
 
-        ChooseRotation(mirror1.transform.GetChild(0).gameObject, mirror2.transform.GetChild(0).gameObject, mirror3.transform.GetChild(0).gameObject);
+        //ChooseRotation(mirror1.transform.GetChild(0).gameObject, mirror2.transform.GetChild(0).gameObject, mirror3.transform.GetChild(0).gameObject);
     }
 
     // Update is called once per frame

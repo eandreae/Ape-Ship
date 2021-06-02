@@ -4,22 +4,33 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-    public static Transform[] waypoints;
-    public static Transform focus;
+    public Transform[] waypoints;
+    public Transform focus;
 
     public void Start(){
-        waypoints = new Transform[5];
-        waypoints[0] = GameObject.Find("NeuronWaypoint").transform;
-        waypoints[1] = GameObject.Find("BananaWaypoint").transform;
-        waypoints[2] = GameObject.Find("Oxy1Waypoint").transform;
-        waypoints[3] = GameObject.Find("Oxy2Waypoint").transform;
-        waypoints[4] = GameObject.Find("KrillWaypoint").transform;
+        //waypoints = new Transform[8];
+        /*
+        waypoints[0] = GameObject.Find("RedNeuronWaypoint").transform;
+        waypoints[1] = GameObject.Find("GreenNeuronWaypoint").transform;
+        waypoints[2] = GameObject.Find("BlueNeuronWaypoint").transform;
+        waypoints[3] = GameObject.Find("BananaWaypoint").transform;
+        waypoints[4] = GameObject.Find("Oxy1Waypoint").transform;
+        waypoints[5] = GameObject.Find("Oxy2Waypoint").transform;
+        waypoints[6] = GameObject.Find("KrillWaypoint").transform;
+        waypoints[7] = GameObject.Find("BatteryWaypoint").transform;
+        */
+        
         //Debug.Log(waypoints);
     }
 
-    public static void WhichWaypoint(int wp)
+    public void WhichWaypoint(int wp)
     {
         focus = waypoints[wp];
+    }
+
+    public void DisableArrow()
+    {
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame

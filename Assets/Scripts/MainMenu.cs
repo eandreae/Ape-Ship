@@ -8,12 +8,13 @@ public class MainMenu : MonoBehaviour
     public float startDelay = 1f;
 
     public Animator startGameAnim;
+    public Animator whaleAnim;
+    public Animator apesShipAnim;
 
     public AudioSource buttonPress;
 
     public GameObject mainMenuPanel;
     public GameObject playOptionsPanel;
-    public GameObject hostOptionsPanel;
     public GameObject tutorialPanel;
     public GameObject creditsPanel;
     public GameObject settingsPanel;
@@ -28,11 +29,13 @@ public class MainMenu : MonoBehaviour
         Object.Destroy(GameObject.Find("NetworkManager"));
         Debug.Log("Start the game!");
         //Play an animation that leads into the game using a UI panel
-        startGameAnim.Play("PanelOutro");
+        startGameAnim.Play("MenuPanelOutro");
         //This method will actually transition the game into the next scene
         Invoke("finallyStart", startDelay);
         //Plays a button press sound effect
         buttonPress.Play();
+        whaleAnim.Play("WhaleChaseOne");
+        apesShipAnim.Play("WhaleChaseTwo");
     }
 
     public void HostGame() {
@@ -52,20 +55,6 @@ public class MainMenu : MonoBehaviour
         playOptionsPanel.SetActive(false);
         buttonPress.Play();
         mainMenuPanel.SetActive(true);
-    }
-
-    public void ShowMultiPlayOptions()
-    {
-        hostOptionsPanel.SetActive(true);
-        buttonPress.Play();
-        playOptionsPanel.SetActive(false);
-    }
-
-    public void HideMultiPlayOptions()
-    {
-        hostOptionsPanel.SetActive(false);
-        buttonPress.Play();
-        playOptionsPanel.SetActive(true);
     }
 
     void finallyStart()

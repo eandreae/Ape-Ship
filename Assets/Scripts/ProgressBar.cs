@@ -38,10 +38,18 @@ public class ProgressBar : MonoBehaviour
     public Gradient barGradient;
 
     public Vector3 sizeDelta;
-    private Vector3 spawnLoc;
+    public GameObject spawnLoc;
 
     private static bool spawned = false;
     public bool teleport = false;
+    private bool shouldTeleport = false;
+
+    public float monkeySpawnTime = 4.3f;
+
+    public GameObject wpArrow;
+    UIManager uim;
+
+    public AudioSource intruderAlert;
 
     void Start()
     {
@@ -50,11 +58,18 @@ public class ProgressBar : MonoBehaviour
         nm = GameObject.FindObjectOfType<NetworkManager>();
         monkey = GameObject.FindGameObjectWithTag("Monkey");
         agentM = monkey.GetComponent<NavMeshAgent>();
-        gorilla = GameObject.FindGameObjectWithTag("Gorilla");
+        gorilla = GameObject.Find("Single Player Gorilla (debug) old");
         agentG = gorilla.GetComponent<NavMeshAgent>();
         barFill.color = barGradient.Evaluate(1f);
+        uim = FindObjectOfType<UIManager>();
 
-        spawnLoc = GameObject.Find("GorillaSpawn").transform.position;
+        Invoke("CheckForMonkeyAgain", monkeySpawnTime);
+    }
+
+    void CheckForMonkeyAgain()
+    {
+        monkey = GameObject.FindGameObjectWithTag("Monkey");
+        agentM = monkey.GetComponent<NavMeshAgent>();
     }
 
 
@@ -62,6 +77,7 @@ public class ProgressBar : MonoBehaviour
     void Update()
     {
         //-- for netcode --d// 
+        
         if (!monkey) {
             monkey = GameObject.FindGameObjectWithTag("Monkey");
             agentM = monkey.GetComponent<NavMeshAgent>();
@@ -70,6 +86,7 @@ public class ProgressBar : MonoBehaviour
             gorilla = GameObject.FindGameObjectWithTag("Gorilla");
             agentG = gorilla.GetComponent<NavMeshAgent>();
         }
+        
 
         // Check if either NavigationColor or ReactorColor are red.
         if ( NavigationColor.text == "red" || ReactorColor.text == "red" ){
@@ -98,8 +115,10 @@ public class ProgressBar : MonoBehaviour
                         NetworkServer.Spawn(gorilla2);
                     } 
                     else {
-                        GameObject gorilla2 = Instantiate(gorilla, spawnLoc, gorilla.transform.rotation);
+                        GameObject gorilla2 = Instantiate(gorilla, spawnLoc.transform.position, gorilla.transform.rotation);
+                        gorilla2.GetComponent<Gorilla1P>().TeleportOut();
                     }
+                    intruderAlert.Play();
                     /*GameObject mat = GameObject.Find("QuadDrawGorilla_LowPoly_UVUnwrapped_final1(Clone)");
                     Renderer render = mat.GetComponent<Renderer>();
                     render.material.SetTexture("Gorilla2Body", gorilla2Tex);*/
@@ -125,11 +144,24 @@ public class ProgressBar : MonoBehaviour
             else {
                 // Set the time remaining to zero.
                 timeRemaining = 0;
+                if (!shouldTeleport)
+                {
+                    StartCoroutine("MonkeyTeleport");
+                    shouldTeleport = true;
+                }
                 // Set progressing to false.
                 progressing = false;
+                //uim.ReplaceProgressBar();
                 teleport = true;
                 //gm.Victory();
             }
         }
+    }
+
+    IEnumerator MonkeyTeleport()
+    {
+        monkey.GetComponent<Monkey1P>().StopEnemy();
+        yield return new WaitForSeconds(2f);
+        monkey.GetComponent<Monkey1P>().TeleportOut();
     }
 }

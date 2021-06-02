@@ -53,20 +53,16 @@ public class foodSpawner : NetworkBehaviour
 
     private void OnTriggerEnter(Collider coll)
     {
-        if(coll.gameObject.tag == "Player" && canSpawn && coll.gameObject.GetComponent<Player>().isServer) // player can spawn items from vending machine on a cooldown
+        if(coll.gameObject.tag == "Player" && canSpawn && isServer) // player can spawn items from vending machine on a cooldown
         {
-            //
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
-            //Changed to always spawn
-            //if (nodeColor.text != "green")
-            //{
-                foodAnim.Play("PushButton");
-                currColor = nodeColor.text;
-                CmdSpawnObject(spawnLoc, spawnPos.rotation);
-                canSpawn = false;
-                StartCoroutine("SpawnTimer", 5.0f); // add 5 second cd to using vending machine
-            //}
-        } else if(coll.gameObject.tag == "Gorilla" && coll.GetComponent<GorillaMovement>().charging) // gorilla collision when charging means spawn item no matter what
+            foodAnim.Play("PushButton");
+            currColor = nodeColor.text;
+            SpawnObject(spawnLoc, spawnPos.rotation);
+            canSpawn = false;
+            StartCoroutine("SpawnTimer", 5.0f); // add 5 second cd to using vending machine
+        } 
+        else if(coll.gameObject.tag == "Gorilla" && coll.GetComponent<GorillaMovement>().charging && isServer) // gorilla collision when charging means spawn item no matter what
         {
             //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
             spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
@@ -75,9 +71,7 @@ public class foodSpawner : NetworkBehaviour
             //{
                 foodAnim.Play("PushButton");
                 currColor = nodeColor.text;
-                GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
-                temp.GetComponent<Rigidbody>().useGravity = true;
-                temp.GetComponent<destroyer>().enabled = true;
+                SpawnObject(spawnLoc, spawnPos.rotation);
                 canSpawn = false;
                 StartCoroutine("SpawnTimer", 2.0f); // add 2 second cd to using vending machine
             //}
@@ -92,24 +86,7 @@ public class foodSpawner : NetworkBehaviour
         canSpawn = true;
     }
 
-    /*private void OnCollisionEnter(Collision coll)
-    {
-        if (coll.gameObject.tag == "Gorilla" && charging)
-        {
-            Debug.Log("WHOOOO");
-
-            spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
-            if (nodeColor.text != currColor)
-            {
-                currColor = nodeColor.text;
-                GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
-                temp.GetComponent<Rigidbody>().useGravity = true;
-            }
-
-        }
-    }*/
-    //  [Command (requiresAuthority = false)]
-    public void CmdSpawnObject(Vector3 spawnLoc, Quaternion rotation){
+    public void SpawnObject(Vector3 spawnLoc, Quaternion rotation){
         spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
         
         GameObject temp = Instantiate(spawnee, spawnLoc, rotation);

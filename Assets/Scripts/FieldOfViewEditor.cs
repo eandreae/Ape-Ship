@@ -1,5 +1,4 @@
-﻿#if Unity_Editor
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 using UnityEditor;
 
@@ -27,4 +26,3 @@ public class FieldOfViewEditor : Editor
 	}
 
 }
-#endif

@@ -15,7 +15,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 {
 	private CharacterController controller;
     public float moveSpeed = 14f;
-    public int playerNum = -1; 
     public Vector3 dir;
 
     float defaultSpeed;
@@ -50,16 +49,28 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     public GameObject wpArrow;
     public GameObject CameraObj;
 
+    public List<Transform> visibleTargets = new List<Transform>();
+    private Transform highlightTarget;
+    PlayerFOV targetsList;
+
+    [HideInInspector]
+    public bool canMove;
+
+    [HideInInspector]
+    public bool hasWonTheGame;
+
+    Escape canTeleport;
+    GameObject escapeObj;
+
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+       
         defaultSpeed = moveSpeed;
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
         health = 3;
-        oxygen = 60;
+        oxygen = 90;
         invulnerable = false;
         holding = false;
         gm = FindObjectOfType<GameManager>();
@@ -87,11 +98,67 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
         oxygenCue = GameObject.Find("Oxygen Cue").GetComponent<Animator>();
         damageCue = GameObject.Find("Damage Cue").GetComponent<Animator>();
+
+        escapeObj = GameObject.Find("Escape2");
+        canTeleport = escapeObj.GetComponent<Escape>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(canTeleport.teleport == true)
+        {
+            this.anim.Play("Idle");
+            canMove = false;
+        }
+
+        //Get list of targets from FieldOfView list
+        targetsList = GetComponent<PlayerFOV>();
+        //transfer each target into local list
+        visibleTargets.Clear();
+        foreach (Transform t in targetsList.visibleTargets)
+        {
+            visibleTargets.Add(t);
+        }
+
+        if (visibleTargets.Count == 0 || this.holding) {
+            if (highlightTarget) {
+                highlightTarget.gameObject.GetComponent<ItemScript>().highlightOff();
+            }
+            highlightTarget = null;
+        }
+
+        if (!this.holding && visibleTargets.Count != 0 && visibleTargets[0] != highlightTarget) {
+            if (highlightTarget) {
+                highlightTarget.gameObject.GetComponent<ItemScript>().highlightOff();
+            }
+            highlightTarget = visibleTargets[0];
+            Debug.Log("target switched: "+highlightTarget.gameObject.name);
+
+            highlightTarget.gameObject.GetComponent<ItemScript>().highlightOn();
+        }
+
+        if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0)
+        {
+            this.holdItem = visibleTargets[0].gameObject;
+
+            // Sets player to the pick-up item's parent so the item will move around with the player.            
+            //other.gameObject.transform.parent = this.transform;
+            visibleTargets[0].gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
+
+            // mark the coin (or whatever object) as picked up 
+            visibleTargets[0].gameObject.GetComponent<ItemScript>().pickedUp = true;
+            visibleTargets[0].gameObject.GetComponent<ItemScript>().thrown = false;
+
+            // disable collision with held item
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), visibleTargets[0].gameObject.GetComponent<MeshCollider>(), true);
+
+            this.wpArrow.SetActive(true);
+            //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+            StartCoroutine("PickUpCD");
+        }
+
+
         //checks to see if pressing any arrow keys
         //if so will go horizontal if left or right
         //will go vertical if up or down
@@ -99,41 +166,42 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         //Debug.Log("islocalplayer "+isLocalPlayer);
 
         // creating normalizing direction so that movement isnt faster on diagonals
-        this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
-        if (dir.sqrMagnitude > 0)
+        if (canMove)
         {
-            //Debug.Log(this.holdItem);
-            // if Player is holding an item, then use the hold animation. 
-            if (this.holdItem)
+            this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
+            if (dir.sqrMagnitude > 0)
             {
-                this.anim.Play("Hold");
+                //Debug.Log(this.holdItem);
+                // if Player is holding an item, then use the hold animation. 
+                if (this.holdItem)
+                {
+                    this.anim.Play("Hold");
+                }
+                else
+                {
+                    this.anim.Play("Walk"); // play walking animation when moving
+                    this.holding = false; // if no holdItem, then holding must be false
+                }
+                this.transform.LookAt(transform.position + dir); // look in direction that player is walking
+                controller.SimpleMove(this.moveSpeed * dir);
+                //StartCoroutine("PlayWalkingNoise");
+                // Moved camera functionality to PlayerCamera.cs
+                // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
             }
-            else
+            else if (dir.sqrMagnitude == 0)
             {
-                this.anim.Play("Walk"); // play walking animation when moving
-                this.holding = false; // if no holdItem, then holding must be false
-                this.wpArrow.SetActive(false);
+                if (this.holdItem)
+                {
+                    this.anim.Play("Hold-Idle");
+                }
+                else
+                {
+                    this.anim.Play("Idle"); // if not moving, play idle anim
+                    this.holding = false; // if no holdItem, then holding must be false
+                }
             }
-            this.transform.LookAt(transform.position + dir); // look in direction that player is walking
-            controller.SimpleMove(this.moveSpeed * dir);
-            //StartCoroutine("PlayWalkingNoise");
-            // Moved camera functionality to PlayerCamera.cs
-            // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
         }
-        else if (dir.sqrMagnitude == 0)
-        {
-            if (this.holdItem)
-            {
-                this.anim.Play("Hold-Idle");
-            }
-            else
-            {
-                this.anim.Play("Idle"); // if not moving, play idle anim
-                this.holding = false; // if no holdItem, then holding must be false
-                this.wpArrow.SetActive(false);
-            }
-        }
-
+        
         // Check if the player is invulnerable
         if (invulnerable)
         {
@@ -177,12 +245,15 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
                 this.holdItem.GetComponent<ItemScript>().pickedUp = false;
                 this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-                this.holdItem.GetComponent<ItemScript>().thrown = true;
-                this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-                this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
-                                                                                                                    //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
-                                                                                                                    //Debug.Log("throw");
+                if(this.gameObject.name != "BatteryWithAnimations")
+                {
+                    this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 20f + this.dir * 20f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
+                                                                                                                        //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
+                                                                                                                        //Debug.Log("throw");
+                    this.holdItem.GetComponent<ItemScript>().thrown = true;
+                    this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
 
+                }
                 Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
                 // get rid of hold item
                 this.holdItem = null;
@@ -209,7 +280,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             updateOxygen(0);
         }
         else {
-            if ( oxygen < 60 ) {
+            if ( oxygen < 90 ) {
                 oxygen += Time.deltaTime * 2;
                 updateOxygen(1);
             }
@@ -220,7 +291,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     //checks to see if picked up object, activated everytime touch a trigger collider
     void OnTriggerEnter(Collider other) 
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !this.holdItem && other.gameObject.CompareTag("Pick Up"))
+        /*if (Input.GetKeyDown("space") && !this.holdItem && other.gameObject.CompareTag("Pick Up"))
     	{
             this.holdItem = other.gameObject;
 
@@ -238,7 +309,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             this.wpArrow.SetActive(true);
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
-    	}
+    	}*/
         if (other.gameObject.tag == "ThrownObject")
         {
             Debug.Log("Hit by object");
@@ -247,28 +318,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         }
     }
 
-    // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
-    void OnTriggerStay(Collider other){
-        //test tag, if string is same as pick up...
-    	if (Input.GetKeyDown(KeyCode.Space) && !this.holdItem && other.gameObject.CompareTag("Pick Up") )
-    	{
-            this.holdItem = other.gameObject;
-            // Sets player to the pick-up item's parent so the item will move around with the player.            
-            //other.gameObject.transform.parent = this.transform;
-            other.gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
-
-            // mark the coin (or whatever object) as picked up 
-            other.gameObject.GetComponent<ItemScript>().pickedUp = true;
-            other.gameObject.GetComponent<ItemScript>().thrown = false;
-
-            // disable collision with held item
-            Physics.IgnoreCollision(this.GetComponent<Collider>(), other.gameObject.GetComponent<MeshCollider>(), true);
-
-            this.wpArrow.SetActive(true);
-            //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
-            StartCoroutine("PickUpCD");
-    	}
-    }
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;
@@ -301,7 +350,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             Debug.Log("You Died!");
             //health_text.text = ""; 
             moveSpeed = 0f;
-            gm.Defeat();
+            gm.Defeat(2);
         }
         else
         {
@@ -322,7 +371,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             Debug.Log("You Died!");
             //oxygen_text.text = ""; 
             moveSpeed = 0f;
-            gm.Defeat();
+            gm.Defeat(1);
         }
 
     }
@@ -339,7 +388,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
     void PlayWalkingNoise(){
         //Debug.Log(this.dir);
-        if(this.dir.sqrMagnitude > 0){
+        if(this.dir.sqrMagnitude > 0 && health > 0 && !hasWonTheGame){
             AudioClip temp = this.walkingSamples[Random.Range(0, 3)];
             //Debug.Log(temp);
             this.walkingSFX.PlayOneShot(temp, Random.Range(0.01f, 0.05f));

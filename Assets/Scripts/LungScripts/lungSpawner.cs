@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Mirror;
 
-public class lungSpawner : MonoBehaviour
+public class lungSpawner : NetworkBehaviour
 {
+    public NetworkManager nm;
     public Transform spawnPos;
     public Transform spawnPos2;
     public Transform spawnPos3;
@@ -19,16 +21,25 @@ public class lungSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
+        nm = GameObject.FindObjectOfType<NetworkManager>();
+
         currColor = nodeColor.text;
         if(gameObject.name == "AirPump(O1)")
         {
             canister1 = GameObject.Find("Air_Tank_1(O1)");
             canister2 = GameObject.Find("Air_Tank_2(O1)");
-
-        } else if(gameObject.name == "AirPump")
+            if (nm){
+                spawnee = (nm.spawnPrefabs[9]);
+            }
+        } 
+        else if(gameObject.name == "AirPump")
         {
             canister1 = GameObject.Find("Air_Tank_1");
             canister2 = GameObject.Find("Air_Tank_2");
+            if (nm){
+                spawnee = (nm.spawnPrefabs[10]);
+            }
         }
         canister1.SetActive(true);
         canister2.SetActive(true);
@@ -101,9 +112,13 @@ public class lungSpawner : MonoBehaviour
             if (nodeColor.text != "green")
             {
                 //currColor = nodeColor.text;
-                GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
-                temp.GetComponent<Rigidbody>().useGravity = true;
-                //temp.GetComponent<destroyer>().enabled = true;
+                GameObject temp;
+                if (isServer){
+                    temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
+                    temp.GetComponent<Rigidbody>().useGravity = true;
+                    temp.GetComponent<Rigidbody>().isKinematic = false;
+                    NetworkServer.Spawn(temp);
+                }
             }
         }
 

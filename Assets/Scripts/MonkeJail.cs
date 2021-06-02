@@ -11,7 +11,7 @@ public class MonkeJail : MonoBehaviour
     public float jailCooldown;
 
     public Animator[] jailBars;
-    public Animator interactAnim;
+    //public Animator interactAnim;
 
     GameObject highlight;
 
@@ -24,7 +24,7 @@ public class MonkeJail : MonoBehaviour
     {
         if (canPush && other.gameObject.CompareTag("Player"))
         {
-            interactAnim.Play("PickUpTextRaise");
+            //interactAnim.Play("PickUpTextRaise");
             canCloseJail = true;
             highlight.SetActive(true);
         }
@@ -34,7 +34,7 @@ public class MonkeJail : MonoBehaviour
     {
         if (canPush && other.gameObject.CompareTag("Player"))
         {
-            interactAnim.Play("PickUpTextLower");
+            //interactAnim.Play("PickUpTextLower");
             canCloseJail = false;
             highlight.SetActive(false);
         }
@@ -50,7 +50,7 @@ public class MonkeJail : MonoBehaviour
 
     void CloseJail()
     {
-        interactAnim.Play("PickUpTextLower");
+        //interactAnim.Play("PickUpTextLower");
         foreach (Animator jailBar in jailBars)
         {
             jailBar.Play("CloseBar");

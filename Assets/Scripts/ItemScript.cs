@@ -5,6 +5,7 @@ using Mirror;
 
 public class ItemScript : MonoBehaviour
 {
+    public GameObject highlight;
     public bool pickedUp;
     public bool active;
     public bool thrown;
@@ -17,6 +18,8 @@ public class ItemScript : MonoBehaviour
     public Waypoint wp;
     NetworkManager nm;
 
+    public GameObject teleporterIndicator;
+    public GameObject batteryIndicator;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,6 +48,10 @@ public class ItemScript : MonoBehaviour
             //transform.Rotate(0, 0, 90 * Time.deltaTime);
             //}
             this.playerRoot = null;
+            if (type == "Battery")
+            {
+                this.gameObject.GetComponent<Animator>().enabled = true;
+            }
         }
         else {  // code to execute if object is picked up
             //if(this.glowEffect)
@@ -55,35 +62,55 @@ public class ItemScript : MonoBehaviour
 
             transform.position = playerRoot.position + 1.2f * (playerRoot.forward) + new Vector3(0, 2f, 0); // sets position relative to the player transform
 
-            if (type == "Neuron"){
+            if (type == "NeuronRed"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(0);
+                wp.WhichWaypoint(0);
+            }
+            else if (type == "NeuronGreen")
+            {
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
+                wp.WhichWaypoint(1);
+            }
+            else if (type == "NeuronBlue")
+            {
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
+                wp.WhichWaypoint(2);
             }
             else if(type == "Banana"){
                 transform.rotation = playerRoot.rotation *  Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(1);
+                wp.WhichWaypoint(3);
             } 
             else if(type == "Canister1"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(2);
                 AlterSpeed(6f);
+                wp.WhichWaypoint(4);
             }
             else if(type == "Canister2"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(3);
                 AlterSpeed(6f);
+                wp.WhichWaypoint(5);
             }
             else if (type == "Sandwich"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(4);
+                wp.WhichWaypoint(6);
             }
             else if (type == "Kebab"){
                 transform.position -= new Vector3(0, 2f, 0); // sets position relative to the player transform
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                Waypoint.WhichWaypoint(4);
+                wp.WhichWaypoint(6);
             }
             else if (type == "Nuke"){
                 transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+                wp.DisableArrow();
+            }
+            else if (type == "Battery")
+            {
+                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+                this.gameObject.GetComponent<Animator>().enabled = false;
+                AlterSpeed(4f);
+                wp.WhichWaypoint(8);
+                teleporterIndicator.SetActive(true);
+                batteryIndicator.SetActive(false);
             }
         }
     }
@@ -103,7 +130,7 @@ public class ItemScript : MonoBehaviour
             if (this.type == "Banana" && other.tag == "Gorilla" && !this.pickedUp){
                 Object.Destroy(this.gameObject, 0.25f); // destroy object after contact with gorilla
             }
-            else if (this.thrown && this.type == "Nuke" && other.tag == "Gorilla" && !this.pickedUp){
+            else if (this.type == "Nuke" && other.tag == "Gorilla" && !this.pickedUp){
                 Object.Destroy(this.gameObject, 0.52f); // destroy object after contact with gorilla
             }
         }
@@ -111,9 +138,9 @@ public class ItemScript : MonoBehaviour
 
     public void AlterSpeed(float newSpeed)
     {
-        if(nm)
+        if (nm)
             playerRoot.GetComponent<Player>().ChangeSpeed(newSpeed);
-        else 
+        else
             playerRoot.GetComponent<Player1P>().ChangeSpeed(newSpeed);
     }
 
@@ -128,6 +155,20 @@ public class ItemScript : MonoBehaviour
             // }
         }
         
+    }
+
+    public void highlightOn() {
+        highlight.SetActive(true);
+    }
+
+    public void highlightOff() {
+        highlight.SetActive(false);
+    }
+
+    void OnDestroy() {
+        if (pickedUp) {
+            playerRoot.GetComponent<Player1P>().wpArrow.SetActive(false);
+        }
     }
 
 }

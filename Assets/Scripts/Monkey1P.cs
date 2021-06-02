@@ -34,6 +34,11 @@ public class Monkey1P : MonoBehaviour
     private bool gotAway = true;
     GameObject playerObj;
 
+    private bool startMoving;
+
+    private float startval = -0.5f;
+    private float endval = 0.5f;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -50,57 +55,84 @@ public class Monkey1P : MonoBehaviour
             nodes.Add(GameObject.FindGameObjectWithTag(name));
         }
 
-        FindNewTarget();
+        StartCoroutine("BeginningWait");
     }
-
     // Update is called once per frame
     private void Update()
     {
-        //Debug.Log(agent.acceleration);
-        //Debug.Log(agent.speed);
-        //Get list of targets from FieldOfView list
-        targetsList = GetComponent<FieldOfView>();
-        float monkeyDist = Vector3.Distance(transform.position, target.transform.position);
-        //transfer each target into local list
-        visibleTargets.Clear();
-        foreach (Transform t in targetsList.visibleTargets)
+        if (startMoving)
         {
-            visibleTargets.Add(t);
-        }
-        //Speed up if player is seen
-        if(visibleTargets.Count != 0)
-        {
-            runningAway = true;
-            agent.acceleration = 50;
-            //Runs to new target farthest away from player
-            gotAway = RunAway(gotAway);
-            GoToTarget();
-            // code for avoiding player
-            //agent.isStopped = true;
-            //Debug.Log(visibleTargets[0]);
-            Vector3 targetDir = this.transform.position - visibleTargets[0].position; // with multiple players, maybe take the sum of the positions?
-            //Debug.Log(targetDir);
-            //agent.SetDestination(this.transform.position + targetDir);
-        }
-        else { // return to normal behavior
-            agent.acceleration = 10;
-            //Debug.Log(runningAway + " " + (monkeyDist < stoppingDistance));
-            //float dist = Vector3.Distance(transform.position, target.transform.position);
-            if (targetColor.text == "red" && !runningAway)
+            //Debug.Log(agent.acceleration);
+            //Debug.Log(agent.speed);
+            //Get list of targets from FieldOfView list
+            targetsList = GetComponent<FieldOfView>();
+            float monkeyDist = Vector3.Distance(transform.position, target.transform.position);
+            //transfer each target into local list
+            visibleTargets.Clear();
+            foreach (Transform t in targetsList.visibleTargets)
             {
-                FindNewTarget();
+                visibleTargets.Add(t);
             }
-            else if (runningAway == true && (monkeyDist < stoppingDistance))
+            //Speed up if player is seen
+            if (visibleTargets.Count != 0)
             {
-                runningAway = false;
-                gotAway = true;
-                FindNewTarget();
+                runningAway = true;
+                agent.acceleration = 50;
+                //Runs to new target farthest away from player
+                gotAway = RunAway(gotAway);
+                GoToTarget();
+                // code for avoiding player
+                //agent.isStopped = true;
+                //Debug.Log(visibleTargets[0]);
+                Vector3 targetDir = this.transform.position - visibleTargets[0].position; // with multiple players, maybe take the sum of the positions?
+                                                                                          //Debug.Log(targetDir);
+                                                                                          //agent.SetDestination(this.transform.position + targetDir);
             }
             else
-            {
-                GoToTarget();
+            { // return to normal behavior
+                agent.acceleration = 10;
+                //Debug.Log(runningAway + " " + (monkeyDist < stoppingDistance));
+                //float dist = Vector3.Distance(transform.position, target.transform.position);
+                if (targetColor.text == "red" && !runningAway)
+                {
+                    FindNewTarget();
+                }
+                else if (runningAway == true && (monkeyDist < stoppingDistance))
+                {
+                    runningAway = false;
+                    gotAway = true;
+                    FindNewTarget();
+                }
+                else
+                {
+                    GoToTarget();
+                }
             }
+
         }
+    }
+
+    public void TeleportOut()
+    {
+        GameObject monkSphere = GameObject.Find("MonkeySphereCopy");
+        Vector3 sphereLoc = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y + 2.5f, this.gameObject.transform.position.z);
+        GameObject sphere;
+        sphere = Instantiate(monkSphere, sphereLoc, this.gameObject.transform.rotation);
+        sphere.GetComponent<PrimateTeleport>().enabled = true;
+        StartCoroutine("Die");
+    }
+
+    IEnumerator Die()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(this.gameObject);
+    }
+
+    IEnumerator BeginningWait()
+    {
+        yield return new WaitForSeconds(2f);
+        startMoving = true;
+        FindNewTarget();
     }
 
     private void FindNewTarget()
@@ -194,8 +226,10 @@ public class Monkey1P : MonoBehaviour
         agent.SetDestination(target.transform.position);
     }
 
-    private void StopEnemy()
+    public void StopEnemy()
     {
+        agent.speed = 0;
+        agent.acceleration = 0;
         agent.isStopped = true;
     }
 

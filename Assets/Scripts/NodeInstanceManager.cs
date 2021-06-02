@@ -8,8 +8,9 @@ using Mirror;
 
 public class NodeInstanceManager : MonoBehaviour
 {
-    [SerializeField] private Renderer myObject; 
-
+    //[SerializeField] private Renderer myObject;
+    public GameObject indicator;
+    public NetworkManager nm;
     public UnityEngine.Color color;
     public UnityEvent OnNodeFix;
     public UnityEvent OnNodeRedToYellow;
@@ -35,21 +36,43 @@ public class NodeInstanceManager : MonoBehaviour
     static bool greyed = false;
 
     AudioSource nodeDisabledSFX;
+    AudioSource nodeRepairedSFX;
+
+    public float monkeySpawnTime = 4.3f;
 
     private void Start()
     {
+        nm = GameObject.FindObjectOfType<NetworkManager>();
+
+        if(nm){
+            if (this.gameObject.name == "LungTarget (1P)")
+                Object.Destroy(this.gameObject);
+            if (this.gameObject.name == "Lungs_2Target (1P)")
+                Object.Destroy(this.gameObject);
+        }
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         displayAnim = display.GetComponent<Animator>();
         agent = monkeyObj.GetComponent<NavMeshAgent>();
-        nodeDisabledSFX = GetComponent<AudioSource>();
         
         // Need to set starting color for each node
 
         UpdateColor();
 
+        Invoke("CheckForMonkeyAgain", monkeySpawnTime);
     }
 
+    private void Awake()
+    {
+        nodeDisabledSFX = GetComponent<AudioSource>();
+        nodeRepairedSFX = FindObjectOfType<GameManager>().GetComponent<AudioSource>();
+    }
+
+    void CheckForMonkeyAgain()
+    {
+        monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
+        agent = monkeyObj.GetComponent<NavMeshAgent>();
+    }
 
     private void Update()
     {
@@ -128,27 +151,27 @@ public class NodeInstanceManager : MonoBehaviour
     {
         if (greyed == true && this.gameObject.tag != "ElecControl")
         {
-            myObject.material.color = Color.grey;
+            indicator.GetComponent<NodeIndicator>().SetGrey();
             display.color = Color.grey;
         }
         else
         {
             if (colorTracker.text == "green")
             {
-                myObject.material.color = Color.green;
+                indicator.GetComponent<NodeIndicator>().SetGreen();
                 display.color = Color.green;
                 color = Color.green;
             }
             else if (colorTracker.text == "yellow")
             {
-                myObject.material.color = Color.yellow;
+                indicator.GetComponent<NodeIndicator>().SetYellow();
                 display.color = Color.yellow;
                 displayAnim.Play("MinimapYellowTask");
                 color = Color.yellow;
             }
             else if (colorTracker.text == "red")
             {
-                myObject.material.color = Color.red;
+                indicator.GetComponent<NodeIndicator>().SetRed();
                 display.color = Color.red;
                 displayAnim.Play("MinimapRedTask");
                 color = Color.red;
@@ -159,8 +182,14 @@ public class NodeInstanceManager : MonoBehaviour
     public void SetColor(UnityEngine.Color input)
     {
         color = input;
-        myObject.material.color = input;
         display.color = input;
+
+        if (input == Color.green)
+            indicator.GetComponent<NodeIndicator>().SetGreen();
+        else if (input == Color.yellow)
+            indicator.GetComponent<NodeIndicator>().SetYellow();
+        else if (input == Color.red)
+            indicator.GetComponent<NodeIndicator>().SetRed();
     }
 
     public UnityEngine.Color GetColor()
@@ -195,6 +224,7 @@ public class NodeInstanceManager : MonoBehaviour
             colorTracker.text = "green";
             OnNodeFix.Invoke();
             OnNodeGreen.Invoke();
+            nodeRepairedSFX.Play();
         }
         else if (color == Color.red)
         {
@@ -202,6 +232,7 @@ public class NodeInstanceManager : MonoBehaviour
             colorTracker.text = "yellow";
             OnNodeFix.Invoke();
             OnNodeRedToYellow.Invoke();
+            nodeRepairedSFX.Play();
         }
     }
 

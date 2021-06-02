@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2580750289424340330
 Transform:
   m_ObjectHideFlags: 0
@@ -62,14 +62,23 @@ MonoBehaviour:
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 7647579302506435261, guid: 1c0e73ee6d52be74898a438a05e29e56,
     type: 3}
-  autoCreatePlayer: 1
-  playerSpawnMethod: 0
+  autoCreatePlayer: 0
+  playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 8727291456560448280, guid: 64b806638c6503143af940c7f18e33a9, type: 3}
-  - {fileID: 4804185745076375108, guid: 1ecc62cfc893053458d3d7d238acad55, type: 3}
+  - {fileID: 758380405924426014, guid: 816f15a9cd6bcf043bb9bd87f0a3f3dc, type: 3}
+  - {fileID: 2675963936397640661, guid: 61c9fd4594c1a2541927750e1f466594, type: 3}
+  - {fileID: 587971008673105628, guid: 061fd7889da23d54d98a34ef6ac07c88, type: 3}
+  - {fileID: 2970312886035349680, guid: 5ebada6d77670344084ba2b1a5165efe, type: 3}
+  - {fileID: 518392120109687607, guid: ea14fd73e34a13c49b2e479abd588d4f, type: 3}
+  - {fileID: 3442019651058028904, guid: 5c1621398a3b3b54c96fcab9321cf852, type: 3}
+  - {fileID: 9185850192217589086, guid: 82cfb1a61a718da4ab50c691cd9f732d, type: 3}
+  - {fileID: 6846967800968564277, guid: 99e06b30eb031e64aacfe239b6b9368e, type: 3}
+  - {fileID: 449169518455169522, guid: 27e4a4a981bf9814ea8633ee3dbffbb4, type: 3}
+  - {fileID: 7692345810326130573, guid: eff5008ad108f884ea8392102428218f, type: 3}
+  - {fileID: 6154738008359569799, guid: 7d300f82e71343c43ab9ceae8f8e0ace, type: 3}
   showRoomGUI: 1
   minPlayers: 1
-  roomPlayerPrefab: {fileID: 2302673144553931449, guid: 92ffe4d3ac240374e8fc7bae5a94d171,
+  roomPlayerPrefab: {fileID: 3175258193332163116, guid: 8d5a3b95a8068414ca9a2ceece733aa2,
     type: 3}
   RoomScene: Assets/Scenes/room.unity
   GameplayScene: Assets/Scenes/game.unity
@@ -78,7 +87,7 @@ MonoBehaviour:
   clientIndex: 0
   startbutton: {fileID: 1863320929899374906, guid: c004ff85742bf164d9e394a07c025c7d,
     type: 3}
-  maxconnections: 4
+  spawnPos: []
 --- !u!114 &2580750289424340340
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Channels: 0200000001000000
-  Timeout: 25
+  Timeout: 60
   SteamAppID: 480
   AllowSteamRelay: 1
   UseNextGenSteamNetworking: 1
