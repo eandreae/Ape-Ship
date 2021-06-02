@@ -9261,6 +9261,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleport: 0
   bat: {fileID: 1201901249}
+  batCopy: {fileID: 945275929}
   batSpawn: {fileID: 1554613409}
   waypointArrow: {fileID: 7413137237959594449}
   batteryReplaced: 0
@@ -15397,6 +15398,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 459156268}
   m_CullTransparentMesh: 0
+--- !u!1 &462298456 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5162820104835090806, guid: a688c4195a964aa4fabe53a6ed7ab41e,
+    type: 3}
+  m_PrefabInstance: {fileID: 2063643749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &462298460
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462298456}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -9146618070568788744, guid: a688c4195a964aa4fabe53a6ed7ab41e, type: 3}
 --- !u!1 &467690753
 GameObject:
   m_ObjectHideFlags: 0
@@ -15791,7 +15812,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7c5b054538e4ebf48b7d436a163334a2,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -105.24
+      value: -104.94
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c5b054538e4ebf48b7d436a163334a2,
         type: 3}
@@ -15801,7 +15822,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7c5b054538e4ebf48b7d436a163334a2,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.83
+      value: -6.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7c5b054538e4ebf48b7d436a163334a2,
         type: 3}
@@ -24733,6 +24754,26 @@ Animator:
     type: 3}
   m_PrefabInstance: {fileID: 822360212}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &822834391 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b1f060ef616df364888f833cf6b148e7,
+    type: 3}
+  m_PrefabInstance: {fileID: 399397272}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &822834392
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822834391}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4970830168463687262, guid: b1f060ef616df364888f833cf6b148e7, type: 3}
 --- !u!1 &823173560 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7023654957831120136, guid: d1ebb65e661e8de4682f0a744da57548,
@@ -28156,7 +28197,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 945275929}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -38011,7 +38052,7 @@ MeshCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201901249}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 4
   m_Convex: 1
@@ -41425,6 +41466,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   teleport: 0
   bat: {fileID: 1201901249}
+  batCopy: {fileID: 945275929}
   batSpawn: {fileID: 1554613409}
   waypointArrow: {fileID: 7413137237959594449}
   batteryReplaced: 0

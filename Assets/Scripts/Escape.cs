@@ -11,6 +11,7 @@ public class Escape : MonoBehaviour
     ProgressBar bar;
     GameObject progBar;
     public GameObject bat;
+    public GameObject batCopy;
     public GameObject batSpawn;
 
     public GameObject waypointArrow;
@@ -28,8 +29,7 @@ public class Escape : MonoBehaviour
 
         progBar = GameObject.Find("ProgressSlider");
         bar = progBar.GetComponent<ProgressBar>();
-        GameObject.Find("BatteryCopy").SetActive(true);
-
+        batCopy.SetActive(true);
     }
 
     // Update is called once per frame
@@ -47,10 +47,10 @@ public class Escape : MonoBehaviour
 
         if(batteryReplaced)
         {
-            GameObject.Find("BatteryCopy").SetActive(true);
+            batCopy.SetActive(true);
         } else
         {
-            GameObject.Find("BatteryCopy").SetActive(false);
+            batCopy.SetActive(false);
         }
     }
 
