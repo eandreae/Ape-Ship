@@ -14,18 +14,29 @@ public class spawner1P : MonoBehaviour
     public Text brainColor;
     Vector3 spawnLoc;
 
+    public GameObject brainTarg;
+
+    private bool fixRed;
+
     // Start is called before the first frame update
     void Start()
     {
         nm = GameObject.FindObjectOfType<NetworkManager>();
         if (nm)
             Object.Destroy(this.gameObject);
+        
+        fixRed = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+    public void Break() {
+        fixRed = false;
+    }
 
+    public void Deposit() {
+        if (brainTarg.GetComponent<NodeInstanceManager>().color == Color.red && fixRed == false)
+            fixRed = true;
+        else
+            brainTarg.GetComponent<NodeInstanceManager>().FixNode();
     }
 
     public void Spawn() {
@@ -46,25 +57,9 @@ public class spawner1P : MonoBehaviour
 
         GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
         temp.GetComponent<Rigidbody>().useGravity = true;
-
-        if(brainColor.text == "red")
-        {
-            spawnLoc = new Vector3(spawnPos.position.x + Random.Range(-4.0f, 4.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(-3.0f, 3.0f));
-            GameObject spawnee2 = neuronBlue;
-
-            int sw2 = Random.Range(0, 3);
-            switch (sw2)
-            {
-                case 1:
-                    spawnee2 = neuronRed;
-                    break;
-                case 2:
-                    spawnee2 = neuronGreen;
-                    break;
-            }
-
-            GameObject temp2 = Instantiate(spawnee2, spawnLoc, spawnPos.rotation);
-            temp2.GetComponent<Rigidbody>().useGravity = true;
-        }
+    }
+    public void Spawn2() {
+        Spawn();
+        Spawn();
     }
 }

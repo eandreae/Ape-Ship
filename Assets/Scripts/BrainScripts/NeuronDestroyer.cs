@@ -9,7 +9,6 @@ public class NeuronDestroyer : MonoBehaviour
     public UnityEvent OnNeuronDeposit;
     public NetworkManager nm;
     public NodeInstanceManager selfNode;
-    private static bool fixRed;
     
     // Start is called before the first frame update
     void Start()
@@ -43,18 +42,11 @@ public class NeuronDestroyer : MonoBehaviour
             Destruction();
         }
     }
-    public void BrokenBrain() {
-        fixRed = false;
-    }
 
     void Destruction()
     {
-        Destroy(this.gameObject);
         //fix the brain
-        //OnNeuronDeposit.Invoke();
-        if (selfNode.color == Color.red && fixRed == false)
-            fixRed = true;
-        else
-            selfNode.FixNode();
+        OnNeuronDeposit.Invoke();
+        Destroy(this.gameObject);
     }
 }

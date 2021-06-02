@@ -1742,8 +1742,8 @@ MonoBehaviour:
   OnNeuronDeposit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1469291368}
-        m_MethodName: FixNode
+      - m_Target: {fileID: 883165421}
+        m_MethodName: Deposit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4544,8 +4544,8 @@ MonoBehaviour:
   OnNeuronDeposit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1469291368}
-        m_MethodName: FixNode
+      - m_Target: {fileID: 883165421}
+        m_MethodName: Deposit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8650,8 +8650,8 @@ MonoBehaviour:
   OnNeuronDeposit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1469291368}
-        m_MethodName: FixNode
+      - m_Target: {fileID: 883165421}
+        m_MethodName: Deposit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -26993,6 +26993,7 @@ MonoBehaviour:
   neuronRed: {fileID: 348634256}
   neuronGreen: {fileID: 78120112}
   brainColor: {fileID: 1279260005}
+  brainTarg: {fileID: 889014563}
 --- !u!1001 &887953812
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27339,7 +27340,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 883165421}
-        m_MethodName: Spawn
+        m_MethodName: Break
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -27351,10 +27352,16 @@ MonoBehaviour:
         m_CallState: 2
   OnNodeGreenToYellow:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls: [{m_Target: {fileID: 883165421}, m_MethodName: Spawn, m_Mode: 1, m_Arguments: {
+            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}]
   OnNodeRed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls: [{m_Target: {fileID: 883165421}, m_MethodName: Spawn2, m_Mode: 1, m_Arguments: {
+            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}]
   colorTracker: {fileID: 1279260005}
   display: {fileID: 1412383919}
   stopDistance: 8
