@@ -766,7 +766,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 512696f56798ebe47b6cff10347ba9e8, type: 2}
+  m_Texture: {fileID: 8400000, guid: 5862fbdb639796346826f206193a2e26, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -2523,11 +2523,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244683853}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 115f8d6ddbac6e540967a2c75a2f74d3, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 971a7e0c01a59bc4294e69893b333637, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 512696f56798ebe47b6cff10347ba9e8, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 5862fbdb639796346826f206193a2e26, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -2666,11 +2666,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 296724692}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 481ca7a18a9eb8d41857d4b6189cba18, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 6126a18b06cd0d74394f3d86f895493a, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 691a0b77c23983148952b134f099c705, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 9c988838480eb4948b90457dcf8a7935, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -3252,9 +3252,9 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1487722443}
   - {fileID: 1494538972}
   - {fileID: 750013678}
+  - {fileID: 1487722443}
   m_Father: {fileID: 783163204}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6285,7 +6285,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406882379}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6499,7 +6499,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &783163201
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8587,7 +8587,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1124952418
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8746,7 +8746,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1139564931
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9609,11 +9609,11 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246958257}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 15c91624f6eeb884ab392b2214571def, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 02a43bb9567614646879bc37315c1728, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
-  m_TargetTexture: {fileID: 8400000, guid: 3cd424154b065484fa470dbd40164ba2, type: 2}
+  m_TargetTexture: {fileID: 8400000, guid: 6303946c2d712ea4da1105811c83fc5d, type: 2}
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
@@ -11645,7 +11645,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 406882379}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11806,12 +11806,12 @@ RectTransform:
   m_Children:
   - {fileID: 296724693}
   m_Father: {fileID: 406882379}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 75}
-  m_SizeDelta: {x: 1644.8132, y: 297.7679}
+  m_AnchoredPosition: {x: -26, y: 119}
+  m_SizeDelta: {x: 1010.66187, y: 568.4973}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1494538973
 MonoBehaviour:
@@ -11832,7 +11832,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 691a0b77c23983148952b134f099c705, type: 2}
+  m_Texture: {fileID: 8400000, guid: 9c988838480eb4948b90457dcf8a7935, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -12750,7 +12750,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 8400000, guid: 3cd424154b065484fa470dbd40164ba2, type: 2}
+  m_Texture: {fileID: 8400000, guid: 6303946c2d712ea4da1105811c83fc5d, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -12780,7 +12780,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1574243999
 RectTransform:
   m_ObjectHideFlags: 0
