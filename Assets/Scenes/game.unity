@@ -27352,16 +27352,32 @@ MonoBehaviour:
         m_CallState: 2
   OnNodeGreenToYellow:
     m_PersistentCalls:
-      m_Calls: [{m_Target: {fileID: 883165421}, m_MethodName: Spawn, m_Mode: 1, m_Arguments: {
-            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
-              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
-            m_BoolArgument: 0}, m_CallState: 2}]
+      m_Calls:
+      - m_Target: {fileID: 883165421}
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnNodeRed:
     m_PersistentCalls:
-      m_Calls: [{m_Target: {fileID: 883165421}, m_MethodName: Spawn2, m_Mode: 1, m_Arguments: {
-            m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
-              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
-            m_BoolArgument: 0}, m_CallState: 2}]
+      m_Calls:
+      - m_Target: {fileID: 883165421}
+        m_MethodName: Spawn2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   colorTracker: {fileID: 1279260005}
   display: {fileID: 1412383919}
   stopDistance: 8
@@ -43648,7 +43664,7 @@ NavMeshObstacle:
   m_Shape: 1
   m_Extents: {x: 3.5, y: 2.06, z: 2}
   m_MoveThreshold: 0.1
-  m_Carve: 0
+  m_Carve: 1
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.5, y: 2, z: 0}
   m_TimeToStationary: 0.5
