@@ -74,6 +74,10 @@ public class GorillaMovement : NetworkBehaviour
         target = targetNode;
         Debug.Log("Gorilla moving to: " + target);
 
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")){
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), player.GetComponent<MeshCollider>());
+        }
+
         StartCoroutine("BeginningWait");
     }
 

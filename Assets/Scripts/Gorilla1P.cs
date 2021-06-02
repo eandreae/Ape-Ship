@@ -80,7 +80,7 @@ public class Gorilla1P : MonoBehaviour
 
         StartCoroutine("BeginningWait");
 
-        //foreach ()
+        Physics.IgnoreCollision(this.GetComponent<MeshCollider>(), GameObject.FindWithTag("Player").GetComponent<MeshCollider>(), true);
     }
 
 
