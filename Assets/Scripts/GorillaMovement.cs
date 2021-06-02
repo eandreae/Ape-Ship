@@ -271,6 +271,7 @@ public class GorillaMovement : NetworkBehaviour
             yield return new WaitForSeconds(0.5f); // gorilla self-stun after it charges
 
             StartGorilla();
+            this.GetComponent<Animator>().Play("GorillaWalk2");
         
             yield return new WaitForSeconds(chargeCooldown); // charge cooldown
             canCharge = true;
@@ -298,6 +299,7 @@ public class GorillaMovement : NetworkBehaviour
             StartCoroutine("ThrowWait");
             StartCoroutine("DestroyThrown", objectHeld);
             StartGorilla();
+            this.GetComponent<Animator>().Play("GorillaWalk1");
         }
     }
 
@@ -345,6 +347,7 @@ public class GorillaMovement : NetworkBehaviour
         yield return new WaitForSeconds(0.75f); // wait
         
         StartGorilla();
+        this.GetComponent<Animator>().Play("GorillaWalk1");
         this.stunned = false;
 
         if(!this.canCharge){    // if gorilla was in the middle of his charge
@@ -371,6 +374,7 @@ public class GorillaMovement : NetworkBehaviour
         yield return new WaitForSeconds(2f); // banana stuns gorilla for 2 seconds
         
         StartGorilla();
+        this.GetComponent<Animator>().Play("GorillaWalk2");
         this.stunned = false;
         
         if(!this.canCharge){    // if gorilla was in the middle of his charge
@@ -403,6 +407,7 @@ public class GorillaMovement : NetworkBehaviour
         this.GetComponent<Rigidbody>().isKinematic = true;
         
         StartGorilla();
+        this.GetComponent<Animator>().Play("GorillaWalk2");
         this.stunned = false;
         
         if(!this.canCharge){    // if gorilla was in the middle of his charge
