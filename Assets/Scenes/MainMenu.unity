@@ -1199,6 +1199,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 88947212}
   m_CullTransparentMesh: 0
+--- !u!1 &101904191
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 101904192}
+  - component: {fileID: 101904194}
+  - component: {fileID: 101904193}
+  m_Layer: 5
+  m_Name: Controls Title
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &101904192
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101904191}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1124952418}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: 440}
+  m_SizeDelta: {x: 294.0079, y: 67.2242}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &101904193
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101904191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 0
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: 446170b422bb7f243bbe79f2766da4ec, type: 3}
+    m_FontSize: 100
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 150
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 1
+    m_VerticalOverflow: 1
+    m_LineSpacing: 1
+  m_Text: How to play
+--- !u!222 &101904194
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101904191}
+  m_CullTransparentMesh: 0
 --- !u!1 &110210823
 GameObject:
   m_ObjectHideFlags: 0
@@ -2176,7 +2254,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'the monkey dashes around the ship, sabotaging
 
-    its functions'
+    its functions, the
+    monkey will run away from you'
 --- !u!222 &225048763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5343,7 +5422,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Heart & Brain maitenence
+  m_Text: Heart & Brain maitenance
 --- !u!222 &672293663
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6435,7 +6514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buttonPress: {fileID: 1299843945}
   mainMenuPanel: {fileID: 1139564930}
-  maxPages: 19
+  maxPages: 17
   leftArrow: {fileID: 198518248}
   rightArrow: {fileID: 1915769641}
   pages:
@@ -6457,8 +6536,6 @@ MonoBehaviour:
   - {fileID: 1896915015}
   - {fileID: 1336102135}
   - {fileID: 926995535}
-  - {fileID: 1725696804}
-  - {fileID: 1725696804}
 --- !u!224 &783163204
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8486,7 +8563,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: lung maitenence
+  m_Text: lung maitenance
 --- !u!222 &1100110845
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8524,6 +8601,7 @@ RectTransform:
   m_Children:
   - {fileID: 694345709}
   - {fileID: 2002786684}
+  - {fileID: 101904192}
   m_Father: {fileID: 783163204}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11122,7 +11200,8 @@ MonoBehaviour:
 
     Keep them above red to advance
 
-    the progress bar'
+    the progress bar, allowing you
+    to win'
 --- !u!222 &1430401357
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14420,7 +14499,8 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'The gorilla hunts for you around the ship,
 
-    trying to kill you'
+    trying to kill you, beware
+    his charge attack'
 --- !u!222 &1783281312
 CanvasRenderer:
   m_ObjectHideFlags: 0
