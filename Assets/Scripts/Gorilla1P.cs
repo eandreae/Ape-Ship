@@ -149,6 +149,15 @@ public class Gorilla1P : MonoBehaviour
         }
     }
 
+    public void TeleportOut()
+    {
+        GameObject gorSphere = GameObject.Find("GorillaSphereCopy");
+        Vector3 sphereLoc = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        GameObject sphere;
+        sphere = Instantiate(gorSphere, sphereLoc, this.gameObject.transform.rotation);
+        sphere.GetComponent<PrimateTeleport>().enabled = true;
+    }
+
     IEnumerator BeginningWait()
     {
         yield return new WaitForSeconds(2f);
