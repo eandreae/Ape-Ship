@@ -705,6 +705,14 @@ namespace Mirror
             }
         }
 
+        public static void SetAllClientsReady()
+        {
+            foreach (NetworkConnectionToClient conn in connections.Values)
+            {
+                SetClientReady(conn);
+            }
+        }
+
         // default ready handler.
         static void OnClientReadyMessage(NetworkConnection conn, ReadyMessage msg)
         {
