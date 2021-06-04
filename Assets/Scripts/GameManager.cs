@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Mirror;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject victoryPanel1P;
     public GameObject victoryPanel;
+    public GameObject defeatPanel1P;
     public GameObject defeatPanel;
     public Text causeOfDeath;
+    public GameObject pausePanel1P;
     public GameObject pausePanel;
-    public GameObject pauseMenuPanel;
 
     public AudioSource backgroundMusic;
 
@@ -19,6 +22,8 @@ public class GameManager : MonoBehaviour
     public float returnDelay = 1f;
     public float deathAnimDuration = 1f;
 
+    public bool singleplayer = true;
+
     bool won = false;
     bool lost = false;
 
@@ -26,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        singleplayer = (GameObject.FindObjectOfType<NetworkManager>() == null);
         Time.timeScale = 1f;
         p1p = FindObjectOfType<Player1P>();
     }
@@ -35,13 +41,17 @@ public class GameManager : MonoBehaviour
         if (!lost)
         {
             //Enabling a victory panel
-            victoryPanel.SetActive(true);
+            if(singleplayer)
+                victoryPanel1P.SetActive(true);
+            else
+                victoryPanel.SetActive(true);
             //Turning off the gameplay music
             backgroundMusic.volume = 0f;
             p1p.canMove = false;
             p1p.GetComponent<Animator>().enabled = false;
             //We need to destroy the pause menu panel so the player can't pause once the game is technically over
             Destroy(pausePanel);
+            Destroy(pausePanel1P);
             won = true;
             p1p.hasWonTheGame = true;
             Time.timeScale = 0f;
@@ -51,11 +61,16 @@ public class GameManager : MonoBehaviour
     public void Defeat(int cause)
     {
         if (!won)
-        {
+        {   
             //Enabling a defeat panel
             Invoke("DefeatPanel", deathAnimDuration);
+            if(singleplayer)
+                defeatPanel1P.SetActive(true);
+            else
+                defeatPanel.SetActive(true);
             backgroundMusic.volume = 0f;
             Destroy(pausePanel);
+            Destroy(pausePanel1P);
             lost = true;
             p1p.canMove = false;
             p1p.hasWonTheGame = true;
