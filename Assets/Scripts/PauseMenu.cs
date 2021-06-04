@@ -7,6 +7,8 @@ public class PauseMenu : MonoBehaviour
 {
     bool gameIsPaused = false;
 
+    public GameObject gameManager;
+    public GameObject pauseMenuPanel1P;
     public GameObject pauseMenuPanel;
     public GameObject settingsPanel;
 
@@ -50,7 +52,7 @@ public class PauseMenu : MonoBehaviour
     {
         buttonPress.Play();
         backgroundMusic.pitch = 0.75f;
-        pauseMenuPanel.SetActive(true);
+        setPausePanelActive(true);
         //mm.canActivateMinimap = false;
         //player.moveSpeed = 0f;
         Time.timeScale = 0f;
@@ -63,7 +65,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         buttonPress.Play();
         backgroundMusic.pitch = 1f;
-        pauseMenuPanel.SetActive(false);
+        setPausePanelActive(false);
         //mm.canActivateMinimap = true;
         //player.moveSpeed = 14f;
         gameIsPaused = false;
@@ -72,7 +74,7 @@ public class PauseMenu : MonoBehaviour
     public void OpenSettings()
     {
         buttonPress.Play();
-        pauseMenuPanel.SetActive(false);
+        setPausePanelActive(false);
         settingsPanel.SetActive(true);
         canPause = false;
     }
@@ -80,7 +82,7 @@ public class PauseMenu : MonoBehaviour
     public void CloseSettings()
     {
         buttonPress.Play();
-        pauseMenuPanel.SetActive(true);
+        setPausePanelActive(true);
         canPause = true;
         settingsPanel.SetActive(false);
     }
@@ -90,7 +92,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         backgroundMusic.pitch = 1f;
         buttonPress.Play();
-        pauseMenuPanel.SetActive(false);
+        setPausePanelActive(false);
         transitionPanel.Play("PanelOutro");
         Invoke("finallyGoBackToMenu", 1f);
     }
@@ -105,7 +107,7 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
         backgroundMusic.pitch = 1f;
         buttonPress.Play();
-        pauseMenuPanel.SetActive(false);
+        setPausePanelActive(false);
         transitionPanel.Play("PanelOutro");
         Invoke("finallyQuit", 1f);
     }
@@ -114,5 +116,14 @@ public class PauseMenu : MonoBehaviour
     {
         Debug.Log("Quit game!");
         Application.Quit();
+    }
+
+
+    private void setPausePanelActive(bool boolean)
+    {
+        if (gameManager.GetComponent<GameManager>().singleplayer)
+            pauseMenuPanel1P.SetActive(boolean);
+        else
+            pauseMenuPanel.SetActive(boolean);
     }
 }
