@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 
@@ -10,7 +11,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     private NetworkRoomManager networkManager;
 
     [Header("Start game button")]
-    [SerializeField] private GameObject startbutton = null;
+    [SerializeField] private Button startbutton = null;
     
      // Array containing positions to spawn players in-game
     public Vector3[] spawnPos;
@@ -118,6 +119,10 @@ public class NetworkManagerApeShip : NetworkRoomManager
             // NetworkServer.Spawn(monkey);
             // NetworkServer.Spawn(gorilla);
         }
+        if (newSceneName == "room")
+        {
+            Debug.Log("returning to room");
+        }
     }
 
     public override void OnRoomClientSceneChanged(NetworkConnection conn)
@@ -131,13 +136,13 @@ public class NetworkManagerApeShip : NetworkRoomManager
         //base.OnRoomServerPlayersReady();
         //base function automatically starts game when all are ready
         Debug.Log("ready");
-        startbutton.SetActive(true);
+        //startbutton.interactable = true;
     }
 
     public override void OnRoomServerPlayersNotReady()
     {
         base.OnRoomServerPlayersNotReady();
         Debug.Log("not ready");
-        startbutton.SetActive(false);
+        //startbutton.interactable = false;
     }
 }
