@@ -42,11 +42,11 @@ public class NeuronDestroyer : MonoBehaviour
             Destruction();
         }
     }
+
     void Destruction()
     {
-        Destroy(this.gameObject);
         //fix the brain
-        //OnNeuronDeposit.Invoke();
-        selfNode.FixNode();
+        OnNeuronDeposit.Invoke();
+        Destroy(this.gameObject);
     }
 }

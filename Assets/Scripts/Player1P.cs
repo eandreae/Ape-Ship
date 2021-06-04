@@ -15,7 +15,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 {
 	private CharacterController controller;
     public float moveSpeed = 14f;
-    public int playerNum = -1;
     public Vector3 dir;
 
     float defaultSpeed;
@@ -319,28 +318,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         }
     }
 
-    // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
-    void OnTriggerStay(Collider other){
-        //test tag, if string is same as pick up...
-    	if (Input.GetKeyDown(KeyCode.Space) && !this.holdItem && other.gameObject.CompareTag("Pick Up") )
-    	{
-            this.holdItem = other.gameObject;
-            // Sets player to the pick-up item's parent so the item will move around with the player.            
-            //other.gameObject.transform.parent = this.transform;
-            other.gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
-
-            // mark the coin (or whatever object) as picked up 
-            other.gameObject.GetComponent<ItemScript>().pickedUp = true;
-            other.gameObject.GetComponent<ItemScript>().thrown = false;
-
-            // disable collision with held item
-            Physics.IgnoreCollision(this.GetComponent<Collider>(), other.gameObject.GetComponent<MeshCollider>(), true);
-
-            this.wpArrow.SetActive(true);
-            //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
-            StartCoroutine("PickUpCD");
-    	}
-    }
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;

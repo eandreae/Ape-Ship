@@ -79,6 +79,7 @@ public class Gorilla1P : MonoBehaviour
         Debug.Log("Gorilla moving to: " + target);
 
         StartCoroutine("BeginningWait");
+
     }
 
 
@@ -146,6 +147,10 @@ public class Gorilla1P : MonoBehaviour
                 GoToTarget();
             }
 
+        }
+        else{
+            Physics.IgnoreCollision(this.GetComponent<MeshCollider>(), GameObject.FindWithTag("Player").GetComponent<MeshCollider>(), true);
+            Physics.IgnoreCollision(this.GetComponent<MeshCollider>(), GameObject.FindWithTag("Player").GetComponent<CharacterController>(), true);
         }
     }
 
@@ -252,6 +257,7 @@ public class Gorilla1P : MonoBehaviour
             charging = true;
 
             StopGorilla();
+            this.GetComponent<Animator>().Play("GorillaIdle");
             
             //-- WINDUP ANIMATION --//
             this.GetComponent<Animator>().Play("GorillaWindUp");
@@ -275,6 +281,7 @@ public class Gorilla1P : MonoBehaviour
             yield return new WaitForSeconds(0.5f); // gorilla self-stun after it charges
 
             StartGorilla();
+            this.GetComponent<Animator>().Play("GorillaWalk2");
         
             yield return new WaitForSeconds(chargeCooldown); // charge cooldown
             canCharge = true;
@@ -302,6 +309,7 @@ public class Gorilla1P : MonoBehaviour
             StartCoroutine("ThrowWait");
             StartCoroutine("DestroyThrown", objectHeld);
             StartGorilla();
+            this.GetComponent<Animator>().Play("GorillaWalk1");
         }
     }
 
@@ -349,6 +357,7 @@ public class Gorilla1P : MonoBehaviour
         yield return new WaitForSeconds(0.75f); // wait
         
         StartGorilla();
+        this.GetComponent<Animator>().Play("GorillaWalk1");
         this.stunned = false;
 
         if(!this.canCharge){    // if gorilla was in the middle of his charge
@@ -367,7 +376,8 @@ public class Gorilla1P : MonoBehaviour
         StopCoroutine("ChargeAttack");  // stop charging
         StopCoroutine("AttackPlayer");  // stop attackplayer coroutine in case of overlap
         StopCoroutine("ThrowObject");
-        StopGorilla();        
+        StopGorilla();
+        this.GetComponent<Animator>().Play("GorillaIdle");
         
         this.GetComponent<Rigidbody>().velocity = Vector3.zero; // remove forces on gorilla so he stops
         this.GetComponent<Rigidbody>().isKinematic = true;
@@ -375,6 +385,7 @@ public class Gorilla1P : MonoBehaviour
         yield return new WaitForSeconds(2f); // banana stuns gorilla for 2 seconds
         
         StartGorilla();
+        this.GetComponent<Animator>().Play("GorillaWalk2");
         this.stunned = false;
         
         if(!this.canCharge){    // if gorilla was in the middle of his charge
@@ -391,6 +402,7 @@ public class Gorilla1P : MonoBehaviour
         StopCoroutine("SelfStun");
         
         StopGorilla();
+        this.GetComponent<Animator>().Play("GorillaIdle");
         
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false; 
@@ -408,6 +420,7 @@ public class Gorilla1P : MonoBehaviour
         
         StartGorilla();
         this.stunned = false;
+        this.GetComponent<Animator>().Play("GorillaWalk2");
         
         if(!this.canCharge){    // if gorilla was in the middle of his charge
             yield return new WaitForSeconds(4f); // reset charge cd

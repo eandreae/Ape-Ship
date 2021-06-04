@@ -38,10 +38,11 @@ public class GorillaMovement : NetworkBehaviour
     FieldOfView objectsList;
     public List<Transform> visibleTargets = new List<Transform>();
     public List<Transform> visibleObjects = new List<Transform>();
-    private bool holdingObject = false;
-    private GameObject objectHeld;
+    public bool holdingObject = false;
+    public GameObject objectHeld;
 
     public float chargeCooldown = 4f;
+    private bool startMoving = false;
 
 
     // Start is called before the first frame update
@@ -72,47 +73,60 @@ public class GorillaMovement : NetworkBehaviour
         targetNode = nodes[targetnum];
         target = targetNode;
         Debug.Log("Gorilla moving to: " + target);
+
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")){
+            Physics.IgnoreCollision(this.GetComponent<Collider>(), player.GetComponent<MeshCollider>());
+        }
+
+        StartCoroutine("BeginningWait");
     }
+
 
     // Update is called once per frame
     private void Update()    
     {
-        if(target == null)
-            FindNewTarget();
-        //Get list of targets from FieldOfView list
-        targetsList = GetComponent<FieldOfView>();
-        //transfer each target into local list
-        visibleTargets.Clear();
-        foreach (Transform t in targetsList.visibleTargets)
+        if (startMoving)
         {
-            visibleTargets.Add(t);
-        }
+            if (target == null)
+                FindNewTarget();
+            //Get list of targets from FieldOfView list
+            targetsList = GetComponent<FieldOfView>();
+            //transfer each target into local list
+            visibleTargets.Clear();
+            foreach (Transform t in targetsList.visibleTargets)
+            {
+                visibleTargets.Add(t);
+            }
 
-        //Get list of targets from FieldOfView list
-        objectsList = GetComponent<FieldOfView>();
-        //transfer each target into local list
-        visibleObjects.Clear();
-        foreach (Transform t in objectsList.visibleObjects)
-        {
-            visibleObjects.Add(t);
-        }
+            //Get list of targets from FieldOfView list
+            objectsList = GetComponent<FieldOfView>();
+            //transfer each target into local list
+            visibleObjects.Clear();
+            foreach (Transform t in objectsList.visibleObjects)
+            {
+                visibleObjects.Add(t);
+            }
 
-        // if gorilla is not following player, check for the player distance
-        if (target.tag != "Player")
-        {
-            if (visibleObjects.Count != 0)
+            /* ------------------ Temp Disabled -----------------------------
+            // if gorilla is not following player, check for the player distance
+            if (visibleObjects.Count != 0 && !holdingObject)
             {
                 Debug.Log("Gorilla has found object");
                 target = visibleObjects[0].gameObject;
+                stoppingDistance = 0;
             }
-            else if (visibleTargets.Count != 0)
+            else         -------------------------------------------------------------------------------
+            */
+            if (visibleTargets.Count != 0)
             {
-                Debug.Log("Gorilla has locked on Player");
+                //Debug.Log("Gorilla has locked on Player");
                 playerLock = true;
                 stoppingDistance = 0; // make stopping distance 0 if tracking the player
                 target = visibleTargets[0].gameObject;
 
             }
+
+
 
             float dist = Vector3.Distance(transform.position, target.transform.position);
 
@@ -131,10 +145,25 @@ public class GorillaMovement : NetworkBehaviour
             {
                 GoToTarget();
             }
+
         }
     }
 
-    [Server]
+    public void TeleportOut()
+    {
+        GameObject gorSphere = GameObject.Find("GorillaSphereCopy");
+        Vector3 sphereLoc = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
+        GameObject sphere;
+        sphere = Instantiate(gorSphere, sphereLoc, this.gameObject.transform.rotation);
+        sphere.GetComponent<PrimateTeleport>().enabled = true;
+    }
+
+    IEnumerator BeginningWait()
+    {
+        yield return new WaitForSeconds(2f);
+        startMoving = true;
+    }
+
     private void FindNewTarget()
     {
         agent.isStopped = true;
@@ -144,17 +173,17 @@ public class GorillaMovement : NetworkBehaviour
         Debug.Log("Gorilla moving to: " + target);
     }
 
-    [Server]
     private void GoToTarget()
     {
-         // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
-        if (target.tag == "Player" && canCharge && playerLock && !this.stunned){
+        // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
+        if (target.tag == "Player" && holdingObject)
+        {
+            StartCoroutine("ThrowObject");
+        }
+         else if (target.tag == "Player" && canCharge && playerLock && !this.stunned && !holdingObject){
             //Debug.Log("Gorilla is charging");
             StartCoroutine("ChargeAttack");
             canCharge = false;
-        } else if (target == playerObj && holdingObject)
-        {
-            StartCoroutine("ThrowObject");
         }
         else if (!charging){
        	    agent.isStopped = false;
@@ -178,9 +207,9 @@ public class GorillaMovement : NetworkBehaviour
 
     void OnTriggerEnter(Collider other) 
     {
-        if (other.tag == "PlayerMod") {
+        if (other.tag == "PlayerMod") { // use player model, not player trigger
             if (!this.stunned) {
-                StartCoroutine("AttackPlayer", other.transform.parent.GetComponent<Player>());
+                StartCoroutine("AttackPlayer",  other.transform.parent.GetComponent<Player1P>());
             }
         } 
         else if (other.tag != "Player" && other.gameObject == target && !holdingObject)
@@ -192,13 +221,19 @@ public class GorillaMovement : NetworkBehaviour
                 this.stunned = true;
                 StartCoroutine("SelfStun");
             }
-            else if (other.gameObject.GetComponent<ItemScript>().type == "Nuke" && other.gameObject.GetComponent<ItemScript>().thrown){
+            else if (other.gameObject.GetComponent<ItemScript>().type == "Nuke" && other.gameObject.GetComponent<ItemScript>().active){
                 this.stunned = true;
+                Explosion(other.gameObject);
                 StartCoroutine("KnockBack", other.transform.position);
             }
         }
     }
-    
+
+    private void Explosion(GameObject nuke)
+    {
+        Instantiate(GameObject.Find("Explosion"), nuke.transform.position, this.gameObject.transform.rotation);
+    }
+
     private void PickUpObject(Collider other)
     {
         other.transform.parent = this.transform;
@@ -217,10 +252,14 @@ public class GorillaMovement : NetworkBehaviour
             charging = true;
 
             StopGorilla();
+            
+            //-- WINDUP ANIMATION --//
+            this.GetComponent<Animator>().Play("GorillaWindUp");
+            
             this.transform.LookAt(target.transform.position);
             this.GetComponent<Rigidbody>().ResetInertiaTensor(); // reset inertia before charging
 
-            yield return new WaitForSeconds(0.75f); // time in seconds to wait
+            yield return new WaitForSeconds(1f); // time in seconds to wait
             
             this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
@@ -236,6 +275,7 @@ public class GorillaMovement : NetworkBehaviour
             yield return new WaitForSeconds(0.5f); // gorilla self-stun after it charges
 
             StartGorilla();
+            this.GetComponent<Animator>().Play("GorillaWalk2");
         
             yield return new WaitForSeconds(chargeCooldown); // charge cooldown
             canCharge = true;
@@ -246,20 +286,24 @@ public class GorillaMovement : NetworkBehaviour
     {
         if (holdingObject)
         {
-            StopGorilla();
-            this.transform.LookAt(playerObj.transform.position);
+            agent.speed = 0;
+            gameObject.transform.LookAt(playerObj.transform.position);
             yield return new WaitForSeconds(0.5f); // wait for 1 second
 
             objectHeld.GetComponent<Rigidbody>().isKinematic = false;
             objectHeld.tag = "ThrownObject";
             objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 3f, ForceMode.Impulse);
-
+            
+            //-- THROW ANIMATION --//
+            this.GetComponent<Animator>().Play("GorillaThrow");
+            
             yield return new WaitForSeconds(1f); // wait for 1 second
 
             holdingObject = false;
             StartCoroutine("ThrowWait");
             StartCoroutine("DestroyThrown", objectHeld);
             StartGorilla();
+            this.GetComponent<Animator>().Play("GorillaWalk1");
         }
     }
 
@@ -277,8 +321,12 @@ public class GorillaMovement : NetworkBehaviour
 
     // This coroutine handles part of the Gorilla/Player collision interaction.
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
-    IEnumerator AttackPlayer(Player player){
+    IEnumerator AttackPlayer(Player1P player){
         Debug.Log("ATTACK PLAYER");
+
+        //-- ATTACK ANIMATION --//
+        this.GetComponent<Animator>().Play("GorillaClap");
+
         this.stunned = true;
         this.charging = false;  // in case gorilla was charging
         this.canCharge = false;
@@ -299,11 +347,11 @@ public class GorillaMovement : NetworkBehaviour
             // Update the health of the player.
             player.StartCoroutine("updateHealth");
         }
-        
-        //animator.play("attack-anim"); // play the gorilla attack animation (?)
+            
         yield return new WaitForSeconds(0.75f); // wait
         
         StartGorilla();
+        this.GetComponent<Animator>().Play("GorillaWalk1");
         this.stunned = false;
 
         if(!this.canCharge){    // if gorilla was in the middle of his charge
@@ -330,6 +378,7 @@ public class GorillaMovement : NetworkBehaviour
         yield return new WaitForSeconds(2f); // banana stuns gorilla for 2 seconds
         
         StartGorilla();
+        this.GetComponent<Animator>().Play("GorillaWalk2");
         this.stunned = false;
         
         if(!this.canCharge){    // if gorilla was in the middle of his charge
@@ -362,6 +411,7 @@ public class GorillaMovement : NetworkBehaviour
         this.GetComponent<Rigidbody>().isKinematic = true;
         
         StartGorilla();
+        this.GetComponent<Animator>().Play("GorillaWalk2");
         this.stunned = false;
         
         if(!this.canCharge){    // if gorilla was in the middle of his charge
@@ -376,6 +426,8 @@ public class GorillaMovement : NetworkBehaviour
         agent.speed = 0;
         agent.acceleration = 100;
         agent.angularSpeed = 15; // decrease the angular speed so it doesn't turn as much
+
+        this.GetComponent<Animator>().Play("GorillaIdle");
     }
 
     private void StartGorilla(){

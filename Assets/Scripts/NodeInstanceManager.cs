@@ -8,7 +8,8 @@ using Mirror;
 
 public class NodeInstanceManager : MonoBehaviour
 {
-    [SerializeField] private Renderer myObject; 
+    //[SerializeField] private Renderer myObject;
+    public GameObject indicator;
     public NetworkManager nm;
     public UnityEngine.Color color;
     public UnityEvent OnNodeFix;
@@ -150,27 +151,27 @@ public class NodeInstanceManager : MonoBehaviour
     {
         if (greyed == true && this.gameObject.tag != "ElecControl")
         {
-            myObject.material.color = Color.grey;
+            indicator.GetComponent<NodeIndicator>().SetGrey();
             display.color = Color.grey;
         }
         else
         {
             if (colorTracker.text == "green")
             {
-                myObject.material.color = Color.green;
+                indicator.GetComponent<NodeIndicator>().SetGreen();
                 display.color = Color.green;
                 color = Color.green;
             }
             else if (colorTracker.text == "yellow")
             {
-                myObject.material.color = Color.yellow;
+                indicator.GetComponent<NodeIndicator>().SetYellow();
                 display.color = Color.yellow;
                 displayAnim.Play("MinimapYellowTask");
                 color = Color.yellow;
             }
             else if (colorTracker.text == "red")
             {
-                myObject.material.color = Color.red;
+                indicator.GetComponent<NodeIndicator>().SetRed();
                 display.color = Color.red;
                 displayAnim.Play("MinimapRedTask");
                 color = Color.red;
@@ -181,8 +182,14 @@ public class NodeInstanceManager : MonoBehaviour
     public void SetColor(UnityEngine.Color input)
     {
         color = input;
-        myObject.material.color = input;
         display.color = input;
+
+        if (input == Color.green)
+            indicator.GetComponent<NodeIndicator>().SetGreen();
+        else if (input == Color.yellow)
+            indicator.GetComponent<NodeIndicator>().SetYellow();
+        else if (input == Color.red)
+            indicator.GetComponent<NodeIndicator>().SetRed();
     }
 
     public UnityEngine.Color GetColor()

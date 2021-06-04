@@ -49,9 +49,23 @@ public class Player : NetworkBehaviour
     public GameObject wpArrow;
     public GameObject CameraObj;
 
+    public List<Transform> visibleTargets = new List<Transform>();
+    private Transform highlightTarget;
+    PlayerFOV targetsList;
+
+    [HideInInspector]
+    public bool canMove;
+
+    [HideInInspector]
+    public bool hasWonTheGame;
+
+    Escape canTeleport;
+    GameObject escapeObj;
+
     // Start is called before the first frame update
     void Start()
     {
+       
         defaultSpeed = moveSpeed;
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
@@ -59,8 +73,10 @@ public class Player : NetworkBehaviour
         oxygen = 60;
         invulnerable = false;
         holding = false;
+        
         gm = FindObjectOfType<GameManager>();
         nm = FindObjectOfType<NetworkManager>();
+
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
 
@@ -72,17 +88,60 @@ public class Player : NetworkBehaviour
 
         oxygenCue = GameObject.Find("Oxygen Cue").GetComponent<Animator>();
         damageCue = GameObject.Find("Damage Cue").GetComponent<Animator>();
+
+        escapeObj = GameObject.Find("Escape2");
+        canTeleport = escapeObj.GetComponent<Escape>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("islocalplayer "+isLocalPlayer);
-        //Debug.Log("playercount   " +NetworkManagerApeShip.playerCount+"\n");
-        if (isLocalPlayer)
+        if(canTeleport.teleport == true)
         {
-            // creating normalizing direction so that movement isnt faster on diagonals
+            this.anim.Play("Idle");
+            canMove = false;
+        }
+
+        // creating normalizing direction so that movement isnt faster on diagonals
+        if (canMove && isLocalPlayer)
+        {
+            //Get list of targets from FieldOfView list
+            targetsList = GetComponent<PlayerFOV>();
+            //transfer each target into local list
+            visibleTargets.Clear();
+            foreach (Transform t in targetsList.visibleTargets)
+            {
+                visibleTargets.Add(t);
+            }
+
+            if (visibleTargets.Count == 0 || this.holding) {
+                if (highlightTarget) {
+                    highlightTarget.gameObject.GetComponent<ItemScript>().highlightOff();
+                }
+                highlightTarget = null;
+            }
+
+            if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0)
+            {
+                this.holdItem = visibleTargets[0].gameObject;
+
+                // Sets player to the pick-up item's parent so the item will move around with the player.            
+                //other.gameObject.transform.parent = this.transform;
+                visibleTargets[0].gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
+
+                // mark the coin (or whatever object) as picked up 
+                visibleTargets[0].gameObject.GetComponent<ItemScript>().pickedUp = true;
+                visibleTargets[0].gameObject.GetComponent<ItemScript>().thrown = false;
+
+                // disable collision with held item
+                Physics.IgnoreCollision(this.GetComponent<Collider>(), visibleTargets[0].gameObject.GetComponent<MeshCollider>(), true);
+
+                this.wpArrow.SetActive(true);
+                //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+                StartCoroutine("PickUpCD");
+            }
             this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
+
             if (dir.sqrMagnitude > 0)
             {
                 //Debug.Log(this.holdItem);
@@ -95,7 +154,6 @@ public class Player : NetworkBehaviour
                 {
                     this.anim.Play("Walk"); // play walking animation when moving
                     this.holding = false; // if no holdItem, then holding must be false
-                    this.wpArrow.SetActive(false);
                 }
                 this.transform.LookAt(transform.position + dir); // look in direction that player is walking
                 controller.SimpleMove(this.moveSpeed * dir);
@@ -113,184 +171,49 @@ public class Player : NetworkBehaviour
                 {
                     this.anim.Play("Idle"); // if not moving, play idle anim
                     this.holding = false; // if no holdItem, then holding must be false
-                    this.wpArrow.SetActive(false);
                 }
             }
 
-            // Check if the player is invulnerable
-            if (invulnerable)
-            {
-                if (invulnTime > 0)
-                {
-                    invulnTime -= Time.deltaTime;
+            if (!this.holding && visibleTargets.Count != 0 && visibleTargets[0] != highlightTarget) {
+                if (highlightTarget) {
+                    highlightTarget.gameObject.GetComponent<ItemScript>().highlightOff();
                 }
-                else
-                {
-                    invulnerable = false;
-                    Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), false);
-                    invulnTime = 2;
-                }
-            }
+                highlightTarget = visibleTargets[0];
+                Debug.Log("target switched: "+highlightTarget.gameObject.name);
 
-            // code to drop items
-            if (this.holding)
-            {   // if player is holding an item and presses space bar
-                if (Input.GetKeyDown("space")){
-
-                    // un-parent the player from the item
-                    this.holdItem.transform.parent = null;
-                    this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-                    this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-
-                    Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
-                    // get rid of hold item
-                    this.holdItem = null;
-                    this.wpArrow.SetActive(false);
-
-                    StartCoroutine("PickUpCD");
-                }
-                // code to throw items
-                else if (Input.GetKeyDown(KeyCode.LeftShift))
-                { // holding item + press left shift
-
-                    this.holdItem.transform.parent = null; // unparent player from item
-
-                    this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-                    this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-                    this.holdItem.GetComponent<ItemScript>().thrown = true;
-                    this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-                    this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 15f + this.dir * 10f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
-                                                                                                                        //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
-                                                                                                                        //Debug.Log("throw");
-                    
-                    Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
-                    
-                    // get rid of hold item
-                    this.holdItem = null;
-                    this.wpArrow.SetActive(false);
-                    StartCoroutine("PickUpCD");
-                }
-            }
-            //if player isn't holding an item, reset to default speed
-            if (!this.holding)
-            {
-                ChangeSpeed(defaultSpeed);
-            }
-            
-            //if player isn't holding an item, reset to default speed
-            if (!this.holding)
-            {
-                ChangeSpeed(defaultSpeed);
-            }
-            
-            // Check if both oxygens are red.
-            if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
-                if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
-                //If you update oxygen with a 0, the animation will play, otherwise it wont
-                updateOxygen(0);
-            // Check if one oxygen is red
-            } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
-            {
-                if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
-                //If you update oxygen with a 0, the animation will play, otherwise it wont
-                updateOxygen(0);
-            }
-            else {
-                if ( oxygen < 60 ) {
-                    oxygen += Time.deltaTime * 2;
-                    updateOxygen(1);
-                }
+                highlightTarget.gameObject.GetComponent<ItemScript>().highlightOn();
             }
         }
-        // if not the Local Player, still play animations.  ** WORK IN PROGRESS ** 
+        
+        
+        // Check if both oxygens are red.
+        if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
+            if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
+            //If you update oxygen with a 0, the animation will play, otherwise it wont
+            updateOxygen(0);
+        // Check if one oxygen is red
+        } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
+        {
+            if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
+            //If you update oxygen with a 0, the animation will play, otherwise it wont
+            updateOxygen(0);
+        }
         else {
-            Debug.Log("other player velocity: "  +this.GetComponent<CharacterController>().velocity);
-
-            if (this.GetComponent<CharacterController>().velocity != Vector3.zero)
-            {
-                if (this.holdItem)
-                {
-                    this.anim.Play("Hold");
-                }
-                else
-                {
-                    this.anim.Play("Walk"); // play walking animation when moving
-                    this.holding = false; // if no holdItem, then holding must be false
-                }
-            }
-            else
-            {
-                if (this.holdItem)
-                {
-                    this.anim.Play("Hold-Idle");
-                }
-                else
-                {
-                    this.anim.Play("Idle"); // if not moving, play idle anim
-                    this.holding = false; // if no holdItem, then holding must be false
-                }
+            if ( oxygen < 90 ) {
+                oxygen += Time.deltaTime * 2;
+                updateOxygen(1);
             }
         }
+
     }
 
-    //checks to see if picked up object, activated everytime touch a trigger collider
     void OnTriggerEnter(Collider other) 
     {
-        if (isLocalPlayer){
-            if (Input.GetKeyDown(KeyCode.Space) && !this.holdItem && other.gameObject.CompareTag("Pick Up"))
-            {
-                this.holdItem = other.gameObject;
-                
-                //deactivates game object
-                //other.gameObject.SetActive(false);
-
-                // Sets player to the pick-up item's parent so the item will move around with the player.            
-                //other.gameObject.transform.parent = this.transform;
-                other.gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
-                // mark the coin (or whatever object) as picked up 
-                other.gameObject.GetComponent<ItemScript>().pickedUp = true;
-                other.gameObject.GetComponent<ItemScript>().thrown = false;
-                // re-enable collisions
-                Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), true);
-                
-                this.wpArrow.SetActive(true);
-                //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
-                StartCoroutine("PickUpCD");
-                //this.holding = true;
-                //Debug.Log(this.holdItem);
-            }
-            if (other.gameObject.tag == "ThrownObject")
-            {
-                Debug.Log("Hit by object");
-                health = health - 1 ;
-                StartCoroutine("updateHealth");
-            }
-        }
-    }
-
-    // by using OnTriggerStay, we can check for picking up as long as player is touching the item.
-    void OnTriggerStay(Collider other){
-        if (isLocalPlayer) {
-            //test tag, if string is same as pick up...
-            if (Input.GetKeyDown(KeyCode.Space) && !this.holdItem && other.gameObject.CompareTag("Pick Up"))
-            {
-                this.holdItem = other.gameObject;
-
-                // Sets player to the pick-up item's parent so the item will move around with the player.            
-                //other.gameObject.transform.parent = this.transform;
-                other.gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
-
-
-                // mark the coin (or whatever object) as picked up 
-                other.gameObject.GetComponent<ItemScript>().pickedUp = true;
-                other.gameObject.GetComponent<ItemScript>().thrown = false;
-                
-                Physics.IgnoreCollision(this.GetComponent<Collider>(), other.gameObject.GetComponent<MeshCollider>(), true);
-                
-                this.wpArrow.SetActive(true);
-                //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
-                StartCoroutine("PickUpCD");
-            }
+        if (other.gameObject.tag == "ThrownObject")
+        {
+            Debug.Log("Hit by object");
+            health = health - 1 ;
+            StartCoroutine("updateHealth");
         }
     }
 
@@ -364,7 +287,7 @@ public class Player : NetworkBehaviour
 
     void PlayWalkingNoise(){
         //Debug.Log(this.dir);
-        if(this.dir.sqrMagnitude > 0){
+        if(this.dir.sqrMagnitude > 0 && health > 0 && !hasWonTheGame){
             AudioClip temp = this.walkingSamples[Random.Range(0, 3)];
             //Debug.Log(temp);
             this.walkingSFX.PlayOneShot(temp, Random.Range(0.01f, 0.05f));
