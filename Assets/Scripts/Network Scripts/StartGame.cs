@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartGame : MonoBehaviour
 {
     private GameObject networkManager = null;
-    public GameObject startGameButton = null;
+    public Button startGameButton = null;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,6 @@ public class StartGame : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        startGameButton.SetActive(networkManager.GetComponent<NetworkManagerApeShip>()._allPlayersReady);
+        startGameButton.interactable = (networkManager.GetComponent<NetworkManagerApeShip>()._allPlayersReady);
     }
 }
