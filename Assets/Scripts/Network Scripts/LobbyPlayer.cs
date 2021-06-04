@@ -8,8 +8,13 @@ public class LobbyPlayer : NetworkBehaviour
 {
 
     [SerializeField] private NetworkRoomPlayer player = null;
+
     [SerializeField] private Button readybutton = null;
     [SerializeField] private Button disconnect = null;
+
+    [SerializeField] private GameObject readyindicator = null;
+
+
 
     public NetworkConnection previousConnection;
 
@@ -48,6 +53,8 @@ public class LobbyPlayer : NetworkBehaviour
 
     public void toggle()
     {
+        readyindicator.SetActive(!readyindicator.activeSelf);
+
         player.CmdChangeReadyState(!player.readyToBegin);
     }
 
