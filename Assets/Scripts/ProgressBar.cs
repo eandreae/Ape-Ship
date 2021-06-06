@@ -51,6 +51,7 @@ public class ProgressBar : NetworkBehaviour
     UIManager uim;
 
     public AudioSource intruderAlert;
+    public Animator anotherGorillaText;
 
     void Start()
     {
@@ -101,6 +102,7 @@ public class ProgressBar : NetworkBehaviour
                     GameObject gorilla2 = Instantiate( nm.spawnPrefabs[0] );
                     NetworkServer.Spawn(gorilla2);
                     intruderAlert.Play();
+                    anotherGorillaText.Play("AnotherGorillaSlideIn");
                     /*GameObject mat = GameObject.Find("QuadDrawGorilla_LowPoly_UVUnwrapped_final1(Clone)");
                     Renderer render = mat.GetComponent<Renderer>();
                     render.material.SetTexture("Gorilla2Body", gorilla2Tex);*/

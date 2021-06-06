@@ -49,6 +49,7 @@ public class ProgressBar1P : MonoBehaviour
     UIManager uim;
 
     public AudioSource intruderAlert;
+    public Animator anotherGorillaText;
 
     void Start()
     {
@@ -115,6 +116,7 @@ public class ProgressBar1P : MonoBehaviour
                     GameObject gorilla2 = Instantiate(gorilla, spawnLoc.transform.position, gorilla.transform.rotation);
                     gorilla2.GetComponent<Gorilla1P>().TeleportOut();
                     intruderAlert.Play();
+                    anotherGorillaText.Play("AnotherGorillaSlideIn");
                     /*GameObject mat = GameObject.Find("QuadDrawGorilla_LowPoly_UVUnwrapped_final1(Clone)");
                     Renderer render = mat.GetComponent<Renderer>();
                     render.material.SetTexture("Gorilla2Body", gorilla2Tex);*/
