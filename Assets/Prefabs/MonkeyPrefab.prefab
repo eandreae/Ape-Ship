@@ -6488,7 +6488,7 @@ GameObject:
   - component: {fileID: 8868783890322972323}
   - component: {fileID: 403039807910502416}
   m_Layer: 0
-  m_Name: new monkey
+  m_Name: MonkeyPrefab
   m_TagString: Monkey
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6501,8 +6501,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2675963936397640661}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -101, y: 0, z: -8.91}
+  m_LocalRotation: {x: -0, y: 0.7033522, z: -0, w: 0.71084154}
+  m_LocalPosition: {x: -94.95, y: 0, z: 3.83}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3440977018633084082}
@@ -6510,7 +6510,7 @@ Transform:
   - {fileID: 2549165047452970996}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 89.393005, z: 0}
 --- !u!54 &3018404422271199066
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6666,6 +6666,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65b457a986a774c469d56a8d42211718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   stoppingDistance: 10
   color1: {fileID: 0}
   color2: {fileID: 0}
@@ -6673,6 +6675,7 @@ MonoBehaviour:
   color4: {fileID: 0}
   color5: {fileID: 0}
   color6: {fileID: 0}
+  target: {fileID: 0}
   visibleTargets: []
 --- !u!114 &8868783890322972323
 MonoBehaviour:

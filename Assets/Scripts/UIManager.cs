@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class UIManager : MonoBehaviour
 {
+
     public Animator blackBarTop;
     public Animator blackBarBottom;
     public Animator progressBar;
@@ -15,7 +17,9 @@ public class UIManager : MonoBehaviour
     public float teleportTime = 5f;
     public float blackBarAnimDuration = 1f;
 
+    NetworkManager nm;
     Player1P p1p;
+    public GameObject[] players;
     PlayerCamera pc;
 
     public GameObject monkey;
@@ -36,10 +40,18 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        nm = FindObjectOfType<NetworkManager>();
         pc = FindObjectOfType<PlayerCamera>();
-        p1p = FindObjectOfType<Player1P>();
-        pc.followPlayer = false;
-        p1p.canMove = false;
+        
+        if(!nm){
+            p1p = FindObjectOfType<Player1P>();
+            pc.followPlayer = false;
+            p1p.canMove = false;
+        }
+        else {
+            pc.followPlayer = false;
+        }
+        
         Invoke("TeleportApes", teleportTime);
         Invoke("BlackBarsLeave", introDuration);
     }
@@ -53,8 +65,18 @@ public class UIManager : MonoBehaviour
 
     void BlackBarsLeave()
     {
+
+        players = GameObject.FindGameObjectsWithTag("Player");
+        
         pc.followPlayer = true;
-        p1p.canMove = true;
+
+        if(!nm)
+            p1p.canMove = true;
+        else{
+            foreach (GameObject p in players)
+                p.GetComponent<Player>().canMove = true;
+        }
+
         blackBarTop.Play("TopBarLeave");
         blackBarBottom.Play("BottomBarLeave");
         Invoke("SlideInUI", blackBarAnimDuration);

@@ -167,7 +167,10 @@ public class ItemScript : MonoBehaviour
 
     void OnDestroy() {
         if (pickedUp) {
-            playerRoot.GetComponent<Player1P>().wpArrow.SetActive(false);
+            if (nm)
+                playerRoot.GetComponent<Player>().wpArrow.SetActive(false);
+            else 
+                playerRoot.GetComponent<Player1P>().wpArrow.SetActive(false);
         }
     }
 

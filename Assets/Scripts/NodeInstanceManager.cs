@@ -25,9 +25,9 @@ public class NodeInstanceManager : MonoBehaviour
     public float stopDistance;
     private float playerDist;
     public float monkeyDist;
-    GameObject playerObj;
-    GameObject monkeyObj;
-    NavMeshAgent agent;
+    public GameObject playerObj;
+    public GameObject monkeyObj;
+    public NavMeshAgent agent;
     public bool canHack = true; // can be hacked by monkey
     //private MonkeyMovement flee;
     public bool isFleeing;
@@ -44,10 +44,8 @@ public class NodeInstanceManager : MonoBehaviour
     {
         nm = GameObject.FindObjectOfType<NetworkManager>();
 
-        if(nm){
-            if (this.gameObject.name == "LungTarget (1P)")
-                Object.Destroy(this.gameObject);
-            if (this.gameObject.name == "Lungs_2Target (1P)")
+        if(nm && (this.gameObject.name == "BrainTarget (1P)" || this.gameObject.name == "LungTarget (1P)"
+              ||  this.gameObject.name == "Lungs_2Target (1P)") ){
                 Object.Destroy(this.gameObject);
         }
         playerObj = GameObject.FindGameObjectWithTag("Player");
@@ -92,7 +90,7 @@ public class NodeInstanceManager : MonoBehaviour
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);
         //flee = GetComponent<MonkeyMovement>();
 
-        if(GameObject.FindObjectOfType<NetworkManager>()){
+        if(nm){
             isFleeing = MonkeyMovement.runningAway;
         } else {
             isFleeing = Monkey1P.runningAway;

@@ -30,9 +30,9 @@ public class GorillaMovement : NetworkBehaviour
 
     private bool canCharge = true;
     private bool canPickup = true;
-    public bool charging = false;
-    private bool playerLock = false;
-    public bool stunned = false;
+    [SyncVar] public bool charging = false;
+    [SyncVar] private bool playerLock = false;
+    [SyncVar] public bool stunned = false;
     private float playerDist = 0f;
     FieldOfView targetsList;
     FieldOfView objectsList;
@@ -43,7 +43,6 @@ public class GorillaMovement : NetworkBehaviour
 
     public float chargeCooldown = 4f;
     private bool startMoving = false;
-
 
     // Start is called before the first frame update
     private void Start()
@@ -81,7 +80,6 @@ public class GorillaMovement : NetworkBehaviour
 
         StartCoroutine("BeginningWait");
     }
-
 
     // Update is called once per frame
     private void Update()    
@@ -127,8 +125,6 @@ public class GorillaMovement : NetworkBehaviour
 
             }
 
-
-
             float dist = Vector3.Distance(transform.position, target.transform.position);
 
             if (dist < stoppingDistance)
@@ -161,7 +157,7 @@ public class GorillaMovement : NetworkBehaviour
 
     IEnumerator BeginningWait()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(6f);
         startMoving = true;
     }
 
@@ -174,6 +170,7 @@ public class GorillaMovement : NetworkBehaviour
         Debug.Log("Gorilla moving to: " + target);
     }
 
+    [Server]
     private void GoToTarget()
     {
         // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
@@ -210,7 +207,7 @@ public class GorillaMovement : NetworkBehaviour
     {
         if (other.tag == "PlayerMod") { // use player model, not player trigger
             if (!this.stunned) {
-                StartCoroutine("AttackPlayer",  other.transform.parent.GetComponent<Player1P>());
+                StartCoroutine("AttackPlayer",  other.transform.parent.GetComponent<Player>());
             }
         } 
         else if (other.tag != "Player" && other.gameObject == target && !holdingObject)
@@ -322,7 +319,7 @@ public class GorillaMovement : NetworkBehaviour
 
     // This coroutine handles part of the Gorilla/Player collision interaction.
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
-    IEnumerator AttackPlayer(Player1P player){
+    IEnumerator AttackPlayer(Player player){
         Debug.Log("ATTACK PLAYER");
 
         //-- ATTACK ANIMATION --//

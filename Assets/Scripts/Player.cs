@@ -47,7 +47,6 @@ public class Player : NetworkBehaviour
     
     public Collider gorillaCollider;
     public GameObject wpArrow;
-    public GameObject CameraObj;
 
     public List<Transform> visibleTargets = new List<Transform>();
     private Transform highlightTarget;
@@ -70,13 +69,12 @@ public class Player : NetworkBehaviour
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
         health = 3;
-        oxygen = 60;
+        oxygen = 90;
         invulnerable = false;
         holding = false;
-        
         gm = FindObjectOfType<GameManager>();
         nm = FindObjectOfType<NetworkManager>();
-
+        
         walkingSFX = this.GetComponent<AudioSource>();
         InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
 
@@ -91,6 +89,10 @@ public class Player : NetworkBehaviour
 
         escapeObj = GameObject.Find("Escape2");
         canTeleport = escapeObj.GetComponent<Escape>();
+
+        if(!isLocalPlayer){
+            Object.Destroy(this.wpArrow);
+        }
     }
 
     // Update is called once per frame
@@ -103,7 +105,7 @@ public class Player : NetworkBehaviour
         }
 
         // creating normalizing direction so that movement isnt faster on diagonals
-        if (canMove && isLocalPlayer)
+        if (isLocalPlayer)
         {
             //Get list of targets from FieldOfView list
             targetsList = GetComponent<PlayerFOV>();
@@ -119,6 +121,16 @@ public class Player : NetworkBehaviour
                     highlightTarget.gameObject.GetComponent<ItemScript>().highlightOff();
                 }
                 highlightTarget = null;
+            }
+
+            if (!this.holding && visibleTargets.Count != 0 && visibleTargets[0] != highlightTarget) {
+                if (highlightTarget) {
+                    highlightTarget.gameObject.GetComponent<ItemScript>().highlightOff();
+                }
+                highlightTarget = visibleTargets[0];
+                Debug.Log("target switched: "+highlightTarget.gameObject.name);
+
+                highlightTarget.gameObject.GetComponent<ItemScript>().highlightOn();
             }
 
             if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0)
@@ -140,52 +152,109 @@ public class Player : NetworkBehaviour
                 //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
                 StartCoroutine("PickUpCD");
             }
-            this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
 
-            if (dir.sqrMagnitude > 0)
+            if (canMove)
             {
-                //Debug.Log(this.holdItem);
-                // if Player is holding an item, then use the hold animation. 
-                if (this.holdItem)
+                this.dir = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical")).normalized;
+                if (dir.sqrMagnitude > 0)
                 {
-                    this.anim.Play("Hold");
+                    //Debug.Log(this.holdItem);
+                    // if Player is holding an item, then use the hold animation. 
+                    if (this.holdItem)
+                    {
+                        this.anim.Play("Hold");
+                    }
+                    else
+                    {
+                        this.anim.Play("Walk"); // play walking animation when moving
+                        this.holding = false; // if no holdItem, then holding must be false
+                    }
+                    this.transform.LookAt(transform.position + dir); // look in direction that player is walking
+                    controller.SimpleMove(this.moveSpeed * dir);
+                    //StartCoroutine("PlayWalkingNoise");
+                    // Moved camera functionality to PlayerCamera.cs
+                    // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
+                }
+                else if (dir.sqrMagnitude == 0)
+                {
+                    if (this.holdItem)
+                    {
+                        this.anim.Play("Hold-Idle");
+                    }
+                    else
+                    {
+                        this.anim.Play("Idle"); // if not moving, play idle anim
+                        this.holding = false; // if no holdItem, then holding must be false
+                    }
+                }
+            }
+            
+            // Check if the player is invulnerable
+            if (invulnerable)
+            {
+                if (invulnTime > 0)
+                {
+                    invulnTime -= Time.deltaTime;
                 }
                 else
                 {
-                    this.anim.Play("Walk"); // play walking animation when moving
-                    this.holding = false; // if no holdItem, then holding must be false
+                    invulnerable = false;
+                    Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), false);
+                    invulnTime = 2;
                 }
-                this.transform.LookAt(transform.position + dir); // look in direction that player is walking
-                controller.SimpleMove(this.moveSpeed * dir);
-                //StartCoroutine("PlayWalkingNoise");
-                // Moved camera functionality to PlayerCamera.cs
-                // camera.transform.position = new Vector3(this.transform.position.x, 21.5f, this.transform.position.z - 10);
             }
-            else
+
+            // code to drop items
+            if (this.holding)
+            {   // if player is holding an item and presses space bar
+                if (Input.GetKeyDown("space")){
+                    // Debug.Log("drop");
+                    // un-parent the player from the item
+                    //this.holdItem.transform.parent = null;
+                    // un-mark the coin as picked up.
+                    this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+                    this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+                    
+                    // reenable collision
+                    Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
+                    //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
+                    // get rid of hold item
+                    this.holdItem = null;
+                    this.wpArrow.SetActive(false);
+
+                    StartCoroutine("PickUpCD");
+                }
+                // code to throw items
+                else if (Input.GetKeyDown(KeyCode.LeftShift))
+                { // holding item + press left shift
+
+                    //this.holdItem.transform.parent = null; // unparent player from item
+
+                    this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+                    this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+                    if(this.gameObject.name != "BatteryWithAnimations")
+                    {
+                        this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 20f + this.dir * 20f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
+                                                                                                                            //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
+                                                                                                                            //Debug.Log("throw");
+                        this.holdItem.GetComponent<ItemScript>().thrown = true;
+                        this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
+
+                    }
+                    Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
+                    // get rid of hold item
+                    this.holdItem = null;
+                    this.wpArrow.SetActive(false);
+                    StartCoroutine("PickUpCD");
+                }
+            }
+            //if player isn't holding an item, reset to default speed
+            if (!this.holding)
             {
-                if (this.holdItem)
-                {
-                    this.anim.Play("Hold-Idle");
-                }
-                else
-                {
-                    this.anim.Play("Idle"); // if not moving, play idle anim
-                    this.holding = false; // if no holdItem, then holding must be false
-                }
-            }
-
-            if (!this.holding && visibleTargets.Count != 0 && visibleTargets[0] != highlightTarget) {
-                if (highlightTarget) {
-                    highlightTarget.gameObject.GetComponent<ItemScript>().highlightOff();
-                }
-                highlightTarget = visibleTargets[0];
-                Debug.Log("target switched: "+highlightTarget.gameObject.name);
-
-                highlightTarget.gameObject.GetComponent<ItemScript>().highlightOn();
+                ChangeSpeed(defaultSpeed);
             }
         }
-        
-        
+
         // Check if both oxygens are red.
         if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
             if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
@@ -204,7 +273,6 @@ public class Player : NetworkBehaviour
                 updateOxygen(1);
             }
         }
-
     }
 
     void OnTriggerEnter(Collider other) 

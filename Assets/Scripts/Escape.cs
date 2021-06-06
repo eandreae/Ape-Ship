@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class Escape : MonoBehaviour
 {
@@ -8,8 +9,12 @@ public class Escape : MonoBehaviour
     private bool shouldSpawn = true;
     public bool teleport = false;
     GameManager gm;
-    ProgressBar bar;
+    NetworkManager nm;
+    
     GameObject progBar;
+    public ProgressBar bar;
+    public ProgressBar1P bar1P;
+    
     public GameObject bat;
     public GameObject batCopy;
     public GameObject batSpawn;
@@ -25,17 +30,43 @@ public class Escape : MonoBehaviour
     void Start()
     {
         gm = FindObjectOfType<GameManager>();
+        nm = FindObjectOfType<NetworkManager>();
         uim = FindObjectOfType<UIManager>();
 
-        progBar = GameObject.Find("ProgressSlider");
-        bar = progBar.GetComponent<ProgressBar>();
+        if(!nm) {
+            progBar = GameObject.Find("ProgressSlider (1P)");
+            bar1P = progBar.GetComponent<ProgressBar1P>();
+        }
+
         batCopy.SetActive(true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(bar.teleport == true && shouldSpawn == true)
+        if(!progBar){
+            progBar = GameObject.Find("ProgressSlider");
+            bar = progBar.GetComponent<ProgressBar>();
+        }
+        if (!waypointArrow){
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")){
+                if (player.GetComponent<Player>().isLocalPlayer){
+                    this.waypointArrow = player.GetComponent<Player>().wpArrow;
+                }
+            }
+        }
+
+        if(!nm && bar1P.teleport == true && shouldSpawn == true)
+        {
+            uim.ReplaceProgressBar();
+            SpawnBattery();
+            waypointArrow.SetActive(true);
+            waypointArrow.GetComponent<Waypoint>().WhichWaypoint(7);
+            shouldSpawn = false;
+            canEscape = true;
+        }
+
+        if(nm && bar.teleport == true && shouldSpawn == true)
         {
             uim.ReplaceProgressBar();
             SpawnBattery();

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.AI;
 using Mirror;
 
-public class ProgressBar : NetworkBehaviour
+public class ProgressBar1P : MonoBehaviour
 {
 
     // Used online resources to get this code.
@@ -13,9 +13,7 @@ public class ProgressBar : NetworkBehaviour
     // https://gamedevbeginner.com/how-to-make-countdown-timer-in-unity-minutes-seconds/#timer
 
     public bool progressing = false;
-
-    // Sync Time Remaining
-    [SyncVar] public float timeRemaining = 120;
+    public float timeRemaining = 120;
 
     //public Text timeText;
     public Slider progressSlider;
@@ -33,7 +31,7 @@ public class ProgressBar : NetworkBehaviour
     public GameObject gorilla;
     public NavMeshAgent agentG;
 
-    public GorillaMovement gorill;
+    public Gorilla1P gorill1P;
     //public NodeInstanceManager monk;
 
     public Gradient barGradient;
@@ -57,9 +55,25 @@ public class ProgressBar : NetworkBehaviour
         progressing = true;
         gm = FindObjectOfType<GameManager>();
         nm = GameObject.FindObjectOfType<NetworkManager>();
+        if(nm)
+            Object.Destroy(this.gameObject);
+        
+        monkey = GameObject.FindGameObjectWithTag("Monkey");
+        agentM = monkey.GetComponent<NavMeshAgent>();
+        gorilla = GameObject.Find("Single Player Gorilla (debug) old");
+        agentG = gorilla.GetComponent<NavMeshAgent>();
         barFill.color = barGradient.Evaluate(1f);
         uim = FindObjectOfType<UIManager>();
+
+        Invoke("CheckForMonkeyAgain", monkeySpawnTime);
     }
+
+    void CheckForMonkeyAgain()
+    {
+        monkey = GameObject.FindGameObjectWithTag("Monkey");
+        agentM = monkey.GetComponent<NavMeshAgent>();
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -97,8 +111,8 @@ public class ProgressBar : NetworkBehaviour
                 if(timeRemaining < 60 && spawned == false)
                 {
                     spawned = true;
-                    GameObject gorilla2 = Instantiate( nm.spawnPrefabs[0] );
-                    NetworkServer.Spawn(gorilla2);
+                    GameObject gorilla2 = Instantiate(gorilla, spawnLoc.transform.position, gorilla.transform.rotation);
+                    gorilla2.GetComponent<Gorilla1P>().TeleportOut();
                     intruderAlert.Play();
                     /*GameObject mat = GameObject.Find("QuadDrawGorilla_LowPoly_UVUnwrapped_final1(Clone)");
                     Renderer render = mat.GetComponent<Renderer>();
@@ -109,9 +123,9 @@ public class ProgressBar : NetworkBehaviour
                 {
                     agentM.speed = 40;
                     agentG.speed = 10;
-                    
-                    gorill._SPEED = 10;
-                    gorill.chargeCooldown = 2f;
+
+                    gorill1P._SPEED = 10;
+                    gorill1P.chargeCooldown = 2f;
                     
                     NodeInstanceManager.monkCooldown = 1.5f;
                     //progressSlider.transform.localScale = Vector3.Lerp(progressSlider.transform.localScale, sizeDelta, 1f);
@@ -136,8 +150,8 @@ public class ProgressBar : NetworkBehaviour
 
     IEnumerator MonkeyTeleport()
     {
-        monkey.GetComponent<MonkeyMovement>().StopEnemy();
+        monkey.GetComponent<Monkey1P>().StopEnemy();
         yield return new WaitForSeconds(2f);
-        monkey.GetComponent<MonkeyMovement>().TeleportOut();
+        monkey.GetComponent<Monkey1P>().TeleportOut();
     }
 }
