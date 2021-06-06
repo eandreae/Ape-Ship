@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        singleplayer = (GameObject.FindObjectOfType<NetworkManager>() == null);
+        singleplayer = (FindObjectOfType<NetworkManager>() == null);
         Time.timeScale = 1f;
         p1p = FindObjectOfType<Player1P>();
     }
