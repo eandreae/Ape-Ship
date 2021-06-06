@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6301631833610516922}
   - component: {fileID: 3579136836370904095}
-  - component: {fileID: 590851734472220954}
   - component: {fileID: 590851734472220953}
   m_Layer: 8
   m_Name: Player Model
@@ -100,20 +99,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.000034769066, y: 0.026224952, z: -0.0026717465}
     m_Extent: {x: 0.023008402, y: 0.027166132, z: 0.01377251}
   m_DirtyAABB: 0
---- !u!64 &590851734472220954
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 590851734472220955}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3252224991405807402, guid: ee8365a613bc2df458f6ea1d67cd446d, type: 3}
 --- !u!64 &590851734472220953
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -651,6 +636,7 @@ GameObject:
   - component: {fileID: 7647579302506435257}
   - component: {fileID: 7647579302506435258}
   - component: {fileID: -5752669155066829439}
+  - component: {fileID: -4864056649990628206}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -919,6 +905,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   visibleTargets: []
+--- !u!64 &-4864056649990628206
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7647579302506435261}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1 &7863154369967847127
 GameObject:
   m_ObjectHideFlags: 0

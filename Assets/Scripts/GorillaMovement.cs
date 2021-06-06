@@ -1,4 +1,4 @@
-﻿//referenced using Single Sapling Games' video on "Stop Enemy When close to Player - FPS Game in Unity - Part 57" : https://www.youtube.com/watch?v=26Oavz7WTC0
+//referenced using Single Sapling Games' video on "Stop Enemy When close to Player - FPS Game in Unity - Part 57" : https://www.youtube.com/watch?v=26Oavz7WTC0
 
 using System.Collections;
 using System.Collections.Generic;
@@ -76,6 +76,7 @@ public class GorillaMovement : NetworkBehaviour
 
         foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")){
             Physics.IgnoreCollision(this.GetComponent<Collider>(), player.GetComponent<MeshCollider>());
+            Physics.IgnoreCollision(this.GetComponent<MeshCollider>(), player.GetComponent<CharacterController>(), true);
         }
 
         StartCoroutine("BeginningWait");

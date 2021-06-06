@@ -4040,12 +4040,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  nm: {fileID: 0}
   spawnPos: {fileID: 477077147}
   neuronBlue: {fileID: 0}
   neuronRed: {fileID: 0}
   neuronGreen: {fileID: 0}
   brainColor: {fileID: 0}
+  brainTarg: {fileID: 0}
 --- !u!114 &154885216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26272,12 +26272,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  nm: {fileID: 0}
   spawnPos: {fileID: 77906705}
   neuronBlue: {fileID: 0}
   neuronRed: {fileID: 0}
   neuronGreen: {fileID: 0}
   brainColor: {fileID: 0}
+  brainTarg: {fileID: 0}
 --- !u!114 &850851370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27834,12 +27834,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  nm: {fileID: 0}
   spawnPos: {fileID: 1925342314}
   neuronBlue: {fileID: 187106874}
   neuronRed: {fileID: 348634256}
   neuronGreen: {fileID: 78120112}
   brainColor: {fileID: 1279260005}
+  brainTarg: {fileID: 0}
 --- !u!114 &883165419
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -41229,7 +41229,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  nm: {fileID: 0}
   spawnPos: {fileID: 1058401336}
   neuronBlue: {fileID: 9185850192217589086, guid: 82cfb1a61a718da4ab50c691cd9f732d,
     type: 3}
@@ -41238,6 +41237,7 @@ MonoBehaviour:
   neuronGreen: {fileID: 449169518455169522, guid: 27e4a4a981bf9814ea8633ee3dbffbb4,
     type: 3}
   brainColor: {fileID: 1279260005}
+  brainTarg: {fileID: 0}
 --- !u!114 &1277547819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45098,12 +45098,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  nm: {fileID: 0}
   spawnPos: {fileID: 860033948}
   neuronBlue: {fileID: 0}
   neuronRed: {fileID: 0}
   neuronGreen: {fileID: 0}
   brainColor: {fileID: 0}
+  brainTarg: {fileID: 0}
 --- !u!95 &1398323092
 Animator:
   serializedVersion: 3
@@ -55799,12 +55799,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  nm: {fileID: 0}
   spawnPos: {fileID: 1416022112}
   neuronBlue: {fileID: 0}
   neuronRed: {fileID: 0}
   neuronGreen: {fileID: 0}
   brainColor: {fileID: 0}
+  brainTarg: {fileID: 0}
 --- !u!95 &1874073423
 Animator:
   serializedVersion: 3
@@ -61991,7 +61991,7 @@ PrefabInstance:
     - target: {fileID: 758380405924426014, guid: 816f15a9cd6bcf043bb9bd87f0a3f3dc,
         type: 3}
       propertyPath: m_Name
-      value: GorillaUpdated
+      value: GorillaUpdated (Network)
       objectReference: {fileID: 0}
     - target: {fileID: 758380405924426014, guid: 816f15a9cd6bcf043bb9bd87f0a3f3dc,
         type: 3}
@@ -65499,7 +65499,7 @@ PrefabInstance:
     - target: {fileID: 2675963936397640661, guid: 61c9fd4594c1a2541927750e1f466594,
         type: 3}
       propertyPath: m_Name
-      value: new monkey
+      value: Monkey (Network)
       objectReference: {fileID: 0}
     - target: {fileID: 2675963936397640661, guid: 61c9fd4594c1a2541927750e1f466594,
         type: 3}
