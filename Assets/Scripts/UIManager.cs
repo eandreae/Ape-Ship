@@ -75,6 +75,7 @@ public class UIManager : MonoBehaviour
         else{
             foreach (GameObject p in players)
                 p.GetComponent<Player>().canMove = true;
+            progressBar = FindObjectOfType<ProgressBar>().GetComponent<Animator>();
         }
 
         blackBarTop.Play("TopBarLeave");

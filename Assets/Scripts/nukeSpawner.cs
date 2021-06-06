@@ -20,10 +20,6 @@ public class nukeSpawner : NetworkBehaviour
     void Start()
     {
         nm = GameObject.FindObjectOfType<NetworkManager>();
-        if (nm)
-        {
-            Object.Destroy(this.gameObject);
-        }
 
         canSpawn = true;
         vendingMachine = GameObject.Find("NukeVendingMachine");

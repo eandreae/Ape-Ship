@@ -22,7 +22,9 @@ public class nukeSpawner1P : NetworkBehaviour
     void Start()
     {
         nm = GameObject.FindObjectOfType<NetworkManager>();
-
+        if(nm)
+            Object.Destroy(this.gameObject);
+            
         canSpawn = true;
 
         spawnee = GameObject.Find("SodaNuke (1P)"); // get nuke

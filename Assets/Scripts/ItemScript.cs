@@ -41,6 +41,20 @@ public class ItemScript : MonoBehaviour
     // Update is called once per frame
     public void Update()
     {
+        if(!wp){
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")){
+                if (player.GetComponent<Player>().isLocalPlayer){
+                    wp = player.GetComponent<Player>().wpArrow.GetComponent<Waypoint>();
+                }
+            }
+        }
+        if (!teleporterIndicator){
+            teleporterIndicator = GameObject.Find("teleporterIndicator");
+        }
+        if (batteryIndicator) {
+            batteryIndicator = GameObject.Find("BatteryIndicator");
+        }
+
         if(!pickedUp){ // code to execute if object is not picked up
             //this.rigidbody.isKinematic = false;
 

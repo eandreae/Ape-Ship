@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -571,7 +571,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   spawnPos: {fileID: 203415736}
-  spawnee: {fileID: 0}
+  spawnee: {fileID: 1832759771335753099, guid: 4c22a4e5bf2d3f84187dad7c6dadc86c, type: 3}
 --- !u!54 &20952163
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -6785,7 +6785,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blackBarTop: {fileID: 1277226980}
   blackBarBottom: {fileID: 225528172}
-  progressBar: {fileID: 635993683}
+  progressBar: {fileID: 1688784488}
   minimap: {fileID: 1143806242}
   healthOxygen: {fileID: 1009109129}
   roomName: {fileID: 63642798}
@@ -19040,7 +19040,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 729bcb07083236d4da692180fa7954a3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 729bcb07083236d4da692180fa7954a3,
         type: 3}
@@ -41486,7 +41486,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: ea442edf4eeb11e4ab3b332690a4766a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ea442edf4eeb11e4ab3b332690a4766a,
         type: 3}
@@ -53639,7 +53639,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 52ab4818cbcab5f41a3a9dcada01fafb,
         type: 3}

@@ -73,6 +73,7 @@ public class ProgressBar : NetworkBehaviour
         if (!gorilla) {
             gorilla = GameObject.FindGameObjectWithTag("Gorilla");
             agentG = gorilla.GetComponent<NavMeshAgent>();
+            gorill = gorilla.GetComponent<GorillaMovement>();
         }
         
 

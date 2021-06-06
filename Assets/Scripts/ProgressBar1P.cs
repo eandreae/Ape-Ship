@@ -87,6 +87,7 @@ public class ProgressBar1P : MonoBehaviour
         if (!gorilla) {
             gorilla = GameObject.FindGameObjectWithTag("Gorilla");
             agentG = gorilla.GetComponent<NavMeshAgent>();
+            gorill1P = gorilla.GetComponent<Gorilla1P>();
         }
         
 
