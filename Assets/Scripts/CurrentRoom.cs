@@ -10,10 +10,14 @@ public class CurrentRoom : MonoBehaviour
     NetworkManager nm;
     Text currentRoomText;
 
+    Transform minimapPlayer;
+    public Transform minimapRoom;
+
     void Start()
     {
+        minimapPlayer = GameObject.Find("MinimapPlayerSprite").transform;
         currentRoomText = GameObject.Find("CurrentRoomText").GetComponent<Text>();
-        nm = GameObject.FindObjectOfType<NetworkManager>();
+        nm = FindObjectOfType<NetworkManager>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -23,6 +27,7 @@ public class CurrentRoom : MonoBehaviour
             // if there IS a network manager, only change text if it's the Local Player.
             if ( !nm || other.GetComponent<Player>().isLocalPlayer )
                 currentRoomText.text = roomName;
+                minimapPlayer.position = minimapRoom.position;
         }
     }
 }
