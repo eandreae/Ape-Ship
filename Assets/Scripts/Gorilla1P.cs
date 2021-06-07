@@ -269,6 +269,8 @@ public class Gorilla1P : MonoBehaviour
             
             this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
+            GameObject rocketLoc = GameObject.Find("RocketLoc");
+            Instantiate(GameObject.Find("Rocket"), rocketLoc.transform.position, this.gameObject.transform.rotation);
 
             yield return new WaitForSeconds(1f); // charge for 1 second
             
