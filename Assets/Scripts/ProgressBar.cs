@@ -76,7 +76,14 @@ public class ProgressBar : NetworkBehaviour
             agentG = gorilla.GetComponent<NavMeshAgent>();
             gorill = gorilla.GetComponent<GorillaMovement>();
         }
-        
+        if(!wpArrow){
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")){
+                if (player.GetComponent<Player>().isLocalPlayer){
+                    wpArrow = player.GetComponent<Player>().wpArrow;
+                }
+            }
+        }
+
 
         // Check if either NavigationColor or ReactorColor are red.
         if ( NavigationColor.text == "red" || ReactorColor.text == "red" ){
