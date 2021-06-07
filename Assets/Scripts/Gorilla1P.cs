@@ -43,6 +43,7 @@ public class Gorilla1P : MonoBehaviour
 
     public float chargeCooldown = 4f;
     private bool startMoving = false;
+    private AudioSource audioData;
 
 
     // Start is called before the first frame update
@@ -51,6 +52,8 @@ public class Gorilla1P : MonoBehaviour
         if (GameObject.FindObjectOfType<NetworkManager>()){
             Object.Destroy(this.gameObject);
         }
+
+        audioData = GetComponent<AudioSource>();
 
         agent = GetComponent<NavMeshAgent>();
         nodes = new List<GameObject>();
@@ -334,6 +337,7 @@ public class Gorilla1P : MonoBehaviour
 
         //-- ATTACK ANIMATION --//
         this.GetComponent<Animator>().Play("GorillaClap");
+        audioData.Play(0);
 
         this.stunned = true;
         this.charging = false;  // in case gorilla was charging
