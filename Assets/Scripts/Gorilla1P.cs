@@ -44,6 +44,8 @@ public class Gorilla1P : MonoBehaviour
     public float chargeCooldown = 4f;
     private bool startMoving = false;
     private AudioSource audioData;
+    public AudioClip clip1;
+    public AudioClip clip2;
 
 
     // Start is called before the first frame update
@@ -274,6 +276,8 @@ public class Gorilla1P : MonoBehaviour
             this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
             GameObject rocketLoc = GameObject.Find("RocketLoc");
             Instantiate(GameObject.Find("Rocket"), rocketLoc.transform.position, this.gameObject.transform.rotation);
+            audioData.clip = clip2;
+            audioData.Play(0);
 
             yield return new WaitForSeconds(1f); // charge for 1 second
             
@@ -337,6 +341,7 @@ public class Gorilla1P : MonoBehaviour
 
         //-- ATTACK ANIMATION --//
         this.GetComponent<Animator>().Play("GorillaClap");
+        audioData.clip = clip1;
         audioData.Play(0);
 
         this.stunned = true;
