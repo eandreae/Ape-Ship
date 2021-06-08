@@ -23,7 +23,12 @@ public class LobbyPlayer : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = this.GetComponent<NetworkRoomPlayer>();
+        while (true)
+        {
+            player = this.GetComponent<NetworkRoomPlayer>();
+            if (player.isLocalPlayer) break;
+        }
+        
 
         readybutton = GameObject.Find("ready").GetComponent<Button>();
         readybutton.onClick.AddListener(toggle);
