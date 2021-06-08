@@ -76,7 +76,6 @@ public class Player : NetworkBehaviour
         nm = FindObjectOfType<NetworkManager>();
         
         walkingSFX = this.GetComponent<AudioSource>();
-        InvokeRepeating("PlayWalkingNoise", 0, 0.4f);
 
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         
@@ -90,8 +89,11 @@ public class Player : NetworkBehaviour
         escapeObj = GameObject.Find("Escape2");
         canTeleport = escapeObj.GetComponent<Escape>();
 
-        if(!isLocalPlayer){
-            Object.Destroy(this.wpArrow);
+        if(isLocalPlayer) {
+            InvokeRepeating("PlayWalkingNoise", 0, 0.4f); // only play footsteps for localplayer
+        }
+        else {
+            Object.Destroy(this.wpArrow); // get rid of waypoints for non-local players
         }
     }
 
@@ -281,7 +283,7 @@ public class Player : NetworkBehaviour
         {
             Debug.Log("Hit by object");
             health = health - 1 ;
-            StartCoroutine("updateHealth");
+            StartCoroutine("updateHealth", true);
         }
     }
 
@@ -309,20 +311,29 @@ public class Player : NetworkBehaviour
         body.velocity = pushDir * pushPower;
     }
     
-    public IEnumerator updateHealth() {
-        damageCue.SetTrigger("DamageTrigger");
+    public IEnumerator updateHealth(bool damage) {
+        if (damage)
+        {
+            damageCue.SetTrigger("DamageTrigger");
+        }
+        
         healthBar.value = health;
         if ( health == 0 )
         { 
             Debug.Log("You Died!");
-            //health_text.text = ""; 
+            //health_text.text = "";
             moveSpeed = 0f;
+
+            // set player to untagged and remove player script from dead player
+            this.gameObject.tag = "Untagged";
+            this.gameObject.layer = LayerMask.NameToLayer("Default");
+            
             gm.Defeat(2);
         }
-        else
-        {
-            //playerHurtSFX.Play();
-        }
+        // else
+        // {
+        //     //playerHurtSFX.Play();
+        // }
         yield return new WaitForSeconds(0.2f); // get knocked by gorilla, then ignore collisions
         Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), true);
     }
