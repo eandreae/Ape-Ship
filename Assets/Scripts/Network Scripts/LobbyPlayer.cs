@@ -36,6 +36,8 @@ public class LobbyPlayer : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer)
             toggle();
+
+        readyindicator.SetActive(player.readyToBegin);
     }
 
 
@@ -52,8 +54,6 @@ public class LobbyPlayer : NetworkBehaviour
 
     public void toggle()
     {
-        readyindicator.SetActive(!readyindicator.activeSelf);
-
         player.CmdChangeReadyState(!player.readyToBegin);
     }
 
