@@ -41,18 +41,16 @@ public class NetworkManagerApeShip : NetworkRoomManager
     }
     
     public void Disconnect()
-
     {
         GameObject[] roomplayers = GameObject.FindGameObjectsWithTag("RoomPlayer");
         foreach (GameObject player in roomplayers)
         {
             NetworkRoomPlayer roomplayer = player.GetComponent<NetworkRoomPlayer>();
-            //if (roomplayer.isLocalPlayer)
-            roomplayer.CmdChangeReadyState(true);
+            if (roomplayer.isLocalPlayer)
+                roomplayer.CmdChangeReadyState(true);
         }
 
         StopHost();
-        StopClient();
     }
 
     public override void OnStartServer()
