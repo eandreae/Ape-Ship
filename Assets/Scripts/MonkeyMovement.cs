@@ -79,7 +79,7 @@ public class MonkeyMovement : NetworkBehaviour
                 //Runs to new target farthest away from player
                 
                 if(isServer)
-                    gotAway = RunAwayClientRpc(gotAway);
+                    gotAway = RunAway(gotAway);
 
                 GoToTarget();
                 
@@ -166,8 +166,8 @@ public class MonkeyMovement : NetworkBehaviour
         Debug.Log("Monkey moving to:" + target);
     }
 
-    [ClientRpc]
-    private bool RunAwayClientRpc(bool gotAway)
+    [Server]
+    private bool RunAway(bool gotAway)
     {
         if (gotAway)
         {
