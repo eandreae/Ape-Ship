@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 
-public class ItemScript : NetworkBehaviour
+public class ItemScript1P : MonoBehaviour
 {
     public GameObject highlight;
-    [SyncVar] public bool pickedUp;
-    [SyncVar] public bool active;
-    [SyncVar] public bool thrown;
+    public bool pickedUp;
+    public bool active;
+    public bool thrown;
     public Transform playerRoot;
     //private GameObject[] playerObjs;
     public string type;
@@ -32,28 +32,21 @@ public class ItemScript : NetworkBehaviour
         //this.rigidbody.isKinematic = true;
         this.height = this.transform.position.y;
         nm = GameObject.FindObjectOfType<NetworkManager>();
+        
+        if(nm)
+            Object.Destroy(this.gameObject);
 
-        teleporterIndicator = GameObject.Find("teleporterIndicator");
-        batteryIndicator = GameObject.Find("BatteryIndicator");
+        if(teleporterIndicator)
+            teleporterIndicator.SetActive(false);
 
-        teleporterIndicator.SetActive(false);
-        batteryIndicator.SetActive(false);
-        //if (this.glowEffect)
-        //    this.glowEffect.SetActive(false);
+        if(batteryIndicator)
+            batteryIndicator.SetActive(false);
 
     }
 
     // Update is called once per frame
     public void Update()
     {
-        if(!wp){
-            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player")){
-                if (player.GetComponent<Player>().isLocalPlayer){
-                    wp = player.GetComponent<Player>().wpArrow.GetComponent<Waypoint>();
-                }
-            }
-        }
-
         if(!pickedUp){ // code to execute if object is not picked up
             //this.rigidbody.isKinematic = false;
 
@@ -150,8 +143,8 @@ public class ItemScript : NetworkBehaviour
     }
 
     public void AlterSpeed(float newSpeed)
-    {
-        playerRoot.GetComponent<Player>().ChangeSpeed(newSpeed);
+    { 
+        playerRoot.GetComponent<Player1P>().ChangeSpeed(newSpeed);
     }
 
     private void OnTriggerExit(Collider other) {
@@ -160,9 +153,6 @@ public class ItemScript : NetworkBehaviour
                 //this.rigidbody.isKinematic = true;
                 this.GetComponent<Rigidbody>().velocity = Vector3.zero;
             }
-            // else {
-            //     StartCoroutine("ThrownPhysics"); // set object to kinematic 
-            // }
         }
         
     }
@@ -177,10 +167,7 @@ public class ItemScript : NetworkBehaviour
 
     void OnDestroy() {
         if (pickedUp) {
-            if (nm)
-                playerRoot.GetComponent<Player>().wpArrow.SetActive(false);
-            else 
-                playerRoot.GetComponent<Player1P>().wpArrow.SetActive(false);
+            playerRoot.GetComponent<Player1P>().wpArrow.SetActive(false);
         }
     }
 

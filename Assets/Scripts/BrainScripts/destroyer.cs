@@ -20,11 +20,7 @@ public class destroyer : MonoBehaviour
     {
         nm = GameObject.FindObjectOfType<NetworkManager>();
         startingLife = lifetime;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
         if (nm){
             if (this.GetComponent<ItemScript>().type == "Canister1"){
                 this.nodeColor = GameObject.Find("OxygenColor").GetComponent<Text>();
@@ -39,18 +35,37 @@ public class destroyer : MonoBehaviour
                 selfNode = GameObject.Find("StomachTarget").GetComponent<NodeInstanceManager>();
             }
         }
+    }
 
-
-        if (lifetime > 0 && !(this.GetComponent<ItemScript>().type == "Canister1"
-                         || this.GetComponent<ItemScript>().type == "Canister2"))
-        {
-            lifetime -= Time.deltaTime;
-            if (lifetime <= 0 && !this.gameObject.GetComponent<ItemScript>().pickedUp)
+    // Update is called once per frame
+    void Update()
+    {
+        if(nm){
+            if (lifetime > 0 && !(this.GetComponent<ItemScript>().type == "Canister1"
+                            || this.GetComponent<ItemScript>().type == "Canister2"))
             {
-                Destroy(this.gameObject);
-            } else if (this.gameObject.GetComponent<ItemScript>().pickedUp)
+                lifetime -= Time.deltaTime;
+                if (lifetime <= 0 && !this.gameObject.GetComponent<ItemScript>().pickedUp)
+                {
+                    Destroy(this.gameObject);
+                } else if (this.gameObject.GetComponent<ItemScript>().pickedUp)
+                {
+                    lifetime = startingLife;
+                }
+            }
+        }
+        else{
+                if (lifetime > 0 && !(this.GetComponent<ItemScript1P>().type == "Canister1"
+                            || this.GetComponent<ItemScript1P>().type == "Canister2"))
             {
-                lifetime = startingLife;
+                lifetime -= Time.deltaTime;
+                if (lifetime <= 0 && !this.gameObject.GetComponent<ItemScript1P>().pickedUp)
+                {
+                    Destroy(this.gameObject);
+                } else if (this.gameObject.GetComponent<ItemScript1P>().pickedUp)
+                {
+                    lifetime = startingLife;
+                }
             }
         }
     }

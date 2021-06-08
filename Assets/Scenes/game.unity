@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1819,9 +1819,9 @@ GameObject:
   - component: {fileID: 78120119}
   - component: {fileID: 78120118}
   - component: {fileID: 78120117}
-  - component: {fileID: 78120116}
   - component: {fileID: 78120115}
   - component: {fileID: 78120114}
+  - component: {fileID: 78120121}
   m_Layer: 15
   m_Name: neuronSpawnGreen
   m_TagString: Pick Up
@@ -1872,27 +1872,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &78120116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 78120112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 165730519}
-  pickedUp: 0
-  active: 0
-  thrown: 0
-  playerRoot: {fileID: 0}
-  type: NeuronGreen
-  wp: {fileID: 7413137237959594452}
-  teleporterIndicator: {fileID: 1334062128}
-  batteryIndicator: {fileID: 582601432}
 --- !u!114 &78120117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1984,6 +1963,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 78120112}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &78120121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 78120112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b102e48b1a8264faee38bb03fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 165730519}
+  pickedUp: 0
+  active: 0
+  thrown: 0
+  playerRoot: {fileID: 0}
+  type: NeuronGreen
+  wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
+  batteryIndicator: {fileID: 582601432}
 --- !u!1001 &82183274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3045,6 +3045,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   highlight: {fileID: 0}
   pickedUp: 0
   active: 0
@@ -3977,27 +3979,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 154885203}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &154885209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 154885205}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 1098918054}
-  pickedUp: 0
-  active: 0
-  thrown: 0
-  playerRoot: {fileID: 0}
-  type: Canister1
-  wp: {fileID: 7413137237959594452}
-  teleporterIndicator: {fileID: 1334062128}
-  batteryIndicator: {fileID: 582601432}
 --- !u!114 &154885210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4105,6 +4086,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lungColor: {fileID: 1759386919}
+--- !u!114 &154885217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 154885205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b102e48b1a8264faee38bb03fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 1098918054}
+  pickedUp: 0
+  active: 0
+  thrown: 0
+  playerRoot: {fileID: 0}
+  type: Canister1
+  wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
+  batteryIndicator: {fileID: 582601432}
 --- !u!95 &154885218
 Animator:
   serializedVersion: 3
@@ -4856,9 +4858,9 @@ GameObject:
   - component: {fileID: 187106881}
   - component: {fileID: 187106880}
   - component: {fileID: 187106879}
-  - component: {fileID: 187106878}
   - component: {fileID: 187106877}
   - component: {fileID: 187106876}
+  - component: {fileID: 187106883}
   m_Layer: 15
   m_Name: neuronSpawnBlue
   m_TagString: Pick Up
@@ -4909,27 +4911,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &187106878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187106874}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 417781843}
-  pickedUp: 0
-  active: 0
-  thrown: 0
-  playerRoot: {fileID: 0}
-  type: NeuronBlue
-  wp: {fileID: 7413137237959594452}
-  teleporterIndicator: {fileID: 1334062128}
-  batteryIndicator: {fileID: 582601432}
 --- !u!114 &187106879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5021,6 +5002,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 187106874}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &187106883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 187106874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b102e48b1a8264faee38bb03fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 417781843}
+  pickedUp: 0
+  active: 0
+  thrown: 0
+  playerRoot: {fileID: 0}
+  type: NeuronBlue
+  wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
+  batteryIndicator: {fileID: 582601432}
 --- !u!1 &188524842
 GameObject:
   m_ObjectHideFlags: 0
@@ -7931,6 +7933,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   highlight: {fileID: 0}
   pickedUp: 0
   active: 0
@@ -9283,9 +9287,9 @@ GameObject:
   - component: {fileID: 348634263}
   - component: {fileID: 348634262}
   - component: {fileID: 348634261}
-  - component: {fileID: 348634260}
   - component: {fileID: 348634259}
   - component: {fileID: 348634258}
+  - component: {fileID: 348634265}
   m_Layer: 15
   m_Name: neuronSpawnRed
   m_TagString: Pick Up
@@ -9336,27 +9340,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &348634260
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 348634256}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 1356355734}
-  pickedUp: 0
-  active: 0
-  thrown: 0
-  playerRoot: {fileID: 0}
-  type: NeuronRed
-  wp: {fileID: 7413137237959594452}
-  teleporterIndicator: {fileID: 1334062128}
-  batteryIndicator: {fileID: 582601432}
 --- !u!114 &348634261
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9448,6 +9431,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 348634256}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &348634265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 348634256}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b102e48b1a8264faee38bb03fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 1356355734}
+  pickedUp: 0
+  active: 0
+  thrown: 0
+  playerRoot: {fileID: 0}
+  type: NeuronRed
+  wp: {fileID: 0}
+  teleporterIndicator: {fileID: 1334062128}
+  batteryIndicator: {fileID: 582601432}
 --- !u!1 &354307621
 GameObject:
   m_ObjectHideFlags: 0
@@ -17963,6 +17967,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   highlight: {fileID: 0}
   pickedUp: 0
   active: 0
@@ -18504,7 +18510,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &582601433
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25836,6 +25842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   highlight: {fileID: 0}
   pickedUp: 0
   active: 0
@@ -40221,6 +40229,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   highlight: {fileID: 1256347602}
   pickedUp: 0
   active: 0
@@ -43080,7 +43090,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1334062129
 RectTransform:
   m_ObjectHideFlags: 0
@@ -45635,6 +45645,27 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1398323077}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1398323083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398323079}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b102e48b1a8264faee38bb03fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 808698149}
+  pickedUp: 0
+  active: 0
+  thrown: 0
+  playerRoot: {fileID: 0}
+  type: Canister2
+  wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
+  batteryIndicator: {fileID: 582601432}
 --- !u!114 &1398323084
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45651,27 +45682,6 @@ MonoBehaviour:
   lifetime: 1000
   nodeColor: {fileID: 67938698}
   selfNode: {fileID: 896154144}
---- !u!114 &1398323085
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398323079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 808698149}
-  pickedUp: 0
-  active: 0
-  thrown: 0
-  playerRoot: {fileID: 0}
-  type: Canister2
-  wp: {fileID: 7413137237959594452}
-  teleporterIndicator: {fileID: 1334062128}
-  batteryIndicator: {fileID: 582601432}
 --- !u!136 &1398323086
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -54452,6 +54462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   highlight: {fileID: 0}
   pickedUp: 0
   active: 0
@@ -61181,6 +61193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   highlight: {fileID: 0}
   pickedUp: 0
   active: 0
@@ -61307,7 +61321,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 1
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2083132820
 Transform:
   m_ObjectHideFlags: 0
@@ -61427,6 +61441,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   highlight: {fileID: 0}
   pickedUp: 0
   active: 0
@@ -63390,27 +63406,6 @@ CapsuleCollider:
   m_Height: 0.06
   m_Direction: 1
   m_Center: {x: 0, y: -0.003, z: 0.005}
---- !u!114 &353969446163947427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 587971007495316223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 1135886502}
-  pickedUp: 0
-  active: 0
-  thrown: 0
-  playerRoot: {fileID: 0}
-  type: Banana
-  wp: {fileID: 7413137237959594452}
-  teleporterIndicator: {fileID: 1334062128}
-  batteryIndicator: {fileID: 582601432}
 --- !u!136 &353969446163947428
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -63457,7 +63452,7 @@ GameObject:
   - component: {fileID: 860428543030315089}
   - component: {fileID: 860428543030315090}
   - component: {fileID: 860428543030315091}
-  - component: {fileID: 860428543030315092}
+  - component: {fileID: 518392118015689614}
   m_Layer: 15
   m_Name: SodaNuke (1P)
   m_TagString: Pick Up
@@ -63465,6 +63460,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &518392118015689614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 518392118015689613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b102e48b1a8264faee38bb03fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 1058958565}
+  pickedUp: 0
+  active: 0
+  thrown: 0
+  playerRoot: {fileID: 0}
+  type: Nuke
+  wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
+  batteryIndicator: {fileID: 582601432}
 --- !u!4 &524031227541566147
 Transform:
   m_ObjectHideFlags: 0
@@ -63906,8 +63922,8 @@ GameObject:
   - component: {fileID: 353969446163947425}
   - component: {fileID: 353969446163947426}
   - component: {fileID: 353969446163947428}
-  - component: {fileID: 353969446163947427}
   - component: {fileID: 353969446163947448}
+  - component: {fileID: 587971007495316224}
   m_Layer: 15
   m_Name: Banana (1P)
   m_TagString: Pick Up
@@ -63915,6 +63931,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &587971007495316224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 587971007495316223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b102e48b1a8264faee38bb03fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 1135886502}
+  pickedUp: 0
+  active: 0
+  thrown: 0
+  playerRoot: {fileID: 0}
+  type: Banana
+  wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
+  batteryIndicator: {fileID: 582601432}
 --- !u!1 &590851735394956812
 GameObject:
   m_ObjectHideFlags: 0
@@ -64066,27 +64103,6 @@ MonoBehaviour:
   lifetime: 20
   nodeColor: {fileID: 1626664258}
   selfNode: {fileID: 1811882723}
---- !u!114 &860428543030315092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 518392118015689613}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 1058958565}
-  pickedUp: 0
-  active: 0
-  thrown: 0
-  playerRoot: {fileID: 0}
-  type: Nuke
-  wp: {fileID: 7413137237959594452}
-  teleporterIndicator: {fileID: 1334062128}
-  batteryIndicator: {fileID: 582601432}
 --- !u!136 &860428543030315102
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -65541,27 +65557,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2523682045962763865
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3442019650000572606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 500915798}
-  pickedUp: 0
-  active: 0
-  thrown: 0
-  playerRoot: {fileID: 0}
-  type: Sandwich
-  wp: {fileID: 7413137237959594452}
-  teleporterIndicator: {fileID: 1334062128}
-  batteryIndicator: {fileID: 582601432}
 --- !u!114 &2523682045962763870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66748,27 +66743,6 @@ CapsuleCollider:
   m_Height: 12
   m_Direction: 1
   m_Center: {x: 0.023215443, y: 3.8929021, z: -0.116259634}
---- !u!114 &2736431573751466076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2970312887702515674}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 155abc70630d8844f9e42983cd870609, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  highlight: {fileID: 1360726858}
-  pickedUp: 0
-  active: 0
-  thrown: 0
-  playerRoot: {fileID: 0}
-  type: Kebab
-  wp: {fileID: 7413137237959594452}
-  teleporterIndicator: {fileID: 1334062128}
-  batteryIndicator: {fileID: 582601432}
 --- !u!54 &2736431573751466077
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -67013,8 +66987,8 @@ GameObject:
   - component: {fileID: 2736431573751466051}
   - component: {fileID: 2736431573751466050}
   - component: {fileID: 2736431573751466078}
-  - component: {fileID: 2736431573751466076}
   - component: {fileID: 2736431573751466079}
+  - component: {fileID: 2970312887702515675}
   m_Layer: 15
   m_Name: SeaFoodKebab (1P)
   m_TagString: Pick Up
@@ -67022,6 +66996,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &2970312887702515675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2970312887702515674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b102e48b1a8264faee38bb03fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 1360726858}
+  pickedUp: 0
+  active: 0
+  thrown: 0
+  playerRoot: {fileID: 0}
+  type: Kebab
+  wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
+  batteryIndicator: {fileID: 582601432}
 --- !u!1001 &3018404421820365278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -68027,8 +68022,8 @@ GameObject:
   - component: {fileID: 2523682045962763864}
   - component: {fileID: 2523682045962763871}
   - component: {fileID: 2523682045962763859}
-  - component: {fileID: 2523682045962763865}
   - component: {fileID: 2523682045962763870}
+  - component: {fileID: 3442019650000572607}
   m_Layer: 15
   m_Name: KrillSandwich (1P)
   m_TagString: Pick Up
@@ -68036,6 +68031,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &3442019650000572607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3442019650000572606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4b102e48b1a8264faee38bb03fdbc50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 500915798}
+  pickedUp: 0
+  active: 0
+  thrown: 0
+  playerRoot: {fileID: 0}
+  type: Sandwich
+  wp: {fileID: 7413137237959594452}
+  teleporterIndicator: {fileID: 1334062128}
+  batteryIndicator: {fileID: 582601432}
 --- !u!4 &3558326174674931389
 Transform:
   m_ObjectHideFlags: 0
