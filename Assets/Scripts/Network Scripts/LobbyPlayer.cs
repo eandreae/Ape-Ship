@@ -29,13 +29,19 @@ public class LobbyPlayer : NetworkBehaviour
 
         disconnect = GameObject.Find("disconnect").GetComponent<Button>();
         disconnect.onClick.AddListener(() => setbool(true));
+
         Debug.Log(player);
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer)
-            toggle();
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            player = this.gameObject.GetComponent<NetworkRoomPlayer>();
+            Debug.Log(player);
+            if (isLocalPlayer) toggle();
+        }
+           
 
         readyindicator.SetActive(player.readyToBegin);
     }
