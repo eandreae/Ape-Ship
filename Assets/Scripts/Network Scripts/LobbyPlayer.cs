@@ -23,13 +23,7 @@ public class LobbyPlayer : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        while (true)
-        {
-            player = this.GetComponent<NetworkRoomPlayer>();
-            if (player.isLocalPlayer) break;
-        }
-        
-
+        player = this.gameObject.GetComponent<NetworkRoomPlayer>();
         readybutton = GameObject.Find("ready").GetComponent<Button>();
         readybutton.onClick.AddListener(toggle);
 
@@ -40,7 +34,7 @@ public class LobbyPlayer : NetworkBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isLocalPlayer)
             toggle();
     }
 
