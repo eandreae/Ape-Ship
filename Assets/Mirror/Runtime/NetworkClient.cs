@@ -833,7 +833,15 @@ namespace Mirror
             {
                 connection.identity = identity;
             }
-            else Debug.LogWarning("No ready connection found for setting player controller during InternalAddPlayer");
+            else
+            {
+                Debug.LogWarning("No ready connection found for setting player controller during InternalAddPlayer");
+                if (!ready)
+                    Debug.LogWarning("Connection not ready");
+                else if (connection == null)
+                    Debug.LogWarning("Connection is null");
+            }
+            
         }
 
         /// <summary>Sends AddPlayer message to the server, indicating that we want to join the world.</summary>

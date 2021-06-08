@@ -37,8 +37,6 @@ public class LobbyPlayer : NetworkBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            player = this.gameObject.GetComponent<NetworkRoomPlayer>();
-            Debug.Log(player);
             if (isLocalPlayer) toggle();
         }
            

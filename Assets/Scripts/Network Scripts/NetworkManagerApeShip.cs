@@ -49,9 +49,20 @@ public class NetworkManagerApeShip : NetworkRoomManager
             NetworkServer.SetClientReady(previousconnections[i]);
         }
         previousconnections.Clear();
+
+
+
+
+
+
+        GameObject roomplayer = Instantiate(roomPlayerPrefab.gameObject, // prefab/gameobject
+                                                spawnPos,                 // position
+                                                Quaternion.identity);        // rotation
+        NetworkServer.AddPlayerForConnection(previousconnection, roomplayer);
+        NetworkServer.SetClientReady(previousconnection);
         */
 
-        SceneManager.LoadScene("room");
+        ServerChangeScene("room");
     }
     
 
@@ -88,7 +99,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnClientSceneChanged(NetworkConnection conn)
     {
         base.OnClientSceneChanged(conn);
-        NetworkServer.SetClientReady(conn);
+        //previousconnection = conn;
         //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         //player.GetComponent<Player>().playerNum = numPlayers;
         //NetworkServer.AddPlayerForConnection(conn, player);
@@ -107,12 +118,13 @@ public class NetworkManagerApeShip : NetworkRoomManager
                                                   Quaternion.identity);     // rotation
                 //Debug.Log("spawn player at " + spawnPos[i]);
 
-                //GameObject roomplayer = roomSlots[0].gameObject;
+                GameObject roomplayer = roomSlots[0].gameObject;
                 //roomSlots[i].GetComponent<LobbyPlayer>().saveconnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient);
                 previousconnections.Add(roomSlots[i].gameObject.GetComponent<NetworkIdentity>().connectionToClient);
-                NetworkServer.ReplacePlayerForConnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient, player, true);
                 
-                //NetworkServer.Destroy(roomplayer);
+                NetworkServer.ReplacePlayerForConnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient, player);
+                
+                NetworkServer.Destroy(roomplayer);
             }
             // GameObject monkey = Instantiate( spawnPrefabs[1]);
             // GameObject gorilla = Instantiate( spawnPrefabs[2] );
@@ -123,6 +135,20 @@ public class NetworkManagerApeShip : NetworkRoomManager
         if (newSceneName == "room")
         {
             Debug.Log("returning to room");
+            for (int i = 0; i < previousconnections.Count; i++)
+            {
+                Vector3 playerPos = roomPlayerPrefab.gameObject.GetComponent<Transform>().position;
+                Vector3 offset = new Vector3(5f * (i), 0, -3);
+
+                // spawn ROOM PLAYER at given transform with correct rotation
+                GameObject player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
+                                               (playerPos + offset),                                             // new position
+                                                roomPlayerPrefab.gameObject.GetComponent<Transform>().rotation); // rotation
+
+                NetworkServer.AddPlayerForConnection(previousconnections[i], player);
+            }
+
+            for (int i = 0; i < previousconnections.Count; i++) NetworkServer.SetClientReady(previousconnections[i]);
         }
     }
 
@@ -136,14 +162,10 @@ public class NetworkManagerApeShip : NetworkRoomManager
     {
         //base.OnRoomServerPlayersReady();
         //base function automatically starts game when all are ready
-        Debug.Log("ready");
-        //startbutton.interactable = true;
     }
 
     public override void OnRoomServerPlayersNotReady()
     {
         base.OnRoomServerPlayersNotReady();
-        Debug.Log("not ready");
-        //startbutton.interactable = false;
     }
 }
