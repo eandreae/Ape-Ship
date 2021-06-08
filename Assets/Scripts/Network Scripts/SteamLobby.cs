@@ -7,9 +7,6 @@ using Mirror;
 
 public class SteamLobby : MonoBehaviour
 {
-    [SerializeField] private GameObject buttons = null;
-    [SerializeField] private Text displayid = null;
-
     protected Callback<LobbyCreated_t> lobbyCreated;
     protected Callback<GameLobbyJoinRequested_t> gameLobbyJoinRequested;
     protected Callback<LobbyEnter_t> lobbyEntered;
@@ -68,8 +65,6 @@ public class SteamLobby : MonoBehaviour
             new CSteamID(callback.m_ulSteamIDLobby),
             HostAddressKey,
             SteamUser.GetSteamID().ToString());
-
-        displayid.text = callback.m_ulSteamIDLobby.ToString();
     }
 
     private void OnGameLobbyJoinRequested(GameLobbyJoinRequested_t callback)
@@ -87,8 +82,6 @@ public class SteamLobby : MonoBehaviour
 
         networkManager.networkAddress = hostAddress;
         networkManager.StartClient();
-
-        buttons.SetActive(false);
     }
 
 }
