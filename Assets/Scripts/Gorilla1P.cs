@@ -362,7 +362,7 @@ public class Gorilla1P : MonoBehaviour
             player.invulnerable = true;
             player.gorillaCollider = this.GetComponent<Collider>();
             // Update the health of the player.
-            player.StartCoroutine("updateHealth");
+            player.StartCoroutine("updateHealth", true);
         }
             
         yield return new WaitForSeconds(0.75f); // wait
