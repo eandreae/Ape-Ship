@@ -14,11 +14,11 @@ using Mirror;
 public class Player : NetworkBehaviour
 {
 	private CharacterController controller;
-    public float moveSpeed = 14f;
+    [SyncVar] public float moveSpeed = 14f;
     public Vector3 dir;
 
     float defaultSpeed;
-    public float health;
+    [SyncVar] public float health;
     public float oxygen;
     //public Text health_text;
     //public Text oxygen_text;
