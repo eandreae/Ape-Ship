@@ -42,12 +42,10 @@ GameObject:
   - component: {fileID: 501559612952520786}
   - component: {fileID: 107906837950844609}
   - component: {fileID: 107906837950844634}
-  - component: {fileID: 107906837950844614}
   - component: {fileID: 990287667806073577}
   - component: {fileID: 990287667806073582}
   - component: {fileID: 990287667806073580}
   - component: {fileID: 990287667806073583}
-  - component: {fileID: 6320226317747111380}
   - component: {fileID: 6620568009833446599}
   - component: {fileID: -6595408847320811091}
   - component: {fileID: 3175258193332163116}
@@ -112,43 +110,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &107906837950844614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990287667806073576}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24d23b6580d3e5346b1b3beeea103c2f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.1
-  moveSpeed: 14
-  dir: {x: 0, y: 0, z: 0}
-  health: 0
-  oxygen: 0
-  oxygen_color: {fileID: 0}
-  oxygen2_color: {fileID: 0}
-  invulnerable: 0
-  holding: 0
-  oxygenCue: {fileID: 0}
-  damageCue: {fileID: 0}
-  gm: {fileID: 0}
-  nm: {fileID: 0}
-  healthBar: {fileID: 0}
-  oxygenBar: {fileID: 0}
-  walkingSamples:
-  - {fileID: 8300000, guid: fc8df54e1916ba143b7bd9fd434e1963, type: 3}
-  - {fileID: 8300000, guid: 08841b442c8b86d4d9f957946d75cf97, type: 3}
-  - {fileID: 8300000, guid: ad357265b3ebc5f4ca273677ad42905a, type: 3}
-  gorillaCollider: {fileID: 0}
-  wpArrow: {fileID: 0}
-  visibleTargets: []
-  canMove: 0
-  hasWonTheGame: 0
 --- !u!82 &990287667806073577
 AudioSource:
   m_ObjectHideFlags: 0
@@ -297,27 +258,6 @@ MonoBehaviour:
   compressRotation: 0
   interpolateScale: 1
   syncScale: 1
---- !u!114 &6320226317747111380
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990287667806073576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f471a905c590dc54d83eecfc2e3e6763, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 6.13
-  viewAngle: 97
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 32768
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  visibleTargets: []
 --- !u!64 &6620568009833446599
 MeshCollider:
   m_ObjectHideFlags: 0
