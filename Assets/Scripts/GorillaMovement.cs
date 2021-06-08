@@ -87,7 +87,7 @@ public class GorillaMovement : NetworkBehaviour
         if (startMoving)
         {
             if (target == null)
-                FindNewTarget();
+                FindNewTargetClientRpc();
             //Get list of targets from FieldOfView list
             targetsList = GetComponent<FieldOfView>();
             //transfer each target into local list
@@ -129,14 +129,14 @@ public class GorillaMovement : NetworkBehaviour
 
             if (dist < stoppingDistance)
             {
-                FindNewTarget();
+                FindNewTargetClientRpc();
             }
             //if the gorilla lost sight of the player
             else if (playerLock == true && visibleTargets.Count == 0)
             {
                 playerLock = false;
                 stoppingDistance = 15f;
-                FindNewTarget();
+                FindNewTargetClientRpc();
             }
             else
             {
@@ -161,7 +161,8 @@ public class GorillaMovement : NetworkBehaviour
         startMoving = true;
     }
 
-    private void FindNewTarget()
+    [ClientRpc]
+    private void FindNewTargetClientRpc()
     {
         agent.isStopped = true;
         int targetnum = Random.Range(0, nodes.Count - 1);
@@ -170,7 +171,6 @@ public class GorillaMovement : NetworkBehaviour
         Debug.Log("Gorilla moving to: " + target);
     }
 
-    [Server]
     private void GoToTarget()
     {
         // If gorilla is CHASING PLAYER, HAS CHARGE CD, and is CLOSE TO PLAYER, it will charge
@@ -239,7 +239,7 @@ public class GorillaMovement : NetworkBehaviour
         holdingObject = true;
         canPickup = false;
         objectHeld = target;
-        FindNewTarget();
+        FindNewTargetClientRpc();
     }
     // this coroutine manages the Gorilla ChargeAttack.
     // It ends if the gorilla stops chasing the player.
