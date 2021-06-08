@@ -158,6 +158,21 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             StartCoroutine("PickUpCD");
         }
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if(this.holdItem.GetComponent<ItemScript>().type == "Banana" ||
+                this.holdItem.GetComponent<ItemScript>().type == "Kebab" ||
+                this.holdItem.GetComponent<ItemScript>().type == "Sandwich")
+            {
+                Destroy(this.holdItem);
+                if(health < 3)
+                {
+                    health = health + 1;
+                    StartCoroutine("updateHealth", false);
+                }
+            }
+        }
+
 
         //checks to see if pressing any arrow keys
         //if so will go horizontal if left or right
@@ -314,7 +329,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         {
             Debug.Log("Hit by object");
             health = health - 1 ;
-            StartCoroutine("updateHealth");
+            StartCoroutine("updateHealth", true);
         }
     }
 
@@ -342,8 +357,11 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
         body.velocity = pushDir * pushPower;
     }
     
-    public IEnumerator updateHealth() {
-        damageCue.SetTrigger("DamageTrigger");
+    public IEnumerator updateHealth(bool damage) {
+        if (damage)
+        {
+            damageCue.SetTrigger("DamageTrigger");
+        }
         healthBar.value = health;
         if ( health == 0 )
         { 

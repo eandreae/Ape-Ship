@@ -77,8 +77,12 @@ public class MonkeyMovement : NetworkBehaviour
                 runningAway = true;
                 agent.acceleration = 50;
                 //Runs to new target farthest away from player
-                gotAway = RunAway(gotAway);
+                
+                if(isServer)
+                    gotAway = RunAwayClientRpc(gotAway);
+
                 GoToTarget();
+                
                 // code for avoiding player
                 //agent.isStopped = true;
                 //Debug.Log(visibleTargets[0]);
@@ -92,13 +96,13 @@ public class MonkeyMovement : NetworkBehaviour
                 //float dist = Vector3.Distance(transform.position, target.transform.position);
                 if (targetColor.text == "red" && !runningAway)
                 {
-                    FindNewTarget();
+                    if(isServer) FindNewTargetClientRpc();
                 }
                 else if (runningAway == true && (monkeyDist < stoppingDistance))
                 {
                     runningAway = false;
                     gotAway = true;
-                    FindNewTarget();
+                    if(isServer) FindNewTargetClientRpc();
                 }
                 else
                 {
@@ -128,12 +132,12 @@ public class MonkeyMovement : NetworkBehaviour
     {
         yield return new WaitForSeconds(6f);
         startMoving = true;
-        FindNewTarget();
+        if(isServer) FindNewTargetClientRpc();
     }
 
 
-    [Server]
-    private void FindNewTarget()
+    [ClientRpc]
+    private void FindNewTargetClientRpc()
     {
         // Find nearest node, disqualifying the current target
         int targetIndex = -1;
@@ -162,7 +166,8 @@ public class MonkeyMovement : NetworkBehaviour
         Debug.Log("Monkey moving to:" + target);
     }
 
-    private bool RunAway(bool gotAway)
+    [ClientRpc]
+    private bool RunAwayClientRpc(bool gotAway)
     {
         if (gotAway)
         {
@@ -219,7 +224,6 @@ public class MonkeyMovement : NetworkBehaviour
         }
     }
 
-    [Server]
     private void GoToTarget()
     {
         //agent.isStopped = false;

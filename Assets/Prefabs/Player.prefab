@@ -719,7 +719,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 95e37fbab949a6341ae14e408dd6c68f, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -760,7 +760,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ad357265b3ebc5f4ca273677ad42905a, type: 3}
   gorillaCollider: {fileID: 0}
   wpArrow: {fileID: 7413137239184312006}
-  CameraObj: {fileID: 0}
   visibleTargets: []
   canMove: 0
   hasWonTheGame: 0
@@ -910,7 +909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncMode: 0
+  syncMode: 1
   syncInterval: 0.1
   clientAuthority: 1
   localPositionSensitivity: 0.01

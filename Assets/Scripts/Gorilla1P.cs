@@ -43,6 +43,9 @@ public class Gorilla1P : MonoBehaviour
 
     public float chargeCooldown = 4f;
     private bool startMoving = false;
+    private AudioSource audioData;
+    public AudioClip clip1;
+    public AudioClip clip2;
 
 
     // Start is called before the first frame update
@@ -51,6 +54,8 @@ public class Gorilla1P : MonoBehaviour
         if (GameObject.FindObjectOfType<NetworkManager>()){
             Object.Destroy(this.gameObject);
         }
+
+        audioData = GetComponent<AudioSource>();
 
         agent = GetComponent<NavMeshAgent>();
         nodes = new List<GameObject>();
@@ -269,6 +274,10 @@ public class Gorilla1P : MonoBehaviour
             
             this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
+            GameObject rocketLoc = GameObject.Find("RocketLoc");
+            Instantiate(GameObject.Find("Rocket"), rocketLoc.transform.position, this.gameObject.transform.rotation);
+            audioData.clip = clip2;
+            audioData.Play(0);
 
             yield return new WaitForSeconds(1f); // charge for 1 second
             
@@ -332,6 +341,8 @@ public class Gorilla1P : MonoBehaviour
 
         //-- ATTACK ANIMATION --//
         this.GetComponent<Animator>().Play("GorillaClap");
+        audioData.clip = clip1;
+        audioData.Play(0);
 
         this.stunned = true;
         this.charging = false;  // in case gorilla was charging
@@ -351,7 +362,7 @@ public class Gorilla1P : MonoBehaviour
             player.invulnerable = true;
             player.gorillaCollider = this.GetComponent<Collider>();
             // Update the health of the player.
-            player.StartCoroutine("updateHealth");
+            player.StartCoroutine("updateHealth", true);
         }
             
         yield return new WaitForSeconds(0.75f); // wait
