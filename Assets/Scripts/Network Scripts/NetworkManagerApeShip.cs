@@ -37,35 +37,23 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public void ReturnToRoom()
     {
-        /*
-        NetworkServer.DisconnectAllExternalConnections();
-        int count = previousconnections.Count;
-        for (int i = 0; i < count; i++)
-        {
-            GameObject roomplayer = Instantiate(roomPlayerPrefab.gameObject, // prefab/gameobject
-                                                spawnPos[i],                 // position
-                                                Quaternion.identity);        // rotation
-            NetworkServer.AddPlayerForConnection(previousconnections[i], roomplayer);
-            NetworkServer.SetClientReady(previousconnections[i]);
-        }
-        previousconnections.Clear();
-
-
-
-
-
-
-        GameObject roomplayer = Instantiate(roomPlayerPrefab.gameObject, // prefab/gameobject
-                                                spawnPos,                 // position
-                                                Quaternion.identity);        // rotation
-        NetworkServer.AddPlayerForConnection(previousconnection, roomplayer);
-        NetworkServer.SetClientReady(previousconnection);
-        */
-
         ServerChangeScene("room");
     }
     
+    public void Disconnect()
 
+    {
+        GameObject[] roomplayers = GameObject.FindGameObjectsWithTag("RoomPlayer");
+        foreach (GameObject player in roomplayers)
+        {
+            NetworkRoomPlayer roomplayer = player.GetComponent<NetworkRoomPlayer>();
+            //if (roomplayer.isLocalPlayer)
+            roomplayer.CmdChangeReadyState(true);
+        }
+
+        StopHost();
+        StopClient();
+    }
 
     public override void OnStartServer()
     {
