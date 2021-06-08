@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public float deathAnimDuration = 1f;
 
     public bool singleplayer = true;
+    public bool gameStarted = false;
 
     bool won = false;
     bool lost = false;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         singleplayer = (FindObjectOfType<NetworkManager>() == null);
+        gameStarted = false;
         Time.timeScale = 1f;
 
         if(singleplayer)
@@ -46,26 +48,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void LateUpdate(){
+    void Update(){
         // setting up alivePlayer List and local player for multiplayer
         if(!singleplayer){
             if(alivePlayers.Count == 0){
-                var playerList = GameObject.FindObjectsOfType<Player>();
-                if(playerList.Length > 0){
-                    foreach(Player p in playerList){
-                        if(p.health > 0)
-                            alivePlayers.Add(p);
-                        
-                        if(!localp && p.isLocalPlayer){
-                            localp = p;
-                        }
-                    }
-                    // change lose condition to ALL players death
-                    if(alivePlayers.Count == 0){
-                        lost = true;
-                        Defeat(0); // trigger defeat screen again
-                    }
+                if(gameStarted){
+                    lost = true;
+                    Defeat(0); // trigger defeat screen again
                 }
+                // if game hasnt started, try to find all players
+                var playerList = FindObjectsOfType<Player>();
+                foreach (Player player in playerList){
+                    alivePlayers.Add(player);
+
+                    if(player.isLocalPlayer);
+                        localp = player;
+                }
+                // if players were added, start the game
+            }
+            else {
+                    gameStarted = true;
             }
 
             if(!lost && !won){

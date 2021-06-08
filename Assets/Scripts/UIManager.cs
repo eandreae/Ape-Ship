@@ -60,7 +60,7 @@ public class UIManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return) && !cutsceneOver)
+        if (!nm && Input.GetKeyDown(KeyCode.Return) && !cutsceneOver)
         {
             TeleportApes();
             BlackBarsLeave();

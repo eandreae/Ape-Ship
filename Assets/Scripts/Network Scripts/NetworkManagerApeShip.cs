@@ -97,7 +97,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnServerSceneChanged(string newSceneName)
     {
         base.OnServerSceneChanged(newSceneName);
-
+        
         if (newSceneName == "game"){
             for (int i=0; i<roomSlots.Count; i++)
             {
@@ -106,7 +106,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
                                                   spawnPos[i],              // position
                                                   Quaternion.identity);     // rotation
                 //Debug.Log("spawn player at " + spawnPos[i]);
-
+                
                 GameObject roomplayer = roomSlots[0].gameObject;
                 //roomSlots[i].GetComponent<LobbyPlayer>().saveconnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient);
                 previousconnections.Add(roomSlots[i].gameObject.GetComponent<NetworkIdentity>().connectionToClient);

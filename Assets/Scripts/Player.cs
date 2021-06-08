@@ -19,7 +19,7 @@ public class Player : NetworkBehaviour
 
     float defaultSpeed;
     [SyncVar] public float health = 3;
-    public float oxygen;
+    [SyncVar] public float oxygen;
     //public Text health_text;
     //public Text oxygen_text;
     public Text oxygen_color;
@@ -257,23 +257,29 @@ public class Player : NetworkBehaviour
             }
         }
 
-        // Check if both oxygens are red.
-        if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
-            if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
-            //If you update oxygen with a 0, the animation will play, otherwise it wont
-            updateOxygen(0);
-        // Check if one oxygen is red
-        } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
-        {
-            if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
-            //If you update oxygen with a 0, the animation will play, otherwise it wont
-            updateOxygen(0);
-        }
-        else {
-            if ( oxygen < 90 ) {
-                oxygen += Time.deltaTime * 2;
-                updateOxygen(1);
+        if(isServer){
+            // Check if both oxygens are red.
+            if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
+                if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
+                //If you update oxygen with a 0, the animation will play, otherwise it wont
+                updateOxygen(0);
+            // Check if one oxygen is red
+            } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
+            {
+                if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
+                //If you update oxygen with a 0, the animation will play, otherwise it wont
+                updateOxygen(0);
             }
+            else {
+                if ( oxygen < 90 ) {
+                    oxygen += Time.deltaTime * 2;
+                    updateOxygen(1);
+                }
+            }
+        }
+
+        if (this.health == 0){
+            handleDeath();
         }
     }
 
@@ -316,19 +322,10 @@ public class Player : NetworkBehaviour
         {
             damageCue.SetTrigger("DamageTrigger");
         }
-        
         healthBar.value = health;
         if ( health == 0 )
         { 
-            Debug.Log("You Died!");
-            //health_text.text = "";
-            moveSpeed = 0f;
-
-            // set player to untagged and remove player script from dead player
-            this.gameObject.tag = "Untagged";
-            this.gameObject.layer = LayerMask.NameToLayer("Default");
-            
-            gm.Defeat(2);
+            handleDeath();
         }
         // else
         // {
@@ -352,6 +349,19 @@ public class Player : NetworkBehaviour
             gm.Defeat(1);
         }
 
+    }
+
+    public void handleDeath(){
+        this.GetComponent<Animator>().Play("PlayerDeath");
+        Debug.Log("You Died!");
+        //health_text.text = "";
+        moveSpeed = 0f;
+
+        // set player to untagged and remove player script from dead player
+        this.gameObject.tag = "Untagged";
+        this.gameObject.layer = LayerMask.NameToLayer("Default");
+        
+        gm.Defeat(2);
     }
 
     public void ChangeSpeed(float newSpeed)

@@ -340,7 +340,7 @@ public class GorillaMovement : NetworkBehaviour
             // Subtract one from the health of the Player.
         if(!player.invulnerable){
             player.health--;
-            
+
             if(player.health == 0){
                 FindNewTargetClientRpc();
             }
@@ -349,7 +349,7 @@ public class GorillaMovement : NetworkBehaviour
                 player.invulnerable = true;
                 player.gorillaCollider = this.GetComponent<Collider>();
                 // Update the health of the player.
-                player.StartCoroutine("updateHealth");
+                player.StartCoroutine("updateHealth", true);
             }
         }
             

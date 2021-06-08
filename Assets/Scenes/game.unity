@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -29627,12 +29627,13 @@ MonoBehaviour:
   causeOfDeath: {fileID: 1528432646}
   pausePanel1P: {fileID: 614544528}
   pausePanel: {fileID: 487325197}
-  returnOptions: {fileID: 0}
+  returnOptions: {fileID: 1921957185}
   backgroundMusic: {fileID: 807635379}
   transitionPanel: {fileID: 679739732}
   returnDelay: 1
   deathAnimDuration: 1
   singleplayer: 1
+  gameStarted: 0
   localp: {fileID: 0}
   alivePlayers: []
 --- !u!82 &934901781
