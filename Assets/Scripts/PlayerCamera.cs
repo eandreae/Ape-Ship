@@ -16,7 +16,6 @@ public class PlayerCamera : MonoBehaviour
     Text currentRoomText;
     private float fadeNum = 0.01f;
 
-    [HideInInspector]
     public bool followPlayer = false;
 
     void Start() {
@@ -56,25 +55,26 @@ public class PlayerCamera : MonoBehaviour
     {
         if (followPlayer)
         {
-            // start of game (no target)
-            if (!target)
-            {
-                target = gm.localp.gameObject; // set to local player from gamemanager
-            }
-            
-            // if target player is dead
-            else if(gm.localp.health == 0 && gm.alivePlayers.Count > 0){
-                if(!target)
-                    target = gm.alivePlayers[0].gameObject;
-                
-                if(Input.GetKeyDown(KeyCode.Tab)){
-                    playerNum++;
-                    if(playerNum > gm.alivePlayers.Count)
-                        playerNum = 0;
-                    target = gm.alivePlayers[playerNum].gameObject;
+            if(!gm.singleplayer){
+                // start of game (no target)
+                if (!target)
+                {
+                    target = gm.localp.gameObject; // set to local player from gamemanager
+                }
+                // if target player is dead
+                else if(gm.localp.health == 0 && gm.alivePlayers.Count > 0){
+                    if(!target)
+                        target = gm.alivePlayers[0].gameObject;
+                    
+                    if(Input.GetKeyDown(KeyCode.Tab)){
+                        playerNum++;
+                        if(playerNum > gm.alivePlayers.Count)
+                            playerNum = 0;
+                        target = gm.alivePlayers[playerNum].gameObject;
+                    }
                 }
             }
-
+            
             Vector3 desiredPosition = target.transform.position + offset;
             transform.position = desiredPosition + shakeOffset;
         }

@@ -42,33 +42,40 @@ public class GameManager : MonoBehaviour
             p1p = FindObjectOfType<Player1P>();
         
         else {
-            // setting up alivePlayer List and local player for multiplayer
             alivePlayers = new List<Player>();
-            var playerList = GameObject.FindObjectsOfType<Player>();
-
-            foreach(Player p in playerList){
-                alivePlayers.Add(p);
-                if(p.isLocalPlayer){
-                    localp = p;
-                }
-            }
         }
     }
 
-    void Update(){
-        if(!lost && !won){
-            foreach (Player p in alivePlayers){
-                if( p.health == 0 ){
-                    alivePlayers.Remove(p);
+    void LateUpdate(){
+        // setting up alivePlayer List and local player for multiplayer
+        if(!singleplayer){
+            if(alivePlayers.Count == 0){
+                var playerList = GameObject.FindObjectsOfType<Player>();
+                if(playerList.Length > 0){
+                    foreach(Player p in playerList){
+                        if(p.health > 0)
+                            alivePlayers.Add(p);
+                        
+                        if(!localp && p.isLocalPlayer){
+                            localp = p;
+                        }
+                    }
+                    // change lose condition to ALL players death
+                    if(alivePlayers.Count == 0){
+                        lost = true;
+                        Defeat(0); // trigger defeat screen again
+                    }
                 }
             }
-            // change lose condition to ALL players death
-            if(alivePlayers.Count == 0){
-                lost = true;
-                Defeat(0); // trigger defeat screen again
+
+            if(!lost && !won){
+                foreach (Player p in alivePlayers){
+                    if( p.health == 0 ){
+                        alivePlayers.Remove(p);
+                    }
+                }
             }
         }
-        
     }
 
     public void Victory()
@@ -109,10 +116,12 @@ public class GameManager : MonoBehaviour
 
     public void Defeat(int cause)
     {
+        if (cause == 0)
+            Debug.Log("multiplayer game over");
         if (!won)
         {   
-            //Enabling a defeat panel
-            Invoke("DefeatPanel", deathAnimDuration);
+            // //Enabling a defeat panel
+            // Invoke("DefeatPanel", deathAnimDuration);
             if(singleplayer){
                 defeatPanel1P.SetActive(true);
                 backgroundMusic.volume = 0f;
@@ -183,6 +192,7 @@ public class GameManager : MonoBehaviour
 
     void DefeatPanel()
     {
+        
         defeatPanel.SetActive(true);
         Time.timeScale = 0f;
     }

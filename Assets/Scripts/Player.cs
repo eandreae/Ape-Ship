@@ -18,7 +18,7 @@ public class Player : NetworkBehaviour
     public Vector3 dir;
 
     float defaultSpeed;
-    [SyncVar] public float health;
+    [SyncVar] public float health = 3;
     public float oxygen;
     //public Text health_text;
     //public Text oxygen_text;
