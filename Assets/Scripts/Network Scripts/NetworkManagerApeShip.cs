@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using Mirror;
 
 
@@ -49,8 +50,8 @@ public class NetworkManagerApeShip : NetworkRoomManager
         }
         previousconnections.Clear();
         */
-        ServerChangeScene("room");
-        
+
+        SceneManager.LoadScene("room");
     }
     
 
