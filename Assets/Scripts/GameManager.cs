@@ -56,11 +56,17 @@ public class GameManager : MonoBehaviour
                     lost = true;
                     Defeat(0); // trigger defeat screen again
                 }
-                StartCoroutine("AddPlayers", 1f);
-                // if players were added, start the game
+                else {
+                    AddPlayers();
+                }
             }
-            else {
-                    gameStarted = true;
+            // if players were added, start the game
+            else if(!gameStarted){
+                if(FindObjectsOfType<Player>().Length > alivePlayers.Count){ // if more players have spawned,
+                    alivePlayers.Clear();
+                    AddPlayers();
+                }
+                else gameStarted = true;
             }
 
             if(!lost && !won){
@@ -73,9 +79,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator AddPlayers(float wait){
-
-        yield return new WaitForSeconds(wait);
+    void AddPlayers(){
         // if game hasnt started, try to find all players
         var playerList = FindObjectsOfType<Player>();
         foreach (Player player in playerList){
@@ -84,7 +88,6 @@ public class GameManager : MonoBehaviour
             if(player.isLocalPlayer);
                 localp = player;
         }
-
     }
 
     public void Victory()
