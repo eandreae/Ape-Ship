@@ -63,7 +63,7 @@ public class PlayerCamera : MonoBehaviour
                 }
                 // if target player is dead
                 else if(gm.localp.health == 0 && gm.alivePlayers.Count > 0){
-                    if(!target)
+                    if(target.GetComponent<Player>().health == 0)
                         target = gm.alivePlayers[0].gameObject;
                     
                     if(Input.GetKeyDown(KeyCode.Tab)){

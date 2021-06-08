@@ -256,6 +256,11 @@ public class Player : NetworkBehaviour
                 ChangeSpeed(defaultSpeed);
             }
         }
+        else { // handling death for non-local players
+            if (this.health == 0){
+                handleDeath();
+            }   
+        }
 
         if(isServer){
             // Check if both oxygens are red.
@@ -278,9 +283,7 @@ public class Player : NetworkBehaviour
             }
         }
 
-        if (this.health == 0){
-            handleDeath();
-        }
+        
     }
 
     void OnTriggerEnter(Collider other) 
@@ -318,14 +321,14 @@ public class Player : NetworkBehaviour
     }
     
     public IEnumerator updateHealth(bool damage) {
-        if (damage)
-        {
-            damageCue.SetTrigger("DamageTrigger");
-        }
         healthBar.value = health;
         if ( health == 0 )
         { 
             handleDeath();
+        }
+        else if (damage)
+        {
+            damageCue.SetTrigger("DamageTrigger");
         }
         // else
         // {
