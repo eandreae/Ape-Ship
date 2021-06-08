@@ -27,6 +27,8 @@ public class UIManager : MonoBehaviour
 
     public AudioSource intruderAlert;
 
+    bool cutsceneOver;
+
     [Header("Endgame")]
     public AudioSource teleporterOffline;
     public GameObject[] minimapNodes;
@@ -56,6 +58,17 @@ public class UIManager : MonoBehaviour
         Invoke("BlackBarsLeave", introDuration);
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return) && !cutsceneOver)
+        {
+            TeleportApes();
+            BlackBarsLeave();
+            SlideInUI();
+            CancelInvoke();
+        }
+    }
+
     void TeleportApes()
     {
         intruderAlert.Play();
@@ -81,6 +94,7 @@ public class UIManager : MonoBehaviour
         blackBarTop.Play("TopBarLeave");
         blackBarBottom.Play("BottomBarLeave");
         Invoke("SlideInUI", blackBarAnimDuration);
+        cutsceneOver = true;
     }
 
     void SlideInUI()
