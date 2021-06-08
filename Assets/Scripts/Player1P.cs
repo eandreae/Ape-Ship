@@ -306,10 +306,12 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     //checks to see if picked up object, activated everytime touch a trigger collider
     void OnTriggerEnter(Collider other) 
     {
-        if (other.gameObject.tag == "ThrownObject")
+        if (other.gameObject.tag == "ThrownObject" && !invulnerable && other.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 0)
         {
             Debug.Log("Hit by object");
             health = health - 1 ;
+            invulnerable = true;
+            Destroy(other.gameObject);
             StartCoroutine("updateHealth", true);
         }
     }

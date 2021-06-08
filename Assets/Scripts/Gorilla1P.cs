@@ -40,13 +40,14 @@ public class Gorilla1P : MonoBehaviour
     public List<Transform> visibleObjects = new List<Transform>();
     public bool holdingObject = false;
     public GameObject objectHeld;
+    private GameObject fakeHolding;
 
     public float chargeCooldown = 4f;
     private bool startMoving = false;
     private AudioSource audioData;
     public AudioClip clip1;
     public AudioClip clip2;
-
+    private bool carrying = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -113,17 +114,15 @@ public class Gorilla1P : MonoBehaviour
                 visibleObjects.Add(t);
             }
 
-            /* ------------------ Temp Disabled -----------------------------
+            /* ------------------ Temp Disabled -----------------------------*/
             // if gorilla is not following player, check for the player distance
-            if (visibleObjects.Count != 0 && !holdingObject)
+            if (visibleObjects.Count != 0 && !holdingObject && canPickup)
             {
                 Debug.Log("Gorilla has found object");
                 target = visibleObjects[0].gameObject;
                 stoppingDistance = 0;
             }
-            else         -------------------------------------------------------------------------------
-            */
-            if (visibleTargets.Count != 0)
+            else if (visibleTargets.Count != 0)
             {
                 //Debug.Log("Gorilla has locked on Player");
                 playerLock = true;
@@ -132,10 +131,13 @@ public class Gorilla1P : MonoBehaviour
 
             }
 
-
+            if (this.holdingObject && !carrying)
+            {
+                this.GetComponent<Animator>().Play("GorillaCarry");
+                carrying = true;
+            }
 
             float dist = Vector3.Distance(transform.position, target.transform.position);
-
             if (dist < stoppingDistance)
             {
                 FindNewTarget();
@@ -222,7 +224,7 @@ public class Gorilla1P : MonoBehaviour
                 StartCoroutine("AttackPlayer",  other.transform.parent.GetComponent<Player1P>());
             }
         } 
-        else if (other.tag != "Player" && other.gameObject == target && !holdingObject)
+        else if (other.tag == "Object" && other.gameObject == target && !holdingObject && canPickup)
         {
             PickUpObject(other);
         } 
@@ -246,11 +248,19 @@ public class Gorilla1P : MonoBehaviour
 
     private void PickUpObject(Collider other)
     {
-        other.transform.parent = this.transform;
+        fakeHolding = Instantiate(target, target.transform.position, target.transform.rotation);
+        other.gameObject.transform.parent = this.transform;
+        other.gameObject.transform.Rotate(90.0f, 0.0f, 0.0f, Space.Self);
+        //other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
+        fakeHolding.gameObject.transform.parent = this.transform;
+        fakeHolding.gameObject.transform.position = new Vector3(other.gameObject.transform.position.x - 3f, other.gameObject.transform.position.y + 1f, other.gameObject.transform.position.z + 2.0f);
+        fakeHolding.gameObject.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
         target.GetComponent<Rigidbody>().isKinematic = true;
+        fakeHolding.GetComponent<Rigidbody>().isKinematic = true;
         holdingObject = true;
         canPickup = false;
         objectHeld = target;
+        objectHeld.SetActive(false);
         FindNewTarget();
     }
     // this coroutine manages the Gorilla ChargeAttack.
@@ -299,16 +309,20 @@ public class Gorilla1P : MonoBehaviour
 
     IEnumerator ThrowObject()
     {
-        if (holdingObject)
+        if (holdingObject && visibleTargets.Count != 0)
         {
-            agent.speed = 0;
-            gameObject.transform.LookAt(playerObj.transform.position);
+            StopGorilla();
+            this.gameObject.transform.LookAt(visibleTargets[0].transform.position);
             yield return new WaitForSeconds(0.5f); // wait for 1 second
-
+            Destroy(fakeHolding);
+            objectHeld.SetActive(true);
             objectHeld.GetComponent<Rigidbody>().isKinematic = false;
             objectHeld.tag = "ThrownObject";
-            objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 3f, ForceMode.Impulse);
-            
+            objectHeld.layer = 15;
+            //Physics.IgnoreCollision(GetComponent<Collider>(), objectHeld.GetComponent<Collider>(), true);
+            objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 15f, ForceMode.Impulse);
+            objectHeld.transform.parent = null;
+
             //-- THROW ANIMATION --//
             this.GetComponent<Animator>().Play("GorillaThrow");
             
@@ -330,7 +344,7 @@ public class Gorilla1P : MonoBehaviour
 
     IEnumerator DestroyThrown(GameObject obj)
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         Destroy(obj);
     }
 
