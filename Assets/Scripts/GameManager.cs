@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
     public GameObject victoryPanel;
     public GameObject defeatPanel1P;
     public GameObject defeatPanel;
+    public Text causeOfDeath1P;
     public Text causeOfDeath;
     public GameObject pausePanel1P;
     public GameObject pausePanel;
+    public GameObject returnOptions;
 
     public AudioSource backgroundMusic;
 
@@ -28,12 +30,52 @@ public class GameManager : MonoBehaviour
     bool lost = false;
 
     Player1P p1p;
+    public Player localp;
+    public List<Player> alivePlayers;
 
     void Start()
     {
         singleplayer = (FindObjectOfType<NetworkManager>() == null);
         Time.timeScale = 1f;
-        p1p = FindObjectOfType<Player1P>();
+
+        if(singleplayer)
+            p1p = FindObjectOfType<Player1P>();
+        
+        else {
+            alivePlayers = new List<Player>();
+        }
+    }
+
+    void LateUpdate(){
+        // setting up alivePlayer List and local player for multiplayer
+        if(!singleplayer){
+            if(alivePlayers.Count == 0){
+                var playerList = GameObject.FindObjectsOfType<Player>();
+                if(playerList.Length > 0){
+                    foreach(Player p in playerList){
+                        if(p.health > 0)
+                            alivePlayers.Add(p);
+                        
+                        if(!localp && p.isLocalPlayer){
+                            localp = p;
+                        }
+                    }
+                    // change lose condition to ALL players death
+                    if(alivePlayers.Count == 0){
+                        lost = true;
+                        Defeat(0); // trigger defeat screen again
+                    }
+                }
+            }
+
+            if(!lost && !won){
+                foreach (Player p in alivePlayers){
+                    if( p.health == 0 ){
+                        alivePlayers.Remove(p);
+                    }
+                }
+            }
+        }
     }
 
     public void Victory()
@@ -41,62 +83,116 @@ public class GameManager : MonoBehaviour
         if (!lost)
         {
             //Enabling a victory panel
-            if(singleplayer)
+            if(singleplayer){
                 victoryPanel1P.SetActive(true);
-            else
+                 //Turning off the gameplay music
+                backgroundMusic.volume = 0f;
+                p1p.canMove = false;
+                p1p.GetComponent<Animator>().enabled = false;
+                //We need to destroy the pause menu panel so the player can't pause once the game is technically over
+                Destroy(pausePanel);
+                Destroy(pausePanel1P);
+                won = true;
+                p1p.hasWonTheGame = true;
+                Time.timeScale = 0f;
+            }
+            else{
                 victoryPanel.SetActive(true);
-            //Turning off the gameplay music
-            backgroundMusic.volume = 0f;
-            p1p.canMove = false;
-            p1p.GetComponent<Animator>().enabled = false;
-            //We need to destroy the pause menu panel so the player can't pause once the game is technically over
-            Destroy(pausePanel);
-            Destroy(pausePanel1P);
-            won = true;
-            p1p.hasWonTheGame = true;
-            Time.timeScale = 0f;
+                backgroundMusic.volume = 0f;
+                localp.canMove = false;
+                localp.GetComponent<Animator>().enabled = false;
+
+                //We need to destroy the pause menu panel so the player can't pause once the game is technically over
+                Destroy(pausePanel);
+                Destroy(pausePanel1P);
+
+                won = true;
+                p1p.hasWonTheGame = true;
+                Time.timeScale = 0f;
+            }
+
         }
     }
 
     public void Defeat(int cause)
     {
+        if (cause == 0)
+            Debug.Log("multiplayer game over");
         if (!won)
         {   
-            //Enabling a defeat panel
-            Invoke("DefeatPanel", deathAnimDuration);
-            if(singleplayer)
+            // //Enabling a defeat panel
+            // Invoke("DefeatPanel", deathAnimDuration);
+            if(singleplayer){
                 defeatPanel1P.SetActive(true);
-            else
+                backgroundMusic.volume = 0f;
+                Destroy(pausePanel);
+                Destroy(pausePanel1P);
+                lost = true;
+                p1p.canMove = false;
+                p1p.hasWonTheGame = true;
+                p1p.GetComponent<Animator>().Play("PlayerDeath");
+                if (cause == 1)
+                {
+                    causeOfDeath1P.text = "Cause of Death: Loss of Oxygen";
+                }
+                else if (cause == 2)
+                {
+                    causeOfDeath1P.text = "Cause of Death: Beaten to Death by Gorilla";
+                }
+                else if (cause == 3)
+                {
+                    causeOfDeath1P.text = "Cause of Death: Obliterated by Self-Destruct Sequence";
+                }
+                else if (cause == 4)
+                {
+                    causeOfDeath1P.text = "Cause of Death: Entering the...void?";
+                }
+            }
+            else if (!lost){ // multiplayer death
                 defeatPanel.SetActive(true);
-            backgroundMusic.volume = 0f;
-            Destroy(pausePanel);
-            Destroy(pausePanel1P);
-            lost = true;
-            p1p.canMove = false;
-            p1p.hasWonTheGame = true;
-            p1p.GetComponent<Animator>().Play("PlayerDeath");
+                backgroundMusic.volume = 0f;
+                Destroy(pausePanel);
+                Destroy(pausePanel1P);
+                //lost = true;
+                localp.canMove = false;
 
-            if (cause == 1)
-            {
-                causeOfDeath.text = "Cause of Death: Loss of Oxygen";
+                if (cause == 1)
+                {
+                    causeOfDeath.text = "Cause of Death: Loss of Oxygen";
+                }
+                else if (cause == 2)
+                {
+                    causeOfDeath.text = "Cause of Death: Beaten to Death by Gorilla";
+                }
+                else if (cause == 3)
+                {
+                    causeOfDeath.text = "Cause of Death: Obliterated by Self-Destruct Sequence";
+                }
+                else if (cause == 4)
+                {
+                    causeOfDeath.text = "Cause of Death: Entering the...void?";
+                }
             }
-            else if (cause == 2)
-            {
-                causeOfDeath.text = "Cause of Death: Beaten to Death by Gorilla";
+            else{ // multiplayer defeat
+                defeatPanel.SetActive(true);
+                backgroundMusic.volume = 0f;
+                Destroy(pausePanel);
+                Destroy(pausePanel1P);
+
+
+                returnOptions.SetActive(true);
+                if (cause == 0) // ma
+                {
+                    causeOfDeath.text = "All Players have Died";
+                }
             }
-            else if (cause == 3)
-            {
-                causeOfDeath.text = "Cause of Death: Obliterated by Self-Destruct Sequence";
-            }
-            else if (cause == 4)
-            {
-                causeOfDeath.text = "Cause of Death: Entering the...void?";
-            }
+
         }
     }
 
     void DefeatPanel()
     {
+        
         defeatPanel.SetActive(true);
         Time.timeScale = 0f;
     }

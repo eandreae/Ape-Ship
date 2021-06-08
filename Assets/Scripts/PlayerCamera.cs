@@ -9,17 +9,17 @@ using UnityEngine.UI;
 public class PlayerCamera : MonoBehaviour
 {
     //public NetworkManager nm;
+    public GameManager gm;
     public GameObject target;
     public Vector3 offset = new Vector3(0, 19f, -10);
-    public int playerNum = -1;
+    public int playerNum = 0;
     Text currentRoomText;
     private float fadeNum = 0.01f;
 
-    [HideInInspector]
     public bool followPlayer = false;
 
     void Start() {
-
+        gm = FindObjectOfType<GameManager>();
         //nm = FindObjectOfType<NetworkManager>();
         target = GameObject.Find("_DEBUGGER_PLAYER");
         //        Debug.Log("nm.numPlayers:" + nm.numPlayers);
@@ -55,19 +55,26 @@ public class PlayerCamera : MonoBehaviour
     {
         if (followPlayer)
         {
-            if (!target)
-            {
-                GameObject[] playerList = GameObject.FindGameObjectsWithTag("Player");
-                //target = playerList[playerList.Length - 1];
-                foreach (GameObject player in playerList)
+            if(!gm.singleplayer){
+                // start of game (no target)
+                if (!target)
                 {
-                    if (player.GetComponent<Player>().isLocalPlayer)
-                    {
-                        target = player;
-                        break;
+                    target = gm.localp.gameObject; // set to local player from gamemanager
+                }
+                // if target player is dead
+                else if(gm.localp.health == 0 && gm.alivePlayers.Count > 0){
+                    if(!target)
+                        target = gm.alivePlayers[0].gameObject;
+                    
+                    if(Input.GetKeyDown(KeyCode.Tab)){
+                        playerNum++;
+                        if(playerNum > gm.alivePlayers.Count)
+                            playerNum = 0;
+                        target = gm.alivePlayers[playerNum].gameObject;
                     }
                 }
             }
+            
             Vector3 desiredPosition = target.transform.position + offset;
             transform.position = desiredPosition + shakeOffset;
         }
