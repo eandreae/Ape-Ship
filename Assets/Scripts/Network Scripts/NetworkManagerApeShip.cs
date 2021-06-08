@@ -42,6 +42,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
     
     public void Disconnect()
     {
+
+        //under certain conditions, disconnecting will spawn a player in the main menu
+
         GameObject[] roomplayers = GameObject.FindGameObjectsWithTag("RoomPlayer");
         foreach (GameObject player in roomplayers)
         {
