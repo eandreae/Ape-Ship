@@ -86,7 +86,7 @@ public class GorillaMovement : NetworkBehaviour
     {
         if (startMoving)
         {
-            if (target == null)
+            if (target == null && isServer)
                 FindNewTargetClientRpc();
             //Get list of targets from FieldOfView list
             targetsList = GetComponent<FieldOfView>();
@@ -127,12 +127,12 @@ public class GorillaMovement : NetworkBehaviour
 
             float dist = Vector3.Distance(transform.position, target.transform.position);
 
-            if (dist < stoppingDistance)
+            if (dist < stoppingDistance && isServer)
             {
                 FindNewTargetClientRpc();
             }
             //if the gorilla lost sight of the player
-            else if (playerLock == true && visibleTargets.Count == 0)
+            else if (playerLock == true && visibleTargets.Count == 0 && isServer)
             {
                 playerLock = false;
                 stoppingDistance = 15f;
@@ -239,7 +239,7 @@ public class GorillaMovement : NetworkBehaviour
         holdingObject = true;
         canPickup = false;
         objectHeld = target;
-        FindNewTargetClientRpc();
+        if(isServer) FindNewTargetClientRpc();
     }
     // this coroutine manages the Gorilla ChargeAttack.
     // It ends if the gorilla stops chasing the player.
