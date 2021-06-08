@@ -34,9 +34,13 @@ public class GameManager : MonoBehaviour
     public Player localp;
     public List<Player> alivePlayers;
 
+    public NetworkManager nm;
+
     void Start()
     {
-        singleplayer = (FindObjectOfType<NetworkManager>() == null);
+        nm = FindObjectOfType<NetworkManager>();
+        singleplayer = (nm == null);
+
         gameStarted = false;
         Time.timeScale = 1f;
 
@@ -62,8 +66,7 @@ public class GameManager : MonoBehaviour
             }
             // if players were added, start the game
             else if(!gameStarted){
-                if(FindObjectsOfType<Player>().Length > alivePlayers.Count){ // if more players have spawned,
-                    alivePlayers.Clear();
+                if(alivePlayers.Count < nm.numPlayers){ // if more players have spawned,
                     AddPlayers();
                 }
                 else gameStarted = true;
@@ -80,6 +83,7 @@ public class GameManager : MonoBehaviour
     }
 
     void AddPlayers(){
+        alivePlayers.Clear();
         // if game hasnt started, try to find all players
         var playerList = FindObjectsOfType<Player>();
         foreach (Player player in playerList){

@@ -339,7 +339,7 @@ public class GorillaMovement : NetworkBehaviour
         Debug.Log("Hit the Gorilla!");
             // Subtract one from the health of the Player.
         if(!player.invulnerable){
-            player.health--;
+            player.StartCoroutine("updateHealth", true);
 
             if(player.health == 0){
                 FindNewTargetClientRpc();
