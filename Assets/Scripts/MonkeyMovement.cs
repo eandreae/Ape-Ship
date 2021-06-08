@@ -79,7 +79,7 @@ public class MonkeyMovement : NetworkBehaviour
                 //Runs to new target farthest away from player
                 
                 if(isServer)
-                    gotAway = RunAway(gotAway);
+                    gotAway = RunAwayClientRpc(gotAway);
 
                 GoToTarget();
                 
@@ -96,13 +96,13 @@ public class MonkeyMovement : NetworkBehaviour
                 //float dist = Vector3.Distance(transform.position, target.transform.position);
                 if (targetColor.text == "red" && !runningAway)
                 {
-                    FindNewTargetClientRpc();
+                    if(isServer) FindNewTargetClientRpc();
                 }
                 else if (runningAway == true && (monkeyDist < stoppingDistance))
                 {
                     runningAway = false;
                     gotAway = true;
-                    FindNewTargetClientRpc();
+                    if(isServer) FindNewTargetClientRpc();
                 }
                 else
                 {
@@ -132,7 +132,7 @@ public class MonkeyMovement : NetworkBehaviour
     {
         yield return new WaitForSeconds(6f);
         startMoving = true;
-        FindNewTargetClientRpc();
+        if(isServer) FindNewTargetClientRpc();
     }
 
 
@@ -166,8 +166,8 @@ public class MonkeyMovement : NetworkBehaviour
         Debug.Log("Monkey moving to:" + target);
     }
 
-    [Server]
-    private bool RunAway(bool gotAway)
+    [ClientRpc]
+    private bool RunAwayClientRpc(bool gotAway)
     {
         if (gotAway)
         {
