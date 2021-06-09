@@ -141,22 +141,7 @@ public class Player : NetworkBehaviour
 
             if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0)
             {
-                this.holdItem = visibleTargets[0].gameObject;
-
-                // Sets player to the pick-up item's parent so the item will move around with the player.            
-                //other.gameObject.transform.parent = this.transform;
-                visibleTargets[0].gameObject.GetComponent<ItemScript>().playerRoot = this.transform;
-
-                // mark the coin (or whatever object) as picked up 
-                visibleTargets[0].gameObject.GetComponent<ItemScript>().pickedUp = true;
-                visibleTargets[0].gameObject.GetComponent<ItemScript>().thrown = false;
-
-                // disable collision with held item
-                Physics.IgnoreCollision(this.GetComponent<Collider>(), visibleTargets[0].gameObject.GetComponent<MeshCollider>(), true);
-
-                this.wpArrow.SetActive(true);
-                //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
-                StartCoroutine("PickUpCD");
+                PickUp(visibleTargets[0].gameObject);
             }
 
             if (canMove)
@@ -214,44 +199,12 @@ public class Player : NetworkBehaviour
             if (this.holding)
             {   // if player is holding an item and presses space bar
                 if (Input.GetKeyDown("space")){
-                    // Debug.Log("drop");
-                    // un-parent the player from the item
-                    //this.holdItem.transform.parent = null;
-                    // un-mark the coin as picked up.
-                    this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-                    this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-                    
-                    // reenable collision
-                    Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
-                    //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
-                    // get rid of hold item
-                    this.holdItem = null;
-                    this.wpArrow.SetActive(false);
-
-                    StartCoroutine("PickUpCD");
+                    Drop();
                 }
                 // code to throw items
                 else if (Input.GetKeyDown(KeyCode.LeftShift))
                 { // holding item + press left shift
-
-                    //this.holdItem.transform.parent = null; // unparent player from item
-
-                    this.holdItem.GetComponent<ItemScript>().pickedUp = false;
-                    this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-                    if(this.gameObject.name != "BatteryWithAnimations")
-                    {
-                        this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 20f + this.dir * 20f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
-                                                                                                                            //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
-                                                                                                                            //Debug.Log("throw");
-                        this.holdItem.GetComponent<ItemScript>().thrown = true;
-                        this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
-
-                    }
-                    Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
-                    // get rid of hold item
-                    this.holdItem = null;
-                    this.wpArrow.SetActive(false);
-                    StartCoroutine("PickUpCD");
+                    Throw();
                 }
             }
             //if player isn't holding an item, reset to default speed
@@ -287,6 +240,104 @@ public class Player : NetworkBehaviour
             }
         }
         
+    }
+
+    void PickUp(GameObject item) {
+        if(isServer){
+            RpcPickUp();
+        }
+        else{
+            CmdPickUp();
+        }
+    }
+
+    [ClientRpc]
+    void RpcPickUp() {
+        this.holdItem = item;
+        // Sets player to the pick-up item's parent so the item will move around with the player.            
+        //other.gameObject.transform.parent = this.transform;
+        item.GetComponent<ItemScript>().playerRoot = this.transform;
+
+        // mark the coin (or whatever object) as picked up 
+        item.GetComponent<ItemScript>().pickedUp = true;
+        item.GetComponent<ItemScript>().thrown = false;
+
+        // disable collision with held item
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), item.GetComponent<MeshCollider>(), true);
+
+        this.wpArrow.SetActive(true);
+        //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
+        StartCoroutine("PickUpCD");
+    }
+    [Command]
+    void CmdPickUp(){
+        RpcPickUp();
+    }
+
+    void Drop() {
+        if(isServer){
+            RpcThrow();
+        }
+        else{
+            CmdThrow();
+        }
+    }
+    
+    [ClientRpc]
+    void RpcDrop() {
+        // Debug.Log("drop");
+        // un-parent the player from the item
+        //this.holdItem.transform.parent = null;
+        // un-mark the coin as picked up.
+        this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+        this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+        
+        // reenable collision
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
+        //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
+        // get rid of hold item
+        this.holdItem = null;
+        this.wpArrow.SetActive(false);
+
+        StartCoroutine("PickUpCD");
+    }
+    [Command]
+    void CmdDrop(){
+        RpcDrop();
+    }
+
+    void Throw() {
+        if(isServer){
+            RpcThrow();
+        }
+        else{
+            CmdThrow();
+        }
+    }
+
+    [ClientRpc]
+    void RpcThrow() {
+        //this.holdItem.transform.parent = null; // unparent player from item
+        this.holdItem.GetComponent<ItemScript>().pickedUp = false;
+        this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
+        if(this.gameObject.name != "BatteryWithAnimations")
+        {
+            this.holdItem.GetComponent<Rigidbody>().velocity = (this.transform.forward * 20f + this.dir * 20f); // add velocity to thrown object <-- DOES NOT TAKE MASS INTO ACCOUNT
+                                                                                                                //this.holdItem.GetComponent<Rigidbody>().AddForce(this.transform.forward * 20f - this.dir * 2, ForceMode.Impulse); // add force to thrown object <-- TAKES MASS INTO ACCOUNT
+                                                                                                                //Debug.Log("throw");
+            this.holdItem.GetComponent<ItemScript>().thrown = true;
+            this.holdItem.GetComponent<Rigidbody>().isKinematic = false; // set object to non-kinematic so it can be thrown
+
+        }
+        Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
+        // get rid of hold item
+        this.holdItem = null;
+        this.wpArrow.SetActive(false);
+        StartCoroutine("PickUpCD");
+    }
+    [Command]
+    void CmdThrow(){
+        RpcThrow();
     }
 
     void OnTriggerEnter(Collider other) 
