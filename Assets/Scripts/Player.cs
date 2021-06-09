@@ -97,7 +97,7 @@ public class Player : NetworkBehaviour
             FindObjectOfType<PlayerCamera>().target = this.gameObject;
         }
         else {
-            //Object.Destroy(this.wpArrow); // get rid of waypoints for non-local players
+            Object.Destroy(this.wpArrow); // get rid of waypoints for non-local players
         }
     }
 
@@ -265,7 +265,8 @@ public class Player : NetworkBehaviour
         // disable collision with held item
         Physics.IgnoreCollision(this.GetComponent<Collider>(), item.GetComponent<MeshCollider>(), true);
 
-        this.wpArrow.SetActive(true);
+        if(isLocalPlayer)
+            this.wpArrow.SetActive(true);
         //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
         StartCoroutine("PickUpCD");
     }
@@ -297,7 +298,9 @@ public class Player : NetworkBehaviour
         //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
         // get rid of hold item
         this.holdItem = null;
-        this.wpArrow.SetActive(false);
+
+        if(isLocalPlayer)
+            this.wpArrow.SetActive(false);
 
         StartCoroutine("PickUpCD");
     }
@@ -332,7 +335,9 @@ public class Player : NetworkBehaviour
         Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
         // get rid of hold item
         this.holdItem = null;
-        this.wpArrow.SetActive(false);
+
+        if(isLocalPlayer)
+            this.wpArrow.SetActive(false);
         StartCoroutine("PickUpCD");
     }
     [Command]
