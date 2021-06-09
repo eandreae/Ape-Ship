@@ -249,11 +249,16 @@ public class MonkeyMovement : NetworkBehaviour
                 break;
         }
     }
-
+    
     private void GoToTarget()
     {
         //agent.isStopped = false;
         agent.SetDestination(target.transform.position);
+    }
+
+    public void StopEnemy()
+    {
+        agent.isStopped = true;
     }
 
 }
