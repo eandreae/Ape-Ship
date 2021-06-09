@@ -1,4 +1,4 @@
-//referenced using Single Sapling Games' video on "Stop Enemy When close to Player - FPS Game in Unity - Part 57" : https://www.youtube.com/watch?v=26Oavz7WTC0
+﻿//referenced using Single Sapling Games' video on "Stop Enemy When close to Player - FPS Game in Unity - Part 57" : https://www.youtube.com/watch?v=26Oavz7WTC0
 
 using System.Collections;
 using System.Collections.Generic;
@@ -30,9 +30,9 @@ public class GorillaMovement : NetworkBehaviour
 
     private bool canCharge = true;
     private bool canPickup = true;
-    [SyncVar] public bool charging = false;
-    [SyncVar] private bool playerLock = false;
-    [SyncVar] public bool stunned = false;
+    public bool charging = false;
+    private bool playerLock = false;
+    public bool stunned = false;
     private float playerDist = 0f;
     FieldOfView targetsList;
     FieldOfView objectsList;
@@ -86,8 +86,8 @@ public class GorillaMovement : NetworkBehaviour
     {
         if (startMoving)
         {
-            if (target == null && isServer)
-                FindNewTargetClientRpc();
+            if (target == null)
+                FindNewTarget();
             //Get list of targets from FieldOfView list
             targetsList = GetComponent<FieldOfView>();
             //transfer each target into local list
@@ -127,16 +127,16 @@ public class GorillaMovement : NetworkBehaviour
 
             float dist = Vector3.Distance(transform.position, target.transform.position);
 
-            if (dist < stoppingDistance && isServer)
+            if (dist < stoppingDistance)
             {
-                FindNewTargetClientRpc();
+                FindNewTarget();
             }
             //if the gorilla lost sight of the player
-            else if (playerLock == true && visibleTargets.Count == 0 && isServer)
+            else if (playerLock == true && visibleTargets.Count == 0)
             {
                 playerLock = false;
                 stoppingDistance = 15f;
-                FindNewTargetClientRpc();
+                FindNewTarget();
             }
             else
             {
@@ -161,14 +161,27 @@ public class GorillaMovement : NetworkBehaviour
         startMoving = true;
     }
 
-    [ClientRpc]
-    private void FindNewTargetClientRpc()
+    private void FindNewTarget()
     {
+        if(isServer){
+            int targetnum = Random.Range(0, nodes.Count - 1);
+            targetNode = nodes[targetnum];
+            RpcFindNewTarget(targetNode);
+        }else{
+            CmdFindNewTarget(targetNode);
+        }
+    }
+
+    [ClientRpc]
+    void RpcFindNewTarget(GameObject targetNode) {
         agent.isStopped = true;
-        int targetnum = Random.Range(0, nodes.Count - 1);
-        targetNode = nodes[targetnum];
         target = targetNode;
         Debug.Log("Gorilla moving to: " + target);
+    }
+
+    [Command]
+    void CmdFindNewTarget(GameObject targetNode) {
+        RpcFindNewTarget(targetNode);
     }
 
     private void GoToTarget()
@@ -188,20 +201,6 @@ public class GorillaMovement : NetworkBehaviour
        	    agent.SetDestination(target.transform.position);
         }
     }
-
-    private void StopEnemy() // code executed when gorilla reaches its target.
-    {
-      	agent.isStopped = true;
-        //get new target
-        //Start();
-        if(target == targetNode){ // search for a new target node if gorilla reaches a target node
-            int targetnum = Random.Range(0, nodes.Count-1);
-            targetNode = nodes[targetnum];
-            target = targetNode;
-        }
-    }
-
-    
 
     void OnTriggerEnter(Collider other) 
     {
@@ -240,7 +239,7 @@ public class GorillaMovement : NetworkBehaviour
         holdingObject = true;
         canPickup = false;
         objectHeld = target;
-        if(isServer) FindNewTargetClientRpc();
+        FindNewTarget();
     }
     // this coroutine manages the Gorilla ChargeAttack.
     // It ends if the gorilla stops chasing the player.
@@ -344,7 +343,7 @@ public class GorillaMovement : NetworkBehaviour
             player.StartCoroutine("updateHealth", true);
 
             if(player.health == 0){
-                FindNewTargetClientRpc();
+                FindNewTarget();
             }
             else{
                 // Make the player temporarily invulnerable
