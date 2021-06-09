@@ -244,15 +244,15 @@ public class Player : NetworkBehaviour
 
     void PickUp(GameObject item) {
         if(isServer){
-            RpcPickUp();
+            RpcPickUp(item);
         }
         else{
-            CmdPickUp();
+            CmdPickUp(item);
         }
     }
 
     [ClientRpc]
-    void RpcPickUp() {
+    void RpcPickUp(GameObject item) {
         this.holdItem = item;
         // Sets player to the pick-up item's parent so the item will move around with the player.            
         //other.gameObject.transform.parent = this.transform;
@@ -270,8 +270,8 @@ public class Player : NetworkBehaviour
         StartCoroutine("PickUpCD");
     }
     [Command]
-    void CmdPickUp(){
-        RpcPickUp();
+    void CmdPickUp(GameObject item){
+        RpcPickUp(item);
     }
 
     void Drop() {
