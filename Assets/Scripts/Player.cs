@@ -19,7 +19,7 @@ public class Player : NetworkBehaviour
 
     float defaultSpeed;
     public float health = 3;
-    [SyncVar] public float oxygen;
+    public float oxygen = 60;
     //public Text health_text;
     //public Text oxygen_text;
     public Text oxygen_color;
@@ -69,7 +69,7 @@ public class Player : NetworkBehaviour
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
         health = 3;
-        oxygen = 90;
+        oxygen = 60;
         invulnerable = false;
         holding = false;
         gm = FindObjectOfType<GameManager>();
@@ -219,24 +219,22 @@ public class Player : NetworkBehaviour
         //     }   
         // }
 
-        if(isServer){
-            // Check if both oxygens are red.
-            if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
-                if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
-                //If you update oxygen with a 0, the animation will play, otherwise it wont
-                updateOxygen(0);
-            // Check if one oxygen is red
-            } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
-            {
-                if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
-                //If you update oxygen with a 0, the animation will play, otherwise it wont
-                updateOxygen(0);
-            }
-            else {
-                if ( oxygen < 90 ) {
-                    oxygen += Time.deltaTime * 2;
-                    updateOxygen(1);
-                }
+        // Check if both oxygens are red.
+        if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
+            if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
+            //If you update oxygen with a 0, the animation will play, otherwise it wont
+            updateOxygen(0);
+        // Check if one oxygen is red
+        } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
+        {
+            if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
+            //If you update oxygen with a 0, the animation will play, otherwise it wont
+            updateOxygen(0);
+        }
+        else {
+            if ( oxygen < 90 ) {
+                oxygen += Time.deltaTime * 2;
+                updateOxygen(1);
             }
         }
         
@@ -406,7 +404,7 @@ public class Player : NetworkBehaviour
     void RpcTakeDamage(bool damage){
         if(damage)
             this.health--;
-            
+
         healthBar.value = health;
         
         if ( health == 0 )
@@ -421,20 +419,31 @@ public class Player : NetworkBehaviour
     }
 
     public void updateOxygen(int posOrNeg) {
+        if(isServer){
+            RpcUpdateOxygen(posOrNeg);
+        } else {
+            CmdUpdateOxygen(posOrNeg);
+        }
+        
+        if ( Mathf.Floor(oxygen) == 0 ) 
+        { 
+            Debug.Log("You Died!");
+            moveSpeed = 0f;
+            handleDeath(1);
+        }
+    }
+
+    [ClientRpc]
+    void RpcUpdateOxygen(int posOrNeg){
         if (posOrNeg == 0){
             oxygenCue.SetTrigger("OxygenTrigger");
         }
         oxygenBar.value = Mathf.Floor(oxygen);
-        //alarmSFX.Play();
-        if ( Mathf.Floor(oxygen) == 0 ) 
-        { 
-            Debug.Log("You Died!");
-            //oxygen_text.text = ""; 
-            moveSpeed = 0f;
-            
-            handleDeath(1);
-        }
+    }
 
+    [Command]
+    void CmdUpdateOxygen(int pn){
+        RpcUpdateOxygen(pn);
     }
 
     public void handleDeath(int cause){
