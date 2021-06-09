@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Steamworks;
 
 public class MainMenu : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class MainMenu : MonoBehaviour
     public AudioSource buttonPress;
 
     public GameObject mainMenuPanel;
+    public GameObject mainMenuPanel2;
+
     public GameObject playOptionsPanel;
     public GameObject tutorialPanel;
     public GameObject creditsPanel;
@@ -39,28 +42,37 @@ public class MainMenu : MonoBehaviour
         apesShipAnim.Play("WhaleChaseTwo");
     }
 
-    public void HostGame() {
-        // code to set up or join a lobby
+    public void StartMultiplayer()
+    {
+        //Plays a button press sound effect
         buttonPress.Play();
+        if (SteamAPI.IsSteamRunning())
+        {
+            whaleAnim.Play("WhaleChaseOne");
+            apesShipAnim.Play("WhaleChaseTwo");
+        }
+        else
+            hostTextAnim.Play("HostTextSlideIn");
+
     }
 
     public void HostAnimation()
     {
-        hostTextAnim.Play("HostTextSlideIn");
+        
     }
 
     // Load the play options screen
     public void ShowPlayOptions() {
         playOptionsPanel.SetActive(true);
         buttonPress.Play();
-        mainMenuPanel.SetActive(false);
+        mainMenuPanel2.SetActive(false);
     }
 
     // hide play options
     public void HidePlayOptions() {
         playOptionsPanel.SetActive(false);
         buttonPress.Play();
-        mainMenuPanel.SetActive(true);
+        mainMenuPanel2.SetActive(true);
     }
 
     void finallyStart()
