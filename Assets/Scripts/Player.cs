@@ -236,8 +236,7 @@ public class Player : NetworkBehaviour
                 oxygen += Time.deltaTime * 2;
                 updateOxygen(1);
             }
-        }
-        
+        }        
     }
 
     void PickUp(GameObject item) {
@@ -281,7 +280,6 @@ public class Player : NetworkBehaviour
             CmdThrow();
         }
     }
-    
     [ClientRpc]
     void RpcDrop() {
         // Debug.Log("drop");
@@ -307,6 +305,7 @@ public class Player : NetworkBehaviour
         RpcDrop();
     }
 
+
     void Throw() {
         if(isServer){
             RpcThrow();
@@ -315,7 +314,6 @@ public class Player : NetworkBehaviour
             CmdThrow();
         }
     }
-
     [ClientRpc]
     void RpcThrow() {
         //this.holdItem.transform.parent = null; // unparent player from item
@@ -387,7 +385,6 @@ public class Player : NetworkBehaviour
     }
 
     void TakeDamage(bool damage){
-        
         if(isLocalPlayer && damage)
             damageCue.SetTrigger("DamageTrigger"); // set damage trigger
 
@@ -395,28 +392,25 @@ public class Player : NetworkBehaviour
             RpcTakeDamage(damage);
         }
         else {
-            RpcTakeDamage(damage);
+            CmdTakeDamage(damage);
         }
-
-    }
-
-    [ClientRpc]
-    void RpcTakeDamage(bool damage){
-        if(damage)
-            this.health--;
-
-        healthBar.value = health;
-        
         if ( health == 0 )
         { 
             handleDeath(2); // dying from updatehealth can only be from gorilla
         }
     }
-
+    [ClientRpc]
+    void RpcTakeDamage(bool damage){
+        if(damage){
+            this.health--;
+            healthBar.value = health;
+        }
+    }
     [Command]
     void CmdTakeDamage(bool damage){
         RpcTakeDamage(damage);
     }
+
 
     public void updateOxygen(int posOrNeg) {
         if(isServer){
@@ -432,7 +426,6 @@ public class Player : NetworkBehaviour
             handleDeath(1);
         }
     }
-
     [ClientRpc]
     void RpcUpdateOxygen(int posOrNeg){
         if (posOrNeg == 0){
@@ -440,11 +433,11 @@ public class Player : NetworkBehaviour
         }
         oxygenBar.value = Mathf.Floor(oxygen);
     }
-
     [Command]
     void CmdUpdateOxygen(int pn){
         RpcUpdateOxygen(pn);
     }
+
 
     public void handleDeath(int cause){
         this.GetComponent<Animator>().Play("PlayerDeath");
