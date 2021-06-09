@@ -55,29 +55,27 @@ public class GameManager : MonoBehaviour
     void Update(){
         // setting up alivePlayer List and local player for multiplayer
         if(!singleplayer){
-            if(alivePlayers.Count == 0){
-                if(gameStarted){
+            if(gameStarted){
+                if(alivePlayers.Count == 0){
                     lost = true;
                     Defeat(0); // trigger defeat screen again
                 }
-                else {
-                    AddPlayers();
+                if(!lost && !won){
+                    for (int i = alivePlayers.Count-1; i >= 0; i--){
+                        var p = alivePlayers[i];
+                        if( p.health == 0 ){
+                            alivePlayers.Remove(p);
+                        }
+                    }
                 }
             }
-            // if players were added, start the game
-            else if(!gameStarted){
-                if(alivePlayers.Count < nm.numPlayers){ // if more players have spawned,
+            // if game hasnt started, so make sure all players are loaded in
+            else{
+                // check if all players have spawned - if not, recheck.
+                if(alivePlayers.Count < nm.numPlayers){
                     AddPlayers();
                 }
                 else gameStarted = true;
-            }
-
-            if(!lost && !won){
-                foreach (Player p in alivePlayers){
-                    if( p.health == 0 ){
-                        alivePlayers.Remove(p);
-                    }
-                }
             }
         }
     }
@@ -86,6 +84,7 @@ public class GameManager : MonoBehaviour
         alivePlayers.Clear();
         // if game hasnt started, try to find all players
         var playerList = FindObjectsOfType<Player>();
+
         foreach (Player player in playerList){
             alivePlayers.Add(player);
 

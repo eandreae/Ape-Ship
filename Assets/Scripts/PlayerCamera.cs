@@ -59,7 +59,12 @@ public class PlayerCamera : MonoBehaviour
                 // start of game (no target)
                 if (!target)
                 {
-                    target = gm.localp.gameObject; // set to local player from gamemanager
+                    var playerList = FindObjectsOfType<Player>();
+                    foreach (Player player in playerList){
+                        if(player.isLocalPlayer);
+                            target = player.gameObject;
+                    }
+                    
                 }
                 // if target player is dead
                 else if(gm.localp.health == 0 && gm.alivePlayers.Count > 0){

@@ -177,10 +177,7 @@ public class ItemScript : NetworkBehaviour
 
     void OnDestroy() {
         if (pickedUp) {
-            if (nm)
-                playerRoot.GetComponent<Player>().wpArrow.SetActive(false);
-            else 
-                playerRoot.GetComponent<Player1P>().wpArrow.SetActive(false);
+            playerRoot.GetComponent<Player>().wpArrow.SetActive(false);
         }
     }
 

@@ -210,10 +210,7 @@ public class GorillaMovement : NetworkBehaviour
                 StartCoroutine("AttackPlayer",  other.transform.parent.GetComponent<Player>());
             }
         } 
-        else if (other.tag != "Player" && other.gameObject == target && !holdingObject)
-        {
-            PickUpObject(other);
-        } 
+         
         else if (other.tag == "Pick Up" && !stunned) {
             if (other.gameObject.GetComponent<ItemScript>().type == "Banana" && other.gameObject.GetComponent<ItemScript>().active){
                 this.stunned = true;
@@ -223,6 +220,10 @@ public class GorillaMovement : NetworkBehaviour
                 this.stunned = true;
                 Explosion(other.gameObject);
                 StartCoroutine("KnockBack", other.transform.position);
+            }
+            else if (other.gameObject == target && !holdingObject)
+            {
+                PickUpObject(other);
             }
         }
     }
@@ -339,6 +340,7 @@ public class GorillaMovement : NetworkBehaviour
         Debug.Log("Hit the Gorilla!");
             // Subtract one from the health of the Player.
         if(!player.invulnerable){
+            player.health--;
             player.StartCoroutine("updateHealth", true);
 
             if(player.health == 0){

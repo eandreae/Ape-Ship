@@ -96,8 +96,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
     public override void OnServerSceneChanged(string newSceneName)
     {
-        base.OnServerSceneChanged(newSceneName);
-        
         if (newSceneName == "game"){
             for (int i=0; i<roomSlots.Count; i++)
             {
@@ -120,6 +118,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
             
             // NetworkServer.Spawn(monkey);
             // NetworkServer.Spawn(gorilla);
+            base.OnServerSceneChanged(newSceneName);
         }
         if (newSceneName == "room")
         {
