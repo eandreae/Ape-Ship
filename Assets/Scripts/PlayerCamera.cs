@@ -59,11 +59,11 @@ public class PlayerCamera : MonoBehaviour
                 // start of game (no target)
                 if (!target)
                 {
-                    var playerList = FindObjectsOfType<Player>();
-                    foreach (Player player in playerList){
-                        if(player.isLocalPlayer);
-                            target = player.gameObject;
-                    }
+                    // var playerList = FindObjectsOfType<Player>();
+                    // foreach (Player player in playerList){
+                    //     if(player.isLocalPlayer);
+                    //         target = player.gameObject;
+                    // }
                     
                 }
                 // if target player is dead
