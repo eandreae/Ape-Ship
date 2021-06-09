@@ -52,7 +52,10 @@ public class MainMenu : MonoBehaviour
             apesShipAnim.Play("WhaleChaseTwo");
         }
         else
+        {
             hostTextAnim.Play("HostTextSlideIn");
+        }
+            
 
     }
 
