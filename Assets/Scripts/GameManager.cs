@@ -71,25 +71,9 @@ public class GameManager : MonoBehaviour
             }
             // if game hasnt started, so make sure all players are loaded in
             else{
-                // check if all players have spawned - if not, recheck.
-                if(alivePlayers.Count < nm.numPlayers){
-                    AddPlayers();
-                }
-                else gameStarted = true;
+                if(alivePlayers.Count > 0)
+                    gameStarted = true;
             }
-        }
-    }
-
-    void AddPlayers(){
-        alivePlayers.Clear();
-        // if game hasnt started, try to find all players
-        var playerList = FindObjectsOfType<Player>();
-
-        foreach (Player player in playerList){
-            alivePlayers.Add(player);
-
-            if(player.isLocalPlayer);
-                localp = player;
         }
     }
 

@@ -89,8 +89,11 @@ public class Player : NetworkBehaviour
         escapeObj = GameObject.Find("Escape2");
         canTeleport = escapeObj.GetComponent<Escape>();
 
+        gm.alivePlayers.Add(this);
+
         if(isLocalPlayer) {
             InvokeRepeating("PlayWalkingNoise", 0, 0.4f); // only play footsteps for localplayer
+            gm.localp = this;
         }
         else {
             Object.Destroy(this.wpArrow); // get rid of waypoints for non-local players
