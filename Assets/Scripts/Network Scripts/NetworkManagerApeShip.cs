@@ -105,7 +105,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
                                                   Quaternion.identity);     // rotation
                 //Debug.Log("spawn player at " + spawnPos[i]);
                 
-                GameObject roomplayer = roomSlots[0].gameObject;
+                GameObject roomplayer = roomSlots[i].gameObject;
                 //roomSlots[i].GetComponent<LobbyPlayer>().saveconnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient);
                 previousconnections.Add(roomSlots[i].gameObject.GetComponent<NetworkIdentity>().connectionToClient);
                 
