@@ -31,6 +31,7 @@ public class NodeInstanceManager : NetworkBehaviour
     public bool canHack = true; // can be hacked by monkey
     //private MonkeyMovement flee;
     public bool isFleeing;
+    
     [HideInInspector]
     public static float monkCooldown = 3f;
     static bool greyed = false;
