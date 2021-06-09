@@ -15,6 +15,8 @@ public class MainMenu : MonoBehaviour
     public AudioSource buttonPress;
 
     public GameObject mainMenuPanel;
+    public GameObject mainMenuPanel2;
+
     public GameObject playOptionsPanel;
     public GameObject tutorialPanel;
     public GameObject creditsPanel;
@@ -39,9 +41,13 @@ public class MainMenu : MonoBehaviour
         apesShipAnim.Play("WhaleChaseTwo");
     }
 
-    public void HostGame() {
-        // code to set up or join a lobby
+    public void StartMultiplayer()
+    {
+        Invoke("HostAnimation",2f);
+        //Plays a button press sound effect
         buttonPress.Play();
+        whaleAnim.Play("WhaleChaseOne");
+        apesShipAnim.Play("WhaleChaseTwo");
     }
 
     public void HostAnimation()
@@ -53,14 +59,14 @@ public class MainMenu : MonoBehaviour
     public void ShowPlayOptions() {
         playOptionsPanel.SetActive(true);
         buttonPress.Play();
-        mainMenuPanel.SetActive(false);
+        mainMenuPanel2.SetActive(false);
     }
 
     // hide play options
     public void HidePlayOptions() {
         playOptionsPanel.SetActive(false);
         buttonPress.Play();
-        mainMenuPanel.SetActive(true);
+        mainMenuPanel2.SetActive(true);
     }
 
     void finallyStart()

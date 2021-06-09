@@ -30,6 +30,11 @@ public class SteamLobby : MonoBehaviour
     public void HostLobby()
     {
         //buttons.SetActive(false);
+        Invoke("DelayedHostLobby", 1.5f);
+    }
+
+    private void DelayedHostLobby()
+    {
         SteamMatchmaking.CreateLobby(ELobbyType.k_ELobbyTypeFriendsOnly, 4);
     }
 
