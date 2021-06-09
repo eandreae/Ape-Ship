@@ -31,6 +31,7 @@ public class NodeInstanceManager : NetworkBehaviour
     public bool canHack = true; // can be hacked by monkey
     //private MonkeyMovement flee;
     public bool isFleeing;
+    
     [HideInInspector]
     public static float monkCooldown = 3f;
     static bool greyed = false;
@@ -44,10 +45,6 @@ public class NodeInstanceManager : NetworkBehaviour
     {
         nm = GameObject.FindObjectOfType<NetworkManager>();
 
-        if(nm && (this.gameObject.name == "BrainTarget (1P)" || this.gameObject.name == "LungTarget (1P)"
-              ||  this.gameObject.name == "Lungs_2Target (1P)") ){
-                Object.Destroy(this.gameObject);
-        }
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");
         displayAnim = display.GetComponent<Animator>();
@@ -90,11 +87,7 @@ public class NodeInstanceManager : NetworkBehaviour
         monkeyDist = Vector3.Distance(transform.position, monkeyObj.transform.position);
         //flee = GetComponent<MonkeyMovement>();
 
-        if(nm){
-            isFleeing = MonkeyMovement.runningAway;
-        } else {
-            isFleeing = Monkey1P.runningAway;
-        }
+        isFleeing = MonkeyMovement.runningAway;
 
         //Debug.Log(isFleeing);
         if (this.gameObject.tag == "ElecControl")
@@ -111,20 +104,6 @@ public class NodeInstanceManager : NetworkBehaviour
 
         //Change color to match text color
         UpdateColor();
-
-        //TEMPORARY
-        //player turns every node immediately green
-        if (playerDist < stopDistance)
-        {
-            /*//temporary until all minigames are implemented
-            if(gameObject.tag != "Nav" && gameObject.tag != "Stomach" && gameObject.tag != "O2_2" && gameObject.tag != "O2" && gameObject.tag != "Reactor" && gameObject.tag != "ElecControl")
-            {
-                myObject.material.color = Color.green;
-                display.color = Color.green;
-                colorTracker.text = "green";
-            }*/
-        }
-
 
         //TEMPORARY
         //monkey turns every node down one level
@@ -197,9 +176,19 @@ public class NodeInstanceManager : NetworkBehaviour
 
     public void DamageNode()
     {
+        nodeDisabledSFX.Play();
+        if(isServer){
+            RpcDamageNode();
+        }
+        else {
+            CmdDamageNode();
+        }
+    }
+
+    [ClientRpc]
+    void RpcDamageNode() {
         if (color == Color.yellow)
         {
-            nodeDisabledSFX.Play();
             SetColor(Color.red);
             colorTracker.text = "red";
             OnNodeDamage.Invoke();
@@ -214,15 +203,30 @@ public class NodeInstanceManager : NetworkBehaviour
         }
     }
 
+    [Command]
+    void CmdDamageNode() {
+        RpcDamageNode();
+    }
+
     public void FixNode()
     {
+        nodeRepairedSFX.Play();
+        if(isServer){
+            RpcFixNode();
+        }
+        else {
+            CmdFixNode();
+        }
+    }
+
+    [ClientRpc]
+    void RpcFixNode() {
         if (color == Color.yellow)
         {
             SetColor(Color.green);
             colorTracker.text = "green";
             OnNodeFix.Invoke();
             OnNodeGreen.Invoke();
-            nodeRepairedSFX.Play();
         }
         else if (color == Color.red)
         {
@@ -230,8 +234,12 @@ public class NodeInstanceManager : NetworkBehaviour
             colorTracker.text = "yellow";
             OnNodeFix.Invoke();
             OnNodeRedToYellow.Invoke();
-            nodeRepairedSFX.Play();
         }
+    }
+
+    [Command]
+    void CmdFixNode() {
+        RpcFixNode();
     }
 
     IEnumerator destroyNode()
@@ -247,6 +255,7 @@ public class NodeInstanceManager : NetworkBehaviour
         agent.acceleration = 10;
         DamageNode();
     }
+
     IEnumerator HackCD (float cooldown = 10.0f) { // default is 10s
         if (canHack){
             canHack = false;

@@ -213,11 +213,11 @@ public class Player : NetworkBehaviour
                 ChangeSpeed(defaultSpeed);
             }
         }
-        else { // handling death for non-local players
-            if (this.health == 0){
-                handleDeath(-1);
-            }   
-        }
+        // else { // handling death for non-local players
+        //     if (this.health == 0){
+        //         handleDeath(-1);
+        //     }   
+        // }
 
         if(isServer){
             // Check if both oxygens are red.
@@ -350,7 +350,6 @@ public class Player : NetworkBehaviour
         if (other.gameObject.tag == "ThrownObject")
         {
             Debug.Log("Hit by object");
-            health = health - 1 ;
             StartCoroutine("updateHealth", true);
         }
     }
@@ -380,21 +379,45 @@ public class Player : NetworkBehaviour
     }
     
     public IEnumerator updateHealth(bool damage) { // taking damage from gorilla
-        healthBar.value = health;
-        if ( health == 0 )
-        { 
-            handleDeath(2);
-        }
-        else if (damage && isLocalPlayer)
-        {
-            damageCue.SetTrigger("DamageTrigger");
-        }
+        TakeDamage(damage);
         // else
         // {
         //     //playerHurtSFX.Play();
         // }
         yield return new WaitForSeconds(0.2f); // get knocked by gorilla, then ignore collisions
         Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), true);
+    }
+
+    void TakeDamage(bool damage){
+        
+        if(isLocalPlayer && damage)
+            damageCue.SetTrigger("DamageTrigger"); // set damage trigger
+
+        if(isServer){
+            RpcTakeDamage(damage);
+        }
+        else {
+            RpcTakeDamage(damage);
+        }
+
+    }
+
+    [ClientRpc]
+    void RpcTakeDamage(bool damage){
+        if(damage)
+            this.health--;
+            
+        healthBar.value = health;
+        
+        if ( health == 0 )
+        { 
+            handleDeath(2); // dying from updatehealth can only be from gorilla
+        }
+    }
+
+    [Command]
+    void CmdTakeDamage(bool damage){
+        RpcTakeDamage(damage);
     }
 
     public void updateOxygen(int posOrNeg) {
