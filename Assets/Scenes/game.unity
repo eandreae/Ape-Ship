@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -49127,7 +49127,7 @@ MonoBehaviour:
   OnNodeDamage:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 883165421}
+      - m_Target: {fileID: 1277547818}
         m_MethodName: Break
         m_Mode: 1
         m_Arguments:
@@ -49141,7 +49141,7 @@ MonoBehaviour:
   OnNodeGreenToYellow:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 883165421}
+      - m_Target: {fileID: 1277547818}
         m_MethodName: Spawn
         m_Mode: 1
         m_Arguments:
@@ -49155,7 +49155,7 @@ MonoBehaviour:
   OnNodeRed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 883165421}
+      - m_Target: {fileID: 1277547818}
         m_MethodName: Spawn2
         m_Mode: 1
         m_Arguments:
