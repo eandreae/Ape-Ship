@@ -286,7 +286,6 @@ public class Player : NetworkBehaviour
                 }
             }
         }
-
         
     }
 
@@ -330,7 +329,7 @@ public class Player : NetworkBehaviour
         { 
             handleDeath(2);
         }
-        else if (damage)
+        else if (damage && isLocalPlayer)
         {
             damageCue.SetTrigger("DamageTrigger");
         }

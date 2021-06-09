@@ -96,13 +96,13 @@ public class MonkeyMovement : NetworkBehaviour
                 //float dist = Vector3.Distance(transform.position, target.transform.position);
                 if (targetColor.text == "red" && !runningAway)
                 {
-                    if(isServer) FindNewTargetClientRpc();
+                    FindNewTarget();
                 }
                 else if (runningAway == true && (monkeyDist < stoppingDistance))
                 {
                     runningAway = false;
                     gotAway = true;
-                    if(isServer) FindNewTargetClientRpc();
+                    FindNewTarget();
                 }
                 else
                 {
@@ -132,14 +132,10 @@ public class MonkeyMovement : NetworkBehaviour
     {
         yield return new WaitForSeconds(6f);
         startMoving = true;
-        if(isServer) FindNewTargetClientRpc();
+        FindNewTarget();
     }
 
-
-    [ClientRpc]
-    private void FindNewTargetClientRpc()
-    {
-        // Find nearest node, disqualifying the current target
+    void FindNewTarget(){
         int targetIndex = -1;
         float minDist = 99999;
         for (int i = 0; i < nodes.Count; i++) {
@@ -160,13 +156,27 @@ public class MonkeyMovement : NetworkBehaviour
         // Reset target color
         SetTargetColor(targetIndex);
         
-        //target = GameObject.FindGameObjectWithTag("Nav");
-        target = nodes[targetIndex];
-        //target = nodes[Random.Range(0, nodes.Count)];
+        if(isServer){
+            RpcFindNewTarget(nodes[targetIndex]);
+        }
+        else {
+            CmdFindNewTarget(nodes[targetIndex]);
+        }
+    }
+
+    [ClientRpc]
+    private void RpcFindNewTarget(GameObject targetNode)
+    {
+        target = targetNode;
         Debug.Log("Monkey moving to:" + target);
     }
 
-    [Server]
+    [Command]
+    void CmdFindNewTarget(GameObject targetNode)
+    {
+        RpcFindNewTarget(targetNode);
+    }
+
     private bool RunAway(bool gotAway)
     {
         if (gotAway)
@@ -190,12 +200,28 @@ public class MonkeyMovement : NetworkBehaviour
             SetTargetColor(targetIndex);
 
             //target = GameObject.FindGameObjectWithTag("Nav");
-            target = nodes[targetIndex];
-            //target = nodes[Random.Range(0, nodes.Count)];
-            Debug.Log("Monkey running to:" + target);
+            if(isServer){
+                RpcRunAway(nodes[targetIndex]);
+            }else {
+                CmdRunAway(nodes[targetIndex]);
+            }
+
             gotAway = false;
         }
         return gotAway;
+    }
+
+    [ClientRpc]
+    private void RpcRunAway(GameObject targetNode)
+    {
+        target = targetNode;
+        Debug.Log("Monkey moving to:" + target);
+    }
+
+    [Command]
+    void CmdRunAway(GameObject targetNode)
+    {
+        RpcRunAway(targetNode);
     }
 
     private void SetTargetColor(int index)
@@ -228,11 +254,6 @@ public class MonkeyMovement : NetworkBehaviour
     {
         //agent.isStopped = false;
         agent.SetDestination(target.transform.position);
-    }
-
-    public void StopEnemy()
-    {
-        agent.isStopped = true;
     }
 
 }

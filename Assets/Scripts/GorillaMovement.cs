@@ -163,9 +163,10 @@ public class GorillaMovement : NetworkBehaviour
 
     private void FindNewTarget()
     {
+        int targetnum = Random.Range(0, nodes.Count - 1);
+        targetNode = nodes[targetnum];
+        
         if(isServer){
-            int targetnum = Random.Range(0, nodes.Count - 1);
-            targetNode = nodes[targetnum];
             RpcFindNewTarget(targetNode);
         }else{
             CmdFindNewTarget(targetNode);
@@ -318,11 +319,38 @@ public class GorillaMovement : NetworkBehaviour
         Destroy(obj);
     }
 
+
+
     // This coroutine handles part of the Gorilla/Player collision interaction.
     // If the Gorilla hits the player, he should wait for a little bit before moving again. 
     IEnumerator AttackPlayer(Player player){
-        Debug.Log("ATTACK PLAYER");
+        
+        Attack(player);
+            
+        yield return new WaitForSeconds(0.75f); // wait
+        
+        StartGorilla();
+        this.GetComponent<Animator>().Play("GorillaWalk1");
+        this.stunned = false;
 
+        if(!this.canCharge){    // if gorilla was in the middle of his charge
+            yield return new WaitForSeconds(4f); // reset charge cd
+            this.canCharge = true;
+        }
+    }
+
+    void Attack(Player player) {
+        if(isServer){
+            RpcAttack(player);
+        }
+        else {
+            CmdAttack(player);
+        }
+    }
+
+    [ClientRpc]
+    void RpcAttack(Player player) {
+        Debug.Log("ATTACK PLAYER");
         //-- ATTACK ANIMATION --//
         this.GetComponent<Animator>().Play("GorillaClap");
 
@@ -339,33 +367,31 @@ public class GorillaMovement : NetworkBehaviour
         Debug.Log("Hit the Gorilla!");
             // Subtract one from the health of the Player.
         if(!player.invulnerable){
+            
             player.health--;
             player.StartCoroutine("updateHealth", true);
 
             if(player.health == 0){
                 FindNewTarget();
             }
+            
             else{
                 // Make the player temporarily invulnerable
                 player.invulnerable = true;
                 player.gorillaCollider = this.GetComponent<Collider>();
                 // Update the health of the player.
-                player.StartCoroutine("updateHealth", true);
+                //player.StartCoroutine("updateHealth", true);
             }
         }
-            
-        yield return new WaitForSeconds(0.75f); // wait
-        
-        StartGorilla();
-        this.GetComponent<Animator>().Play("GorillaWalk1");
-        this.stunned = false;
+    }
 
-        if(!this.canCharge){    // if gorilla was in the middle of his charge
-            yield return new WaitForSeconds(4f); // reset charge cd
-            this.canCharge = true;
-        }
+    [Command]
+    void CmdAttack(Player player){
+        RpcAttack(player);
     }
     
+
+
     IEnumerator SelfStun(){ // from banana
         //Debug.Log("GORILLA STUNNED");
 
