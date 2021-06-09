@@ -230,12 +230,14 @@ public class Gorilla1P : MonoBehaviour
             PickUpObject(other);
         } 
         else if (other.tag == "Pick Up" && !stunned) {
-            if (other.gameObject.GetComponent<ItemScript>().type == "Banana" && other.gameObject.GetComponent<ItemScript>().active){
+            Debug.Log("1");
+            if (other.gameObject.GetComponent<ItemScript1P>().type == "Banana" && other.gameObject.GetComponent<ItemScript1P>().active){
                 this.stunned = true;
                 StartCoroutine("SelfStun");
             }
-            else if (other.gameObject.GetComponent<ItemScript>().type == "Nuke" && other.gameObject.GetComponent<ItemScript>().active){
+            else if (other.gameObject.GetComponent<ItemScript1P>().type == "Nuke" && other.gameObject.GetComponent<ItemScript1P>().active){
                 this.stunned = true;
+                Debug.Log("EXPLODE");
                 Explosion(other.gameObject);
                 StartCoroutine("KnockBack", other.transform.position);
             }
@@ -249,13 +251,21 @@ public class Gorilla1P : MonoBehaviour
 
     private void PickUpObject(Collider other)
     {
-        fakeHolding = Instantiate(target, target.transform.position, target.transform.rotation);
+        fakeHolding = Instantiate(target, this.gameObject.transform.position, this.gameObject.transform.rotation);
+        other.gameObject.transform.rotation = this.transform.rotation;
         other.gameObject.transform.parent = this.transform;
-        other.gameObject.transform.Rotate(90.0f, 0.0f, 0.0f, Space.Self);
+        other.gameObject.transform.localRotation = Quaternion.Euler(other.gameObject.transform.localRotation.x + 0,
+                                                             other.gameObject.transform.localRotation.y + 0,
+                                                             other.gameObject.transform.localRotation.z + 90);
+
         //other.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
         fakeHolding.gameObject.transform.parent = this.transform;
-        fakeHolding.gameObject.transform.position = new Vector3(other.gameObject.transform.position.x - 3f, other.gameObject.transform.position.y + 1f, other.gameObject.transform.position.z + 2.0f);
-        fakeHolding.gameObject.transform.Rotate(0.0f, 0.0f, 90.0f, Space.Self);
+        fakeHolding.gameObject.transform.localPosition = new Vector3(fakeHolding.gameObject.transform.localPosition.x - 2f,
+                                                                     fakeHolding.gameObject.transform.localPosition.y + 3f,
+                                                                     fakeHolding.gameObject.transform.localPosition.z + 0.5f);
+        fakeHolding.gameObject.transform.localRotation = Quaternion.Euler(fakeHolding.gameObject.transform.localRotation.x + 90,
+                                                                     fakeHolding.gameObject.transform.localRotation.y + 0,
+                                                                     fakeHolding.gameObject.transform.localRotation.z + 0);
         target.GetComponent<Rigidbody>().isKinematic = true;
         fakeHolding.GetComponent<Rigidbody>().isKinematic = true;
         holdingObject = true;
@@ -322,15 +332,16 @@ public class Gorilla1P : MonoBehaviour
             objectHeld.tag = "ThrownObject";
             objectHeld.layer = 15;
             //Physics.IgnoreCollision(GetComponent<Collider>(), objectHeld.GetComponent<Collider>(), true);
-            objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 15f, ForceMode.Impulse);
+            objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 8f, ForceMode.Impulse);
             objectHeld.transform.parent = null;
 
             //-- THROW ANIMATION --//
             this.GetComponent<Animator>().Play("GorillaThrow");
             
-            yield return new WaitForSeconds(1f); // wait for 1 second
+            yield return new WaitForSeconds(1.5f); // wait for 1 second
 
             holdingObject = false;
+            carrying = false;
             StartCoroutine("ThrowWait");
             StartCoroutine("DestroyThrown", objectHeld);
             StartGorilla();

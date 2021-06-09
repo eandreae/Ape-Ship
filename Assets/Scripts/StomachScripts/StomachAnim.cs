@@ -20,20 +20,18 @@ public class StomachAnim : MonoBehaviour
     {
         if (stomColor.text == "yellow")
         {
-            animator.SetInteger("Color", 1);
-            color = 1;
             animator.speed = 0.5f;
+            animator.Play("Stomach|Hunger");
         }
         else if (stomColor.text == "red")
         {
-            animator.SetInteger("Color", 2);
-            color = 2;
             animator.speed = 1.0f;
+            animator.Play("Stomach|Hunger");
         }
         else if (stomColor.text == "green")
         {
+            animator.Play("Idle");
             animator.SetInteger("Color", 0);
-            color = 0;
         }
     }
 }

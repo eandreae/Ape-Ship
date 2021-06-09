@@ -150,6 +150,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
             // mark the coin (or whatever object) as picked up 
             visibleTargets[0].gameObject.GetComponent<ItemScript1P>().pickedUp = true;
+            visibleTargets[0].gameObject.GetComponent<ItemScript1P>().active = true;
             visibleTargets[0].gameObject.GetComponent<ItemScript1P>().thrown = false;
 
             // disable collision with held item
