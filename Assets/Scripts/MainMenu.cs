@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Steamworks;
 
 public class MainMenu : MonoBehaviour
 {
@@ -43,16 +44,21 @@ public class MainMenu : MonoBehaviour
 
     public void StartMultiplayer()
     {
-        Invoke("HostAnimation",2f);
         //Plays a button press sound effect
         buttonPress.Play();
-        whaleAnim.Play("WhaleChaseOne");
-        apesShipAnim.Play("WhaleChaseTwo");
+        if (SteamAPI.IsSteamRunning())
+        {
+            whaleAnim.Play("WhaleChaseOne");
+            apesShipAnim.Play("WhaleChaseTwo");
+        }
+        else
+            hostTextAnim.Play("HostTextSlideIn");
+
     }
 
     public void HostAnimation()
     {
-        hostTextAnim.Play("HostTextSlideIn");
+        
     }
 
     // Load the play options screen
