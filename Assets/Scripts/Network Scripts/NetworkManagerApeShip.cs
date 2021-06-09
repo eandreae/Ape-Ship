@@ -97,7 +97,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
     public override void OnServerSceneChanged(string newSceneName)
     {
         if (newSceneName == "game"){
-            for (int i=0; i<roomSlots.Count; i++)
+            for (int i=roomSlots.Count-1; i>=0; i--)
             {
                 // spawning PLAYER CLONES into game
                 GameObject player = Instantiate(  playerPrefab,             // prefab/gameobject
