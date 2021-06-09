@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class ArrowScript : MonoBehaviour
 {
     private Animator animator;
-    GameObject heartObj;
+    public GameObject heartObj;
     GameObject temp;
     static bool started = false;
     static int rand;

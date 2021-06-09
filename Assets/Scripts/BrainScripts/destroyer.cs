@@ -13,6 +13,7 @@ public class destroyer : MonoBehaviour
     private float startingLife;
     public Text nodeColor;
     public NodeInstanceManager selfNode;
+    public NodeInstanceManager1P selfNode1P;
     //public UnityEvent OnNeuronDeposit;
 
     // Start is called before the first frame update
@@ -112,6 +113,9 @@ public class destroyer : MonoBehaviour
         Destroy(this.gameObject);
         //fix the brain
         //OnNeuronDeposit.Invoke();
-        selfNode.FixNode();
+        if(nm)
+            selfNode.FixNode();
+        else 
+            selfNode1P.FixNode();
     }
 }

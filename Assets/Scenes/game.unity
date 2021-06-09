@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3072,6 +3072,7 @@ MonoBehaviour:
   lifetime: 1000
   nodeColor: {fileID: 67938698}
   selfNode: {fileID: 537286577}
+  selfNode1P: {fileID: 896154145}
 --- !u!54 &107861822
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3995,6 +3996,7 @@ MonoBehaviour:
   lifetime: 5
   nodeColor: {fileID: 1759386919}
   selfNode: {fileID: 0}
+  selfNode1P: {fileID: 0}
 --- !u!136 &154885211
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4312,10 +4314,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2058157168}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -6568,6 +6582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
@@ -7922,6 +7937,7 @@ MonoBehaviour:
   lifetime: 5
   nodeColor: {fileID: 1759386919}
   selfNode: {fileID: 1317383621}
+  selfNode1P: {fileID: 2118420223}
 --- !u!114 &291733765
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9231,6 +9247,306 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &340128890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 340128891}
+  - component: {fileID: 340128892}
+  - component: {fileID: 340128896}
+  - component: {fileID: 340128895}
+  - component: {fileID: 340128894}
+  - component: {fileID: 340128893}
+  m_Layer: 0
+  m_Name: StomachTarget (1P)
+  m_TagString: Stomach
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 8
+  m_IsActive: 1
+--- !u!4 &340128891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340128890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.16}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1945493701}
+  m_Father: {fileID: 327279887}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &340128892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340128890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 1636031075}
+  nm: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 340128896}
+        m_MethodName: OnDamagedStomach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 340128896}
+        m_MethodName: OnFixedStomach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 340128896}
+        m_MethodName: OnDamagedStomach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 340128896}
+        m_MethodName: OnBrokenStomach
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  colorTracker: {fileID: 1626664258}
+  display: {fileID: 1397557510}
+  stopDistance: 10
+  monkeyDist: 0
+  playerObj: {fileID: 0}
+  monkeyObj: {fileID: 0}
+  agent: {fileID: 0}
+  canHack: 1
+  isFleeing: 0
+  monkeySpawnTime: 4.3
+--- !u!82 &340128893
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340128890}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 43d3903ae3bfd0d4ea3a51eaca6749ee, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!136 &340128894
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340128890}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 0
+  m_Radius: 5
+  m_Height: 10
+  m_Direction: 1
+  m_Center: {x: 0, y: 3, z: -2.25}
+--- !u!23 &340128895
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340128890}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!114 &340128896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340128890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3f603c3d9a888408ec9b822805bcad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnStomachRumble:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 807635380}
+        m_MethodName: ShakeCamera
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  angryWhaleSFX: {fileID: 1945493702}
 --- !u!1 &348419502
 GameObject:
   m_ObjectHideFlags: 0
@@ -23968,10 +24284,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2058157168}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -25046,6 +25374,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
@@ -29552,10 +29881,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2058157168}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -30315,6 +30656,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
@@ -31537,7 +31879,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1018883636}
   - component: {fileID: 1018883637}
-  - component: {fileID: 1018883639}
   - component: {fileID: 1018883638}
   m_Layer: 0
   m_Name: Star Target (1P)
@@ -31711,60 +32052,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1018883639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018883635}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicator: {fileID: 169525497}
-  nm: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  OnNodeFix:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeRedToYellow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeGreen:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeDamage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1857003606}
-        m_MethodName: ShuffleMirror
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnNodeGreenToYellow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeRed:
-    m_PersistentCalls:
-      m_Calls: []
-  colorTracker: {fileID: 1471871104}
-  display: {fileID: 2082339951}
-  stopDistance: 6
-  monkeyDist: 0
-  playerObj: {fileID: 0}
-  monkeyObj: {fileID: 0}
-  agent: {fileID: 0}
-  canHack: 1
-  isFleeing: 0
-  monkeySpawnTime: 4.3
 --- !u!1 &1022490425
 GameObject:
   m_ObjectHideFlags: 0
@@ -45970,6 +46257,7 @@ MonoBehaviour:
   lifetime: 1000
   nodeColor: {fileID: 67938698}
   selfNode: {fileID: 0}
+  selfNode1P: {fileID: 0}
 --- !u!136 &1398323086
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -47093,6 +47381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
@@ -55291,7 +55580,6 @@ GameObject:
   - component: {fileID: 1811882722}
   - component: {fileID: 1811882724}
   - component: {fileID: 1811882725}
-  - component: {fileID: 1811882727}
   m_Layer: 0
   m_Name: StomachTarget
   m_TagString: Stomach
@@ -55578,49 +55866,6 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   angryWhaleSFX: {fileID: 1100000931}
---- !u!114 &1811882727
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1811882720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicator: {fileID: 0}
-  nm: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  OnNodeFix:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeRedToYellow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeGreen:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeGreenToYellow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeRed:
-    m_PersistentCalls:
-      m_Calls: []
-  colorTracker: {fileID: 0}
-  display: {fileID: 0}
-  stopDistance: 0
-  monkeyDist: 0
-  playerObj: {fileID: 0}
-  monkeyObj: {fileID: 0}
-  agent: {fileID: 0}
-  canHack: 1
-  isFleeing: 0
-  monkeySpawnTime: 4.3
 --- !u!1 &1812103379
 GameObject:
   m_ObjectHideFlags: 0
@@ -56237,7 +56482,6 @@ GameObject:
   - component: {fileID: 1824220321}
   - component: {fileID: 1824220322}
   - component: {fileID: 1824220323}
-  - component: {fileID: 1824220324}
   m_Layer: 0
   m_Name: Star Target
   m_TagString: ElecControl
@@ -56410,49 +56654,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1824220324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1824220320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicator: {fileID: 0}
-  nm: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  OnNodeFix:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeRedToYellow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeGreen:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeDamage:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeGreenToYellow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeRed:
-    m_PersistentCalls:
-      m_Calls: []
-  colorTracker: {fileID: 0}
-  display: {fileID: 0}
-  stopDistance: 0
-  monkeyDist: 0
-  playerObj: {fileID: 0}
-  monkeyObj: {fileID: 0}
-  agent: {fileID: 0}
-  canHack: 1
-  isFleeing: 0
-  monkeySpawnTime: 4.3
 --- !u!1 &1824413874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 96c9509895c478a45bee8c3f12a863b7,
@@ -56736,6 +56937,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
@@ -58378,6 +58580,134 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945040552}
   m_CullTransparentMesh: 0
+--- !u!1 &1945493700
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1945493701}
+  - component: {fileID: 1945493702}
+  m_Layer: 0
+  m_Name: AngryWhaleSound
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1945493701
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945493700}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 340128891}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1945493702
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945493700}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 41f3331c90b9cb04b8640a2927f2ae7a, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1946688806
 GameObject:
   m_ObjectHideFlags: 0
@@ -58926,10 +59256,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2058157168}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -61965,6 +62307,7 @@ MonoBehaviour:
   lifetime: 1000
   nodeColor: {fileID: 1626664258}
   selfNode: {fileID: 0}
+  selfNode1P: {fileID: 0}
 --- !u!54 &2083132823
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -62860,10 +63203,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60bd6e2b6ef2e4a4f99407970089d112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  heartObj: {fileID: 0}
   DanceComplete:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 712915766}
+        m_MethodName: FixNode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2058157168}
         m_MethodName: FixNode
         m_Mode: 1
         m_Arguments:
@@ -64048,6 +64403,7 @@ MonoBehaviour:
   lifetime: 20
   nodeColor: {fileID: 1626664258}
   selfNode: {fileID: 1811882723}
+  selfNode1P: {fileID: 340128892}
 --- !u!1 &518392118015689613
 GameObject:
   m_ObjectHideFlags: 0
@@ -64715,6 +65071,7 @@ MonoBehaviour:
   lifetime: 20
   nodeColor: {fileID: 1626664258}
   selfNode: {fileID: 1811882723}
+  selfNode1P: {fileID: 0}
 --- !u!136 &860428543030315102
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -66185,6 +66542,7 @@ MonoBehaviour:
   lifetime: 20
   nodeColor: {fileID: 1626664258}
   selfNode: {fileID: 1811882723}
+  selfNode1P: {fileID: 340128892}
 --- !u!64 &2523682045962763871
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -67401,6 +67759,7 @@ MonoBehaviour:
   lifetime: 20
   nodeColor: {fileID: 1626664258}
   selfNode: {fileID: 1811882723}
+  selfNode1P: {fileID: 340128892}
 --- !u!33 &2878706069308059848
 MeshFilter:
   m_ObjectHideFlags: 0
