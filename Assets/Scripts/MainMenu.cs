@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public Animator startGameAnim;
     public Animator whaleAnim;
     public Animator apesShipAnim;
+    public Animator hostTextAnim;
 
     public AudioSource buttonPress;
 
@@ -41,6 +42,11 @@ public class MainMenu : MonoBehaviour
     public void HostGame() {
         // code to set up or join a lobby
         buttonPress.Play();
+    }
+
+    public void HostAnimation()
+    {
+        hostTextAnim.Play("HostTextSlideIn");
     }
 
     // Load the play options screen
