@@ -55895,6 +55895,7 @@ GameObject:
   - component: {fileID: 1811882722}
   - component: {fileID: 1811882724}
   - component: {fileID: 1811882725}
+  - component: {fileID: 1811882727}
   m_Layer: 0
   m_Name: StomachTarget
   m_TagString: Stomach
@@ -56181,6 +56182,23 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   angryWhaleSFX: {fileID: 1100000931}
+--- !u!114 &1811882727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811882720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 2694794889
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &1812103379
 GameObject:
   m_ObjectHideFlags: 0
@@ -56797,6 +56815,7 @@ GameObject:
   - component: {fileID: 1824220321}
   - component: {fileID: 1824220322}
   - component: {fileID: 1824220323}
+  - component: {fileID: 1824220324}
   m_Layer: 0
   m_Name: Star Target
   m_TagString: ElecControl
@@ -56969,6 +56988,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1824220324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824220320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 4131650853
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &1824413874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 96c9509895c478a45bee8c3f12a863b7,

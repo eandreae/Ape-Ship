@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using Mirror;
 
-public class NodeInstanceManager : MonoBehaviour
+public class NodeInstanceManager : NetworkBehaviour
 {
     //[SerializeField] private Renderer myObject;
     public GameObject indicator;

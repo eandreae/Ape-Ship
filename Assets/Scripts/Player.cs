@@ -97,7 +97,7 @@ public class Player : NetworkBehaviour
             FindObjectOfType<PlayerCamera>().target = this.gameObject;
         }
         else {
-            Object.Destroy(this.wpArrow); // get rid of waypoints for non-local players
+            //Object.Destroy(this.wpArrow); // get rid of waypoints for non-local players
         }
     }
 
