@@ -6,7 +6,7 @@ using UnityEngine.AI;
 using UnityEngine.Events;
 using Mirror;
 
-public class NodeInstanceManager : MonoBehaviour
+public class NodeInstanceManager1P : MonoBehaviour
 {
     //[SerializeField] private Renderer myObject;
     public GameObject indicator;
@@ -44,9 +44,8 @@ public class NodeInstanceManager : MonoBehaviour
     {
         nm = GameObject.FindObjectOfType<NetworkManager>();
 
-        if(nm && (this.gameObject.name == "BrainTarget (1P)" || this.gameObject.name == "LungTarget (1P)"
-              ||  this.gameObject.name == "Lungs_2Target (1P)") ){
-                Object.Destroy(this.gameObject);
+        if(nm){
+            Object.Destroy(this.gameObject);
         }
         playerObj = GameObject.FindGameObjectWithTag("Player");
         monkeyObj = GameObject.FindGameObjectWithTag("Monkey");

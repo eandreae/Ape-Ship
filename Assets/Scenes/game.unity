@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1899,7 +1899,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   nm: {fileID: 0}
-  selfNode: {fileID: 889014567}
+  selfNode: {fileID: 0}
 --- !u!54 &78120118
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3994,7 +3994,7 @@ MonoBehaviour:
   nm: {fileID: 0}
   lifetime: 5
   nodeColor: {fileID: 1759386919}
-  selfNode: {fileID: 2118420227}
+  selfNode: {fileID: 0}
 --- !u!136 &154885211
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4938,7 +4938,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   nm: {fileID: 0}
-  selfNode: {fileID: 889014567}
+  selfNode: {fileID: 0}
 --- !u!54 &187106880
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9368,7 +9368,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   nm: {fileID: 0}
-  selfNode: {fileID: 889014567}
+  selfNode: {fileID: 0}
 --- !u!54 &348634262
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17624,6 +17624,7 @@ GameObject:
   - component: {fileID: 537286576}
   - component: {fileID: 537286575}
   - component: {fileID: 537286578}
+  - component: {fileID: 537286579}
   m_Layer: 0
   m_Name: Lungs_2Target
   m_TagString: O2_2
@@ -17871,6 +17872,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &537286579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 537286573}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 1744363622
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!4 &545660349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4af598432ed86bf4a9b967092be90c30,
@@ -23288,6 +23306,7 @@ GameObject:
   - component: {fileID: 712915766}
   - component: {fileID: 712915765}
   - component: {fileID: 712915767}
+  - component: {fileID: 712915768}
   m_Layer: 0
   m_Name: HeartTarget
   m_TagString: Reactor
@@ -23473,6 +23492,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &712915768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 712915763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 967231493
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!1 &716601334
 GameObject:
   m_ObjectHideFlags: 0
@@ -28454,7 +28490,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 889014564}
-  - component: {fileID: 889014567}
+  - component: {fileID: 889014568}
   - component: {fileID: 889014566}
   - component: {fileID: 889014565}
   m_Layer: 0
@@ -28614,7 +28650,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &889014567
+--- !u!114 &889014568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -28623,7 +28659,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 889014563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
+  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 1037993963}
@@ -28821,7 +28857,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 896154140}
-  - component: {fileID: 896154144}
+  - component: {fileID: 896154145}
   - component: {fileID: 896154143}
   - component: {fileID: 896154142}
   - component: {fileID: 896154141}
@@ -28996,7 +29032,7 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 3, z: -2.25}
---- !u!114 &896154144
+--- !u!114 &896154145
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29005,7 +29041,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 896154139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
+  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   indicator: {fileID: 1747819972}
@@ -31491,6 +31527,244 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1018883635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1018883636}
+  - component: {fileID: 1018883637}
+  - component: {fileID: 1018883639}
+  - component: {fileID: 1018883638}
+  m_Layer: 0
+  m_Name: Star Target (1P)
+  m_TagString: ElecControl
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1018883636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018883635}
+  m_LocalRotation: {x: -0.09798929, y: 0, z: -0, w: 0.99518746}
+  m_LocalPosition: {x: 2.63, y: -8.68, z: 1.92}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 543450652996679229}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1018883637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018883635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 169525497}
+  nm: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1857003606}
+        m_MethodName: ShuffleMirror
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
+  colorTracker: {fileID: 1471871104}
+  display: {fileID: 2082339951}
+  stopDistance: 6
+  monkeyDist: 0
+  playerObj: {fileID: 0}
+  monkeyObj: {fileID: 0}
+  agent: {fileID: 0}
+  canHack: 1
+  isFleeing: 0
+  monkeySpawnTime: 4.3
+--- !u!82 &1018883638
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018883635}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 43d3903ae3bfd0d4ea3a51eaca6749ee, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1018883639
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1018883635}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 169525497}
+  nm: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1857003606}
+        m_MethodName: ShuffleMirror
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
+  colorTracker: {fileID: 1471871104}
+  display: {fileID: 2082339951}
+  stopDistance: 6
+  monkeyDist: 0
+  playerObj: {fileID: 0}
+  monkeyObj: {fileID: 0}
+  agent: {fileID: 0}
+  canHack: 1
+  isFleeing: 0
+  monkeySpawnTime: 4.3
 --- !u!1 &1022490425
 GameObject:
   m_ObjectHideFlags: 0
@@ -45695,7 +45969,7 @@ MonoBehaviour:
   nm: {fileID: 0}
   lifetime: 1000
   nodeColor: {fileID: 67938698}
-  selfNode: {fileID: 896154144}
+  selfNode: {fileID: 0}
 --- !u!136 &1398323086
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -51507,7 +51781,7 @@ MonoBehaviour:
   Execute:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 889014567}
+      - m_Target: {fileID: 0}
         m_MethodName: DamageNode
         m_Mode: 1
         m_Arguments:
@@ -55017,6 +55291,7 @@ GameObject:
   - component: {fileID: 1811882722}
   - component: {fileID: 1811882724}
   - component: {fileID: 1811882725}
+  - component: {fileID: 1811882727}
   m_Layer: 0
   m_Name: StomachTarget
   m_TagString: Stomach
@@ -55303,6 +55578,49 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   angryWhaleSFX: {fileID: 1100000931}
+--- !u!114 &1811882727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811882720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 0}
+  nm: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
+  colorTracker: {fileID: 0}
+  display: {fileID: 0}
+  stopDistance: 0
+  monkeyDist: 0
+  playerObj: {fileID: 0}
+  monkeyObj: {fileID: 0}
+  agent: {fileID: 0}
+  canHack: 1
+  isFleeing: 0
+  monkeySpawnTime: 4.3
 --- !u!1 &1812103379
 GameObject:
   m_ObjectHideFlags: 0
@@ -55568,6 +55886,7 @@ Transform:
   - {fileID: 1038329427}
   - {fileID: 2083620905}
   - {fileID: 712915764}
+  - {fileID: 2058157167}
   m_Father: {fileID: 1333071727}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -55918,6 +56237,7 @@ GameObject:
   - component: {fileID: 1824220321}
   - component: {fileID: 1824220322}
   - component: {fileID: 1824220323}
+  - component: {fileID: 1824220324}
   m_Layer: 0
   m_Name: Star Target
   m_TagString: ElecControl
@@ -56090,6 +56410,49 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1824220324
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1824220320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 0}
+  nm: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
+  colorTracker: {fileID: 0}
+  display: {fileID: 0}
+  stopDistance: 0
+  monkeyDist: 0
+  playerObj: {fileID: 0}
+  monkeyObj: {fileID: 0}
+  agent: {fileID: 0}
+  canHack: 1
+  isFleeing: 0
+  monkeySpawnTime: 4.3
 --- !u!1 &1824413874 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 96c9509895c478a45bee8c3f12a863b7,
@@ -60962,6 +61325,203 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69c30b9ba16643944883189d51af5cf4, type: 3}
+--- !u!1 &2058157166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2058157167}
+  - component: {fileID: 2058157170}
+  - component: {fileID: 2058157169}
+  - component: {fileID: 2058157168}
+  m_Layer: 0
+  m_Name: HeartTarget (1P)
+  m_TagString: Reactor
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2058157167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058157166}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -72.16, y: 1.73, z: 67.01}
+  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_Children: []
+  m_Father: {fileID: 1812346463}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2058157168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058157166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 550453440}
+  nm: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1855929738}
+        m_MethodName: ChangeBroken
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
+  colorTracker: {fileID: 741311113}
+  display: {fileID: 1812103381}
+  stopDistance: 10
+  monkeyDist: 0
+  playerObj: {fileID: 0}
+  monkeyObj: {fileID: 0}
+  agent: {fileID: 0}
+  canHack: 1
+  isFleeing: 0
+  monkeySpawnTime: 4.3
+--- !u!82 &2058157169
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058157166}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 43d3903ae3bfd0d4ea3a51eaca6749ee, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!65 &2058157170
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2058157166}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2059855638 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5593300528950849569, guid: 6643870a4ddf66e4db82188e0cba3ec5,
@@ -62508,7 +63068,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2118420222}
-  - component: {fileID: 2118420227}
+  - component: {fileID: 2118420223}
   - component: {fileID: 2118420226}
   - component: {fileID: 2118420225}
   - component: {fileID: 2118420224}
@@ -62533,6 +63093,82 @@ Transform:
   m_Father: {fileID: 1333071727}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2118420223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2118420221}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71719f532d2d40349acf7796c9062ffc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  indicator: {fileID: 2024352878}
+  nm: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+  OnNodeFix:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 154885219}
+        m_MethodName: Fix
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNodeRedToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeGreen:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeDamage:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 154885219}
+        m_MethodName: Spawn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 154885219}
+        m_MethodName: Fix
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnNodeGreenToYellow:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNodeRed:
+    m_PersistentCalls:
+      m_Calls: []
+  colorTracker: {fileID: 1759386919}
+  display: {fileID: 289879600}
+  stopDistance: 8
+  monkeyDist: 0
+  playerObj: {fileID: 0}
+  monkeyObj: {fileID: 0}
+  agent: {fileID: 0}
+  canHack: 1
+  isFleeing: 0
+  monkeySpawnTime: 4.3
 --- !u!82 &2118420224
 AudioSource:
   m_ObjectHideFlags: 0
@@ -62683,82 +63319,6 @@ CapsuleCollider:
   m_Height: 10
   m_Direction: 1
   m_Center: {x: 0, y: 3, z: -2.25}
---- !u!114 &2118420227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2118420221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f722520c142f49b1b6b13702db0607c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  indicator: {fileID: 2024352878}
-  nm: {fileID: 0}
-  color: {r: 0, g: 0, b: 0, a: 0}
-  OnNodeFix:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 154885219}
-        m_MethodName: Fix
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnNodeRedToYellow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeGreen:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeDamage:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 154885219}
-        m_MethodName: Spawn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 154885219}
-        m_MethodName: Fix
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnNodeGreenToYellow:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNodeRed:
-    m_PersistentCalls:
-      m_Calls: []
-  colorTracker: {fileID: 1759386919}
-  display: {fileID: 289879600}
-  stopDistance: 8
-  monkeyDist: 0
-  playerObj: {fileID: 0}
-  monkeyObj: {fileID: 0}
-  agent: {fileID: 0}
-  canHack: 1
-  isFleeing: 0
-  monkeySpawnTime: 4.3
 --- !u!1 &2121188883
 GameObject:
   m_ObjectHideFlags: 0
