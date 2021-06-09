@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class StartGame : MonoBehaviour
+public class LobbyCanvas : MonoBehaviour
 {
     private GameObject networkManager = null;
     public Button startGameButton = null;
+
+    [SerializeField] private GameObject lobbymenu;
+    [SerializeField] private GameObject helpmenu;
 
     // Start is called before the first frame update
     void Start()
@@ -19,5 +22,10 @@ public class StartGame : MonoBehaviour
     private void Update()
     {
         startGameButton.interactable = (networkManager.GetComponent<NetworkManagerApeShip>()._allPlayersReady);
+    }
+
+    public void toggleHelp()
+    {
+        helpmenu.SetActive(!helpmenu.activeSelf);
     }
 }
