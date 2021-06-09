@@ -47,6 +47,7 @@ public class Gorilla1P : MonoBehaviour
     private AudioSource audioData;
     public AudioClip clip1;
     public AudioClip clip2;
+    public AudioClip clip3;
     private bool carrying = false;
 
     // Start is called before the first frame update
@@ -287,7 +288,8 @@ public class Gorilla1P : MonoBehaviour
             GameObject rocketLoc = GameObject.Find("RocketLoc");
             Instantiate(GameObject.Find("Rocket"), rocketLoc.transform.position, this.gameObject.transform.rotation);
             audioData.clip = clip2;
-            audioData.Play(0);
+            audioData.PlayOneShot(clip2, 1.0f);
+            audioData.PlayOneShot(clip3, 1.0f);
 
             yield return new WaitForSeconds(1f); // charge for 1 second
             

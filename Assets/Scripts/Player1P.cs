@@ -59,6 +59,8 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     [HideInInspector]
     public bool hasWonTheGame;
 
+    public AudioClip clip1;
+
     Escape canTeleport;
     GameObject escapeObj;
 
@@ -158,21 +160,32 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             StartCoroutine("PickUpCD");
         }
 
+        IEnumerator SwitchPitch()
+        {
+            yield return new WaitForSeconds(0.5f);
+            walkingSFX.pitch = 0.4f;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             if(this.holdItem.GetComponent<ItemScript1P>().type == "Banana" ||
                 this.holdItem.GetComponent<ItemScript1P>().type == "Kebab" ||
                 this.holdItem.GetComponent<ItemScript1P>().type == "Sandwich")
             {
-                Destroy(this.holdItem);
-                if(health < 3)
+                //this.gameObject.GetComponent<AudioSource>().pitch = 0.4f;
+                if (health < 3)
                 {
                     health = health + 1;
+
+                    Destroy(this.holdItem);
+                    walkingSFX.pitch = 1.4f;
+                    walkingSFX.PlayOneShot(clip1, 0.5f);
+                    StartCoroutine("SwitchPitch");
+
                     StartCoroutine("updateHealth", false);
                 }
             }
         }
-
 
         //checks to see if pressing any arrow keys
         //if so will go horizontal if left or right

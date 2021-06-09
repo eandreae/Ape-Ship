@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -29636,6 +29636,7 @@ MonoBehaviour:
   gameStarted: 0
   localp: {fileID: 0}
   alivePlayers: []
+  nm: {fileID: 0}
 --- !u!82 &934901781
 AudioSource:
   m_ObjectHideFlags: 0
@@ -48729,8 +48730,9 @@ MonoBehaviour:
   holdingObject: 0
   objectHeld: {fileID: 0}
   chargeCooldown: 4
-  clip1: {fileID: 8300000, guid: b8c3761349ca18547ba48118910834ee, type: 3}
+  clip1: {fileID: 8300000, guid: af611b093b1baa2458064d758a968d45, type: 3}
   clip2: {fileID: 8300000, guid: 62bcaec212a5f9f4ebd13ad8fac4de42, type: 3}
+  clip3: {fileID: 8300000, guid: cfdb90b103140714ea68217ff28929d6, type: 3}
 --- !u!114 &1522394650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71579,7 +71581,7 @@ AudioSource:
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
-  BypassEffects: 0
+  BypassEffects: 1
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
@@ -71701,6 +71703,7 @@ MonoBehaviour:
   visibleTargets: []
   canMove: 0
   hasWonTheGame: 0
+  clip1: {fileID: 8300000, guid: 4d3f4f2703582944bb2582aa4e5f8263, type: 3}
 --- !u!114 &7647579301248157102
 MonoBehaviour:
   m_ObjectHideFlags: 0
