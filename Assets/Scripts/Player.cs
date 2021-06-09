@@ -262,7 +262,7 @@ public class Player : NetworkBehaviour
         }
         else { // handling death for non-local players
             if (this.health == 0){
-                handleDeath();
+                handleDeath(-1);
             }   
         }
 
@@ -324,11 +324,11 @@ public class Player : NetworkBehaviour
         body.velocity = pushDir * pushPower;
     }
     
-    public IEnumerator updateHealth(bool damage) {
+    public IEnumerator updateHealth(bool damage) { // taking damage from gorilla
         healthBar.value = health;
         if ( health == 0 )
         { 
-            handleDeath();
+            handleDeath(2);
         }
         else if (damage)
         {
@@ -353,12 +353,13 @@ public class Player : NetworkBehaviour
             Debug.Log("You Died!");
             //oxygen_text.text = ""; 
             moveSpeed = 0f;
-            gm.Defeat(1);
+            
+            handleDeath(1);
         }
 
     }
 
-    public void handleDeath(){
+    public void handleDeath(int cause){
         this.GetComponent<Animator>().Play("PlayerDeath");
         Debug.Log("You Died!");
         //health_text.text = "";
@@ -368,7 +369,8 @@ public class Player : NetworkBehaviour
         this.gameObject.tag = "Untagged";
         this.gameObject.layer = LayerMask.NameToLayer("Default");
         
-        gm.Defeat(2);
+        if(isLocalPlayer)
+            gm.Defeat(cause);
     }
 
     public void ChangeSpeed(float newSpeed)
