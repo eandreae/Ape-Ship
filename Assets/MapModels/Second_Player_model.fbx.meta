@@ -1,40 +1,26 @@
 fileFormatVersion: 2
-guid: 6643870a4ddf66e4db82188e0cba3ec5
+guid: cdd2ba3754e1cd44dbdbf5d8c001dfbf
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: -3293225933036947728
-    second: Lung_FanSpinning
+      74: 4828196306477531204
+    second: 2ndPlayer|ArmatureAction
   - first:
-      74: -7374134980713897460
-    second: LungBreathing
+      74: -1610863427237328480
+    second: Walking
+  - first:
+      74: -5949134322283079341
+    second: holding
+  - first:
+      74: -3100369314251171874
+    second: Idle
   externalObjects:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: Glass_Lung
-    second: {fileID: 2100000, guid: e67064ceff3406844a78edb703078be2, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LungArmColor
-    second: {fileID: 2100000, guid: 18ec2294f69402142b500706ce510fcf, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LungColor2
-    second: {fileID: 2100000, guid: ea8c80d414fc6174d8cc35cb73ccc292, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LungsColor
-    second: {fileID: 2100000, guid: 3de2cae419ad5cd4ea0f43edaedd91f6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: LungsColor2
-    second: {fileID: 2100000, guid: 45405657a63d546439437d461b15039c, type: 2}
+      name: helmet
+    second: {fileID: 2100000, guid: 77eaf537edc294049aa936edbbc16e93, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -63,11 +49,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Lung_FanSpinning
-      takeName: Lung_FanSpinning
+      name: 2ndPlayer|ArmatureAction
+      takeName: 2ndPlayer|ArmatureAction
       internalID: 0
       firstFrame: 0
-      lastFrame: 59
+      lastFrame: 99
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -92,11 +78,69 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: LungBreathing
-      takeName: LungBreathing
+      name: Walking
+      takeName: 2ndPlayer|ArmatureAction
       internalID: 0
-      firstFrame: 0
-      lastFrame: 59
+      firstFrame: 9
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: holding
+      takeName: 2ndPlayer|ArmatureAction
+      internalID: 0
+      firstFrame: 34
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: 2ndPlayer|ArmatureAction
+      internalID: 0
+      firstFrame: 59
+      lastFrame: 99
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -125,7 +169,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importVisibility: 1
@@ -150,7 +194,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
-    normalSmoothAngle: 29
+    normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
     normalCalculationMode: 4
