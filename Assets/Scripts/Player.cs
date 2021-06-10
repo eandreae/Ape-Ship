@@ -414,6 +414,7 @@ public class Player : NetworkBehaviour
     void RpcTakeDamage(bool damage){
         if(damage){
             this.health--;
+            this.invulnerable = true;
             
             if(isLocalPlayer)
                 healthBar.value = health;
@@ -425,7 +426,6 @@ public class Player : NetworkBehaviour
     }
     [Command]
     void CmdTakeDamage(bool damage){
-        this.health++;
         RpcTakeDamage(damage);
     }
 
