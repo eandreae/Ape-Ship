@@ -44,7 +44,12 @@ public class LobbyPlayer : NetworkBehaviour
 
         readyindicator.SetActive(player.readyToBegin);
 
-        if (SceneManager.GetActiveScene().name == "game") Destroy(this.gameObject);
+        if (SceneManager.GetActiveScene().name == "game") Invoke("killme", 3f)
+    }
+
+    private void killme()
+    {
+        Destroy(this.gameObject);
     }
 
 
