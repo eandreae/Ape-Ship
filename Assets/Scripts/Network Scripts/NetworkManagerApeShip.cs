@@ -102,6 +102,12 @@ public class NetworkManagerApeShip : NetworkRoomManager
         //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         //player.GetComponent<Player>().playerNum = numPlayers;
         //NetworkServer.AddPlayerForConnection(conn, player);
+        for (int i = 0; i < roomSlots.Count; i++)
+        {
+            GameObject roomplayer = roomSlots[i].gameObject;
+            NetworkServer.Destroy(roomplayer);
+        }
+        
     }
 
     public override void OnServerSceneChanged(string newSceneName)
@@ -131,17 +137,14 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
                 //Debug.Log("spawn player at " + spawnPos[i]);
 
-                GameObject roomplayer = roomSlots[i].gameObject;
                 //roomSlots[i].GetComponent<LobbyPlayer>().saveconnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient);
                 previousconnections.Add(roomSlots[i].gameObject.GetComponent<NetworkIdentity>().connectionToClient);
                 
-                NetworkServer.ReplacePlayerForConnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient, player);
-                
-                NetworkServer.Destroy(roomplayer);
+                NetworkServer.ReplacePlayerForConnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient, player, true);
             }
             // GameObject monkey = Instantiate( spawnPrefabs[1]);
             // GameObject gorilla = Instantiate( spawnPrefabs[2] );
-            
+
             // NetworkServer.Spawn(monkey);
             // NetworkServer.Spawn(gorilla);
             base.OnServerSceneChanged(newSceneName);
@@ -151,14 +154,14 @@ public class NetworkManagerApeShip : NetworkRoomManager
             //spawning players when returning to room from in game
 
             Debug.Log("returning to room");
-            for (int i = previousconnections.Count - 1; i >= 0 ; i--)
+            for (int i = 0; i < previousconnections.Count; i++)
             {
                 Vector3 playerPos = roomPlayerPrefab.gameObject.GetComponent<Transform>().position;
                 Vector3 offset = new Vector3(5f * (i), 0, -3);
 
                 // spawn ROOM PLAYER at given transform with correct rotation
                 GameObject player;
-                if (i == 1)
+                if (i == 0)
                 {
                     player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
                                         (playerPos + offset),                                             // new position
