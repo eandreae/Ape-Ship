@@ -40,6 +40,7 @@ public class GorillaMovement : NetworkBehaviour
     public List<Transform> visibleObjects = new List<Transform>();
     public bool holdingObject = false;
     public GameObject objectHeld;
+    private GameObject fakeHolding;
 
     public float chargeCooldown = 4f;
     private bool startMoving = false;
@@ -298,27 +299,40 @@ public class GorillaMovement : NetworkBehaviour
 
     IEnumerator ThrowObject()
     {
-        if (holdingObject)
+        if (holdingObject && visibleTargets.Count != 0)
         {
-            agent.speed = 0;
-            gameObject.transform.LookAt(playerObj.transform.position);
+            StopGorilla();
+            this.gameObject.transform.LookAt(visibleTargets[0].transform.position);
             yield return new WaitForSeconds(0.5f); // wait for 1 second
 
-            objectHeld.GetComponent<Rigidbody>().isKinematic = false;
-            objectHeld.tag = "ThrownObject";
-            objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 3f, ForceMode.Impulse);
-            
-            //-- THROW ANIMATION --//
-            this.GetComponent<Animator>().Play("GorillaThrow");
-            
-            yield return new WaitForSeconds(1f); // wait for 1 second
+            if(isServer){
+                RpcThrowObject();
+            }else {
+                CmdThrowObject();
+            }
 
+            yield return new WaitForSeconds(1f); // wait for 1 second
             holdingObject = false;
             StartCoroutine("ThrowWait");
             StartCoroutine("DestroyThrown", objectHeld);
             StartGorilla();
             this.GetComponent<Animator>().Play("GorillaWalk1");
         }
+    }
+    [ClientRpc]
+    void RpcThrowObject(){
+        Destroy(fakeHolding);
+        objectHeld.SetActive(true);
+        objectHeld.GetComponent<Rigidbody>().isKinematic = false;
+        objectHeld.tag = "ThrownObject";
+        objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 5f, ForceMode.Impulse);
+        
+        //-- THROW ANIMATION --//
+        this.GetComponent<Animator>().Play("GorillaThrow");
+    }
+    [Command]
+    void CmdThrowObject(){
+        RpcThrowObject();
     }
 
     IEnumerator ThrowWait()
