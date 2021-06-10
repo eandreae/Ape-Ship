@@ -162,6 +162,14 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             this.wpArrow.SetActive(true);
             //other.gameObject.GetComponent<CoinScript>().pickedUp = true;
             StartCoroutine("PickUpCD");
+
+            if ((this.holdItem.GetComponent<ItemScript1P>().type == "Banana" ||
+        this.holdItem.GetComponent<ItemScript1P>().type == "Kebab" ||
+        this.holdItem.GetComponent<ItemScript1P>().type == "Sandwich") && !holdingFood)
+            {
+                eatText.Play("PickUpTextRaise");
+                holdingFood = true;
+            }
         }
 
         IEnumerator SwitchPitch()
@@ -192,15 +200,6 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
             }
         }
 
-        /*
-        if ((this.holdItem.GetComponent<ItemScript1P>().type == "Banana" ||
-                this.holdItem.GetComponent<ItemScript1P>().type == "Kebab" ||
-                this.holdItem.GetComponent<ItemScript1P>().type == "Sandwich") && !holdingFood)
-        {
-            eatText.Play("PickUpTextRaise");
-            holdingFood = true;
-        }
-        */
 
         //checks to see if pressing any arrow keys
         //if so will go horizontal if left or right
