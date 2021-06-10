@@ -61,10 +61,13 @@ public class Player : NetworkBehaviour
     Escape canTeleport;
     GameObject escapeObj;
 
+
+    private bool loading;
+
     // Start is called before the first frame update
     void Start()
     {
-       
+        loading = true;
         defaultSpeed = moveSpeed;
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
@@ -99,11 +102,20 @@ public class Player : NetworkBehaviour
         else {
             Object.Destroy(this.wpArrow); // get rid of waypoints for non-local players
         }
+
+        Invoke("loadingBuffer", 1f);
+    }
+
+    private void loadingBuffer()
+    {
+        loading = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (loading) return;
+
         if(canTeleport.teleport == true)
         {
             this.anim.Play("Idle");
