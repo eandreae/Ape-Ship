@@ -245,7 +245,8 @@ public class Gorilla1P : MonoBehaviour
 
     private void Explosion(GameObject nuke)
     {
-        Instantiate(GameObject.Find("Explosion"), nuke.transform.position, this.gameObject.transform.rotation);
+        GameObject expObj = Instantiate(GameObject.Find("Explosion"), nuke.transform.position, this.gameObject.transform.rotation);
+        Destroy(expObj, 1f);
     }
 
     private void PickUpObject(Collider other)
