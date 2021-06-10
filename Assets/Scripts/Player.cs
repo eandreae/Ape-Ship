@@ -414,7 +414,9 @@ public class Player : NetworkBehaviour
     void RpcTakeDamage(bool damage){
         if(damage){
             this.health--;
-            healthBar.value = health;
+            
+            if(isLocalPlayer)
+                healthBar.value = health;
         }
         if ( health == 0 )
         { 
