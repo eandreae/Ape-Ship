@@ -165,7 +165,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
             if ((this.holdItem.GetComponent<ItemScript1P>().type == "Banana" ||
         this.holdItem.GetComponent<ItemScript1P>().type == "Kebab" ||
-        this.holdItem.GetComponent<ItemScript1P>().type == "Sandwich") && !holdingFood)
+        this.holdItem.GetComponent<ItemScript1P>().type == "Sandwich") && !holdingFood && health < 3)
             {
                 eatText.Play("PickUpTextRaise");
                 holdingFood = true;
@@ -276,7 +276,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
                 // get rid of hold item
                 this.holdItem = null;
                 this.wpArrow.SetActive(false);
-
+                eatText.Play("PickUpTextLower");
                 StartCoroutine("PickUpCD");
             }
             // code to throw items
