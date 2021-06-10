@@ -156,7 +156,8 @@ public class Player : NetworkBehaviour
                 highlightTarget.gameObject.GetComponent<ItemScript>().highlightOn();
             }
 
-            if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0)
+            if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0
+                && visibleTargets[0].gameObject.GetComponent<ItemScript>().playerRoot == null)
             {
                 PickUp(visibleTargets[0].gameObject);
             }
@@ -413,7 +414,7 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     void RpcTakeDamage(bool damage){
         if(damage){
-            
+
             if(!this.invulnerable){
                 this.health--;
                 this.invulnerable = true;
