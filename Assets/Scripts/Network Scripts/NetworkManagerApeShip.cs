@@ -158,7 +158,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
                 // spawn ROOM PLAYER at given transform with correct rotation
                 GameObject player;
-                if (numPlayers == 0)
+                if (i == 0)
                 {
                     player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
                                         (playerPos + offset),                                             // new position
