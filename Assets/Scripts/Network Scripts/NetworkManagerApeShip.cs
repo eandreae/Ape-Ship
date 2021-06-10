@@ -102,12 +102,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
         //GameObject player = Instantiate(roomPlayerPrefab.gameObject, roomPlayerPrefab.gameObject.GetComponent<Transform>());
         //player.GetComponent<Player>().playerNum = numPlayers;
         //NetworkServer.AddPlayerForConnection(conn, player);
-        for (int i = 0; i < roomSlots.Count; i++)
-        {
-            GameObject roomplayer = roomSlots[i].gameObject;
-            NetworkServer.Destroy(roomplayer);
-        }
-        
     }
 
     public override void OnServerSceneChanged(string newSceneName)

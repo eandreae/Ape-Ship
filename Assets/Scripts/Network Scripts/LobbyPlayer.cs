@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LobbyPlayer : NetworkBehaviour
 {
@@ -42,6 +43,8 @@ public class LobbyPlayer : NetworkBehaviour
            
 
         readyindicator.SetActive(player.readyToBegin);
+
+        if (SceneManager.GetActiveScene().name == "game") Destroy(this.gameObject);
     }
 
 
