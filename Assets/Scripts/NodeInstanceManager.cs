@@ -166,6 +166,7 @@ public class NodeInstanceManager : NetworkBehaviour
             indicator.GetComponent<NodeIndicator>().SetYellow();
         else if (input == Color.red)
             indicator.GetComponent<NodeIndicator>().SetRed();
+            nodeDisabledSFX.Play();
     }
 
     public UnityEngine.Color GetColor()
@@ -175,7 +176,6 @@ public class NodeInstanceManager : NetworkBehaviour
 
     public void DamageNode()
     {
-        nodeDisabledSFX.Play();
         if(isServer){
             RpcDamageNode();
         }
