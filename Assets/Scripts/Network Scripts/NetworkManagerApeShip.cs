@@ -42,7 +42,6 @@ public class NetworkManagerApeShip : NetworkRoomManager
     
     public void Disconnect()
     {
-
         //under certain conditions, disconnecting will spawn a player in the main menu
 
         GameObject[] roomplayers = GameObject.FindGameObjectsWithTag("RoomPlayer");
@@ -80,8 +79,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
         // spawn ROOM PLAYER at given transform with correct rotation
         GameObject player;
 
-        if (true)
-        //if (numPlayers == 0)
+        if (numPlayers == 0)
         {
             player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
                                 (playerPos + offset),                                             // new position
@@ -117,8 +115,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
                 // spawning PLAYER CLONES into game
                 GameObject player;
 
-                if (true)
-                //if (i == 0)
+                if (i == 0)
                 {
                     player = Instantiate(playerPrefab,             // prefab/gameobject
                                          spawnPos[i],              // position
@@ -161,8 +158,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
                 // spawn ROOM PLAYER at given transform with correct rotation
                 GameObject player;
-                if (true)
-                //if (numPlayers == 0)
+                if (numPlayers == 0)
                 {
                     player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
                                         (playerPos + offset),                                             // new position
