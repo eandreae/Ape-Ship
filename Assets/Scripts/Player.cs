@@ -413,9 +413,12 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     void RpcTakeDamage(bool damage){
         if(damage){
-            this.health--;
-            this.invulnerable = true;
             
+            if(!this.invulnerable){
+                this.health--;
+                this.invulnerable = true;
+            }
+
             if(isLocalPlayer)
                 healthBar.value = health;
         }
