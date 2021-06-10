@@ -418,6 +418,8 @@ public class Player : NetworkBehaviour
             
             if(isLocalPlayer)
                 healthBar.value = health;
+            
+            this.invulnerable = true;
         }
         if ( health == 0 )
         { 
