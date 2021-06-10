@@ -16,7 +16,7 @@ public class HeartReactorCameraZoom : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if(other.GetComponent<Player>() && other.GetComponent<Player>().isLocalPlayer)
+            if(!nm || other.GetComponent<Player>().isLocalPlayer)
                 pc.ZoomOut();
         }
     }
@@ -25,7 +25,7 @@ public class HeartReactorCameraZoom : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {   
-            if(other.GetComponent<Player>() && other.GetComponent<Player>().isLocalPlayer)
+            if(!nm || other.GetComponent<Player>().isLocalPlayer)
                 pc.ZoomIn();
         }
     }

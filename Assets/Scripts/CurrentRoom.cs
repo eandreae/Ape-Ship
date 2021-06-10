@@ -25,9 +25,10 @@ public class CurrentRoom : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // if there IS a network manager, only change text if it's the Local Player.
-            if ( !nm || other.GetComponent<Player>().isLocalPlayer )
+            if ( !nm || other.GetComponent<Player>().isLocalPlayer ){
                 currentRoomText.text = roomName;
                 minimapPlayer.position = minimapRoom.position;
+            }
         }
     }
 }
