@@ -57,21 +57,11 @@ public class PlayerCamera : MonoBehaviour
         {
             if(!gm.singleplayer){
                 // start of game (no target)
-                if (!target)
-                {
-                    // var playerList = FindObjectsOfType<Player>();
-                    // foreach (Player player in playerList){
-                    //     if(player.isLocalPlayer);
-                    //         target = player.gameObject;
-                    // }
-                    
-                }
-                // if target player is dead
-                else if(gm.localp.health == 0 && gm.alivePlayers.Count > 0){
+                if(gm.localp.health == 0 && gm.alivePlayers.Count > 0){
                     if(target.GetComponent<Player>().health == 0)
                         target = gm.alivePlayers[0].gameObject;
                     
-                    if(Input.GetKeyDown(KeyCode.Tab)){
+                    if(Input.GetKeyDown(KeyCode.Tab) && gm.alivePlayers.Count > 1){
                         playerNum++;
                         if(playerNum > gm.alivePlayers.Count)
                             playerNum = 0;
