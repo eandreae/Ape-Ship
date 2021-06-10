@@ -9,6 +9,7 @@ public class NeuronDestroyer : MonoBehaviour
     public UnityEvent OnNeuronDeposit;
     public NetworkManager nm;
     public NodeInstanceManager selfNode;
+    public spawner BrainSpawner;
     
     // Start is called before the first frame update
     void Start()
@@ -16,6 +17,7 @@ public class NeuronDestroyer : MonoBehaviour
         nm = GameObject.FindObjectOfType<NetworkManager>();
         if(nm){
             selfNode = GameObject.FindGameObjectWithTag("Nav").GetComponent<NodeInstanceManager>();
+            spawner = GameObject.Find("BrainTerminal2").GetComponent<spawner>();
         }
     }
 
@@ -46,7 +48,11 @@ public class NeuronDestroyer : MonoBehaviour
     void Destruction()
     {
         //fix the brain
-        OnNeuronDeposit.Invoke();
+        if(nm){
+            BrainSpawner.Deposit();
+        }else{
+            OnNeuronDeposit.Invoke();
+        }
         Destroy(this.gameObject);
     }
 }
