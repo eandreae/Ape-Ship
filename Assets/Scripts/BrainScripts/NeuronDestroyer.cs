@@ -17,7 +17,7 @@ public class NeuronDestroyer : MonoBehaviour
         nm = GameObject.FindObjectOfType<NetworkManager>();
         if(nm){
             selfNode = GameObject.FindGameObjectWithTag("Nav").GetComponent<NodeInstanceManager>();
-            spawner = GameObject.Find("BrainTerminal2").GetComponent<spawner>();
+            BrainSpawner = GameObject.Find("BrainTerminal2").GetComponent<spawner>();
         }
     }
 
