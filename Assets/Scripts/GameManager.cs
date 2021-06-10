@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
                 if(!lost && !won){
                     for (int i = alivePlayers.Count-1; i >= 0; i--){
                         var p = alivePlayers[i];
-                        if( p.health <= 0 ){
+                        if( p.dead ){
                             alivePlayers.Remove(p);
                         }
                     }

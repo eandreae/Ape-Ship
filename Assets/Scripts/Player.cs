@@ -19,6 +19,8 @@ public class Player : NetworkBehaviour
 
     float defaultSpeed;
     public float health = 3;
+    public bool dead = false;
+
     public float oxygen = 60;
     //public Text health_text;
     //public Text oxygen_text;
@@ -72,6 +74,7 @@ public class Player : NetworkBehaviour
         controller = this.GetComponent<CharacterController>();
         anim = this.GetComponent<Animator>();
         health = 3;
+        dead = false;
         oxygen = 60;
         invulnerable = false;
         holding = false;
@@ -406,16 +409,16 @@ public class Player : NetworkBehaviour
         else {
             CmdTakeDamage(damage);
         }
-        if ( health == 0 )
-        { 
-            handleDeath(2); // dying from updatehealth can only be from gorilla
-        }
     }
     [ClientRpc]
     void RpcTakeDamage(bool damage){
         if(damage){
             this.health--;
             healthBar.value = health;
+        }
+        if ( health == 0 )
+        { 
+            handleDeath(2); // dying from updatehealth can only be from gorilla
         }
     }
     [Command]
@@ -452,6 +455,7 @@ public class Player : NetworkBehaviour
 
 
     public void handleDeath(int cause){
+        this.dead = true;
         this.GetComponent<Animator>().Play("PlayerDeath");
         Debug.Log("You Died!");
         //health_text.text = "";
