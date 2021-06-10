@@ -175,6 +175,7 @@ public class GameManager : MonoBehaviour
             }
             else{ // multiplayer defeat
                 defeatPanel.SetActive(true);
+                spectateButton.SetActive(false);
                 backgroundMusic.volume = 0f;
                 Destroy(pausePanel);
                 Destroy(pausePanel1P);
