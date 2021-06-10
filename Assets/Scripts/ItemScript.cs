@@ -71,56 +71,58 @@ public class ItemScript : NetworkBehaviour
             //Debug.Log(playerRoot.position);
 
             transform.position = playerRoot.position + 1.2f * (playerRoot.forward) + new Vector3(0, 2f, 0); // sets position relative to the player transform
-
-            if (type == "NeuronRed"){
-                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
-                wp.WhichWaypoint(0);
-            }
-            else if (type == "NeuronGreen")
-            {
-                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
-                wp.WhichWaypoint(1);
-            }
-            else if (type == "NeuronBlue")
-            {
-                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
-                wp.WhichWaypoint(2);
-            }
-            else if(type == "Banana"){
-                transform.rotation = playerRoot.rotation *  Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
-                wp.WhichWaypoint(3);
-            } 
-            else if(type == "Canister1"){
-                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
-                AlterSpeed(6f);
-                wp.WhichWaypoint(4);
-            }
-            else if(type == "Canister2"){
-                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
-                AlterSpeed(6f);
-                wp.WhichWaypoint(5);
-            }
-            else if (type == "Sandwich"){
-                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                wp.WhichWaypoint(6);
-            }
-            else if (type == "Kebab"){
-                transform.position -= new Vector3(0, 2f, 0); // sets position relative to the player transform
-                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                wp.WhichWaypoint(6);
-            }
-            else if (type == "Nuke"){
-                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                wp.DisableArrow();
-            }
-            else if (type == "Battery")
-            {
-                transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
-                this.gameObject.GetComponent<Animator>().enabled = false;
-                AlterSpeed(4f);
-                wp.WhichWaypoint(8);
-                teleporterIndicator.SetActive(true);
-                batteryIndicator.SetActive(false);
+            
+            if(playerRoot.GetComponent<Player>().isLocalPlayer){
+                if (type == "NeuronRed"){
+                    transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
+                    wp.WhichWaypoint(0);
+                }
+                else if (type == "NeuronGreen")
+                {
+                    transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
+                    wp.WhichWaypoint(1);
+                }
+                else if (type == "NeuronBlue")
+                {
+                    transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, -90); // keep rotation at a constant value
+                    wp.WhichWaypoint(2);
+                }
+                else if(type == "Banana"){
+                    transform.rotation = playerRoot.rotation *  Quaternion.Euler(-90, -90, 0); // keep rotation at a constant value
+                    wp.WhichWaypoint(3);
+                } 
+                else if(type == "Canister1"){
+                    transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
+                    AlterSpeed(6f);
+                    wp.WhichWaypoint(4);
+                }
+                else if(type == "Canister2"){
+                    transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 0, 90); // keep rotation at a constant value
+                    AlterSpeed(6f);
+                    wp.WhichWaypoint(5);
+                }
+                else if (type == "Sandwich"){
+                    transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+                    wp.WhichWaypoint(6);
+                }
+                else if (type == "Kebab"){
+                    transform.position -= new Vector3(0, 2f, 0); // sets position relative to the player transform
+                    transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+                    wp.WhichWaypoint(6);
+                }
+                else if (type == "Nuke"){
+                    transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+                    wp.DisableArrow();
+                }
+                else if (type == "Battery")
+                {
+                    transform.rotation = playerRoot.rotation * Quaternion.Euler(0, 90, 0); // keep rotation at a constant value
+                    this.gameObject.GetComponent<Animator>().enabled = false;
+                    AlterSpeed(4f);
+                    wp.WhichWaypoint(8);
+                    teleporterIndicator.SetActive(true);
+                    batteryIndicator.SetActive(false);
+                }
             }
         }
     }
