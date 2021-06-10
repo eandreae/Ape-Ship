@@ -2332,6 +2332,7 @@ Transform:
   - {fileID: 2433266383009964706}
   - {fileID: 5728603389989239346}
   - {fileID: 7774183708349488539}
+  - {fileID: 5766179397123847243}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -2542,6 +2543,9 @@ MonoBehaviour:
   clip1: {fileID: 8300000, guid: af611b093b1baa2458064d758a968d45, type: 3}
   clip2: {fileID: 8300000, guid: 62bcaec212a5f9f4ebd13ad8fac4de42, type: 3}
   clip3: {fileID: 8300000, guid: cfdb90b103140714ea68217ff28929d6, type: 3}
+  rocketObj: {fileID: 5333481574942074718, guid: 69c30b9ba16643944883189d51af5cf4,
+    type: 3}
+  rocketLoc: {fileID: 4481454747185126052}
 --- !u!114 &2978297655075288298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4105,6 +4109,36 @@ Transform:
   - {fileID: 544916856382254829}
   m_Father: {fileID: 3414422891415699546}
   m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4481454747185126052
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5766179397123847243}
+  m_Layer: 0
+  m_Name: RocketLoc
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5766179397123847243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4481454747185126052}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 4.499967, z: -3.4084947}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3377612367211352841}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4561465176373703788
 GameObject:

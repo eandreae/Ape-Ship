@@ -49,6 +49,9 @@ public class GorillaMovement : NetworkBehaviour
     public AudioClip clip2;
     public AudioClip clip3;
 
+    [SerializeField] GameObject rocketObj;
+    [SerializeField] GameObject rocketLoc;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -272,9 +275,8 @@ public class GorillaMovement : NetworkBehaviour
             
             this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
-            GameObject rocketLoc = GameObject.Find("RocketLoc");
-            GameObject rocketObj = Instantiate(GameObject.Find("Rocket"), rocketLoc.transform.position, this.gameObject.transform.rotation);
-            Destroy(rocketObj, 1f);
+            GameObject temp = Instantiate(rocketObj, rocketLoc.transform.position, this.gameObject.transform.rotation);
+            Destroy(temp, 1f);
             audioData.clip = clip2;
             audioData.PlayOneShot(clip2, 1.0f);
             audioData.PlayOneShot(clip3, 1.0f);
@@ -368,6 +370,9 @@ public class GorillaMovement : NetworkBehaviour
     }
 
     void Attack(Player player) {
+        audioData.clip = clip1;
+        audioData.Play(0);
+
         if(isServer){
             RpcAttack(player);
         }
@@ -381,8 +386,6 @@ public class GorillaMovement : NetworkBehaviour
         Debug.Log("ATTACK PLAYER");
         //-- ATTACK ANIMATION --//
         this.GetComponent<Animator>().Play("GorillaClap");
-        audioData.clip = clip1;
-        audioData.Play(0);
 
         this.stunned = true;
         this.charging = false;  // in case gorilla was charging
