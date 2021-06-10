@@ -43,10 +43,16 @@ public class GorillaMovement : NetworkBehaviour
 
     public float chargeCooldown = 4f;
     private bool startMoving = false;
+    private AudioSource audioData;
+    public AudioClip clip1;
+    public AudioClip clip2;
+    public AudioClip clip3;
 
     // Start is called before the first frame update
     private void Start()
     {
+        audioData = GetComponent<AudioSource>();
+        
         agent = GetComponent<NavMeshAgent>();
         nodes = new List<GameObject>();
         node1 = GameObject.FindGameObjectWithTag("Stomach");
@@ -79,6 +85,7 @@ public class GorillaMovement : NetworkBehaviour
         }
 
         StartCoroutine("BeginningWait");
+        
     }
 
     // Update is called once per frame
@@ -263,6 +270,12 @@ public class GorillaMovement : NetworkBehaviour
             
             this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
+            GameObject rocketLoc = GameObject.Find("RocketLoc");
+            GameObject rocketObj = Instantiate(GameObject.Find("Rocket"), rocketLoc.transform.position, this.gameObject.transform.rotation);
+            Destroy(rocketObj, 1f);
+            audioData.clip = clip2;
+            audioData.PlayOneShot(clip2, 1.0f);
+            audioData.PlayOneShot(clip3, 1.0f);
 
             yield return new WaitForSeconds(1f); // charge for 1 second
             
@@ -353,6 +366,8 @@ public class GorillaMovement : NetworkBehaviour
         Debug.Log("ATTACK PLAYER");
         //-- ATTACK ANIMATION --//
         this.GetComponent<Animator>().Play("GorillaClap");
+        audioData.clip = clip1;
+        audioData.Play(0);
 
         this.stunned = true;
         this.charging = false;  // in case gorilla was charging

@@ -295,7 +295,8 @@ public class Gorilla1P : MonoBehaviour
             this.GetComponent<Rigidbody>().isKinematic = false;
             this.GetComponent<Rigidbody>().AddForce(this.transform.forward * 700f , ForceMode.Impulse);
             GameObject rocketLoc = GameObject.Find("RocketLoc");
-            Instantiate(GameObject.Find("Rocket"), rocketLoc.transform.position, this.gameObject.transform.rotation);
+            GameObject rocketObj = Instantiate(GameObject.Find("Rocket"), rocketLoc.transform.position, this.gameObject.transform.rotation);
+            Destroy(rocketObj, 1f);
             audioData.clip = clip2;
             audioData.PlayOneShot(clip2, 1.0f);
             audioData.PlayOneShot(clip3, 1.0f);

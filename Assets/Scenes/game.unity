@@ -21850,6 +21850,9 @@ MonoBehaviour:
   holdingObject: 0
   objectHeld: {fileID: 0}
   chargeCooldown: 4
+  clip1: {fileID: 0}
+  clip2: {fileID: 0}
+  clip3: {fileID: 0}
 --- !u!195 &629005195
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -28133,6 +28136,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6347282180813454034, guid: 96914cdf1a3933240812a4388530f903,
+        type: 3}
+      propertyPath: clip1
+      value: 
+      objectReference: {fileID: 8300000, guid: af611b093b1baa2458064d758a968d45, type: 3}
+    - target: {fileID: -6347282180813454034, guid: 96914cdf1a3933240812a4388530f903,
+        type: 3}
+      propertyPath: clip2
+      value: 
+      objectReference: {fileID: 8300000, guid: 62bcaec212a5f9f4ebd13ad8fac4de42, type: 3}
+    - target: {fileID: -6347282180813454034, guid: 96914cdf1a3933240812a4388530f903,
+        type: 3}
+      propertyPath: clip3
+      value: 
+      objectReference: {fileID: 8300000, guid: cfdb90b103140714ea68217ff28929d6, type: 3}
     - target: {fileID: 2707894974601038259, guid: 96914cdf1a3933240812a4388530f903,
         type: 3}
       propertyPath: m_Name
@@ -64440,6 +64458,11 @@ PrefabInstance:
         type: 3}
       propertyPath: SizeBySpeedModule.enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2539421611134417966, guid: 69c30b9ba16643944883189d51af5cf4,
+        type: 3}
+      propertyPath: stopAction
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5007058042826690841, guid: 69c30b9ba16643944883189d51af5cf4,
         type: 3}
