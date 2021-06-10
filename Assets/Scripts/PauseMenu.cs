@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Mirror;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -29,6 +30,7 @@ public class PauseMenu : MonoBehaviour
     void Start()
     {
         //mm = FindObjectOfType<Minimap>();
+        nm = FindObjectOfType<NetworkManager>();
         //player = FindObjectOfType<Player>();
         //canPauseViaEscape = true;
     }
@@ -55,7 +57,8 @@ public class PauseMenu : MonoBehaviour
         setPausePanelActive(true);
         //mm.canActivateMinimap = false;
         //player.moveSpeed = 0f;
-        Time.timeScale = 0f;
+        if(!nm)
+            Time.timeScale = 0f;
         gameIsPaused = true;
     }
 
