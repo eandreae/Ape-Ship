@@ -155,7 +155,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
                 // spawn ROOM PLAYER at given transform with correct rotation
                 GameObject player;
-                if (i == previousconnections.Count-1)
+                if (i == 0)
                 {
                     player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
                                         (playerPos + offset),                                             // new position
@@ -172,6 +172,8 @@ public class NetworkManagerApeShip : NetworkRoomManager
             }
 
             for (int i = 0; i < previousconnections.Count; i++) NetworkServer.SetClientReady(previousconnections[i]);
+
+            previousconnections.Clear();
         }
     }
 
