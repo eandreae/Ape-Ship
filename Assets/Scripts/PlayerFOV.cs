@@ -46,7 +46,8 @@ public class PlayerFOV : MonoBehaviour
 			{
 				float dstToTarget = Vector3.Distance(transform.position, target.position);
 
-				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
+				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)
+					&& target.gameObject.GetComponent<ItemScript>().playerRoot == null)
 				{
 					visibleTargets.Add(target);
 					// Debug.Log("Found Target");

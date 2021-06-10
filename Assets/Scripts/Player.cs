@@ -266,7 +266,6 @@ public class Player : NetworkBehaviour
     [ClientRpc]
     void RpcPickUp(GameObject item) {
         this.holdItem = item;
-        item.layer = LayerMask.NameToLayer("PickedUp");
         // Sets player to the pick-up item's parent so the item will move around with the player.            
         //other.gameObject.transform.parent = this.transform;
         item.GetComponent<ItemScript>().playerRoot = this.transform;
@@ -304,7 +303,7 @@ public class Player : NetworkBehaviour
         // un-mark the coin as picked up.
         this.holdItem.GetComponent<ItemScript>().pickedUp = false;
         this.holdItem.GetComponent<ItemScript>().active = true; // set the item to active after being dropped
-        this.holdItem.layer = LayerMask.NameToLayer("PickUp");
+        
         // reenable collision
         Physics.IgnoreCollision(this.GetComponent<Collider>(), holdItem.gameObject.GetComponent<MeshCollider>(), false);
         //this.holdItem.GetComponent<CoinScript>().pickedUp = false;
