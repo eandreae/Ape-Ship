@@ -9064,8 +9064,8 @@ Rigidbody:
   m_GameObject: {fileID: 8873402876092535333}
   serializedVersion: 2
   m_Mass: 100
-  m_Drag: 50
-  m_AngularDrag: 0.05
+  m_Drag: 10
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -23743,7 +23743,7 @@ PrefabInstance:
     - target: {fileID: -349969160363973960, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
       propertyPath: m_TagString
-      value: Pick Up
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -349969160363973960, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
@@ -23753,7 +23753,7 @@ PrefabInstance:
     - target: {fileID: -349969160363973960, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
       propertyPath: m_Layer
-      value: 15
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -240079426153836765, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
@@ -43319,7 +43319,7 @@ PrefabInstance:
     - target: {fileID: -349969160363973960, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
       propertyPath: m_TagString
-      value: Pick Up
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: -240079426153836765, guid: 36e70f48dd71d7341881c4b8bf69476f,
         type: 3}
@@ -48616,7 +48616,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 100
   m_Drag: 10
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
@@ -70991,6 +70991,17 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3018404422271199064, guid: 61c9fd4594c1a2541927750e1f466594,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3018404422271199065, guid: 61c9fd4594c1a2541927750e1f466594,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 6131405064220037902, guid: 1f22c0be3a4b5114b991d1dbd053b005,
+        type: 3}
     - target: {fileID: 3018404422271199069, guid: 61c9fd4594c1a2541927750e1f466594,
         type: 3}
       propertyPath: color1

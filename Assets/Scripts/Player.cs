@@ -291,10 +291,10 @@ public class Player : NetworkBehaviour
 
     void Drop() {
         if(isServer){
-            RpcThrow();
+            RpcDrop();
         }
         else{
-            CmdThrow();
+            CmdDrop();
         }
     }
     [ClientRpc]
