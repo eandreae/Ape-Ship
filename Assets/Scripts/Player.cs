@@ -218,7 +218,7 @@ public class Player : NetworkBehaviour
         //         handleDeath(-1);
         //     }   
         // }
-        if (oxygen_color && oxygen2_color){
+        if (oxygen_color && oxygen2_color && oxygenBar){
             // Check if both oxygens are red.
             if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
                 if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
