@@ -404,17 +404,20 @@ public class Player : NetworkBehaviour
             damageCue.SetTrigger("DamageTrigger"); // set damage trigger
 
         if(isServer){
-            RpcTakeDamage(this.connectionToClient, damage);
+            RpcTakeDamage(damage);
         }
         else {
             CmdTakeDamage(damage);
         }
     }
-    [TargetRpc]
-    void RpcTakeDamage(NetworkConnection target, bool damage){
+    [ClientRpc]
+    void RpcTakeDamage(bool damage){
         if(damage){
-            this.health--;
-            healthBar.value = health;
+            if(isServer)
+                this.health--;
+            
+            if(isLocalPlayer)
+                healthBar.value = health;
         }
         if ( health == 0 )
         { 
@@ -423,7 +426,7 @@ public class Player : NetworkBehaviour
     }
     [Command]
     void CmdTakeDamage(bool damage){
-        RpcTakeDamage(this.connectionToClient, damage);
+        RpcTakeDamage(damage);
     }
 
 
