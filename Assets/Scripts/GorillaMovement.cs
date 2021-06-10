@@ -373,14 +373,13 @@ public class GorillaMovement : NetworkBehaviour
             if(player.health == 0){
                 FindNewTarget();
             }
-            
-            else{
-                // Make the player temporarily invulnerable
-                player.invulnerable = true;
-                player.gorillaCollider = this.GetComponent<Collider>();
-                // Update the health of the player.
-                //player.StartCoroutine("updateHealth", true);
-            }
+            // else{
+            //     // Make the player temporarily invulnerable
+            //     player.invulnerable = true;
+            //     player.gorillaCollider = this.GetComponent<Collider>();
+            //     // Update the health of the player.
+            //     //player.StartCoroutine("updateHealth", true);
+            // }
         }
     }
 
