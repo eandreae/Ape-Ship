@@ -53,7 +53,7 @@ public class foodSpawner1P : MonoBehaviour
             playerInRange = true;
             this.GetComponent<HighlightScript>().highlightOn();
         }
-        if(coll.gameObject.tag == "Gorilla" && coll.GetComponent<Gorilla1P>().charging) // gorilla collision when charging means spawn item no matter what
+        if(coll.gameObject.tag == "Gorilla" && coll.GetComponent<Gorilla1P>().charging && canSpawn) // gorilla collision when charging means spawn item no matter what
         {
             SpawnFood(2.0f);
         }
