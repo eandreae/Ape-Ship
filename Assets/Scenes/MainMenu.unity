@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1666,8 +1666,7 @@ MonoBehaviour:
 
     Yellow - Damaged
 
-    Green
-    - Operational'
+    Green - Operational'
 --- !u!222 &121086182
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2631,8 +2630,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'the monkey dashes around the ship, sabotaging
 
-    its functions, the
-    monkey will run away from you'
+    its functions, the monkey will run away from you'
 --- !u!222 &225048763
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6289,7 +6287,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 0
+        m_CallState: 2
       - m_Target: {fileID: 1299843946}
         m_MethodName: ShowPlayOptions
         m_Mode: 1
@@ -6300,7 +6298,7 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 0
 --- !u!114 &692858995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8059,8 +8057,7 @@ MonoBehaviour:
 
     depositing its neurons
 
-    into the correct
-    tubes'
+    into the correct tubes'
 --- !u!222 &858734736
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8146,8 +8143,7 @@ MonoBehaviour:
 
     Sooyoung Kim
 
-    Sarah
-    Liang
+    Sarah Liang
 
 '
 --- !u!222 &880053499
@@ -12565,14 +12561,12 @@ MonoBehaviour:
 
     are responsible for progressing
 
-    the
-    ship
+    the ship
 
 
     Keep them above red to advance
 
-    the progress bar, allowing you
-    to win'
+    the progress bar, allowing you to win'
 --- !u!222 &1430401357
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13292,14 +13286,12 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'The storage node is only active when the
 
-    progress bar has reached
-    the end
+    progress bar has reached the end
 
 
     it contains a battery-powered teleporter
 
-    that will teleport
-    you off the ship,
+    that will teleport you off the ship,
 
     winning the game'
 --- !u!222 &1498045530
@@ -13379,8 +13371,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Only two nodes are\nneeded to progress\nthe ship:\n\n     Brain\n    
-    Heart\n\nthey have to be at\nleast yellow in\norder to progress"
+  m_Text: "Only two nodes are\nneeded to progress\nthe ship:\n\n     Brain\n Heart\n\nthey
+    have to be at\nleast yellow in\norder to progress"
 --- !u!222 &1504145962
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13538,8 +13530,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'The Top and lower oxygen nodes are
 
-    responsible for your oxygen on
-    the ship
+    responsible for your oxygen on the ship
 
 
     if one oxygen node is disabled, your oxygen
@@ -13547,8 +13538,7 @@ MonoBehaviour:
     will slowly deplete
 
 
-    if
-    both oxygen nodes are disabled, it will
+    if both oxygen nodes are disabled, it will
 
     rapidly deplete'
 --- !u!222 &1524275229
@@ -14567,8 +14557,7 @@ MonoBehaviour:
 
     pushing mirrors into
 
-    the beam, aligning
-    it
+    the beam, aligning it
 
     with the target'
 --- !u!222 &1654963929
@@ -15550,8 +15539,7 @@ MonoBehaviour:
 
     the nearby dispenser
 
-    into
-    the central tube'
+    into the central tube'
 --- !u!222 &1732554775
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15930,8 +15918,7 @@ MonoBehaviour:
     m_LineSpacing: 1
   m_Text: 'The gorilla hunts for you around the ship,
 
-    trying to kill you, beware
-    his charge attack'
+    trying to kill you, beware his charge attack'
 --- !u!222 &1783281312
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16253,7 +16240,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "There are 6 nodes\non the ship\n\n     Heart\n     Top Oxygen\n     Storage\n    
+  m_Text: "There are 6 nodes\non the ship\n\n     Heart\n     Top Oxygen\n     Storage\n
     Stoamach\n     Brain\n     Electrical\n     Lower Oxygen\n\nEach one is tied\nto
     a function on\nthe ship"
 --- !u!222 &1800273055
@@ -16479,7 +16466,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "The other four:\n\n     Top Oxygen,\n     Lower Oxygen,\n     Stomach,\n    
+  m_Text: "The other four:\n\n     Top Oxygen,\n     Lower Oxygen,\n     Stomach,\n
     Electrical\n\nAll are tied to other\nship functions"
 --- !u!222 &1847369143
 CanvasRenderer:
@@ -17671,8 +17658,7 @@ MonoBehaviour:
 
     you must maintain and
 
-    defend
-    your ship.'
+    defend your ship.'
 --- !u!222 &2002786686
 CanvasRenderer:
   m_ObjectHideFlags: 0
