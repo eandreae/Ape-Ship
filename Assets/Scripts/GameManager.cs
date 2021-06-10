@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public GameObject victoryPanel;
     public GameObject defeatPanel1P;
     public GameObject defeatPanel;
+    public GameObject spectateButton;
     public Text causeOfDeath1P;
     public Text causeOfDeath;
     public GameObject pausePanel1P;
@@ -148,6 +149,7 @@ public class GameManager : MonoBehaviour
             }
             else if (!lost){ // multiplayer death
                 defeatPanel.SetActive(true);
+                spectateButton.SetActive(true);
                 backgroundMusic.volume = 0f;
                 Destroy(pausePanel);
                 Destroy(pausePanel1P);
