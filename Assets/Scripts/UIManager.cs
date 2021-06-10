@@ -62,10 +62,10 @@ public class UIManager : MonoBehaviour
     {
         if (!nm && Input.GetKeyDown(KeyCode.Return) && !cutsceneOver)
         {
+            CancelInvoke();
             TeleportApes();
             BlackBarsLeave();
             SlideInUI();
-            CancelInvoke();
         }
     }
 
