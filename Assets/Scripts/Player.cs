@@ -432,7 +432,8 @@ public class Player : NetworkBehaviour
         if (posOrNeg == 0){
             oxygenCue.SetTrigger("OxygenTrigger");
         }
-        oxygenBar.value = Mathf.Floor(oxygen);
+        if (oxygenBar)
+            oxygenBar.value = Mathf.Floor(oxygen);
     }
     [Command]
     void CmdUpdateOxygen(int pn){
