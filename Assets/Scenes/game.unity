@@ -2037,6 +2037,7 @@ GameObject:
   - component: {fileID: 72590803}
   - component: {fileID: 72590802}
   - component: {fileID: 72590801}
+  - component: {fileID: 72590805}
   m_Layer: 0
   m_Name: MirrorCart (1P)
   m_TagString: Untagged
@@ -2136,6 +2137,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 72590799}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &72590805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72590799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e1f703b6cc12b42b082a6ceca79c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &73987267
 GameObject:
   m_ObjectHideFlags: 0
@@ -9229,6 +9242,7 @@ GameObject:
   - component: {fileID: 313047421}
   - component: {fileID: 313047420}
   - component: {fileID: 313047419}
+  - component: {fileID: 313047423}
   m_Layer: 0
   m_Name: MirrorCart (1P)
   m_TagString: Untagged
@@ -9328,6 +9342,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 313047417}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &313047423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 313047417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e1f703b6cc12b42b082a6ceca79c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &324020070
 GameObject:
   m_ObjectHideFlags: 0
@@ -45009,7 +45035,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: cdd2ba3754e1cd44dbdbf5d8c001dfbf,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cdd2ba3754e1cd44dbdbf5d8c001dfbf,
         type: 3}
@@ -50880,6 +50906,7 @@ GameObject:
   - component: {fileID: 1484000957}
   - component: {fileID: 1484000956}
   - component: {fileID: 1484000955}
+  - component: {fileID: 1484000959}
   m_Layer: 0
   m_Name: MirrorCart (1P)
   m_TagString: Untagged
@@ -50979,6 +51006,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1484000953}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1484000959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484000953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e1f703b6cc12b42b082a6ceca79c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1492720682 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1b860c9c86f96864dafbc12933a24906,
@@ -65488,6 +65527,7 @@ GameObject:
   - component: {fileID: 2085408105}
   - component: {fileID: 2085408104}
   - component: {fileID: 2085408103}
+  - component: {fileID: 2085408107}
   m_Layer: 0
   m_Name: MirrorCart (1P)
   m_TagString: Untagged
@@ -65587,6 +65627,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2085408101}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2085408107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085408101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e1f703b6cc12b42b082a6ceca79c23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2085497442
 PrefabInstance:
   m_ObjectHideFlags: 0
