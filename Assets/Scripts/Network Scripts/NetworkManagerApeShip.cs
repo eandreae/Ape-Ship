@@ -136,6 +136,7 @@ public class NetworkManagerApeShip : NetworkRoomManager
                 
                 NetworkServer.ReplacePlayerForConnection(roomSlots[i].GetComponent<NetworkIdentity>().connectionToClient, player, true);
             }
+
             // GameObject monkey = Instantiate( spawnPrefabs[1]);
             // GameObject gorilla = Instantiate( spawnPrefabs[2] );
 
@@ -165,10 +166,10 @@ public class NetworkManagerApeShip : NetworkRoomManager
                 {
                     player = Instantiate(spawnPrefabs[12].gameObject,                                     // gameobject
                                         (playerPos + offset),                                             // new position
-                                        spawnPrefabs[12].gameObject.GetComponent<Transform>().rotation); // rotation
+                                        spawnPrefabs[12].gameObject.GetComponent<Transform>().rotation);  // rotation
                 }
 
-                NetworkServer.AddPlayerForConnection(previousconnections[i], player);
+                NetworkServer.AddPlayerForConnection(previousconnections[previousconnections.Count - i - 1], player);
             }
 
             for (int i = 0; i < previousconnections.Count; i++) NetworkServer.SetClientReady(previousconnections[i]);
