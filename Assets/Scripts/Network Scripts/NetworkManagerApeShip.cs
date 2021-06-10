@@ -79,7 +79,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
         // spawn ROOM PLAYER at given transform with correct rotation
         GameObject player;
-        if (numPlayers == 0)
+
+        if (true)
+        //if (numPlayers == 0)
         {
             player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
                                 (playerPos + offset),                                             // new position
@@ -114,7 +116,9 @@ public class NetworkManagerApeShip : NetworkRoomManager
             {
                 // spawning PLAYER CLONES into game
                 GameObject player;
-                if (i == 0)
+
+                if (true)
+                //if (i == 0)
                 {
                     player = Instantiate(playerPrefab,             // prefab/gameobject
                                          spawnPos[i],              // position
@@ -157,18 +161,19 @@ public class NetworkManagerApeShip : NetworkRoomManager
 
                 // spawn ROOM PLAYER at given transform with correct rotation
                 GameObject player;
-        if (numPlayers == 0)
-        {
-            player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
-                                (playerPos + offset),                                             // new position
-                                 roomPlayerPrefab.gameObject.GetComponent<Transform>().rotation); // rotation
-        }
-        else
-        {
-            player = Instantiate(spawnPrefabs[12].gameObject,                                     // gameobject
-                                (playerPos + offset),                                             // new position
-                                spawnPrefabs[12].gameObject.GetComponent<Transform>().rotation); // rotation
-        }
+                if (true)
+                //if (numPlayers == 0)
+                {
+                    player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
+                                        (playerPos + offset),                                             // new position
+                                         roomPlayerPrefab.gameObject.GetComponent<Transform>().rotation); // rotation
+                }
+                else
+                {
+                    player = Instantiate(spawnPrefabs[12].gameObject,                                     // gameobject
+                                        (playerPos + offset),                                             // new position
+                                        spawnPrefabs[12].gameObject.GetComponent<Transform>().rotation); // rotation
+                }
 
                 NetworkServer.AddPlayerForConnection(previousconnections[i], player);
             }
