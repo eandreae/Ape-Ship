@@ -148,14 +148,14 @@ public class NetworkManagerApeShip : NetworkRoomManager
             //spawning players when returning to room from in game
 
             Debug.Log("returning to room");
-            for (int i = 0; i < previousconnections.Count; i++)
+            for (int i = previousconnections.Count - 1; i >= 0; i--)
             {
                 Vector3 playerPos = roomPlayerPrefab.gameObject.GetComponent<Transform>().position;
                 Vector3 offset = new Vector3(5f * (i), 0, -3);
 
                 // spawn ROOM PLAYER at given transform with correct rotation
                 GameObject player;
-                if (i == 0)
+                if (i == previousconnections.Count)
                 {
                     player = Instantiate(roomPlayerPrefab.gameObject,                                     // gameobject
                                         (playerPos + offset),                                             // new position
