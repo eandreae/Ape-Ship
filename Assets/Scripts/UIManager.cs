@@ -12,6 +12,7 @@ public class UIManager : MonoBehaviour
     public Animator minimap;
     public Animator healthOxygen;
     public Animator roomName;
+    public GameObject skipText;
 
     public float introDuration;
     public float teleportTime = 5f;
@@ -34,10 +35,8 @@ public class UIManager : MonoBehaviour
     public GameObject[] minimapNodes;
     public Animator teleporterText;
 
-    Animator destructTimer;
-
    public GameObject batteryIndicator;
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +65,7 @@ public class UIManager : MonoBehaviour
             BlackBarsLeave();
             SlideInUI();
             CancelInvoke();
+            Destroy(skipText);
         }
     }
 

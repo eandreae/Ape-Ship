@@ -20,6 +20,7 @@ public class ItemScript : NetworkBehaviour
 
     public GameObject teleporterIndicator;
     public GameObject batteryIndicator;
+
     // Start is called before the first frame update
     void Start()
     {

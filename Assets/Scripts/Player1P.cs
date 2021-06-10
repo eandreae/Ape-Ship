@@ -32,6 +32,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
     private Animator anim;
     public Animator oxygenCue;
     public Animator damageCue;
+    public Animator eatText;
     // Moved camera functionality to PlayerCamera.cs
     // public Camera camera;
 
@@ -63,6 +64,8 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
 
     Escape canTeleport;
     GameObject escapeObj;
+
+    bool holdingFood;
 
     // Start is called before the first frame update
     void Start()
@@ -177,7 +180,8 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
                 if (health < 3)
                 {
                     health = health + 1;
-
+                    eatText.Play("PickUpTextLower");
+                    holdingFood = false;
                     Destroy(this.holdItem);
                     walkingSFX.pitch = 1.4f;
                     walkingSFX.PlayOneShot(clip1, 0.5f);
@@ -187,6 +191,16 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
                 }
             }
         }
+
+        /*
+        if ((this.holdItem.GetComponent<ItemScript1P>().type == "Banana" ||
+                this.holdItem.GetComponent<ItemScript1P>().type == "Kebab" ||
+                this.holdItem.GetComponent<ItemScript1P>().type == "Sandwich") && !holdingFood)
+        {
+            eatText.Play("PickUpTextRaise");
+            holdingFood = true;
+        }
+        */
 
         //checks to see if pressing any arrow keys
         //if so will go horizontal if left or right
