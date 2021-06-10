@@ -106,8 +106,12 @@ public class ProgressBar : NetworkBehaviour
                 if(timeRemaining < 60 && spawned == false)
                 {
                     spawned = true;
-                    GameObject gorilla2 = Instantiate( nm.spawnPrefabs[0] );
-                    NetworkServer.Spawn(gorilla2);
+                    
+                    if(isServer){
+                        GameObject gorilla2 = Instantiate( nm.spawnPrefabs[0] );
+                        NetworkServer.Spawn(gorilla2);
+                    }
+
                     intruderAlert.Play();
                     anotherGorillaText.Play("AnotherGorillaSlideIn");
                     /*GameObject mat = GameObject.Find("QuadDrawGorilla_LowPoly_UVUnwrapped_final1(Clone)");
