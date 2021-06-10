@@ -98,6 +98,7 @@ public class Player : NetworkBehaviour
             InvokeRepeating("PlayWalkingNoise", 0, 0.4f); // only play footsteps for localplayer
             gm.localp = this;
             FindObjectOfType<PlayerCamera>().target = this.gameObject;
+            this.anim.applyRootMotion = true;
         }
         else {
             Object.Destroy(this.wpArrow); // get rid of waypoints for non-local players
