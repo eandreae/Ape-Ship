@@ -51,13 +51,6 @@ public class NodeInstanceManager : NetworkBehaviour
         agent = monkeyObj.GetComponent<NavMeshAgent>();
         
         // Need to set starting color for each node
-        if(this.gameObject.name == "Star Target"){
-            var cart1p = GameObject.Find("MirrorCart (1P)");
-            while(cart1p){ 
-                Object.Destroy(cart1p);
-                cart1p = GameObject.Find("MirrorCart (1P)");
-            }
-        }
         UpdateColor();
 
         Invoke("CheckForMonkeyAgain", monkeySpawnTime);
