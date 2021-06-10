@@ -156,8 +156,7 @@ public class Player : NetworkBehaviour
                 highlightTarget.gameObject.GetComponent<ItemScript>().highlightOn();
             }
 
-            if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0
-                && visibleTargets[0].gameObject.GetComponent<ItemScript>().playerRoot == null)
+            if (Input.GetKeyDown("space") && !this.holdItem && visibleTargets.Count != 0)
             {
                 PickUp(visibleTargets[0].gameObject);
             }

@@ -56,7 +56,7 @@ public class ItemScript : NetworkBehaviour
 
         if(!pickedUp){ // code to execute if object is not picked up
             //this.rigidbody.isKinematic = false;
-
+            this.gameObject.layer = LayerMask.NameToLayer("PickUp");
             //if (this.type == "Banana" || this.type == "Coin"){
             //transform.Rotate(0, 0, 90 * Time.deltaTime);
             //}
@@ -67,8 +67,7 @@ public class ItemScript : NetworkBehaviour
             }
         }
         else {  // code to execute if object is picked up
-            //if(this.glowEffect)
-            //    this.glowEffect.SetActive(false);
+            this.gameObject.layer = LayerMask.NameToLayer("PickedUp");
             this.active = false;
             this.GetComponent<Rigidbody>().isKinematic = true; // if picked up, item become kinematic
             //Debug.Log(playerRoot.position);
