@@ -119,7 +119,6 @@ public class Gorilla1P : MonoBehaviour
             // if gorilla is not following player, check for the player distance
             if (visibleObjects.Count != 0 && !holdingObject && canPickup)
             {
-                Debug.Log("Gorilla has found object");
                 target = visibleObjects[0].gameObject;
                 stoppingDistance = 0;
             }

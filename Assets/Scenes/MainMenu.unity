@@ -18721,6 +18721,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
+      propertyPath: spawnPrefabs.Array.size
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
       propertyPath: showRoomGUI
       value: 0
       objectReference: {fileID: 0}
@@ -18757,8 +18762,20 @@ PrefabInstance:
     - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: PersistNetworkManagerToOfflineScene
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[11]
+      value: 
+      objectReference: {fileID: 3465042274739399557, guid: 03a5c543b3b4a01499bd334fe3f67bfe,
+        type: 3}
+    - target: {fileID: 2580750289424340331, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[12]
+      value: 
+      objectReference: {fileID: 4488490842809051025, guid: cac1e3934b07ca84cbb6019b5b244173,
+        type: 3}
     - target: {fileID: 2580750289424340342, guid: 3621b1c95ce81fe4fb4e27f222bf478e,
         type: 3}
       propertyPath: m_Name
