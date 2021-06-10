@@ -107,7 +107,7 @@ public class Player : NetworkBehaviour
             Object.Destroy(this.wpArrow); // get rid of waypoints for non-local players
         }
 
-        Invoke("loadingBuffer", 5f);
+        Invoke("loadingBuffer", 6f);
     }
 
     private void loadingBuffer()
