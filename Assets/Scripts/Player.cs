@@ -86,6 +86,7 @@ public class Player : NetworkBehaviour
         healthBar = GameObject.Find("HealthBar").GetComponent<Slider>();
         
         oxygenBar = GameObject.Find("OxygenBar").GetComponent<Slider>();
+        oxygenBar.maxValue = 60; // lower oxy camp for mp
         oxygen_color = GameObject.Find("OxygenColor").GetComponent<Text>();
         oxygen2_color = GameObject.Find("Oxygen2Color").GetComponent<Text>();
 
@@ -406,7 +407,6 @@ public class Player : NetworkBehaviour
             RpcTakeDamage(damage);
         }
         else {
-            this.health++;
             CmdTakeDamage(damage);
         }
     }
@@ -425,6 +425,7 @@ public class Player : NetworkBehaviour
     }
     [Command]
     void CmdTakeDamage(bool damage){
+        this.health++;
         RpcTakeDamage(damage);
     }
 
