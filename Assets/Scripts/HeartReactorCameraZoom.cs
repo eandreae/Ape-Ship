@@ -1,22 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class HeartReactorCameraZoom : MonoBehaviour
 {
 
     PlayerCamera pc;
+    NetworkManager nm;
 
     void Start()
     {
         pc = FindObjectOfType<PlayerCamera>();
+        nm = FindObjectOfType<NetworkManager>();
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if(other.GetComponent<Player>() && other.GetComponent<Player>().isLocalPlayer)
+            if(!nm || other.GetComponent<Player>().isLocalPlayer)
                 pc.ZoomOut();
         }
     }
@@ -25,7 +28,7 @@ public class HeartReactorCameraZoom : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {   
-            if(other.GetComponent<Player>() && other.GetComponent<Player>().isLocalPlayer)
+            if(!nm || other.GetComponent<Player>().isLocalPlayer)
                 pc.ZoomIn();
         }
     }

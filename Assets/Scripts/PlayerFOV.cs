@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 
 public class PlayerFOV : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class PlayerFOV : MonoBehaviour
 
 	public LayerMask targetMask;
 	public LayerMask obstacleMask;
+	public NetworkManager nm;
 
 	//[HideInInspector]
 	public List<Transform> visibleTargets = new List<Transform>();
 	void Start()
 	{
+		nm = FindObjectOfType<NetworkManager>();
 		StartCoroutine("FindTargetsWithDelay", .2f);
 	}
 	IEnumerator FindTargetsWithDelay(float delay)
@@ -46,10 +49,10 @@ public class PlayerFOV : MonoBehaviour
 			{
 				float dstToTarget = Vector3.Distance(transform.position, target.position);
 
-				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)
-					&& target.gameObject.GetComponent<ItemScript>().playerRoot == null)
+				if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask))
 				{
-					visibleTargets.Add(target);
+					if(!nm || target.gameObject.GetComponent<ItemScript>().playerRoot == null)
+						visibleTargets.Add(target);
 					// Debug.Log("Found Target");
 				}
 			}
