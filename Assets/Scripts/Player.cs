@@ -404,7 +404,7 @@ public class Player : NetworkBehaviour
             damageCue.SetTrigger("DamageTrigger"); // set damage trigger
 
         if(isServer){
-            RpcTakeDamage(this.connectionToServer, damage);
+            RpcTakeDamage(this.connectionToClient, damage);
         }
         else {
             CmdTakeDamage(damage);
@@ -423,7 +423,7 @@ public class Player : NetworkBehaviour
     }
     [Command]
     void CmdTakeDamage(bool damage){
-        RpcTakeDamage(damage);
+        RpcTakeDamage(this.connectionToClient, damage);
     }
 
 
