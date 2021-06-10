@@ -218,25 +218,26 @@ public class Player : NetworkBehaviour
         //         handleDeath(-1);
         //     }   
         // }
-
-        // Check if both oxygens are red.
-        if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
-            if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
-            //If you update oxygen with a 0, the animation will play, otherwise it wont
-            updateOxygen(0);
-        // Check if one oxygen is red
-        } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
-        {
-            if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
-            //If you update oxygen with a 0, the animation will play, otherwise it wont
-            updateOxygen(0);
-        }
-        else {
-            if ( oxygen < 90 ) {
-                oxygen += Time.deltaTime * 2;
-                updateOxygen(1);
+        if (oxygen_color && oxygen2_color){
+            // Check if both oxygens are red.
+            if ( oxygen_color.text == "red" && oxygen2_color.text == "red"){
+                if ( oxygen > 0 ){ oxygen -= Time.deltaTime; }
+                //If you update oxygen with a 0, the animation will play, otherwise it wont
+                updateOxygen(0);
+            // Check if one oxygen is red
+            } else if (oxygen_color.text == "red" || oxygen2_color.text == "red")
+            {
+                if (oxygen > 0) { oxygen -= Time.deltaTime * 0.5f; }
+                //If you update oxygen with a 0, the animation will play, otherwise it wont
+                updateOxygen(0);
             }
-        }        
+            else {
+                if ( oxygen < 90 ) {
+                    oxygen += Time.deltaTime * 2;
+                    updateOxygen(1);
+                }
+            }        
+        }
     }
 
     void PickUp(GameObject item) {
