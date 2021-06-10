@@ -407,8 +407,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 12, y: -45}
-  m_SizeDelta: {x: 600, y: 430}
+  m_AnchoredPosition: {x: 12, y: -71}
+  m_SizeDelta: {x: 550, y: 450}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &439550166
 MonoBehaviour:
@@ -1915,7 +1915,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 446170b422bb7f243bbe79f2766da4ec, type: 3}
-    m_FontSize: 30
+    m_FontSize: 25
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -1926,9 +1926,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "steam must be open\n\nwill appear as in game\n    \"Spacewar\"\n\ninvite
+  m_Text: "steam must be open\n\ninvitee must have ape ship\nopen to properly join\n\n\ninvite
     friends to this lobby\n    via steam\n            or\nfriends can directly join\n   
-    this lobby via steam"
+    this lobby via steam\n\n\nwill appear as in game  \"spacewar\"\n"
 --- !u!222 &1740901853
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2342,7 +2342,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1973073455
 Transform:
   m_ObjectHideFlags: 0
@@ -2351,7 +2351,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1973073454}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 573, y: 43, z: 507.42422}
+  m_LocalPosition: {x: 577, y: 78, z: 507.42422}
   m_LocalScale: {x: 2.302158, y: 2.302158, z: 2.302158}
   m_Children:
   - {fileID: 439550165}
