@@ -17,6 +17,7 @@ public class nukeSpawner1P : NetworkBehaviour
     private Animator foodAnim;
     private GameObject vendingMachine;
     private NetworkManager nm;
+    private bool inrange = false;
 
     // Start is called before the first frame update
     void Start()
@@ -38,25 +39,18 @@ public class nukeSpawner1P : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("space") && inrange && canSpawn)
+        {
+           StartCoroutine("SpawnItem");
+        }
         //charging = gorillaScript.charging;
     }
 
     private void OnTriggerEnter(Collider coll)
     {
-        if (coll.gameObject.tag == "Player" && canSpawn) // player can spawn items from vending machine on a cooldown
+        if (coll.gameObject.tag == "Player") // player can spawn items from vending machine on a cooldown
         {
-            //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
-            spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
-            //Changed to always spawn
-            //if (nodeColor.text != "green")
-            //{
-            //foodAnim.Play("PushButton");
-            GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
-            temp.GetComponent<Rigidbody>().useGravity = true;
-            temp.GetComponent<destroyer>().enabled = true;
-            canSpawn = false;
-            StartCoroutine("SpawnTimer", 10.0f); // add 5 second cd to using vending machine
-            //}
+            inrange = true;
         }
         else if (coll.gameObject.tag == "Gorilla" && coll.GetComponent<Gorilla1P>().charging && canSpawn) // gorilla collision when charging means spawn item no matter what
         {
@@ -71,11 +65,35 @@ public class nukeSpawner1P : NetworkBehaviour
             //}
         }
     }
+    private void OnTriggerExit(Collider coll)
+    {
+        if (coll.gameObject.tag == "Player")
+        {
+            inrange = false;
+        }
+    }
+
+
+    IEnumerator SpawnItem()
+    {
+        //spawnee = foodItems[ Random.Range(0, foodItems.Length) ]; // get a random foodItem to spawn
+        spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
+        //Changed to always spawn
+        //if (nodeColor.text != "green")
+        //{
+        //foodAnim.Play("PushButton");
+        GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
+        temp.GetComponent<Rigidbody>().useGravity = true;
+        temp.GetComponent<destroyer>().enabled = true;
+        canSpawn = false;
+        StartCoroutine("SpawnTimer", 5.0f); // add 5 second cd to using vending machine
+                                             //}
+        yield return new WaitForSeconds(0.1f);
+    }
 
     IEnumerator SpawnTimer(float cooldown)
     {
         spawnee = GameObject.Find("SodaNuke (1P)"); // get nuke
-        Debug.Log(spawnee);
         yield return new WaitForSeconds(cooldown);
         canSpawn = true;
     }

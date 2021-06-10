@@ -333,7 +333,7 @@ public class Gorilla1P : MonoBehaviour
             objectHeld.tag = "ThrownObject";
             objectHeld.layer = 15;
             //Physics.IgnoreCollision(GetComponent<Collider>(), objectHeld.GetComponent<Collider>(), true);
-            objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 7f, ForceMode.Impulse);
+            objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 4f, ForceMode.Impulse);
             objectHeld.transform.parent = null;
 
             //-- THROW ANIMATION --//
