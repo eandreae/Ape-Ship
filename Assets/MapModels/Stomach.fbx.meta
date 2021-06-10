@@ -48,6 +48,12 @@ ModelImporter:
   - first:
       74: 7921592982305708118
     second: Stomach|Digestion
+  - first:
+      74: 4066968750662519938
+    second: StomachDigest
+  - first:
+      74: -332896997410138465
+    second: StomachHunger
   externalObjects:
   - first:
       type: UnityEngine:Material
@@ -107,11 +113,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Stomach|Hunger
-      takeName: Stomach|Action.001
+      name: StomachDigest
+      takeName: StomachControllerAction
       internalID: 0
-      firstFrame: 44
-      lastFrame: 60
+      firstFrame: 0
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -136,18 +142,18 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: Stomach|Digestion
-      takeName: Stomach|Action.001
+      name: StomachHunger
+      takeName: StomachControllerAction
       internalID: 0
-      firstFrame: 0
-      lastFrame: 39
+      firstFrame: 40
+      lastFrame: 56
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
