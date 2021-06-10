@@ -277,6 +277,7 @@ public class Player1P : MonoBehaviour   // TEMP SCRIPT FOR SINGLE PLAYER DEBUGGI
                 this.holdItem = null;
                 this.wpArrow.SetActive(false);
                 eatText.Play("PickUpTextLower");
+                holdingFood = false;
                 StartCoroutine("PickUpCD");
             }
             // code to throw items
