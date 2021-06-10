@@ -21853,6 +21853,8 @@ MonoBehaviour:
   clip1: {fileID: 0}
   clip2: {fileID: 0}
   clip3: {fileID: 0}
+  rocketObj: {fileID: 0}
+  rocketLoc: {fileID: 0}
 --- !u!195 &629005195
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -51904,7 +51906,7 @@ MonoBehaviour:
   objectHeld: {fileID: 0}
   chargeCooldown: 4
   clip1: {fileID: 8300000, guid: af611b093b1baa2458064d758a968d45, type: 3}
-  clip2: {fileID: 8300000, guid: 62bcaec212a5f9f4ebd13ad8fac4de42, type: 3}
+  clip2: {fileID: 8300000, guid: 35ef6a35d7fe29644aa6d8b294b24d30, type: 3}
   clip3: {fileID: 8300000, guid: cfdb90b103140714ea68217ff28929d6, type: 3}
 --- !u!114 &1522394650
 MonoBehaviour:
@@ -68333,10 +68335,11 @@ AudioSource:
   m_GameObject: {fileID: 919132148528634691}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: b8c3761349ca18547ba48118910834ee, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.17
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -75519,10 +75522,11 @@ AudioSource:
   m_GameObject: {fileID: 7647579301248157098}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: feb58187f84593a4583ee2fe1fe5c3bc,
+    type: 2}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.25
+  m_Volume: 1
   m_Pitch: 0.4
   Loop: 0
   Mute: 0
