@@ -125,6 +125,8 @@ public class Player : NetworkBehaviour
         {
             this.anim.Play("Idle");
             canMove = false;
+            this.hasWonTheGame = true;
+            gm.Victory();
         }
 
         // creating normalizing direction so that movement isnt faster on diagonals

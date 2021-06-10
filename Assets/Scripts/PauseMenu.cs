@@ -20,6 +20,7 @@ public class PauseMenu : MonoBehaviour
     public AudioSource backgroundMusic;
 
     //public Minimap mm;
+    public NetworkManager nm;
 
     //public Player player;
 

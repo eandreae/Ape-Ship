@@ -105,9 +105,7 @@ public class GameManager : MonoBehaviour
                 //We need to destroy the pause menu panel so the player can't pause once the game is technically over
                 Destroy(pausePanel);
                 Destroy(pausePanel1P);
-
                 won = true;
-                p1p.hasWonTheGame = true;
                 Time.timeScale = 0f;
             }
 

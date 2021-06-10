@@ -124,8 +124,10 @@ public class Escape : MonoBehaviour
     {
         waypointArrow.SetActive(false);
         yield return new WaitForSeconds(2f);
-        Destroy(GameObject.FindGameObjectWithTag("Player"));
-        gm.Victory();
+        if(!nm){
+            Destroy(GameObject.FindGameObjectWithTag("Player"));
+            gm.Victory();
+        }
     }
 
 }
