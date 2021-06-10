@@ -33,10 +33,10 @@ public class spawner1P : MonoBehaviour
     }
 
     public void Deposit() {
-        if (brainTarg.GetComponent<NodeInstanceManager>().color == Color.red && fixRed == false)
+        if (brainTarg.GetComponent<NodeInstanceManager1P>().color == Color.red && fixRed == false)
             fixRed = true;
         else
-            brainTarg.GetComponent<NodeInstanceManager>().FixNode();
+            brainTarg.GetComponent<NodeInstanceManager1P>().FixNode();
     }
 
     public void Spawn() {
