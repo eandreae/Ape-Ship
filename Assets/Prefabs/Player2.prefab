@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6936001952981110308}
   - component: {fileID: 468356992493059710}
   m_Layer: 8
-  m_Name: Player2 1
+  m_Name: Player2
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3465042274739399557}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 34.87, y: 1.5604734, z: -2.47}
+  m_LocalPosition: {x: 34.87, y: 3, z: -2.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7479098519737968534}
@@ -295,20 +295,6 @@ MonoBehaviour:
   compressRotation: 0
   interpolateScale: 1
   syncScale: 1
---- !u!64 &4468077941708990608
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7818469778180406572}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 212370497460711607, guid: cdd2ba3754e1cd44dbdbf5d8c001dfbf, type: 3}
 --- !u!1 &7725372591625302821
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +341,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waypoints: []
   focus: {fileID: 0}
+--- !u!64 &4468077941708990608
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7818469778180406572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 212370497460711607, guid: cdd2ba3754e1cd44dbdbf5d8c001dfbf, type: 3}
 --- !u!1001 &876326231229831144
 PrefabInstance:
   m_ObjectHideFlags: 0
