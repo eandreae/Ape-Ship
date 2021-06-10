@@ -410,13 +410,11 @@ public class Player : NetworkBehaviour
             CmdTakeDamage(damage);
         }
     }
-    [ClientRpc]
+    [TargetRpc]
     void RpcTakeDamage(bool damage){
         if(damage){
             this.health--;
-            
-            if(isLocalPlayer)
-                healthBar.value = health;
+            healthBar.value = health;
         }
         if ( health == 0 )
         { 
