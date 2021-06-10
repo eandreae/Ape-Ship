@@ -195,21 +195,6 @@ public class Player : NetworkBehaviour
                     }
                 }
             }
-            
-            // Check if the player is invulnerable
-            if (invulnerable)
-            {
-                if (invulnTime > 0)
-                {
-                    invulnTime -= Time.deltaTime;
-                }
-                else
-                {
-                    invulnerable = false;
-                    Physics.IgnoreCollision(gorillaCollider, GetComponent<Collider>(), false);
-                    invulnTime = 2;
-                }
-            }
 
             // code to drop items
             if (this.holding)
@@ -251,7 +236,21 @@ public class Player : NetworkBehaviour
                 oxygen += Time.deltaTime * 2;
                 updateOxygen(1);
             }
-        }        
+        }
+
+        // Check if the player is invulnerable
+        if (invulnerable)
+        {
+            if (invulnTime > 0)
+            {
+                invulnTime -= Time.deltaTime;
+            }
+            else
+            {
+                invulnerable = false;
+                invulnTime = 2;
+            }
+        }
     }
 
     void PickUp(GameObject item) {
@@ -418,8 +417,6 @@ public class Player : NetworkBehaviour
             
             if(isLocalPlayer)
                 healthBar.value = health;
-            
-            this.invulnerable = true;
         }
         if ( health == 0 )
         { 
