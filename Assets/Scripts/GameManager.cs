@@ -15,7 +15,8 @@ public class GameManager : MonoBehaviour
     public Text causeOfDeath;
     public GameObject pausePanel1P;
     public GameObject pausePanel;
-    public GameObject returnOptions;
+    public GameObject returnMenu;
+    public GameObject returnLobby;    
 
     public AudioSource backgroundMusic;
 
@@ -178,8 +179,11 @@ public class GameManager : MonoBehaviour
                 Destroy(pausePanel);
                 Destroy(pausePanel1P);
 
+                if(localp.isServer)
+                    returnLobby.SetActive(true);
 
-                returnOptions.SetActive(true);
+                returnMenu.SetActive(true);
+
                 if (cause == 0) // ma
                 {
                     causeOfDeath.text = "All Players have Died";
