@@ -47,7 +47,6 @@ public class GorillaMovement : NetworkBehaviour
     public AudioClip clip1;
     public AudioClip clip2;
     public AudioClip clip3;
-    private bool carrying = false;
 
     // Start is called before the first frame update
     private void Start()
@@ -131,12 +130,6 @@ public class GorillaMovement : NetworkBehaviour
                 stoppingDistance = 0; // make stopping distance 0 if tracking the player
                 target = visibleTargets[0].gameObject;
 
-            }
-
-            if (this.holdingObject && !carrying)
-            {
-                this.GetComponent<Animator>().Play("GorillaCarry");
-                carrying = true;
             }
 
             float dist = Vector3.Distance(transform.position, target.transform.position);
@@ -305,44 +298,27 @@ public class GorillaMovement : NetworkBehaviour
 
     IEnumerator ThrowObject()
     {
-        if(isServer){
-            RpcThrowObject();
-        }else {
-            CmdThrowObject();
-        }
-    }
-    [ClientRpc]
-    void RpcThrowObject(){
-        if (holdingObject && visibleTargets.Count != 0)
+        if (holdingObject)
         {
-            StopGorilla();
-            this.gameObject.transform.LookAt(visibleTargets[0].transform.position);
+            agent.speed = 0;
+            gameObject.transform.LookAt(playerObj.transform.position);
             yield return new WaitForSeconds(0.5f); // wait for 1 second
-            Destroy(fakeHolding);
-            objectHeld.SetActive(true);
+
             objectHeld.GetComponent<Rigidbody>().isKinematic = false;
             objectHeld.tag = "ThrownObject";
-            objectHeld.layer = 15;
-            //Physics.IgnoreCollision(GetComponent<Collider>(), objectHeld.GetComponent<Collider>(), true);
-            objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 8f, ForceMode.Impulse);
-            objectHeld.transform.parent = null;
-
+            objectHeld.GetComponent<Rigidbody>().AddForce(this.transform.forward * 3f, ForceMode.Impulse);
+            
             //-- THROW ANIMATION --//
             this.GetComponent<Animator>().Play("GorillaThrow");
             
-            yield return new WaitForSeconds(1.5f); // wait for 1 second
+            yield return new WaitForSeconds(1f); // wait for 1 second
 
             holdingObject = false;
-            carrying = false;
             StartCoroutine("ThrowWait");
             StartCoroutine("DestroyThrown", objectHeld);
             StartGorilla();
             this.GetComponent<Animator>().Play("GorillaWalk1");
         }
-    }
-    [Command]
-    void CmdThrowObject(){
-        RpcThrowObject();
     }
 
     IEnumerator ThrowWait()
