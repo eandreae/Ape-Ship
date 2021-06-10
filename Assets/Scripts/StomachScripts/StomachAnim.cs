@@ -21,12 +21,12 @@ public class StomachAnim : MonoBehaviour
         if (stomColor.text == "yellow")
         {
             animator.speed = 0.5f;
-            animator.Play("Stomach|Hunger");
+            animator.Play("StomachHunger");
         }
         else if (stomColor.text == "red")
         {
             animator.speed = 1.0f;
-            animator.Play("Stomach|Hunger");
+            animator.Play("StomachHunger");
         }
         else if (stomColor.text == "green")
         {
