@@ -15,7 +15,7 @@ public class nukeSpawner1P : NetworkBehaviour
     //GorillaMovement gorillaScript;
     private bool canSpawn;
     private Animator foodAnim;
-    private GameObject vendingMachine;
+    public GameObject vendingMachine;
     private NetworkManager nm;
     private bool inrange = false;
 
@@ -31,8 +31,7 @@ public class nukeSpawner1P : NetworkBehaviour
         spawnee = GameObject.Find("SodaNuke (1P)"); // get nuke
         //gorillaScript = GetComponent<GorillaMovement>();
 
-        vendingMachine = GameObject.Find("NukeVendingMachine");
-        //foodAnim = vendingMachine.GetComponent<Animator>();
+        foodAnim = vendingMachine.GetComponent<Animator>();
 
     }
 
@@ -62,6 +61,7 @@ public class nukeSpawner1P : NetworkBehaviour
     private void SpawnItem(float cooldown)
     {
         spawnLoc = new Vector3(spawnPos.position.x + Random.Range(0.0f, 1.0f), (float)spawnPos.position.y, spawnPos.position.z + Random.Range(0.0f, 1.0f));
+        foodAnim.Play("PushButton");
 
         GameObject temp = Instantiate(spawnee, spawnLoc, spawnPos.rotation);
         temp.GetComponent<Rigidbody>().useGravity = true;
