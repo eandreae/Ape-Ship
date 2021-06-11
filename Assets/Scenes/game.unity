@@ -21341,12 +21341,12 @@ GameObject:
   - component: {fileID: 627281446}
   - component: {fileID: 627281445}
   m_Layer: 0
-  m_Name: Highlight Sphere
+  m_Name: highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &627281444
 Transform:
   m_ObjectHideFlags: 0
@@ -21354,9 +21354,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627281443}
-  m_LocalRotation: {x: -0.1435347, y: -0.51037186, z: -0.0788917, w: 0.84421235}
-  m_LocalPosition: {x: -29.556784, y: -2.644498, z: -60.302357}
-  m_LocalScale: {x: 2.05699, y: 2.05699, z: 1.07411}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 60552003}
   m_RootOrder: 0
@@ -21420,7 +21420,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 627281443}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 2536326365731342068, guid: 0321d5a8f760970438b7ccf74b1ffa83, type: 3}
 --- !u!1001 &628298277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54753,6 +54753,7 @@ GameObject:
   - component: {fileID: 1652406477}
   - component: {fileID: 1652406476}
   - component: {fileID: 1652406475}
+  - component: {fileID: 1652406478}
   m_Layer: 0
   m_Name: nukeSpawnCollider (1P)
   m_TagString: Untagged
@@ -54821,6 +54822,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.71, y: 3, z: 4.17}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1652406478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1652406473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997ecdbcd0bf1de48977228f0d5451c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 627281443}
 --- !u!64 &1656816934
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -54948,6 +54962,7 @@ GameObject:
   - component: {fileID: 1666636724}
   - component: {fileID: 1666636723}
   - component: {fileID: 1666636726}
+  - component: {fileID: 1666636725}
   m_Layer: 0
   m_Name: nukeSpawnCollider (1P)
   m_TagString: Untagged
@@ -54998,6 +55013,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3, y: 3, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1666636725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1666636721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997ecdbcd0bf1de48977228f0d5451c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlight: {fileID: 2024085981}
 --- !u!114 &1666636726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -55646,7 +55674,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1699341046
 Transform:
   m_ObjectHideFlags: 0
@@ -63237,12 +63265,12 @@ GameObject:
   - component: {fileID: 2024085984}
   - component: {fileID: 2024085983}
   m_Layer: 0
-  m_Name: Highlight Sphere
+  m_Name: highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2024085982
 Transform:
   m_ObjectHideFlags: 0
@@ -63250,9 +63278,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024085981}
-  m_LocalRotation: {x: -0.1435347, y: -0.51037186, z: -0.0788917, w: 0.84421235}
-  m_LocalPosition: {x: -29.556784, y: -2.644498, z: -60.302357}
-  m_LocalScale: {x: 2.05699, y: 2.05699, z: 1.07411}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1056242538}
   m_RootOrder: 0
@@ -63316,7 +63344,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2024085981}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 2536326365731342068, guid: 0321d5a8f760970438b7ccf74b1ffa83, type: 3}
 --- !u!1 &2024352878 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 4af598432ed86bf4a9b967092be90c30,
